@@ -1,0 +1,14 @@
+[scrapper_config]
+twitter_accounts = [
+    {username = "politietsorvest", prefix= "SISTE FRA POLITIET:", suffix= "(POLITIET/RADIO HAUGALAND)"},
+    {username = "politivest", prefix= "SISTE FRA POLITIET:", suffix= "(POLITIET/RADIO HAUGALAND)"},
+    {username = "110SorVest", prefix= "SISTE FRA BRANNVESENET:", suffix= "(110-SENTRALEN/RADIO HAUGALAND)"},
+    {username = "110Vest", prefix= "SISTE FRA BRANNVESENET:", suffix= "(110-SENTRALEN/RADIO HAUGALAND)"},
+    {username = "VTSvest", prefix= "TRAFIKK:", suffix= "(VEGVESEN/RADIO HAUGALAND)"},
+    {username = "HRSSorNorge", prefix= "REDNING:", suffix= "(HRSS/RADIO HAUGALAND)"},
+    {username = "Meteorologene", prefix= "VÆRET:", suffix= "(MET/RADIO HAUGALAND)"},
+]
+within_time = "1800h"
+keywords = ["Haugesund", "Karmøy", "Tysvær", "Sveio", "Utsira", "Bokn", "Vindafjord", "Etne", "Vikedal", "Sandeid", "Sand", "Suldal", "Sauda", "Bømlafjorden", "Bømlafjordtunnelen", "Karmsund", "Risøy", "Hasseløy", "Bakarøy", "Karmsundgata", "Spannavegen", "E39", "E134", "E 39", "E 134", "Bømlo", "Stord", "Fitjar", "Kvinnherad", "Huglo", "Bømlafjordtunnelen", "Bømlafjorden", "Langevåg", "Buavåg", "Leirvik", "Sagvåg"]
+
+
