@@ -5,61 +5,38 @@ import random
 import subprocess
 from os import chdir
 from pathlib import Path
-import pandas as pd
 import pytz
 from feedgen.feed import FeedGenerator
 import tomllib
+from nltk.tokenize import word_tokenize
+from twitter.scraper import Scraper
+from twitter_data import twitter_data_from_dict
 
 TWINT_API_DIR = Path(__file__).parent
 
 # read configuration
 with open("config.toml", "rb") as f:
     config = tomllib.load(f)
-keywords = ' OR '.join(config['scrapper_config']['keywords'])
+haugaland_keywords = config['scrapper_config']['haugaland_keywords']
+sunnhordland_keywords = config['scrapper_config']['sunnhordland_keywords']
+
 twitter_accounts = config['scrapper_config']['twitter_accounts']
 within_time = config['scrapper_config']['within_time']
 
 # config RSS
-fg = FeedGenerator()
-fg.load_extension("media", rss=True, atom=True)
-fg.id('http://infokanal.com/feed')
-fg.title('infokanal RSS feed')
-fg.link(href='http://infokanal.com/')
-fg.description('infokanal RSS feed')
+fg_haugaland = FeedGenerator()
+fg_haugaland.load_extension("media", rss=True, atom=True)
+fg_haugaland.id('http://infokanal.com/feed')
+fg_haugaland.title('infokanal RSS feed')
+fg_haugaland.link(href='http://infokanal.com/')
+fg_haugaland.description('infokanal RSS feed')
 
-
-def return_query_results(
-        query: str
-) -> subprocess:
-    global TWINT_API_DIR
-    chdir(TWINT_API_DIR)
-    cmd = [
-        'go',
-        'run',
-        'main.go',
-        '-Query',
-        query,
-        '-Instance',
-        'birdsite.xanny.family',
-        '-Format',
-        'json',
-    ]
-    # If Instance needs to be modified use a value from https://github.com/zedeus/nitter/wiki/Instances
-
-    process = subprocess.run(
-        cmd,
-        capture_output=True,
-        text=True
-    )
-    return process.stdout
-
-
-def parse_json_returned(json_str: str) -> json:
-    return json.loads(
-        json.JSONEncoder().encode(
-            json_str
-        )
-    )
+fg_sunnhordland = FeedGenerator()
+fg_sunnhordland.load_extension("media", rss=True, atom=True)
+fg_sunnhordland.id('http://infokanal.com/feed')
+fg_sunnhordland.title('infokanal RSS feed')
+fg_sunnhordland.link(href='http://infokanal.com/')
+fg_sunnhordland.description('infokanal RSS feed')
 
 
 def check_date_is_day(date) -> bool:
@@ -78,54 +55,154 @@ def retrieve_random_image(username: str, date) -> str:
         return ""
 
 
-def convert_to_RSS(item):
-    if (len(item['tweets']) > 0):
-        for i in range(len(item['tweets']['id'])):
-            index = str(i)
-            fe = fg.add_entry()
-            fe.id(str(item['tweets']['id'][index]))
-            fe.title(f"{item['prefix']}{item['tweets']['text'][index]}{item['suffix']}")
-            fe.link(href=item['tweets']['url'][index], rel='alternate')
-            # parse datetime string and localize to UTC
-            dt = datetime.datetime.strptime(item['tweets']['timestamp'][index], '%b %d, %Y · %I:%M %p %Z')
-            dt = pytz.utc.localize(dt)
-            fe.pubDate(dt)
-            if len(item['tweets']['attachments'][index]) > 0:
-                fe.media.thumbnail({'url': item['tweets']['attachments'][index][0]['url'], 'width': '200'})
-                fe.media.content({'url': item['tweets']['attachments'][index][0]['url'], 'width': '200'})
-            else:
-                result = retrieve_random_image(item['username'], dt)
-                if result:
-                    fe.media.thumbnail({'url': result, 'width': '200'})
-                    fe.media.content({'url': result, 'width': '200'})
+def filter_results(tweet_text, keywords) -> bool:
+    for word in word_tokenize(tweet_text):
+        for keyword in keywords:
+            if keyword == word or keyword.lower() == word or keyword.replace(' ', '') == word:
+                return True
+
+
+def convert_to_RSS(item, keywords, fg):
+    if len(item['tweets']) > 0:
+        for tweet in item['tweets']:
+            if filter_results(tweet['full_text'], keywords):
+                fe = fg.add_entry()
+                fe.id(tweet['id'])
+                fe.title(f"{item['prefix']} {tweet['full_text']} {item['suffix']}")
+                fe.link(href="https://twitter.com/twitter/status/" + tweet['id'], rel='alternate')
+                # parse datetime string and localize to UTC
+                dt = datetime.datetime.strptime(tweet['created_at'], '%a %b %d %H:%M:%S %z %Y')
+                fe.pubDate(dt)
+
+                if tweet['attachment']:
+                    fe.media.thumbnail({'url': tweet['attachment'], 'width': '200'},
+                                       group=None)
+                    fe.media.content({'url': tweet['attachment'], 'width': '400'},
+                                     group=None)
+                else:
+                    result = retrieve_random_image(item['username'], dt)
+                    if result:
+                        fe.media.thumbnail({'url': result, 'width': '200'}, group=None)
+                        fe.media.content({'url': result, 'width': '400'}, group=None)
+
 
     else:
         return
 
 
-if __name__ == '__main__':
-    for twitter_account in twitter_accounts:
-        query_str = f"{keywords} from:{twitter_account['username']} within_time:{within_time}"
-        json_str = return_query_results(
-            query_str,
-        )
-        response_json = parse_json_returned(
-            json_str
-        )
-        df = pd.read_json(
-            response_json,
-            lines=True
-        )
-        formatted_json = json.loads(df.to_json())
-        # print(formatted_json)
-        convert_to_RSS({
-            "username": twitter_account['username'],
-            "tweets": formatted_json,
-            "prefix": twitter_account['prefix'],
-            "suffix": twitter_account['suffix']
-        })
+def get_rest_ids(data):
+    rest_ids = []
+    for result_list in data:
+        for result in result_list:
+            rest_id = result['data']['user']['result']['rest_id']
+            username = result['data']['user']['result']['legacy']['screen_name']
+            rest_ids.append({
+                "rest_id": rest_id,
+                "username": username
+            })
+    return rest_ids
 
-fg.atom_str(pretty=True)
-fg.rss_str(pretty=True)
-fg.rss_file('rss.xml')
-fg.atom_file('atom.xml')
+
+def get_max_res(binding_values):
+    max_resolution = 0
+    max_res_image_url = ""
+
+    # Iterate through the BindingValue objects
+    for binding_value in binding_values:
+        image_value = binding_value.value.image_value
+
+        # Check if the current BindingValue has an image_value
+        if image_value:
+            # Calculate the resolution (height * width) of the current image
+            resolution = image_value.height * image_value.width
+
+            # Update the maximum resolution and image URL if the current resolution is higher
+            if resolution > max_resolution:
+                max_resolution = resolution
+                max_res_image_url = image_value.url
+
+    return max_res_image_url
+
+
+def print_tweets(res, users):
+    list_tweets = []
+    for item in res.data.user.result.timeline_v2.timeline.instructions:
+        if item.entries is not None:
+            for entry in item.entries:
+                if entry.content.item_content is not None:
+                    user = list(filter(
+                        lambda x: x['rest_id'] == entry.content.item_content.tweet_results.result.legacy.user_id_str,
+                        users))
+                    max_res = ""
+                    print(user[0]['username'])
+                    print(entry.content.item_content.tweet_results.result.legacy.created_at)
+                    print(entry.content.item_content.tweet_results.result.legacy.full_text)
+                    if entry.content.item_content.tweet_results.result.card and \
+                            entry.content.item_content.tweet_results.result.card.legacy.binding_values:
+                        max_res = get_max_res(
+                            entry.content.item_content.tweet_results.result.card.legacy.binding_values)
+                        print(max_res)
+
+                    print('----------------------------------')
+                    list_tweets.append({
+                        'username': user[0]['username'],
+                        'created_at': entry.content.item_content.tweet_results.result.legacy.created_at,
+                        'full_text': entry.content.item_content.tweet_results.result.legacy.full_text,
+                        'id': entry.content.item_content.tweet_results.result.legacy.id_str,
+                        'attachment': max_res
+                    })
+        print("\n")
+    return list_tweets
+
+
+def get_data():
+    email, username, password = "ramyborni", "rikiraspoutine@gmail.com", "Raspoutine@5353"
+
+    scraper = Scraper(email, username, password, debug=1, save=False)
+    users = scraper.users([user['username'] for user in twitter_accounts])
+
+    users_id = get_rest_ids(users)
+
+    tweets = scraper.tweets([user['rest_id'] for user in users_id], limit=10)
+
+    result = []
+    for tweet_data in twitter_data_from_dict(tweets):
+        for tweets in tweet_data:
+            result.append(print_tweets(tweets, users_id))
+
+    return result
+
+
+if __name__ == '__main__':
+    fg = FeedGenerator()
+    fg.load_extension("media", rss=True, atom=True)
+    fg.id('http://infokanal.com/feed')
+    fg.title('infokanal RSS feed')
+    fg.link(href='http://infokanal.com/')
+    fg.description('infokanal RSS feed')
+    result = get_data()
+    for i in range(len(twitter_accounts)):
+        convert_to_RSS({
+            "username": twitter_accounts[i]['username'],
+            "tweets": result[i],
+            "prefix": twitter_accounts[i]['prefix'],
+            "suffix": twitter_accounts[i]['suffix']
+        }, haugaland_keywords, fg_haugaland)
+        convert_to_RSS({
+            "username": twitter_accounts[i]['username'],
+            "tweets": result[i],
+            "prefix": twitter_accounts[i]['prefix'],
+            "suffix": twitter_accounts[i]['suffix']
+        }, sunnhordland_keywords, fg_sunnhordland)
+
+    haugaland_list = fg_haugaland.entry()
+    fg_haugaland.entry(
+        sorted(haugaland_list, key=lambda x: x.pubDate(), reverse=True), replace=True
+    )
+
+    fg_haugaland.rss_str(pretty=True)
+    fg_haugaland.rss_file('haugaland_rss.xml')
+
+    fg_sunnhordland.entry(sorted(fg_sunnhordland.entry(), key=lambda x: x.pubDate(), reverse=True), replace=True)
+    fg_sunnhordland.rss_str(pretty=True)
+    fg_sunnhordland.rss_file('sunnhordland_rss.xml')
