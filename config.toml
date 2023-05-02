@@ -1,5 +1,5 @@
 [scrapper_config]
-within_time = "10h"
+within_time = "3h"
 haugaland_keywords = [ "Haugesund", "Karmøy", "Tysvær", "Sveio", "Utsira", "Bokn", "Vindafjord", "Etne", "Vikedal", "Sandeid", "Sand", "Suldal", "Sauda", "Karmsund", "Risøy", "Hasseløy", "Bakarøy", "Karmsundgata", "Spannavegen", "E39", "E134", "E 39", "E 134", "Bømlo", "Stord", "Fitjar", "Kvinnherad", "Huglo", "Bømlafjordtunnelen", "Bømlafjorden", "Langevåg", "Buavåg", "Leirvik", "Sagvåg", "Mastrafjordtunnelen", "Byfjordtunnelen", "Uføretunnelen", "Røldalstunnelen", "Seljestadtunnelen", "Haukelitunnelen",]
 sunnhordland_keywords = [ "Sveio", "Stord", "Bømlo", "Bømlafjorden", "Bømlabroa", "Bømlafjordtunnelen", "Fitjar", "Kvinnherad", "Huglo", "Leirvik", "Bremnes", "Bremnesvegen", "Langevåg", "Buavåg", "Sagvåg",]
 [[scrapper_config.twitter_accounts]]

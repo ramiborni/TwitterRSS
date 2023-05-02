@@ -39,6 +39,26 @@ fg_sunnhordland.link(href='http://infokanal.com/')
 fg_sunnhordland.description('infokanal RSS feed')
 
 
+def is_date_in_range(date_str):
+    date_format = "%a %b %d %H:%M:%S %z %Y"
+    date = datetime.datetime.strptime(date_str, date_format)
+
+    range_value, range_unit = int(within_time[:-1]), within_time[-1]
+
+    if range_unit == "h":
+        time_delta = datetime.timedelta(hours=range_value)
+    elif range_unit == "d":
+        time_delta = datetime.timedelta(days=range_value)
+    elif range_unit == "m":
+        time_delta = datetime.timedelta(days=range_value * 30)  # Assuming 30 days in a month
+    else:
+        raise ValueError("Invalid date range format")
+
+    now = datetime.datetime.now(date.tzinfo)  # Assign the timezone of 'date' to 'now'
+
+    return now - time_delta <= date <= now
+
+
 def check_date_is_day(date) -> bool:
     start_time = datetime.time(hour=6)
     end_time = datetime.time(hour=18)
@@ -65,7 +85,7 @@ def filter_results(tweet_text, keywords) -> bool:
 def convert_to_RSS(item, keywords, fg):
     if len(item['tweets']) > 0:
         for tweet in item['tweets']:
-            if filter_results(tweet['full_text'], keywords):
+            if filter_results(tweet['full_text'], keywords) and is_date_in_range(tweet['created_at']):
                 fe = fg.add_entry()
                 fe.id(tweet['id'])
                 fe.title(f"{item['prefix']} {tweet['full_text']} {item['suffix']}")
@@ -129,7 +149,7 @@ def print_tweets(res, users):
     for item in res.data.user.result.timeline_v2.timeline.instructions:
         if item.entries is not None:
             for entry in item.entries:
-                if entry.content.item_content is not None:
+                if entry.content.item_content is not None and entry.content.item_content.tweet_results.result.legacy is not None:
                     user = list(filter(
                         lambda x: x['rest_id'] == entry.content.item_content.tweet_results.result.legacy.user_id_str,
                         users))
@@ -163,7 +183,10 @@ def get_data():
 
     users_id = get_rest_ids(users)
 
-    tweets = scraper.tweets([user['rest_id'] for user in users_id], limit=10)
+    tweets = scraper.tweets([user['rest_id'] for user in users_id], limit=100)
+
+    with open("output.json", "w") as outfile:
+        json.dump(tweets, outfile, indent=4)
 
     result = []
     for tweet_data in twitter_data_from_dict(tweets):

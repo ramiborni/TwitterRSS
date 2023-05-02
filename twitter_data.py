@@ -1,10 +1,8 @@
-from enum import Enum
 from dataclasses import dataclass
 from typing import Optional, Any, List, TypeVar, Type, cast, Callable
 
 
 T = TypeVar("T")
-EnumT = TypeVar("EnumT", bound=Enum)
 
 
 def from_int(x: Any) -> int:
@@ -51,37 +49,9 @@ def from_str(x: Any) -> str:
     return x
 
 
-def is_type(t: Type[T], x: Any) -> T:
-    assert isinstance(x, t)
-    return x
-
-
-def to_enum(c: Type[EnumT], x: Any) -> EnumT:
-    assert isinstance(x, c)
-    return x.value
-
-
 def from_bool(x: Any) -> bool:
     assert isinstance(x, bool)
     return x
-
-
-class CursorType(Enum):
-    BOTTOM = "Bottom"
-    TOP = "Top"
-
-
-class EntryTypeEnum(Enum):
-    TIMELINE_TIMELINE_CURSOR = "TimelineTimelineCursor"
-    TIMELINE_TIMELINE_ITEM = "TimelineTimelineItem"
-
-
-class ItemTypeEnum(Enum):
-    TIMELINE_TWEET = "TimelineTweet"
-
-
-class TweetDisplayType(Enum):
-    TWEET = "Tweet"
 
 
 @dataclass
@@ -148,18 +118,20 @@ class ImageColorValue:
 
 
 @dataclass
-class ImageValue:
+class PurpleImageValue:
     height: Optional[int] = None
     width: Optional[int] = None
     url: Optional[str] = None
+    alt: Optional[str] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'ImageValue':
+    def from_dict(obj: Any) -> 'PurpleImageValue':
         assert isinstance(obj, dict)
         height = from_union([from_int, from_none], obj.get("height"))
         width = from_union([from_int, from_none], obj.get("width"))
         url = from_union([from_str, from_none], obj.get("url"))
-        return ImageValue(height, width, url)
+        alt = from_union([from_str, from_none], obj.get("alt"))
+        return PurpleImageValue(height, width, url, alt)
 
     def to_dict(self) -> dict:
         result: dict = {}
@@ -169,92 +141,87 @@ class ImageValue:
             result["width"] = from_union([from_int, from_none], self.width)
         if self.url is not None:
             result["url"] = from_union([from_str, from_none], self.url)
+        if self.alt is not None:
+            result["alt"] = from_union([from_str, from_none], self.alt)
         return result
-
-
-class ValueType(Enum):
-    IMAGE = "IMAGE"
-    IMAGE_COLOR = "IMAGE_COLOR"
-    STRING = "STRING"
-    USER = "USER"
 
 
 @dataclass
 class UserValue:
-    id_str: Optional[int] = None
+    id_str: Optional[str] = None
     path: Optional[List[Any]] = None
 
     @staticmethod
     def from_dict(obj: Any) -> 'UserValue':
         assert isinstance(obj, dict)
-        id_str = from_union([from_none, lambda x: int(from_str(x))], obj.get("id_str"))
+        id_str = from_union([from_str, from_none], obj.get("id_str"))
         path = from_union([lambda x: from_list(lambda x: x, x), from_none], obj.get("path"))
         return UserValue(id_str, path)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.id_str is not None:
-            result["id_str"] = from_union([lambda x: from_none((lambda x: is_type(type(None), x))(x)), lambda x: from_str((lambda x: str((lambda x: is_type(int, x))(x)))(x))], self.id_str)
+            result["id_str"] = from_union([from_str, from_none], self.id_str)
         if self.path is not None:
             result["path"] = from_union([lambda x: from_list(lambda x: x, x), from_none], self.path)
         return result
 
 
 @dataclass
-class Value:
+class PurpleValue:
+    image_value: Optional[PurpleImageValue] = None
+    type: Optional[str] = None
     string_value: Optional[str] = None
-    type: Optional[ValueType] = None
     scribe_key: Optional[str] = None
-    image_value: Optional[ImageValue] = None
-    image_color_value: Optional[ImageColorValue] = None
     user_value: Optional[UserValue] = None
+    image_color_value: Optional[ImageColorValue] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'Value':
+    def from_dict(obj: Any) -> 'PurpleValue':
         assert isinstance(obj, dict)
+        image_value = from_union([PurpleImageValue.from_dict, from_none], obj.get("image_value"))
+        type = from_union([from_str, from_none], obj.get("type"))
         string_value = from_union([from_str, from_none], obj.get("string_value"))
-        type = from_union([ValueType, from_none], obj.get("type"))
         scribe_key = from_union([from_str, from_none], obj.get("scribe_key"))
-        image_value = from_union([ImageValue.from_dict, from_none], obj.get("image_value"))
-        image_color_value = from_union([ImageColorValue.from_dict, from_none], obj.get("image_color_value"))
         user_value = from_union([UserValue.from_dict, from_none], obj.get("user_value"))
-        return Value(string_value, type, scribe_key, image_value, image_color_value, user_value)
+        image_color_value = from_union([ImageColorValue.from_dict, from_none], obj.get("image_color_value"))
+        return PurpleValue(image_value, type, string_value, scribe_key, user_value, image_color_value)
 
     def to_dict(self) -> dict:
         result: dict = {}
+        if self.image_value is not None:
+            result["image_value"] = from_union([lambda x: to_class(PurpleImageValue, x), from_none], self.image_value)
+        if self.type is not None:
+            result["type"] = from_union([from_str, from_none], self.type)
         if self.string_value is not None:
             result["string_value"] = from_union([from_str, from_none], self.string_value)
-        if self.type is not None:
-            result["type"] = from_union([lambda x: to_enum(ValueType, x), from_none], self.type)
         if self.scribe_key is not None:
             result["scribe_key"] = from_union([from_str, from_none], self.scribe_key)
-        if self.image_value is not None:
-            result["image_value"] = from_union([lambda x: to_class(ImageValue, x), from_none], self.image_value)
-        if self.image_color_value is not None:
-            result["image_color_value"] = from_union([lambda x: to_class(ImageColorValue, x), from_none], self.image_color_value)
         if self.user_value is not None:
             result["user_value"] = from_union([lambda x: to_class(UserValue, x), from_none], self.user_value)
+        if self.image_color_value is not None:
+            result["image_color_value"] = from_union([lambda x: to_class(ImageColorValue, x), from_none], self.image_color_value)
         return result
 
 
 @dataclass
-class BindingValue:
+class PurpleBindingValue:
     key: Optional[str] = None
-    value: Optional[Value] = None
+    value: Optional[PurpleValue] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'BindingValue':
+    def from_dict(obj: Any) -> 'PurpleBindingValue':
         assert isinstance(obj, dict)
         key = from_union([from_str, from_none], obj.get("key"))
-        value = from_union([Value.from_dict, from_none], obj.get("value"))
-        return BindingValue(key, value)
+        value = from_union([PurpleValue.from_dict, from_none], obj.get("value"))
+        return PurpleBindingValue(key, value)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.key is not None:
             result["key"] = from_union([from_str, from_none], self.key)
         if self.value is not None:
-            result["value"] = from_union([lambda x: to_class(Value, x), from_none], self.value)
+            result["value"] = from_union([lambda x: to_class(PurpleValue, x), from_none], self.value)
         return result
 
 
@@ -277,22 +244,22 @@ class Audience:
 
 @dataclass
 class Device:
-    version: Optional[int] = None
     name: Optional[str] = None
+    version: Optional[str] = None
 
     @staticmethod
     def from_dict(obj: Any) -> 'Device':
         assert isinstance(obj, dict)
-        version = from_union([from_none, lambda x: int(from_str(x))], obj.get("version"))
         name = from_union([from_str, from_none], obj.get("name"))
-        return Device(version, name)
+        version = from_union([from_str, from_none], obj.get("version"))
+        return Device(name, version)
 
     def to_dict(self) -> dict:
         result: dict = {}
-        if self.version is not None:
-            result["version"] = from_union([lambda x: from_none((lambda x: is_type(type(None), x))(x)), lambda x: from_str((lambda x: str((lambda x: is_type(int, x))(x)))(x))], self.version)
         if self.name is not None:
             result["name"] = from_union([from_str, from_none], self.name)
+        if self.version is not None:
+            result["version"] = from_union([from_str, from_none], self.version)
         return result
 
 
@@ -348,53 +315,21 @@ class UnmentionData:
         return result
 
 
-class ID(Enum):
-    VX_NLCJO0_NZ_QZ_MZ_Q2_ND_YY = "VXNlcjo0NzQzMzQ2NDYy"
-    VX_NLCJO3_MD_UZ_NZ_UX_MTQ4_MJK4_O_DK1_MZ_Y = "VXNlcjo3MDUzNzUxMTQ4Mjk4ODk1MzY="
-    VX_NLCJO5_MT_YY_MTU2_M_TG2_MTI5_NZ_M1_NJG = "VXNlcjo5MTYyMTU2MTg2MTI5NzM1Njg="
-    VX_NLCJO5_NZ_U2_NJ_Y4_O_DCX_NZ_M1_NJ_Y0_NJ_Q = "VXNlcjo5NzU2NjY4ODcxNzM1NjY0NjQ="
-    VX_NLCJOX_MDA1_ODI2_ODM2 = "VXNlcjoxMDA1ODI2ODM2"
-    VX_NLCJOX_MJ_Q4_ND_EX_OT_YW = "VXNlcjoxMjQ4NDExOTYw"
-    VX_NLCJOX_MJ_UX_NTM4_NDE2 = "VXNlcjoxMjUxNTM4NDE2"
-    VX_NLCJOX_NDY5_MZ_A4_MDA4 = "VXNlcjoxNDY5MzA4MDA4"
-    VX_NLCJOY_MD_YY_O_TG1_OA = "VXNlcjoyMDYyOTg1OA=="
-    VX_NLCJOY_M_TK3_NZ_AX_NDA1 = "VXNlcjoyMTk3NzAxNDA1"
-    VX_NLCJOY_M_TKX_N_DC4_ODQ5 = "VXNlcjoyMTkxNDc4ODQ5"
-    VX_NLCJOY_NJ_U5_MD_MZ_MDY = "VXNlcjoyNjU5MDMzMDY="
-    VX_NLCJOY_NZG0_N_DC0_MG = "VXNlcjoyNzg0NDc0Mg=="
-
-
-class CreatedAt(Enum):
-    FRI_JAN_0809515600002016 = "Fri Jan 08 09:51:56 +0000 2016"
-    FRI_MAR_0812053400002013 = "Fri Mar 08 12:05:34 +0000 2013"
-    FRI_NOV_2215382100002013 = "Fri Nov 22 15:38:21 +0000 2013"
-    FRI_OCT_0608164000002017 = "Fri Oct 06 08:16:40 +0000 2017"
-    MON_MAR_1409462200002011 = "Mon Mar 14 09:46:22 +0000 2011"
-    MON_MAR_1909344700002018 = "Mon Mar 19 09:34:47 +0000 2018"
-    THU_MAR_0312514700002016 = "Thu Mar 03 12:51:47 +0000 2016"
-    THU_MAR_0710285200002013 = "Thu Mar 07 10:28:52 +0000 2013"
-    THU_MAY_3009213800002013 = "Thu May 30 09:21:38 +0000 2013"
-    TUE_MAR_3110032700002009 = "Tue Mar 31 10:03:27 +0000 2009"
-    WED_DEC_1207552000002012 = "Wed Dec 12 07:55:20 +0000 2012"
-    WED_FEB_1121264400002009 = "Wed Feb 11 21:26:44 +0000 2009"
-    WED_NOV_2709155500002013 = "Wed Nov 27 09:15:55 +0000 2013"
-
-
 @dataclass
-class URL:
+class PurpleURL:
     display_url: Optional[str] = None
     expanded_url: Optional[str] = None
     url: Optional[str] = None
     indices: Optional[List[int]] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'URL':
+    def from_dict(obj: Any) -> 'PurpleURL':
         assert isinstance(obj, dict)
         display_url = from_union([from_str, from_none], obj.get("display_url"))
         expanded_url = from_union([from_str, from_none], obj.get("expanded_url"))
         url = from_union([from_str, from_none], obj.get("url"))
         indices = from_union([lambda x: from_list(from_int, x), from_none], obj.get("indices"))
-        return URL(display_url, expanded_url, url, indices)
+        return PurpleURL(display_url, expanded_url, url, indices)
 
     def to_dict(self) -> dict:
         result: dict = {}
@@ -410,97 +345,92 @@ class URL:
 
 
 @dataclass
-class Description:
-    urls: Optional[List[URL]] = None
+class PurpleDescription:
+    urls: Optional[List[PurpleURL]] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'Description':
+    def from_dict(obj: Any) -> 'PurpleDescription':
         assert isinstance(obj, dict)
-        urls = from_union([lambda x: from_list(URL.from_dict, x), from_none], obj.get("urls"))
-        return Description(urls)
+        urls = from_union([lambda x: from_list(PurpleURL.from_dict, x), from_none], obj.get("urls"))
+        return PurpleDescription(urls)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.urls is not None:
-            result["urls"] = from_union([lambda x: from_list(lambda x: to_class(URL, x), x), from_none], self.urls)
+            result["urls"] = from_union([lambda x: from_list(lambda x: to_class(PurpleURL, x), x), from_none], self.urls)
+        return result
+
+
+@dataclass
+class TentacledURL:
+    display_url: Optional[str] = None
+    expanded_url: Optional[str] = None
+    url: Optional[str] = None
+    indices: Optional[List[int]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'TentacledURL':
+        assert isinstance(obj, dict)
+        display_url = from_union([from_str, from_none], obj.get("display_url"))
+        expanded_url = from_union([from_str, from_none], obj.get("expanded_url"))
+        url = from_union([from_str, from_none], obj.get("url"))
+        indices = from_union([lambda x: from_list(from_int, x), from_none], obj.get("indices"))
+        return TentacledURL(display_url, expanded_url, url, indices)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.display_url is not None:
+            result["display_url"] = from_union([from_str, from_none], self.display_url)
+        if self.expanded_url is not None:
+            result["expanded_url"] = from_union([from_str, from_none], self.expanded_url)
+        if self.url is not None:
+            result["url"] = from_union([from_str, from_none], self.url)
+        if self.indices is not None:
+            result["indices"] = from_union([lambda x: from_list(from_int, x), from_none], self.indices)
+        return result
+
+
+@dataclass
+class FluffyURL:
+    urls: Optional[List[TentacledURL]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'FluffyURL':
+        assert isinstance(obj, dict)
+        urls = from_union([lambda x: from_list(TentacledURL.from_dict, x), from_none], obj.get("urls"))
+        return FluffyURL(urls)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.urls is not None:
+            result["urls"] = from_union([lambda x: from_list(lambda x: to_class(TentacledURL, x), x), from_none], self.urls)
         return result
 
 
 @dataclass
 class PurpleEntities:
-    description: Optional[Description] = None
-    url: Optional[Description] = None
+    description: Optional[PurpleDescription] = None
+    url: Optional[FluffyURL] = None
 
     @staticmethod
     def from_dict(obj: Any) -> 'PurpleEntities':
         assert isinstance(obj, dict)
-        description = from_union([Description.from_dict, from_none], obj.get("description"))
-        url = from_union([Description.from_dict, from_none], obj.get("url"))
+        description = from_union([PurpleDescription.from_dict, from_none], obj.get("description"))
+        url = from_union([FluffyURL.from_dict, from_none], obj.get("url"))
         return PurpleEntities(description, url)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.description is not None:
-            result["description"] = from_union([lambda x: to_class(Description, x), from_none], self.description)
+            result["description"] = from_union([lambda x: to_class(PurpleDescription, x), from_none], self.description)
         if self.url is not None:
-            result["url"] = from_union([lambda x: to_class(Description, x), from_none], self.url)
+            result["url"] = from_union([lambda x: to_class(FluffyURL, x), from_none], self.url)
         return result
 
 
-class Location(Enum):
-    BERGEN_NORGE = "Bergen, Norge"
-    EMPTY = ""
-    MONS_NORWAY = "Mons, Norway"
-    MØRE_OG_ROMSDAL_NORGE = "Møre og Romsdal, Norge"
-    NORGE = "Norge"
-    OSLO = "Oslo"
-    PORSGRUNN_NORGE = "Porsgrunn, Norge"
-    ROGALAND_BRANN_OG_REDNING_IKS = "Rogaland brann og redning IKS"
-    TROMSØ_NORWAY = "Tromsø, Norway"
-    VESTLAND_FYLKE = "Vestland fylke"
-
-
-class Name(Enum):
-    BARENTS_WATCH = "BarentsWatch"
-    HRS_SØR_NORGE = "HRS Sør-Norge"
-    METEOROLOGENE = "Meteorologene"
-    NRK_TRAFIKK = "NRK Trafikk"
-    POLITIET_I_SØR_VEST = "Politiet i Sør-Vest"
-    POLITIET_MØRE_ROMSDAL = "Politiet MøreRomsdal"
-    STATENS_VEGVESEN = "Statens vegvesen"
-    SØR_ØST_POLITIDISTRIKT = "Sør-Øst politidistrikt"
-    THE_110_SØR_VEST = "110 Sør-Vest"
-    THE_110_VEST = "110 Vest"
-    VEGTRAFIKKSENTRALEN_SØR = "Vegtrafikksentralen sør"
-    VEGTRAFIKKSENTRALEN_VEST = "Vegtrafikksentralen vest"
-    VEST_POLITIDISTRIKT = "Vest politidistrikt"
-
-
-class ScreenName(Enum):
-    BARENTS_WATCH = "BarentsWatch"
-    HAAVARDBERGEN = "haavardbergen"
-    HRS_SOR_NORGE = "HRSSorNorge"
-    KENTEINAR = "kenteinar"
-    METEOROLOGENE = "Meteorologene"
-    NRK_TRAFIKK = "NRKTrafikk"
-    POLITIETSOROST = "politietsorost"
-    POLITIETSORVEST = "politietsorvest"
-    POLITIVEST = "politivest"
-    POLITI_M_RPD = "PolitiMRpd"
-    PRESSEROM = "Presserom"
-    THE_110_SOR_VEST = "110SorVest"
-    THE_110_VEST = "110Vest"
-    VTS_SOR = "VTS_sor"
-    VT_SVEST = "VTSvest"
-
-
-class TranslatorType(Enum):
-    NONE = "none"
-
-
 @dataclass
-class PurpleLegacy:
-    created_at: Optional[CreatedAt] = None
+class FluffyLegacy:
+    created_at: Optional[str] = None
     default_profile: Optional[bool] = None
     default_profile_image: Optional[bool] = None
     description: Optional[str] = None
@@ -512,26 +442,27 @@ class PurpleLegacy:
     has_custom_timelines: Optional[bool] = None
     is_translator: Optional[bool] = None
     listed_count: Optional[int] = None
-    location: Optional[Location] = None
+    location: Optional[str] = None
     media_count: Optional[int] = None
-    name: Optional[Name] = None
+    name: Optional[str] = None
     normal_followers_count: Optional[int] = None
     pinned_tweet_ids_str: Optional[List[str]] = None
     possibly_sensitive: Optional[bool] = None
     profile_banner_url: Optional[str] = None
     profile_image_url_https: Optional[str] = None
     profile_interstitial_type: Optional[str] = None
-    screen_name: Optional[ScreenName] = None
+    screen_name: Optional[str] = None
     statuses_count: Optional[int] = None
-    translator_type: Optional[TranslatorType] = None
+    translator_type: Optional[str] = None
     url: Optional[str] = None
     verified: Optional[bool] = None
     withheld_in_countries: Optional[List[Any]] = None
+    verified_type: Optional[str] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'PurpleLegacy':
+    def from_dict(obj: Any) -> 'FluffyLegacy':
         assert isinstance(obj, dict)
-        created_at = from_union([CreatedAt, from_none], obj.get("created_at"))
+        created_at = from_union([from_str, from_none], obj.get("created_at"))
         default_profile = from_union([from_bool, from_none], obj.get("default_profile"))
         default_profile_image = from_union([from_bool, from_none], obj.get("default_profile_image"))
         description = from_union([from_str, from_none], obj.get("description"))
@@ -543,27 +474,28 @@ class PurpleLegacy:
         has_custom_timelines = from_union([from_bool, from_none], obj.get("has_custom_timelines"))
         is_translator = from_union([from_bool, from_none], obj.get("is_translator"))
         listed_count = from_union([from_int, from_none], obj.get("listed_count"))
-        location = from_union([Location, from_none], obj.get("location"))
+        location = from_union([from_str, from_none], obj.get("location"))
         media_count = from_union([from_int, from_none], obj.get("media_count"))
-        name = from_union([Name, from_none], obj.get("name"))
+        name = from_union([from_str, from_none], obj.get("name"))
         normal_followers_count = from_union([from_int, from_none], obj.get("normal_followers_count"))
         pinned_tweet_ids_str = from_union([lambda x: from_list(from_str, x), from_none], obj.get("pinned_tweet_ids_str"))
         possibly_sensitive = from_union([from_bool, from_none], obj.get("possibly_sensitive"))
         profile_banner_url = from_union([from_str, from_none], obj.get("profile_banner_url"))
         profile_image_url_https = from_union([from_str, from_none], obj.get("profile_image_url_https"))
         profile_interstitial_type = from_union([from_str, from_none], obj.get("profile_interstitial_type"))
-        screen_name = from_union([ScreenName, from_none], obj.get("screen_name"))
+        screen_name = from_union([from_str, from_none], obj.get("screen_name"))
         statuses_count = from_union([from_int, from_none], obj.get("statuses_count"))
-        translator_type = from_union([TranslatorType, from_none], obj.get("translator_type"))
+        translator_type = from_union([from_str, from_none], obj.get("translator_type"))
         url = from_union([from_str, from_none], obj.get("url"))
         verified = from_union([from_bool, from_none], obj.get("verified"))
         withheld_in_countries = from_union([lambda x: from_list(lambda x: x, x), from_none], obj.get("withheld_in_countries"))
-        return PurpleLegacy(created_at, default_profile, default_profile_image, description, entities, fast_followers_count, favourites_count, followers_count, friends_count, has_custom_timelines, is_translator, listed_count, location, media_count, name, normal_followers_count, pinned_tweet_ids_str, possibly_sensitive, profile_banner_url, profile_image_url_https, profile_interstitial_type, screen_name, statuses_count, translator_type, url, verified, withheld_in_countries)
+        verified_type = from_union([from_str, from_none], obj.get("verified_type"))
+        return FluffyLegacy(created_at, default_profile, default_profile_image, description, entities, fast_followers_count, favourites_count, followers_count, friends_count, has_custom_timelines, is_translator, listed_count, location, media_count, name, normal_followers_count, pinned_tweet_ids_str, possibly_sensitive, profile_banner_url, profile_image_url_https, profile_interstitial_type, screen_name, statuses_count, translator_type, url, verified, withheld_in_countries, verified_type)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.created_at is not None:
-            result["created_at"] = from_union([lambda x: to_enum(CreatedAt, x), from_none], self.created_at)
+            result["created_at"] = from_union([from_str, from_none], self.created_at)
         if self.default_profile is not None:
             result["default_profile"] = from_union([from_bool, from_none], self.default_profile)
         if self.default_profile_image is not None:
@@ -587,11 +519,11 @@ class PurpleLegacy:
         if self.listed_count is not None:
             result["listed_count"] = from_union([from_int, from_none], self.listed_count)
         if self.location is not None:
-            result["location"] = from_union([lambda x: to_enum(Location, x), from_none], self.location)
+            result["location"] = from_union([from_str, from_none], self.location)
         if self.media_count is not None:
             result["media_count"] = from_union([from_int, from_none], self.media_count)
         if self.name is not None:
-            result["name"] = from_union([lambda x: to_enum(Name, x), from_none], self.name)
+            result["name"] = from_union([from_str, from_none], self.name)
         if self.normal_followers_count is not None:
             result["normal_followers_count"] = from_union([from_int, from_none], self.normal_followers_count)
         if self.pinned_tweet_ids_str is not None:
@@ -605,17 +537,19 @@ class PurpleLegacy:
         if self.profile_interstitial_type is not None:
             result["profile_interstitial_type"] = from_union([from_str, from_none], self.profile_interstitial_type)
         if self.screen_name is not None:
-            result["screen_name"] = from_union([lambda x: to_enum(ScreenName, x), from_none], self.screen_name)
+            result["screen_name"] = from_union([from_str, from_none], self.screen_name)
         if self.statuses_count is not None:
             result["statuses_count"] = from_union([from_int, from_none], self.statuses_count)
         if self.translator_type is not None:
-            result["translator_type"] = from_union([lambda x: to_enum(TranslatorType, x), from_none], self.translator_type)
+            result["translator_type"] = from_union([from_str, from_none], self.translator_type)
         if self.url is not None:
             result["url"] = from_union([from_str, from_none], self.url)
         if self.verified is not None:
             result["verified"] = from_union([from_bool, from_none], self.verified)
         if self.withheld_in_countries is not None:
             result["withheld_in_countries"] = from_union([lambda x: from_list(lambda x: x, x), from_none], self.withheld_in_countries)
+        if self.verified_type is not None:
+            result["verified_type"] = from_union([from_str, from_none], self.verified_type)
         return result
 
 
@@ -669,44 +603,38 @@ class Professional:
         return result
 
 
-class ProfileImageShape(Enum):
-    CIRCLE = "Circle"
-
-
-class Typename(Enum):
-    USER = "User"
-
-
 @dataclass
-class UserResultsResult:
-    typename: Optional[Typename] = None
-    id: Optional[ID] = None
+class PurpleResult:
+    typename: Optional[str] = None
+    id: Optional[str] = None
     rest_id: Optional[str] = None
     affiliates_highlighted_label: Optional[UnmentionData] = None
     is_blue_verified: Optional[bool] = None
-    profile_image_shape: Optional[ProfileImageShape] = None
-    legacy: Optional[PurpleLegacy] = None
+    profile_image_shape: Optional[str] = None
+    legacy: Optional[FluffyLegacy] = None
     professional: Optional[Professional] = None
+    reason: Optional[str] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'UserResultsResult':
+    def from_dict(obj: Any) -> 'PurpleResult':
         assert isinstance(obj, dict)
-        typename = from_union([Typename, from_none], obj.get("__typename"))
-        id = from_union([ID, from_none], obj.get("id"))
+        typename = from_union([from_str, from_none], obj.get("__typename"))
+        id = from_union([from_str, from_none], obj.get("id"))
         rest_id = from_union([from_str, from_none], obj.get("rest_id"))
         affiliates_highlighted_label = from_union([UnmentionData.from_dict, from_none], obj.get("affiliates_highlighted_label"))
         is_blue_verified = from_union([from_bool, from_none], obj.get("is_blue_verified"))
-        profile_image_shape = from_union([ProfileImageShape, from_none], obj.get("profile_image_shape"))
-        legacy = from_union([PurpleLegacy.from_dict, from_none], obj.get("legacy"))
+        profile_image_shape = from_union([from_str, from_none], obj.get("profile_image_shape"))
+        legacy = from_union([FluffyLegacy.from_dict, from_none], obj.get("legacy"))
         professional = from_union([Professional.from_dict, from_none], obj.get("professional"))
-        return UserResultsResult(typename, id, rest_id, affiliates_highlighted_label, is_blue_verified, profile_image_shape, legacy, professional)
+        reason = from_union([from_str, from_none], obj.get("reason"))
+        return PurpleResult(typename, id, rest_id, affiliates_highlighted_label, is_blue_verified, profile_image_shape, legacy, professional, reason)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.typename is not None:
-            result["__typename"] = from_union([lambda x: to_enum(Typename, x), from_none], self.typename)
+            result["__typename"] = from_union([from_str, from_none], self.typename)
         if self.id is not None:
-            result["id"] = from_union([lambda x: to_enum(ID, x), from_none], self.id)
+            result["id"] = from_union([from_str, from_none], self.id)
         if self.rest_id is not None:
             result["rest_id"] = from_union([from_str, from_none], self.rest_id)
         if self.affiliates_highlighted_label is not None:
@@ -714,53 +642,55 @@ class UserResultsResult:
         if self.is_blue_verified is not None:
             result["is_blue_verified"] = from_union([from_bool, from_none], self.is_blue_verified)
         if self.profile_image_shape is not None:
-            result["profile_image_shape"] = from_union([lambda x: to_enum(ProfileImageShape, x), from_none], self.profile_image_shape)
+            result["profile_image_shape"] = from_union([from_str, from_none], self.profile_image_shape)
         if self.legacy is not None:
-            result["legacy"] = from_union([lambda x: to_class(PurpleLegacy, x), from_none], self.legacy)
+            result["legacy"] = from_union([lambda x: to_class(FluffyLegacy, x), from_none], self.legacy)
         if self.professional is not None:
             result["professional"] = from_union([lambda x: to_class(Professional, x), from_none], self.professional)
+        if self.reason is not None:
+            result["reason"] = from_union([from_str, from_none], self.reason)
         return result
 
 
 @dataclass
-class UserRe:
-    result: Optional[UserResultsResult] = None
+class PurpleUserRefsResult:
+    result: Optional[PurpleResult] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'UserRe':
+    def from_dict(obj: Any) -> 'PurpleUserRefsResult':
         assert isinstance(obj, dict)
-        result = from_union([UserResultsResult.from_dict, from_none], obj.get("result"))
-        return UserRe(result)
+        result = from_union([PurpleResult.from_dict, from_none], obj.get("result"))
+        return PurpleUserRefsResult(result)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.result is not None:
-            result["result"] = from_union([lambda x: to_class(UserResultsResult, x), from_none], self.result)
+            result["result"] = from_union([lambda x: to_class(PurpleResult, x), from_none], self.result)
         return result
 
 
 @dataclass
-class CardLegacy:
-    binding_values: Optional[List[BindingValue]] = None
+class PurpleLegacy:
+    binding_values: Optional[List[PurpleBindingValue]] = None
     card_platform: Optional[CardPlatform] = None
     name: Optional[str] = None
     url: Optional[str] = None
-    user_refs_results: Optional[List[UserRe]] = None
+    user_refs_results: Optional[List[PurpleUserRefsResult]] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'CardLegacy':
+    def from_dict(obj: Any) -> 'PurpleLegacy':
         assert isinstance(obj, dict)
-        binding_values = from_union([lambda x: from_list(BindingValue.from_dict, x), from_none], obj.get("binding_values"))
+        binding_values = from_union([lambda x: from_list(PurpleBindingValue.from_dict, x), from_none], obj.get("binding_values"))
         card_platform = from_union([CardPlatform.from_dict, from_none], obj.get("card_platform"))
         name = from_union([from_str, from_none], obj.get("name"))
         url = from_union([from_str, from_none], obj.get("url"))
-        user_refs_results = from_union([lambda x: from_list(UserRe.from_dict, x), from_none], obj.get("user_refs_results"))
-        return CardLegacy(binding_values, card_platform, name, url, user_refs_results)
+        user_refs_results = from_union([lambda x: from_list(PurpleUserRefsResult.from_dict, x), from_none], obj.get("user_refs_results"))
+        return PurpleLegacy(binding_values, card_platform, name, url, user_refs_results)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.binding_values is not None:
-            result["binding_values"] = from_union([lambda x: from_list(lambda x: to_class(BindingValue, x), x), from_none], self.binding_values)
+            result["binding_values"] = from_union([lambda x: from_list(lambda x: to_class(PurpleBindingValue, x), x), from_none], self.binding_values)
         if self.card_platform is not None:
             result["card_platform"] = from_union([lambda x: to_class(CardPlatform, x), from_none], self.card_platform)
         if self.name is not None:
@@ -768,74 +698,337 @@ class CardLegacy:
         if self.url is not None:
             result["url"] = from_union([from_str, from_none], self.url)
         if self.user_refs_results is not None:
-            result["user_refs_results"] = from_union([lambda x: from_list(lambda x: to_class(UserRe, x), x), from_none], self.user_refs_results)
+            result["user_refs_results"] = from_union([lambda x: from_list(lambda x: to_class(PurpleUserRefsResult, x), x), from_none], self.user_refs_results)
         return result
 
 
 @dataclass
-class Card:
+class PurpleCard:
     rest_id: Optional[str] = None
-    legacy: Optional[CardLegacy] = None
+    legacy: Optional[PurpleLegacy] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'Card':
+    def from_dict(obj: Any) -> 'PurpleCard':
         assert isinstance(obj, dict)
         rest_id = from_union([from_str, from_none], obj.get("rest_id"))
-        legacy = from_union([CardLegacy.from_dict, from_none], obj.get("legacy"))
-        return Card(rest_id, legacy)
+        legacy = from_union([PurpleLegacy.from_dict, from_none], obj.get("legacy"))
+        return PurpleCard(rest_id, legacy)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.rest_id is not None:
             result["rest_id"] = from_union([from_str, from_none], self.rest_id)
         if self.legacy is not None:
-            result["legacy"] = from_union([lambda x: to_class(CardLegacy, x), from_none], self.legacy)
+            result["legacy"] = from_union([lambda x: to_class(PurpleLegacy, x), from_none], self.legacy)
         return result
 
 
 @dataclass
-class Core:
-    user_results: Optional[UserRe] = None
+class FluffyDescription:
+    urls: Optional[List[Any]] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'Core':
+    def from_dict(obj: Any) -> 'FluffyDescription':
         assert isinstance(obj, dict)
-        user_results = from_union([UserRe.from_dict, from_none], obj.get("user_results"))
-        return Core(user_results)
+        urls = from_union([lambda x: from_list(lambda x: x, x), from_none], obj.get("urls"))
+        return FluffyDescription(urls)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.urls is not None:
+            result["urls"] = from_union([lambda x: from_list(lambda x: x, x), from_none], self.urls)
+        return result
+
+
+@dataclass
+class StickyURL:
+    display_url: Optional[str] = None
+    expanded_url: Optional[str] = None
+    url: Optional[str] = None
+    indices: Optional[List[int]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'StickyURL':
+        assert isinstance(obj, dict)
+        display_url = from_union([from_str, from_none], obj.get("display_url"))
+        expanded_url = from_union([from_str, from_none], obj.get("expanded_url"))
+        url = from_union([from_str, from_none], obj.get("url"))
+        indices = from_union([lambda x: from_list(from_int, x), from_none], obj.get("indices"))
+        return StickyURL(display_url, expanded_url, url, indices)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.display_url is not None:
+            result["display_url"] = from_union([from_str, from_none], self.display_url)
+        if self.expanded_url is not None:
+            result["expanded_url"] = from_union([from_str, from_none], self.expanded_url)
+        if self.url is not None:
+            result["url"] = from_union([from_str, from_none], self.url)
+        if self.indices is not None:
+            result["indices"] = from_union([lambda x: from_list(from_int, x), from_none], self.indices)
+        return result
+
+
+@dataclass
+class DescriptionClass:
+    urls: Optional[List[StickyURL]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'DescriptionClass':
+        assert isinstance(obj, dict)
+        urls = from_union([lambda x: from_list(StickyURL.from_dict, x), from_none], obj.get("urls"))
+        return DescriptionClass(urls)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.urls is not None:
+            result["urls"] = from_union([lambda x: from_list(lambda x: to_class(StickyURL, x), x), from_none], self.urls)
+        return result
+
+
+@dataclass
+class FluffyEntities:
+    description: Optional[FluffyDescription] = None
+    url: Optional[DescriptionClass] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'FluffyEntities':
+        assert isinstance(obj, dict)
+        description = from_union([FluffyDescription.from_dict, from_none], obj.get("description"))
+        url = from_union([DescriptionClass.from_dict, from_none], obj.get("url"))
+        return FluffyEntities(description, url)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.description is not None:
+            result["description"] = from_union([lambda x: to_class(FluffyDescription, x), from_none], self.description)
+        if self.url is not None:
+            result["url"] = from_union([lambda x: to_class(DescriptionClass, x), from_none], self.url)
+        return result
+
+
+@dataclass
+class TentacledLegacy:
+    created_at: Optional[str] = None
+    default_profile: Optional[bool] = None
+    default_profile_image: Optional[bool] = None
+    description: Optional[str] = None
+    entities: Optional[FluffyEntities] = None
+    fast_followers_count: Optional[int] = None
+    favourites_count: Optional[int] = None
+    followers_count: Optional[int] = None
+    friends_count: Optional[int] = None
+    has_custom_timelines: Optional[bool] = None
+    is_translator: Optional[bool] = None
+    listed_count: Optional[int] = None
+    location: Optional[str] = None
+    media_count: Optional[int] = None
+    name: Optional[str] = None
+    normal_followers_count: Optional[int] = None
+    pinned_tweet_ids_str: Optional[List[Any]] = None
+    possibly_sensitive: Optional[bool] = None
+    profile_image_url_https: Optional[str] = None
+    profile_interstitial_type: Optional[str] = None
+    screen_name: Optional[str] = None
+    statuses_count: Optional[int] = None
+    translator_type: Optional[str] = None
+    url: Optional[str] = None
+    verified: Optional[bool] = None
+    withheld_in_countries: Optional[List[Any]] = None
+    profile_banner_url: Optional[str] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'TentacledLegacy':
+        assert isinstance(obj, dict)
+        created_at = from_union([from_str, from_none], obj.get("created_at"))
+        default_profile = from_union([from_bool, from_none], obj.get("default_profile"))
+        default_profile_image = from_union([from_bool, from_none], obj.get("default_profile_image"))
+        description = from_union([from_str, from_none], obj.get("description"))
+        entities = from_union([FluffyEntities.from_dict, from_none], obj.get("entities"))
+        fast_followers_count = from_union([from_int, from_none], obj.get("fast_followers_count"))
+        favourites_count = from_union([from_int, from_none], obj.get("favourites_count"))
+        followers_count = from_union([from_int, from_none], obj.get("followers_count"))
+        friends_count = from_union([from_int, from_none], obj.get("friends_count"))
+        has_custom_timelines = from_union([from_bool, from_none], obj.get("has_custom_timelines"))
+        is_translator = from_union([from_bool, from_none], obj.get("is_translator"))
+        listed_count = from_union([from_int, from_none], obj.get("listed_count"))
+        location = from_union([from_str, from_none], obj.get("location"))
+        media_count = from_union([from_int, from_none], obj.get("media_count"))
+        name = from_union([from_str, from_none], obj.get("name"))
+        normal_followers_count = from_union([from_int, from_none], obj.get("normal_followers_count"))
+        pinned_tweet_ids_str = from_union([lambda x: from_list(lambda x: x, x), from_none], obj.get("pinned_tweet_ids_str"))
+        possibly_sensitive = from_union([from_bool, from_none], obj.get("possibly_sensitive"))
+        profile_image_url_https = from_union([from_str, from_none], obj.get("profile_image_url_https"))
+        profile_interstitial_type = from_union([from_str, from_none], obj.get("profile_interstitial_type"))
+        screen_name = from_union([from_str, from_none], obj.get("screen_name"))
+        statuses_count = from_union([from_int, from_none], obj.get("statuses_count"))
+        translator_type = from_union([from_str, from_none], obj.get("translator_type"))
+        url = from_union([from_str, from_none], obj.get("url"))
+        verified = from_union([from_bool, from_none], obj.get("verified"))
+        withheld_in_countries = from_union([lambda x: from_list(lambda x: x, x), from_none], obj.get("withheld_in_countries"))
+        profile_banner_url = from_union([from_str, from_none], obj.get("profile_banner_url"))
+        return TentacledLegacy(created_at, default_profile, default_profile_image, description, entities, fast_followers_count, favourites_count, followers_count, friends_count, has_custom_timelines, is_translator, listed_count, location, media_count, name, normal_followers_count, pinned_tweet_ids_str, possibly_sensitive, profile_image_url_https, profile_interstitial_type, screen_name, statuses_count, translator_type, url, verified, withheld_in_countries, profile_banner_url)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.created_at is not None:
+            result["created_at"] = from_union([from_str, from_none], self.created_at)
+        if self.default_profile is not None:
+            result["default_profile"] = from_union([from_bool, from_none], self.default_profile)
+        if self.default_profile_image is not None:
+            result["default_profile_image"] = from_union([from_bool, from_none], self.default_profile_image)
+        if self.description is not None:
+            result["description"] = from_union([from_str, from_none], self.description)
+        if self.entities is not None:
+            result["entities"] = from_union([lambda x: to_class(FluffyEntities, x), from_none], self.entities)
+        if self.fast_followers_count is not None:
+            result["fast_followers_count"] = from_union([from_int, from_none], self.fast_followers_count)
+        if self.favourites_count is not None:
+            result["favourites_count"] = from_union([from_int, from_none], self.favourites_count)
+        if self.followers_count is not None:
+            result["followers_count"] = from_union([from_int, from_none], self.followers_count)
+        if self.friends_count is not None:
+            result["friends_count"] = from_union([from_int, from_none], self.friends_count)
+        if self.has_custom_timelines is not None:
+            result["has_custom_timelines"] = from_union([from_bool, from_none], self.has_custom_timelines)
+        if self.is_translator is not None:
+            result["is_translator"] = from_union([from_bool, from_none], self.is_translator)
+        if self.listed_count is not None:
+            result["listed_count"] = from_union([from_int, from_none], self.listed_count)
+        if self.location is not None:
+            result["location"] = from_union([from_str, from_none], self.location)
+        if self.media_count is not None:
+            result["media_count"] = from_union([from_int, from_none], self.media_count)
+        if self.name is not None:
+            result["name"] = from_union([from_str, from_none], self.name)
+        if self.normal_followers_count is not None:
+            result["normal_followers_count"] = from_union([from_int, from_none], self.normal_followers_count)
+        if self.pinned_tweet_ids_str is not None:
+            result["pinned_tweet_ids_str"] = from_union([lambda x: from_list(lambda x: x, x), from_none], self.pinned_tweet_ids_str)
+        if self.possibly_sensitive is not None:
+            result["possibly_sensitive"] = from_union([from_bool, from_none], self.possibly_sensitive)
+        if self.profile_image_url_https is not None:
+            result["profile_image_url_https"] = from_union([from_str, from_none], self.profile_image_url_https)
+        if self.profile_interstitial_type is not None:
+            result["profile_interstitial_type"] = from_union([from_str, from_none], self.profile_interstitial_type)
+        if self.screen_name is not None:
+            result["screen_name"] = from_union([from_str, from_none], self.screen_name)
+        if self.statuses_count is not None:
+            result["statuses_count"] = from_union([from_int, from_none], self.statuses_count)
+        if self.translator_type is not None:
+            result["translator_type"] = from_union([from_str, from_none], self.translator_type)
+        if self.url is not None:
+            result["url"] = from_union([from_str, from_none], self.url)
+        if self.verified is not None:
+            result["verified"] = from_union([from_bool, from_none], self.verified)
+        if self.withheld_in_countries is not None:
+            result["withheld_in_countries"] = from_union([lambda x: from_list(lambda x: x, x), from_none], self.withheld_in_countries)
+        if self.profile_banner_url is not None:
+            result["profile_banner_url"] = from_union([from_str, from_none], self.profile_banner_url)
+        return result
+
+
+@dataclass
+class FluffyResult:
+    typename: Optional[str] = None
+    id: Optional[str] = None
+    rest_id: Optional[str] = None
+    affiliates_highlighted_label: Optional[UnmentionData] = None
+    is_blue_verified: Optional[bool] = None
+    profile_image_shape: Optional[str] = None
+    legacy: Optional[TentacledLegacy] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'FluffyResult':
+        assert isinstance(obj, dict)
+        typename = from_union([from_str, from_none], obj.get("__typename"))
+        id = from_union([from_str, from_none], obj.get("id"))
+        rest_id = from_union([from_str, from_none], obj.get("rest_id"))
+        affiliates_highlighted_label = from_union([UnmentionData.from_dict, from_none], obj.get("affiliates_highlighted_label"))
+        is_blue_verified = from_union([from_bool, from_none], obj.get("is_blue_verified"))
+        profile_image_shape = from_union([from_str, from_none], obj.get("profile_image_shape"))
+        legacy = from_union([TentacledLegacy.from_dict, from_none], obj.get("legacy"))
+        return FluffyResult(typename, id, rest_id, affiliates_highlighted_label, is_blue_verified, profile_image_shape, legacy)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.typename is not None:
+            result["__typename"] = from_union([from_str, from_none], self.typename)
+        if self.id is not None:
+            result["id"] = from_union([from_str, from_none], self.id)
+        if self.rest_id is not None:
+            result["rest_id"] = from_union([from_str, from_none], self.rest_id)
+        if self.affiliates_highlighted_label is not None:
+            result["affiliates_highlighted_label"] = from_union([lambda x: to_class(UnmentionData, x), from_none], self.affiliates_highlighted_label)
+        if self.is_blue_verified is not None:
+            result["is_blue_verified"] = from_union([from_bool, from_none], self.is_blue_verified)
+        if self.profile_image_shape is not None:
+            result["profile_image_shape"] = from_union([from_str, from_none], self.profile_image_shape)
+        if self.legacy is not None:
+            result["legacy"] = from_union([lambda x: to_class(TentacledLegacy, x), from_none], self.legacy)
+        return result
+
+
+@dataclass
+class PurpleUserResults:
+    result: Optional[FluffyResult] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'PurpleUserResults':
+        assert isinstance(obj, dict)
+        result = from_union([FluffyResult.from_dict, from_none], obj.get("result"))
+        return PurpleUserResults(result)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.result is not None:
+            result["result"] = from_union([lambda x: to_class(FluffyResult, x), from_none], self.result)
+        return result
+
+
+@dataclass
+class PurpleCore:
+    user_results: Optional[PurpleUserResults] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'PurpleCore':
+        assert isinstance(obj, dict)
+        user_results = from_union([PurpleUserResults.from_dict, from_none], obj.get("user_results"))
+        return PurpleCore(user_results)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.user_results is not None:
-            result["user_results"] = from_union([lambda x: to_class(UserRe, x), from_none], self.user_results)
+            result["user_results"] = from_union([lambda x: to_class(PurpleUserResults, x), from_none], self.user_results)
         return result
 
 
 @dataclass
 class EditControl:
-    edits_remaining: Optional[int] = None
     edit_tweet_ids: Optional[List[str]] = None
     editable_until_msecs: Optional[str] = None
     is_edit_eligible: Optional[bool] = None
+    edits_remaining: Optional[str] = None
 
     @staticmethod
     def from_dict(obj: Any) -> 'EditControl':
         assert isinstance(obj, dict)
-        edits_remaining = from_union([from_none, lambda x: int(from_str(x))], obj.get("edits_remaining"))
         edit_tweet_ids = from_union([lambda x: from_list(from_str, x), from_none], obj.get("edit_tweet_ids"))
         editable_until_msecs = from_union([from_str, from_none], obj.get("editable_until_msecs"))
         is_edit_eligible = from_union([from_bool, from_none], obj.get("is_edit_eligible"))
-        return EditControl(edits_remaining, edit_tweet_ids, editable_until_msecs, is_edit_eligible)
+        edits_remaining = from_union([from_str, from_none], obj.get("edits_remaining"))
+        return EditControl(edit_tweet_ids, editable_until_msecs, is_edit_eligible, edits_remaining)
 
     def to_dict(self) -> dict:
         result: dict = {}
-        if self.edits_remaining is not None:
-            result["edits_remaining"] = from_union([lambda x: from_none((lambda x: is_type(type(None), x))(x)), lambda x: from_str((lambda x: str((lambda x: is_type(int, x))(x)))(x))], self.edits_remaining)
         if self.edit_tweet_ids is not None:
             result["edit_tweet_ids"] = from_union([lambda x: from_list(from_str, x), from_none], self.edit_tweet_ids)
         if self.editable_until_msecs is not None:
             result["editable_until_msecs"] = from_union([from_str, from_none], self.editable_until_msecs)
         if self.is_edit_eligible is not None:
             result["is_edit_eligible"] = from_union([from_bool, from_none], self.is_edit_eligible)
+        if self.edits_remaining is not None:
+            result["edits_remaining"] = from_union([from_str, from_none], self.edits_remaining)
         return result
 
 
@@ -857,27 +1050,6 @@ class Hashtag:
             result["indices"] = from_union([lambda x: from_list(from_int, x), from_none], self.indices)
         if self.text is not None:
             result["text"] = from_union([from_str, from_none], self.text)
-        return result
-
-
-class Status(Enum):
-    AVAILABLE = "Available"
-
-
-@dataclass
-class EXTMediaAvailability:
-    status: Optional[Status] = None
-
-    @staticmethod
-    def from_dict(obj: Any) -> 'EXTMediaAvailability':
-        assert isinstance(obj, dict)
-        status = from_union([Status, from_none], obj.get("status"))
-        return EXTMediaAvailability(status)
-
-    def to_dict(self) -> dict:
-        result: dict = {}
-        if self.status is not None:
-            result["status"] = from_union([lambda x: to_enum(Status, x), from_none], self.status)
         return result
 
 
@@ -928,20 +1100,20 @@ class OrigClass:
 
 
 @dataclass
-class Features:
+class PurpleFeatures:
     large: Optional[OrigClass] = None
     medium: Optional[OrigClass] = None
     small: Optional[OrigClass] = None
     orig: Optional[OrigClass] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'Features':
+    def from_dict(obj: Any) -> 'PurpleFeatures':
         assert isinstance(obj, dict)
         large = from_union([OrigClass.from_dict, from_none], obj.get("large"))
         medium = from_union([OrigClass.from_dict, from_none], obj.get("medium"))
         small = from_union([OrigClass.from_dict, from_none], obj.get("small"))
         orig = from_union([OrigClass.from_dict, from_none], obj.get("orig"))
-        return Features(large, medium, small, orig)
+        return PurpleFeatures(large, medium, small, orig)
 
     def to_dict(self) -> dict:
         result: dict = {}
@@ -981,23 +1153,18 @@ class OriginalInfo:
         return result
 
 
-class Resize(Enum):
-    CROP = "crop"
-    FIT = "fit"
-
-
 @dataclass
 class ThumbClass:
     h: Optional[int] = None
     w: Optional[int] = None
-    resize: Optional[Resize] = None
+    resize: Optional[str] = None
 
     @staticmethod
     def from_dict(obj: Any) -> 'ThumbClass':
         assert isinstance(obj, dict)
         h = from_union([from_int, from_none], obj.get("h"))
         w = from_union([from_int, from_none], obj.get("w"))
-        resize = from_union([Resize, from_none], obj.get("resize"))
+        resize = from_union([from_str, from_none], obj.get("resize"))
         return ThumbClass(h, w, resize)
 
     def to_dict(self) -> dict:
@@ -1007,7 +1174,7 @@ class ThumbClass:
         if self.w is not None:
             result["w"] = from_union([from_int, from_none], self.w)
         if self.resize is not None:
-            result["resize"] = from_union([lambda x: to_enum(Resize, x), from_none], self.resize)
+            result["resize"] = from_union([from_str, from_none], self.resize)
         return result
 
 
@@ -1040,43 +1207,37 @@ class Sizes:
         return result
 
 
-class MediaType(Enum):
-    ANIMATED_GIF = "animated_gif"
-    PHOTO = "photo"
-    VIDEO = "video"
-
-
 @dataclass
-class EntitiesMedia:
+class PurpleMedia:
     display_url: Optional[str] = None
     expanded_url: Optional[str] = None
     id_str: Optional[str] = None
     indices: Optional[List[int]] = None
     media_url_https: Optional[str] = None
-    type: Optional[MediaType] = None
+    type: Optional[str] = None
     url: Optional[str] = None
-    features: Optional[Features] = None
+    features: Optional[PurpleFeatures] = None
     sizes: Optional[Sizes] = None
     original_info: Optional[OriginalInfo] = None
-    media_key: Optional[str] = None
-    ext_media_availability: Optional[EXTMediaAvailability] = None
+    source_status_id_str: Optional[str] = None
+    source_user_id_str: Optional[str] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'EntitiesMedia':
+    def from_dict(obj: Any) -> 'PurpleMedia':
         assert isinstance(obj, dict)
         display_url = from_union([from_str, from_none], obj.get("display_url"))
         expanded_url = from_union([from_str, from_none], obj.get("expanded_url"))
         id_str = from_union([from_str, from_none], obj.get("id_str"))
         indices = from_union([lambda x: from_list(from_int, x), from_none], obj.get("indices"))
         media_url_https = from_union([from_str, from_none], obj.get("media_url_https"))
-        type = from_union([MediaType, from_none], obj.get("type"))
+        type = from_union([from_str, from_none], obj.get("type"))
         url = from_union([from_str, from_none], obj.get("url"))
-        features = from_union([Features.from_dict, from_none], obj.get("features"))
+        features = from_union([PurpleFeatures.from_dict, from_none], obj.get("features"))
         sizes = from_union([Sizes.from_dict, from_none], obj.get("sizes"))
         original_info = from_union([OriginalInfo.from_dict, from_none], obj.get("original_info"))
-        media_key = from_union([from_str, from_none], obj.get("media_key"))
-        ext_media_availability = from_union([EXTMediaAvailability.from_dict, from_none], obj.get("ext_media_availability"))
-        return EntitiesMedia(display_url, expanded_url, id_str, indices, media_url_https, type, url, features, sizes, original_info, media_key, ext_media_availability)
+        source_status_id_str = from_union([from_str, from_none], obj.get("source_status_id_str"))
+        source_user_id_str = from_union([from_str, from_none], obj.get("source_user_id_str"))
+        return PurpleMedia(display_url, expanded_url, id_str, indices, media_url_https, type, url, features, sizes, original_info, source_status_id_str, source_user_id_str)
 
     def to_dict(self) -> dict:
         result: dict = {}
@@ -1091,19 +1252,48 @@ class EntitiesMedia:
         if self.media_url_https is not None:
             result["media_url_https"] = from_union([from_str, from_none], self.media_url_https)
         if self.type is not None:
-            result["type"] = from_union([lambda x: to_enum(MediaType, x), from_none], self.type)
+            result["type"] = from_union([from_str, from_none], self.type)
         if self.url is not None:
             result["url"] = from_union([from_str, from_none], self.url)
         if self.features is not None:
-            result["features"] = from_union([lambda x: to_class(Features, x), from_none], self.features)
+            result["features"] = from_union([lambda x: to_class(PurpleFeatures, x), from_none], self.features)
         if self.sizes is not None:
             result["sizes"] = from_union([lambda x: to_class(Sizes, x), from_none], self.sizes)
         if self.original_info is not None:
             result["original_info"] = from_union([lambda x: to_class(OriginalInfo, x), from_none], self.original_info)
-        if self.media_key is not None:
-            result["media_key"] = from_union([from_str, from_none], self.media_key)
-        if self.ext_media_availability is not None:
-            result["ext_media_availability"] = from_union([lambda x: to_class(EXTMediaAvailability, x), from_none], self.ext_media_availability)
+        if self.source_status_id_str is not None:
+            result["source_status_id_str"] = from_union([from_str, from_none], self.source_status_id_str)
+        if self.source_user_id_str is not None:
+            result["source_user_id_str"] = from_union([from_str, from_none], self.source_user_id_str)
+        return result
+
+
+@dataclass
+class IndigoURL:
+    display_url: Optional[str] = None
+    expanded_url: Optional[str] = None
+    url: Optional[str] = None
+    indices: Optional[List[int]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'IndigoURL':
+        assert isinstance(obj, dict)
+        display_url = from_union([from_str, from_none], obj.get("display_url"))
+        expanded_url = from_union([from_str, from_none], obj.get("expanded_url"))
+        url = from_union([from_str, from_none], obj.get("url"))
+        indices = from_union([lambda x: from_list(from_int, x), from_none], obj.get("indices"))
+        return IndigoURL(display_url, expanded_url, url, indices)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.display_url is not None:
+            result["display_url"] = from_union([from_str, from_none], self.display_url)
+        if self.expanded_url is not None:
+            result["expanded_url"] = from_union([from_str, from_none], self.expanded_url)
+        if self.url is not None:
+            result["url"] = from_union([from_str, from_none], self.url)
+        if self.indices is not None:
+            result["indices"] = from_union([lambda x: from_list(from_int, x), from_none], self.indices)
         return result
 
 
@@ -1137,35 +1327,35 @@ class UserMention:
 
 
 @dataclass
-class FluffyEntities:
+class TentacledEntities:
     user_mentions: Optional[List[UserMention]] = None
-    urls: Optional[List[URL]] = None
+    urls: Optional[List[IndigoURL]] = None
     hashtags: Optional[List[Hashtag]] = None
     symbols: Optional[List[Any]] = None
-    media: Optional[List[EntitiesMedia]] = None
+    media: Optional[List[PurpleMedia]] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'FluffyEntities':
+    def from_dict(obj: Any) -> 'TentacledEntities':
         assert isinstance(obj, dict)
         user_mentions = from_union([lambda x: from_list(UserMention.from_dict, x), from_none], obj.get("user_mentions"))
-        urls = from_union([lambda x: from_list(URL.from_dict, x), from_none], obj.get("urls"))
+        urls = from_union([lambda x: from_list(IndigoURL.from_dict, x), from_none], obj.get("urls"))
         hashtags = from_union([lambda x: from_list(Hashtag.from_dict, x), from_none], obj.get("hashtags"))
         symbols = from_union([lambda x: from_list(lambda x: x, x), from_none], obj.get("symbols"))
-        media = from_union([lambda x: from_list(EntitiesMedia.from_dict, x), from_none], obj.get("media"))
-        return FluffyEntities(user_mentions, urls, hashtags, symbols, media)
+        media = from_union([lambda x: from_list(PurpleMedia.from_dict, x), from_none], obj.get("media"))
+        return TentacledEntities(user_mentions, urls, hashtags, symbols, media)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.user_mentions is not None:
             result["user_mentions"] = from_union([lambda x: from_list(lambda x: to_class(UserMention, x), x), from_none], self.user_mentions)
         if self.urls is not None:
-            result["urls"] = from_union([lambda x: from_list(lambda x: to_class(URL, x), x), from_none], self.urls)
+            result["urls"] = from_union([lambda x: from_list(lambda x: to_class(IndigoURL, x), x), from_none], self.urls)
         if self.hashtags is not None:
             result["hashtags"] = from_union([lambda x: from_list(lambda x: to_class(Hashtag, x), x), from_none], self.hashtags)
         if self.symbols is not None:
             result["symbols"] = from_union([lambda x: from_list(lambda x: x, x), from_none], self.symbols)
         if self.media is not None:
-            result["media"] = from_union([lambda x: from_list(lambda x: to_class(EntitiesMedia, x), x), from_none], self.media)
+            result["media"] = from_union([lambda x: from_list(lambda x: to_class(PurpleMedia, x), x), from_none], self.media)
         return result
 
 
@@ -1187,6 +1377,23 @@ class AdditionalMediaInfo:
 
 
 @dataclass
+class EXTMediaAvailability:
+    status: Optional[str] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'EXTMediaAvailability':
+        assert isinstance(obj, dict)
+        status = from_union([from_str, from_none], obj.get("status"))
+        return EXTMediaAvailability(status)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.status is not None:
+            result["status"] = from_union([from_str, from_none], self.status)
+        return result
+
+
+@dataclass
 class MediaStats:
     view_count: Optional[int] = None
 
@@ -1203,49 +1410,44 @@ class MediaStats:
         return result
 
 
-class ContentType(Enum):
-    APPLICATION_X_MPEG_URL = "application/x-mpegURL"
-    VIDEO_MP4 = "video/mp4"
-
-
 @dataclass
-class Variant:
+class PurpleVariant:
     bitrate: Optional[int] = None
-    content_type: Optional[ContentType] = None
+    content_type: Optional[str] = None
     url: Optional[str] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'Variant':
+    def from_dict(obj: Any) -> 'PurpleVariant':
         assert isinstance(obj, dict)
         bitrate = from_union([from_int, from_none], obj.get("bitrate"))
-        content_type = from_union([ContentType, from_none], obj.get("content_type"))
+        content_type = from_union([from_str, from_none], obj.get("content_type"))
         url = from_union([from_str, from_none], obj.get("url"))
-        return Variant(bitrate, content_type, url)
+        return PurpleVariant(bitrate, content_type, url)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.bitrate is not None:
             result["bitrate"] = from_union([from_int, from_none], self.bitrate)
         if self.content_type is not None:
-            result["content_type"] = from_union([lambda x: to_enum(ContentType, x), from_none], self.content_type)
+            result["content_type"] = from_union([from_str, from_none], self.content_type)
         if self.url is not None:
             result["url"] = from_union([from_str, from_none], self.url)
         return result
 
 
 @dataclass
-class VideoInfo:
+class PurpleVideoInfo:
     aspect_ratio: Optional[List[int]] = None
     duration_millis: Optional[int] = None
-    variants: Optional[List[Variant]] = None
+    variants: Optional[List[PurpleVariant]] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'VideoInfo':
+    def from_dict(obj: Any) -> 'PurpleVideoInfo':
         assert isinstance(obj, dict)
         aspect_ratio = from_union([lambda x: from_list(from_int, x), from_none], obj.get("aspect_ratio"))
         duration_millis = from_union([from_int, from_none], obj.get("duration_millis"))
-        variants = from_union([lambda x: from_list(Variant.from_dict, x), from_none], obj.get("variants"))
-        return VideoInfo(aspect_ratio, duration_millis, variants)
+        variants = from_union([lambda x: from_list(PurpleVariant.from_dict, x), from_none], obj.get("variants"))
+        return PurpleVideoInfo(aspect_ratio, duration_millis, variants)
 
     def to_dict(self) -> dict:
         result: dict = {}
@@ -1254,31 +1456,33 @@ class VideoInfo:
         if self.duration_millis is not None:
             result["duration_millis"] = from_union([from_int, from_none], self.duration_millis)
         if self.variants is not None:
-            result["variants"] = from_union([lambda x: from_list(lambda x: to_class(Variant, x), x), from_none], self.variants)
+            result["variants"] = from_union([lambda x: from_list(lambda x: to_class(PurpleVariant, x), x), from_none], self.variants)
         return result
 
 
 @dataclass
-class PurpleMedia:
+class FluffyMedia:
     display_url: Optional[str] = None
     expanded_url: Optional[str] = None
     id_str: Optional[str] = None
     indices: Optional[List[int]] = None
     media_key: Optional[str] = None
     media_url_https: Optional[str] = None
-    type: Optional[MediaType] = None
+    type: Optional[str] = None
     url: Optional[str] = None
     ext_media_availability: Optional[EXTMediaAvailability] = None
-    features: Optional[Features] = None
+    features: Optional[PurpleFeatures] = None
     sizes: Optional[Sizes] = None
     original_info: Optional[OriginalInfo] = None
     ext_alt_text: Optional[str] = None
     additional_media_info: Optional[AdditionalMediaInfo] = None
     media_stats: Optional[MediaStats] = None
-    video_info: Optional[VideoInfo] = None
+    video_info: Optional[PurpleVideoInfo] = None
+    source_status_id_str: Optional[str] = None
+    source_user_id_str: Optional[str] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'PurpleMedia':
+    def from_dict(obj: Any) -> 'FluffyMedia':
         assert isinstance(obj, dict)
         display_url = from_union([from_str, from_none], obj.get("display_url"))
         expanded_url = from_union([from_str, from_none], obj.get("expanded_url"))
@@ -1286,17 +1490,19 @@ class PurpleMedia:
         indices = from_union([lambda x: from_list(from_int, x), from_none], obj.get("indices"))
         media_key = from_union([from_str, from_none], obj.get("media_key"))
         media_url_https = from_union([from_str, from_none], obj.get("media_url_https"))
-        type = from_union([MediaType, from_none], obj.get("type"))
+        type = from_union([from_str, from_none], obj.get("type"))
         url = from_union([from_str, from_none], obj.get("url"))
         ext_media_availability = from_union([EXTMediaAvailability.from_dict, from_none], obj.get("ext_media_availability"))
-        features = from_union([Features.from_dict, from_none], obj.get("features"))
+        features = from_union([PurpleFeatures.from_dict, from_none], obj.get("features"))
         sizes = from_union([Sizes.from_dict, from_none], obj.get("sizes"))
         original_info = from_union([OriginalInfo.from_dict, from_none], obj.get("original_info"))
         ext_alt_text = from_union([from_str, from_none], obj.get("ext_alt_text"))
         additional_media_info = from_union([AdditionalMediaInfo.from_dict, from_none], obj.get("additional_media_info"))
         media_stats = from_union([MediaStats.from_dict, from_none], obj.get("mediaStats"))
-        video_info = from_union([VideoInfo.from_dict, from_none], obj.get("video_info"))
-        return PurpleMedia(display_url, expanded_url, id_str, indices, media_key, media_url_https, type, url, ext_media_availability, features, sizes, original_info, ext_alt_text, additional_media_info, media_stats, video_info)
+        video_info = from_union([PurpleVideoInfo.from_dict, from_none], obj.get("video_info"))
+        source_status_id_str = from_union([from_str, from_none], obj.get("source_status_id_str"))
+        source_user_id_str = from_union([from_str, from_none], obj.get("source_user_id_str"))
+        return FluffyMedia(display_url, expanded_url, id_str, indices, media_key, media_url_https, type, url, ext_media_availability, features, sizes, original_info, ext_alt_text, additional_media_info, media_stats, video_info, source_status_id_str, source_user_id_str)
 
     def to_dict(self) -> dict:
         result: dict = {}
@@ -1313,13 +1519,13 @@ class PurpleMedia:
         if self.media_url_https is not None:
             result["media_url_https"] = from_union([from_str, from_none], self.media_url_https)
         if self.type is not None:
-            result["type"] = from_union([lambda x: to_enum(MediaType, x), from_none], self.type)
+            result["type"] = from_union([from_str, from_none], self.type)
         if self.url is not None:
             result["url"] = from_union([from_str, from_none], self.url)
         if self.ext_media_availability is not None:
             result["ext_media_availability"] = from_union([lambda x: to_class(EXTMediaAvailability, x), from_none], self.ext_media_availability)
         if self.features is not None:
-            result["features"] = from_union([lambda x: to_class(Features, x), from_none], self.features)
+            result["features"] = from_union([lambda x: to_class(PurpleFeatures, x), from_none], self.features)
         if self.sizes is not None:
             result["sizes"] = from_union([lambda x: to_class(Sizes, x), from_none], self.sizes)
         if self.original_info is not None:
@@ -1331,34 +1537,29 @@ class PurpleMedia:
         if self.media_stats is not None:
             result["mediaStats"] = from_union([lambda x: to_class(MediaStats, x), from_none], self.media_stats)
         if self.video_info is not None:
-            result["video_info"] = from_union([lambda x: to_class(VideoInfo, x), from_none], self.video_info)
+            result["video_info"] = from_union([lambda x: to_class(PurpleVideoInfo, x), from_none], self.video_info)
+        if self.source_status_id_str is not None:
+            result["source_status_id_str"] = from_union([from_str, from_none], self.source_status_id_str)
+        if self.source_user_id_str is not None:
+            result["source_user_id_str"] = from_union([from_str, from_none], self.source_user_id_str)
         return result
 
 
 @dataclass
 class PurpleExtendedEntities:
-    media: Optional[List[PurpleMedia]] = None
+    media: Optional[List[FluffyMedia]] = None
 
     @staticmethod
     def from_dict(obj: Any) -> 'PurpleExtendedEntities':
         assert isinstance(obj, dict)
-        media = from_union([lambda x: from_list(PurpleMedia.from_dict, x), from_none], obj.get("media"))
+        media = from_union([lambda x: from_list(FluffyMedia.from_dict, x), from_none], obj.get("media"))
         return PurpleExtendedEntities(media)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.media is not None:
-            result["media"] = from_union([lambda x: from_list(lambda x: to_class(PurpleMedia, x), x), from_none], self.media)
+            result["media"] = from_union([lambda x: from_list(lambda x: to_class(FluffyMedia, x), x), from_none], self.media)
         return result
-
-
-class Lang(Enum):
-    DA = "da"
-    DE = "de"
-    FI = "fi"
-    NO = "no"
-    SV = "sv"
-    ZXX = "zxx"
 
 
 @dataclass
@@ -1387,19 +1588,824 @@ class QuotedStatusPermalink:
 
 
 @dataclass
+class FluffyImageValue:
+    height: Optional[int] = None
+    width: Optional[int] = None
+    url: Optional[str] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'FluffyImageValue':
+        assert isinstance(obj, dict)
+        height = from_union([from_int, from_none], obj.get("height"))
+        width = from_union([from_int, from_none], obj.get("width"))
+        url = from_union([from_str, from_none], obj.get("url"))
+        return FluffyImageValue(height, width, url)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.height is not None:
+            result["height"] = from_union([from_int, from_none], self.height)
+        if self.width is not None:
+            result["width"] = from_union([from_int, from_none], self.width)
+        if self.url is not None:
+            result["url"] = from_union([from_str, from_none], self.url)
+        return result
+
+
+@dataclass
+class FluffyValue:
+    image_value: Optional[FluffyImageValue] = None
+    type: Optional[str] = None
+    string_value: Optional[str] = None
+    scribe_key: Optional[str] = None
+    user_value: Optional[UserValue] = None
+    image_color_value: Optional[ImageColorValue] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'FluffyValue':
+        assert isinstance(obj, dict)
+        image_value = from_union([FluffyImageValue.from_dict, from_none], obj.get("image_value"))
+        type = from_union([from_str, from_none], obj.get("type"))
+        string_value = from_union([from_str, from_none], obj.get("string_value"))
+        scribe_key = from_union([from_str, from_none], obj.get("scribe_key"))
+        user_value = from_union([UserValue.from_dict, from_none], obj.get("user_value"))
+        image_color_value = from_union([ImageColorValue.from_dict, from_none], obj.get("image_color_value"))
+        return FluffyValue(image_value, type, string_value, scribe_key, user_value, image_color_value)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.image_value is not None:
+            result["image_value"] = from_union([lambda x: to_class(FluffyImageValue, x), from_none], self.image_value)
+        if self.type is not None:
+            result["type"] = from_union([from_str, from_none], self.type)
+        if self.string_value is not None:
+            result["string_value"] = from_union([from_str, from_none], self.string_value)
+        if self.scribe_key is not None:
+            result["scribe_key"] = from_union([from_str, from_none], self.scribe_key)
+        if self.user_value is not None:
+            result["user_value"] = from_union([lambda x: to_class(UserValue, x), from_none], self.user_value)
+        if self.image_color_value is not None:
+            result["image_color_value"] = from_union([lambda x: to_class(ImageColorValue, x), from_none], self.image_color_value)
+        return result
+
+
+@dataclass
+class FluffyBindingValue:
+    key: Optional[str] = None
+    value: Optional[FluffyValue] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'FluffyBindingValue':
+        assert isinstance(obj, dict)
+        key = from_union([from_str, from_none], obj.get("key"))
+        value = from_union([FluffyValue.from_dict, from_none], obj.get("value"))
+        return FluffyBindingValue(key, value)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.key is not None:
+            result["key"] = from_union([from_str, from_none], self.key)
+        if self.value is not None:
+            result["value"] = from_union([lambda x: to_class(FluffyValue, x), from_none], self.value)
+        return result
+
+
+@dataclass
+class IndecentURL:
+    display_url: Optional[str] = None
+    expanded_url: Optional[str] = None
+    url: Optional[str] = None
+    indices: Optional[List[int]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'IndecentURL':
+        assert isinstance(obj, dict)
+        display_url = from_union([from_str, from_none], obj.get("display_url"))
+        expanded_url = from_union([from_str, from_none], obj.get("expanded_url"))
+        url = from_union([from_str, from_none], obj.get("url"))
+        indices = from_union([lambda x: from_list(from_int, x), from_none], obj.get("indices"))
+        return IndecentURL(display_url, expanded_url, url, indices)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.display_url is not None:
+            result["display_url"] = from_union([from_str, from_none], self.display_url)
+        if self.expanded_url is not None:
+            result["expanded_url"] = from_union([from_str, from_none], self.expanded_url)
+        if self.url is not None:
+            result["url"] = from_union([from_str, from_none], self.url)
+        if self.indices is not None:
+            result["indices"] = from_union([lambda x: from_list(from_int, x), from_none], self.indices)
+        return result
+
+
+@dataclass
+class TentacledDescription:
+    urls: Optional[List[IndecentURL]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'TentacledDescription':
+        assert isinstance(obj, dict)
+        urls = from_union([lambda x: from_list(IndecentURL.from_dict, x), from_none], obj.get("urls"))
+        return TentacledDescription(urls)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.urls is not None:
+            result["urls"] = from_union([lambda x: from_list(lambda x: to_class(IndecentURL, x), x), from_none], self.urls)
+        return result
+
+
+@dataclass
+class StickyEntities:
+    description: Optional[TentacledDescription] = None
+    url: Optional[DescriptionClass] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'StickyEntities':
+        assert isinstance(obj, dict)
+        description = from_union([TentacledDescription.from_dict, from_none], obj.get("description"))
+        url = from_union([DescriptionClass.from_dict, from_none], obj.get("url"))
+        return StickyEntities(description, url)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.description is not None:
+            result["description"] = from_union([lambda x: to_class(TentacledDescription, x), from_none], self.description)
+        if self.url is not None:
+            result["url"] = from_union([lambda x: to_class(DescriptionClass, x), from_none], self.url)
+        return result
+
+
+@dataclass
+class IndecentLegacy:
+    created_at: Optional[str] = None
+    default_profile: Optional[bool] = None
+    default_profile_image: Optional[bool] = None
+    description: Optional[str] = None
+    entities: Optional[StickyEntities] = None
+    fast_followers_count: Optional[int] = None
+    favourites_count: Optional[int] = None
+    followers_count: Optional[int] = None
+    friends_count: Optional[int] = None
+    has_custom_timelines: Optional[bool] = None
+    is_translator: Optional[bool] = None
+    listed_count: Optional[int] = None
+    location: Optional[str] = None
+    media_count: Optional[int] = None
+    name: Optional[str] = None
+    normal_followers_count: Optional[int] = None
+    pinned_tweet_ids_str: Optional[List[Any]] = None
+    possibly_sensitive: Optional[bool] = None
+    profile_banner_url: Optional[str] = None
+    profile_image_url_https: Optional[str] = None
+    profile_interstitial_type: Optional[str] = None
+    screen_name: Optional[str] = None
+    statuses_count: Optional[int] = None
+    translator_type: Optional[str] = None
+    url: Optional[str] = None
+    verified: Optional[bool] = None
+    withheld_in_countries: Optional[List[Any]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'IndecentLegacy':
+        assert isinstance(obj, dict)
+        created_at = from_union([from_str, from_none], obj.get("created_at"))
+        default_profile = from_union([from_bool, from_none], obj.get("default_profile"))
+        default_profile_image = from_union([from_bool, from_none], obj.get("default_profile_image"))
+        description = from_union([from_str, from_none], obj.get("description"))
+        entities = from_union([StickyEntities.from_dict, from_none], obj.get("entities"))
+        fast_followers_count = from_union([from_int, from_none], obj.get("fast_followers_count"))
+        favourites_count = from_union([from_int, from_none], obj.get("favourites_count"))
+        followers_count = from_union([from_int, from_none], obj.get("followers_count"))
+        friends_count = from_union([from_int, from_none], obj.get("friends_count"))
+        has_custom_timelines = from_union([from_bool, from_none], obj.get("has_custom_timelines"))
+        is_translator = from_union([from_bool, from_none], obj.get("is_translator"))
+        listed_count = from_union([from_int, from_none], obj.get("listed_count"))
+        location = from_union([from_str, from_none], obj.get("location"))
+        media_count = from_union([from_int, from_none], obj.get("media_count"))
+        name = from_union([from_str, from_none], obj.get("name"))
+        normal_followers_count = from_union([from_int, from_none], obj.get("normal_followers_count"))
+        pinned_tweet_ids_str = from_union([lambda x: from_list(lambda x: x, x), from_none], obj.get("pinned_tweet_ids_str"))
+        possibly_sensitive = from_union([from_bool, from_none], obj.get("possibly_sensitive"))
+        profile_banner_url = from_union([from_str, from_none], obj.get("profile_banner_url"))
+        profile_image_url_https = from_union([from_str, from_none], obj.get("profile_image_url_https"))
+        profile_interstitial_type = from_union([from_str, from_none], obj.get("profile_interstitial_type"))
+        screen_name = from_union([from_str, from_none], obj.get("screen_name"))
+        statuses_count = from_union([from_int, from_none], obj.get("statuses_count"))
+        translator_type = from_union([from_str, from_none], obj.get("translator_type"))
+        url = from_union([from_str, from_none], obj.get("url"))
+        verified = from_union([from_bool, from_none], obj.get("verified"))
+        withheld_in_countries = from_union([lambda x: from_list(lambda x: x, x), from_none], obj.get("withheld_in_countries"))
+        return IndecentLegacy(created_at, default_profile, default_profile_image, description, entities, fast_followers_count, favourites_count, followers_count, friends_count, has_custom_timelines, is_translator, listed_count, location, media_count, name, normal_followers_count, pinned_tweet_ids_str, possibly_sensitive, profile_banner_url, profile_image_url_https, profile_interstitial_type, screen_name, statuses_count, translator_type, url, verified, withheld_in_countries)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.created_at is not None:
+            result["created_at"] = from_union([from_str, from_none], self.created_at)
+        if self.default_profile is not None:
+            result["default_profile"] = from_union([from_bool, from_none], self.default_profile)
+        if self.default_profile_image is not None:
+            result["default_profile_image"] = from_union([from_bool, from_none], self.default_profile_image)
+        if self.description is not None:
+            result["description"] = from_union([from_str, from_none], self.description)
+        if self.entities is not None:
+            result["entities"] = from_union([lambda x: to_class(StickyEntities, x), from_none], self.entities)
+        if self.fast_followers_count is not None:
+            result["fast_followers_count"] = from_union([from_int, from_none], self.fast_followers_count)
+        if self.favourites_count is not None:
+            result["favourites_count"] = from_union([from_int, from_none], self.favourites_count)
+        if self.followers_count is not None:
+            result["followers_count"] = from_union([from_int, from_none], self.followers_count)
+        if self.friends_count is not None:
+            result["friends_count"] = from_union([from_int, from_none], self.friends_count)
+        if self.has_custom_timelines is not None:
+            result["has_custom_timelines"] = from_union([from_bool, from_none], self.has_custom_timelines)
+        if self.is_translator is not None:
+            result["is_translator"] = from_union([from_bool, from_none], self.is_translator)
+        if self.listed_count is not None:
+            result["listed_count"] = from_union([from_int, from_none], self.listed_count)
+        if self.location is not None:
+            result["location"] = from_union([from_str, from_none], self.location)
+        if self.media_count is not None:
+            result["media_count"] = from_union([from_int, from_none], self.media_count)
+        if self.name is not None:
+            result["name"] = from_union([from_str, from_none], self.name)
+        if self.normal_followers_count is not None:
+            result["normal_followers_count"] = from_union([from_int, from_none], self.normal_followers_count)
+        if self.pinned_tweet_ids_str is not None:
+            result["pinned_tweet_ids_str"] = from_union([lambda x: from_list(lambda x: x, x), from_none], self.pinned_tweet_ids_str)
+        if self.possibly_sensitive is not None:
+            result["possibly_sensitive"] = from_union([from_bool, from_none], self.possibly_sensitive)
+        if self.profile_banner_url is not None:
+            result["profile_banner_url"] = from_union([from_str, from_none], self.profile_banner_url)
+        if self.profile_image_url_https is not None:
+            result["profile_image_url_https"] = from_union([from_str, from_none], self.profile_image_url_https)
+        if self.profile_interstitial_type is not None:
+            result["profile_interstitial_type"] = from_union([from_str, from_none], self.profile_interstitial_type)
+        if self.screen_name is not None:
+            result["screen_name"] = from_union([from_str, from_none], self.screen_name)
+        if self.statuses_count is not None:
+            result["statuses_count"] = from_union([from_int, from_none], self.statuses_count)
+        if self.translator_type is not None:
+            result["translator_type"] = from_union([from_str, from_none], self.translator_type)
+        if self.url is not None:
+            result["url"] = from_union([from_str, from_none], self.url)
+        if self.verified is not None:
+            result["verified"] = from_union([from_bool, from_none], self.verified)
+        if self.withheld_in_countries is not None:
+            result["withheld_in_countries"] = from_union([lambda x: from_list(lambda x: x, x), from_none], self.withheld_in_countries)
+        return result
+
+
+@dataclass
+class TentacledResult:
+    typename: Optional[str] = None
+    id: Optional[str] = None
+    rest_id: Optional[str] = None
+    affiliates_highlighted_label: Optional[UnmentionData] = None
+    is_blue_verified: Optional[bool] = None
+    profile_image_shape: Optional[str] = None
+    legacy: Optional[IndecentLegacy] = None
+    professional: Optional[Professional] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'TentacledResult':
+        assert isinstance(obj, dict)
+        typename = from_union([from_str, from_none], obj.get("__typename"))
+        id = from_union([from_str, from_none], obj.get("id"))
+        rest_id = from_union([from_str, from_none], obj.get("rest_id"))
+        affiliates_highlighted_label = from_union([UnmentionData.from_dict, from_none], obj.get("affiliates_highlighted_label"))
+        is_blue_verified = from_union([from_bool, from_none], obj.get("is_blue_verified"))
+        profile_image_shape = from_union([from_str, from_none], obj.get("profile_image_shape"))
+        legacy = from_union([IndecentLegacy.from_dict, from_none], obj.get("legacy"))
+        professional = from_union([Professional.from_dict, from_none], obj.get("professional"))
+        return TentacledResult(typename, id, rest_id, affiliates_highlighted_label, is_blue_verified, profile_image_shape, legacy, professional)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.typename is not None:
+            result["__typename"] = from_union([from_str, from_none], self.typename)
+        if self.id is not None:
+            result["id"] = from_union([from_str, from_none], self.id)
+        if self.rest_id is not None:
+            result["rest_id"] = from_union([from_str, from_none], self.rest_id)
+        if self.affiliates_highlighted_label is not None:
+            result["affiliates_highlighted_label"] = from_union([lambda x: to_class(UnmentionData, x), from_none], self.affiliates_highlighted_label)
+        if self.is_blue_verified is not None:
+            result["is_blue_verified"] = from_union([from_bool, from_none], self.is_blue_verified)
+        if self.profile_image_shape is not None:
+            result["profile_image_shape"] = from_union([from_str, from_none], self.profile_image_shape)
+        if self.legacy is not None:
+            result["legacy"] = from_union([lambda x: to_class(IndecentLegacy, x), from_none], self.legacy)
+        if self.professional is not None:
+            result["professional"] = from_union([lambda x: to_class(Professional, x), from_none], self.professional)
+        return result
+
+
+@dataclass
+class FluffyUserRefsResult:
+    result: Optional[TentacledResult] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'FluffyUserRefsResult':
+        assert isinstance(obj, dict)
+        result = from_union([TentacledResult.from_dict, from_none], obj.get("result"))
+        return FluffyUserRefsResult(result)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.result is not None:
+            result["result"] = from_union([lambda x: to_class(TentacledResult, x), from_none], self.result)
+        return result
+
+
+@dataclass
+class IndigoLegacy:
+    binding_values: Optional[List[FluffyBindingValue]] = None
+    card_platform: Optional[CardPlatform] = None
+    name: Optional[str] = None
+    url: Optional[str] = None
+    user_refs_results: Optional[List[FluffyUserRefsResult]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'IndigoLegacy':
+        assert isinstance(obj, dict)
+        binding_values = from_union([lambda x: from_list(FluffyBindingValue.from_dict, x), from_none], obj.get("binding_values"))
+        card_platform = from_union([CardPlatform.from_dict, from_none], obj.get("card_platform"))
+        name = from_union([from_str, from_none], obj.get("name"))
+        url = from_union([from_str, from_none], obj.get("url"))
+        user_refs_results = from_union([lambda x: from_list(FluffyUserRefsResult.from_dict, x), from_none], obj.get("user_refs_results"))
+        return IndigoLegacy(binding_values, card_platform, name, url, user_refs_results)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.binding_values is not None:
+            result["binding_values"] = from_union([lambda x: from_list(lambda x: to_class(FluffyBindingValue, x), x), from_none], self.binding_values)
+        if self.card_platform is not None:
+            result["card_platform"] = from_union([lambda x: to_class(CardPlatform, x), from_none], self.card_platform)
+        if self.name is not None:
+            result["name"] = from_union([from_str, from_none], self.name)
+        if self.url is not None:
+            result["url"] = from_union([from_str, from_none], self.url)
+        if self.user_refs_results is not None:
+            result["user_refs_results"] = from_union([lambda x: from_list(lambda x: to_class(FluffyUserRefsResult, x), x), from_none], self.user_refs_results)
+        return result
+
+
+@dataclass
+class FluffyCard:
+    rest_id: Optional[str] = None
+    legacy: Optional[IndigoLegacy] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'FluffyCard':
+        assert isinstance(obj, dict)
+        rest_id = from_union([from_str, from_none], obj.get("rest_id"))
+        legacy = from_union([IndigoLegacy.from_dict, from_none], obj.get("legacy"))
+        return FluffyCard(rest_id, legacy)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.rest_id is not None:
+            result["rest_id"] = from_union([from_str, from_none], self.rest_id)
+        if self.legacy is not None:
+            result["legacy"] = from_union([lambda x: to_class(IndigoLegacy, x), from_none], self.legacy)
+        return result
+
+
+@dataclass
+class IndigoEntities:
+    description: Optional[DescriptionClass] = None
+    url: Optional[FluffyURL] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'IndigoEntities':
+        assert isinstance(obj, dict)
+        description = from_union([DescriptionClass.from_dict, from_none], obj.get("description"))
+        url = from_union([FluffyURL.from_dict, from_none], obj.get("url"))
+        return IndigoEntities(description, url)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.description is not None:
+            result["description"] = from_union([lambda x: to_class(DescriptionClass, x), from_none], self.description)
+        if self.url is not None:
+            result["url"] = from_union([lambda x: to_class(FluffyURL, x), from_none], self.url)
+        return result
+
+
+@dataclass
+class HilariousLegacy:
+    created_at: Optional[str] = None
+    default_profile: Optional[bool] = None
+    default_profile_image: Optional[bool] = None
+    description: Optional[str] = None
+    entities: Optional[IndigoEntities] = None
+    fast_followers_count: Optional[int] = None
+    favourites_count: Optional[int] = None
+    followers_count: Optional[int] = None
+    friends_count: Optional[int] = None
+    has_custom_timelines: Optional[bool] = None
+    is_translator: Optional[bool] = None
+    listed_count: Optional[int] = None
+    location: Optional[str] = None
+    media_count: Optional[int] = None
+    name: Optional[str] = None
+    normal_followers_count: Optional[int] = None
+    pinned_tweet_ids_str: Optional[List[str]] = None
+    possibly_sensitive: Optional[bool] = None
+    profile_banner_url: Optional[str] = None
+    profile_image_url_https: Optional[str] = None
+    profile_interstitial_type: Optional[str] = None
+    screen_name: Optional[str] = None
+    statuses_count: Optional[int] = None
+    translator_type: Optional[str] = None
+    url: Optional[str] = None
+    verified: Optional[bool] = None
+    withheld_in_countries: Optional[List[Any]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'HilariousLegacy':
+        assert isinstance(obj, dict)
+        created_at = from_union([from_str, from_none], obj.get("created_at"))
+        default_profile = from_union([from_bool, from_none], obj.get("default_profile"))
+        default_profile_image = from_union([from_bool, from_none], obj.get("default_profile_image"))
+        description = from_union([from_str, from_none], obj.get("description"))
+        entities = from_union([IndigoEntities.from_dict, from_none], obj.get("entities"))
+        fast_followers_count = from_union([from_int, from_none], obj.get("fast_followers_count"))
+        favourites_count = from_union([from_int, from_none], obj.get("favourites_count"))
+        followers_count = from_union([from_int, from_none], obj.get("followers_count"))
+        friends_count = from_union([from_int, from_none], obj.get("friends_count"))
+        has_custom_timelines = from_union([from_bool, from_none], obj.get("has_custom_timelines"))
+        is_translator = from_union([from_bool, from_none], obj.get("is_translator"))
+        listed_count = from_union([from_int, from_none], obj.get("listed_count"))
+        location = from_union([from_str, from_none], obj.get("location"))
+        media_count = from_union([from_int, from_none], obj.get("media_count"))
+        name = from_union([from_str, from_none], obj.get("name"))
+        normal_followers_count = from_union([from_int, from_none], obj.get("normal_followers_count"))
+        pinned_tweet_ids_str = from_union([lambda x: from_list(from_str, x), from_none], obj.get("pinned_tweet_ids_str"))
+        possibly_sensitive = from_union([from_bool, from_none], obj.get("possibly_sensitive"))
+        profile_banner_url = from_union([from_str, from_none], obj.get("profile_banner_url"))
+        profile_image_url_https = from_union([from_str, from_none], obj.get("profile_image_url_https"))
+        profile_interstitial_type = from_union([from_str, from_none], obj.get("profile_interstitial_type"))
+        screen_name = from_union([from_str, from_none], obj.get("screen_name"))
+        statuses_count = from_union([from_int, from_none], obj.get("statuses_count"))
+        translator_type = from_union([from_str, from_none], obj.get("translator_type"))
+        url = from_union([from_str, from_none], obj.get("url"))
+        verified = from_union([from_bool, from_none], obj.get("verified"))
+        withheld_in_countries = from_union([lambda x: from_list(lambda x: x, x), from_none], obj.get("withheld_in_countries"))
+        return HilariousLegacy(created_at, default_profile, default_profile_image, description, entities, fast_followers_count, favourites_count, followers_count, friends_count, has_custom_timelines, is_translator, listed_count, location, media_count, name, normal_followers_count, pinned_tweet_ids_str, possibly_sensitive, profile_banner_url, profile_image_url_https, profile_interstitial_type, screen_name, statuses_count, translator_type, url, verified, withheld_in_countries)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.created_at is not None:
+            result["created_at"] = from_union([from_str, from_none], self.created_at)
+        if self.default_profile is not None:
+            result["default_profile"] = from_union([from_bool, from_none], self.default_profile)
+        if self.default_profile_image is not None:
+            result["default_profile_image"] = from_union([from_bool, from_none], self.default_profile_image)
+        if self.description is not None:
+            result["description"] = from_union([from_str, from_none], self.description)
+        if self.entities is not None:
+            result["entities"] = from_union([lambda x: to_class(IndigoEntities, x), from_none], self.entities)
+        if self.fast_followers_count is not None:
+            result["fast_followers_count"] = from_union([from_int, from_none], self.fast_followers_count)
+        if self.favourites_count is not None:
+            result["favourites_count"] = from_union([from_int, from_none], self.favourites_count)
+        if self.followers_count is not None:
+            result["followers_count"] = from_union([from_int, from_none], self.followers_count)
+        if self.friends_count is not None:
+            result["friends_count"] = from_union([from_int, from_none], self.friends_count)
+        if self.has_custom_timelines is not None:
+            result["has_custom_timelines"] = from_union([from_bool, from_none], self.has_custom_timelines)
+        if self.is_translator is not None:
+            result["is_translator"] = from_union([from_bool, from_none], self.is_translator)
+        if self.listed_count is not None:
+            result["listed_count"] = from_union([from_int, from_none], self.listed_count)
+        if self.location is not None:
+            result["location"] = from_union([from_str, from_none], self.location)
+        if self.media_count is not None:
+            result["media_count"] = from_union([from_int, from_none], self.media_count)
+        if self.name is not None:
+            result["name"] = from_union([from_str, from_none], self.name)
+        if self.normal_followers_count is not None:
+            result["normal_followers_count"] = from_union([from_int, from_none], self.normal_followers_count)
+        if self.pinned_tweet_ids_str is not None:
+            result["pinned_tweet_ids_str"] = from_union([lambda x: from_list(from_str, x), from_none], self.pinned_tweet_ids_str)
+        if self.possibly_sensitive is not None:
+            result["possibly_sensitive"] = from_union([from_bool, from_none], self.possibly_sensitive)
+        if self.profile_banner_url is not None:
+            result["profile_banner_url"] = from_union([from_str, from_none], self.profile_banner_url)
+        if self.profile_image_url_https is not None:
+            result["profile_image_url_https"] = from_union([from_str, from_none], self.profile_image_url_https)
+        if self.profile_interstitial_type is not None:
+            result["profile_interstitial_type"] = from_union([from_str, from_none], self.profile_interstitial_type)
+        if self.screen_name is not None:
+            result["screen_name"] = from_union([from_str, from_none], self.screen_name)
+        if self.statuses_count is not None:
+            result["statuses_count"] = from_union([from_int, from_none], self.statuses_count)
+        if self.translator_type is not None:
+            result["translator_type"] = from_union([from_str, from_none], self.translator_type)
+        if self.url is not None:
+            result["url"] = from_union([from_str, from_none], self.url)
+        if self.verified is not None:
+            result["verified"] = from_union([from_bool, from_none], self.verified)
+        if self.withheld_in_countries is not None:
+            result["withheld_in_countries"] = from_union([lambda x: from_list(lambda x: x, x), from_none], self.withheld_in_countries)
+        return result
+
+
+@dataclass
+class StickyResult:
+    typename: Optional[str] = None
+    id: Optional[str] = None
+    rest_id: Optional[str] = None
+    affiliates_highlighted_label: Optional[UnmentionData] = None
+    is_blue_verified: Optional[bool] = None
+    profile_image_shape: Optional[str] = None
+    legacy: Optional[HilariousLegacy] = None
+    professional: Optional[Professional] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'StickyResult':
+        assert isinstance(obj, dict)
+        typename = from_union([from_str, from_none], obj.get("__typename"))
+        id = from_union([from_str, from_none], obj.get("id"))
+        rest_id = from_union([from_str, from_none], obj.get("rest_id"))
+        affiliates_highlighted_label = from_union([UnmentionData.from_dict, from_none], obj.get("affiliates_highlighted_label"))
+        is_blue_verified = from_union([from_bool, from_none], obj.get("is_blue_verified"))
+        profile_image_shape = from_union([from_str, from_none], obj.get("profile_image_shape"))
+        legacy = from_union([HilariousLegacy.from_dict, from_none], obj.get("legacy"))
+        professional = from_union([Professional.from_dict, from_none], obj.get("professional"))
+        return StickyResult(typename, id, rest_id, affiliates_highlighted_label, is_blue_verified, profile_image_shape, legacy, professional)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.typename is not None:
+            result["__typename"] = from_union([from_str, from_none], self.typename)
+        if self.id is not None:
+            result["id"] = from_union([from_str, from_none], self.id)
+        if self.rest_id is not None:
+            result["rest_id"] = from_union([from_str, from_none], self.rest_id)
+        if self.affiliates_highlighted_label is not None:
+            result["affiliates_highlighted_label"] = from_union([lambda x: to_class(UnmentionData, x), from_none], self.affiliates_highlighted_label)
+        if self.is_blue_verified is not None:
+            result["is_blue_verified"] = from_union([from_bool, from_none], self.is_blue_verified)
+        if self.profile_image_shape is not None:
+            result["profile_image_shape"] = from_union([from_str, from_none], self.profile_image_shape)
+        if self.legacy is not None:
+            result["legacy"] = from_union([lambda x: to_class(HilariousLegacy, x), from_none], self.legacy)
+        if self.professional is not None:
+            result["professional"] = from_union([lambda x: to_class(Professional, x), from_none], self.professional)
+        return result
+
+
+@dataclass
+class FluffyUserResults:
+    result: Optional[StickyResult] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'FluffyUserResults':
+        assert isinstance(obj, dict)
+        result = from_union([StickyResult.from_dict, from_none], obj.get("result"))
+        return FluffyUserResults(result)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.result is not None:
+            result["result"] = from_union([lambda x: to_class(StickyResult, x), from_none], self.result)
+        return result
+
+
+@dataclass
+class FluffyCore:
+    user_results: Optional[FluffyUserResults] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'FluffyCore':
+        assert isinstance(obj, dict)
+        user_results = from_union([FluffyUserResults.from_dict, from_none], obj.get("user_results"))
+        return FluffyCore(user_results)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.user_results is not None:
+            result["user_results"] = from_union([lambda x: to_class(FluffyUserResults, x), from_none], self.user_results)
+        return result
+
+
+@dataclass
+class TentacledMedia:
+    display_url: Optional[str] = None
+    expanded_url: Optional[str] = None
+    id_str: Optional[str] = None
+    indices: Optional[List[int]] = None
+    media_url_https: Optional[str] = None
+    type: Optional[str] = None
+    url: Optional[str] = None
+    features: Optional[PurpleFeatures] = None
+    sizes: Optional[Sizes] = None
+    original_info: Optional[OriginalInfo] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'TentacledMedia':
+        assert isinstance(obj, dict)
+        display_url = from_union([from_str, from_none], obj.get("display_url"))
+        expanded_url = from_union([from_str, from_none], obj.get("expanded_url"))
+        id_str = from_union([from_str, from_none], obj.get("id_str"))
+        indices = from_union([lambda x: from_list(from_int, x), from_none], obj.get("indices"))
+        media_url_https = from_union([from_str, from_none], obj.get("media_url_https"))
+        type = from_union([from_str, from_none], obj.get("type"))
+        url = from_union([from_str, from_none], obj.get("url"))
+        features = from_union([PurpleFeatures.from_dict, from_none], obj.get("features"))
+        sizes = from_union([Sizes.from_dict, from_none], obj.get("sizes"))
+        original_info = from_union([OriginalInfo.from_dict, from_none], obj.get("original_info"))
+        return TentacledMedia(display_url, expanded_url, id_str, indices, media_url_https, type, url, features, sizes, original_info)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.display_url is not None:
+            result["display_url"] = from_union([from_str, from_none], self.display_url)
+        if self.expanded_url is not None:
+            result["expanded_url"] = from_union([from_str, from_none], self.expanded_url)
+        if self.id_str is not None:
+            result["id_str"] = from_union([from_str, from_none], self.id_str)
+        if self.indices is not None:
+            result["indices"] = from_union([lambda x: from_list(from_int, x), from_none], self.indices)
+        if self.media_url_https is not None:
+            result["media_url_https"] = from_union([from_str, from_none], self.media_url_https)
+        if self.type is not None:
+            result["type"] = from_union([from_str, from_none], self.type)
+        if self.url is not None:
+            result["url"] = from_union([from_str, from_none], self.url)
+        if self.features is not None:
+            result["features"] = from_union([lambda x: to_class(PurpleFeatures, x), from_none], self.features)
+        if self.sizes is not None:
+            result["sizes"] = from_union([lambda x: to_class(Sizes, x), from_none], self.sizes)
+        if self.original_info is not None:
+            result["original_info"] = from_union([lambda x: to_class(OriginalInfo, x), from_none], self.original_info)
+        return result
+
+
+@dataclass
+class IndecentEntities:
+    user_mentions: Optional[List[UserMention]] = None
+    urls: Optional[List[PurpleURL]] = None
+    hashtags: Optional[List[Hashtag]] = None
+    symbols: Optional[List[Any]] = None
+    media: Optional[List[TentacledMedia]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'IndecentEntities':
+        assert isinstance(obj, dict)
+        user_mentions = from_union([lambda x: from_list(UserMention.from_dict, x), from_none], obj.get("user_mentions"))
+        urls = from_union([lambda x: from_list(PurpleURL.from_dict, x), from_none], obj.get("urls"))
+        hashtags = from_union([lambda x: from_list(Hashtag.from_dict, x), from_none], obj.get("hashtags"))
+        symbols = from_union([lambda x: from_list(lambda x: x, x), from_none], obj.get("symbols"))
+        media = from_union([lambda x: from_list(TentacledMedia.from_dict, x), from_none], obj.get("media"))
+        return IndecentEntities(user_mentions, urls, hashtags, symbols, media)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.user_mentions is not None:
+            result["user_mentions"] = from_union([lambda x: from_list(lambda x: to_class(UserMention, x), x), from_none], self.user_mentions)
+        if self.urls is not None:
+            result["urls"] = from_union([lambda x: from_list(lambda x: to_class(PurpleURL, x), x), from_none], self.urls)
+        if self.hashtags is not None:
+            result["hashtags"] = from_union([lambda x: from_list(lambda x: to_class(Hashtag, x), x), from_none], self.hashtags)
+        if self.symbols is not None:
+            result["symbols"] = from_union([lambda x: from_list(lambda x: x, x), from_none], self.symbols)
+        if self.media is not None:
+            result["media"] = from_union([lambda x: from_list(lambda x: to_class(TentacledMedia, x), x), from_none], self.media)
+        return result
+
+
+@dataclass
+class FluffyVariant:
+    bitrate: Optional[int] = None
+    content_type: Optional[str] = None
+    url: Optional[str] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'FluffyVariant':
+        assert isinstance(obj, dict)
+        bitrate = from_union([from_int, from_none], obj.get("bitrate"))
+        content_type = from_union([from_str, from_none], obj.get("content_type"))
+        url = from_union([from_str, from_none], obj.get("url"))
+        return FluffyVariant(bitrate, content_type, url)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.bitrate is not None:
+            result["bitrate"] = from_union([from_int, from_none], self.bitrate)
+        if self.content_type is not None:
+            result["content_type"] = from_union([from_str, from_none], self.content_type)
+        if self.url is not None:
+            result["url"] = from_union([from_str, from_none], self.url)
+        return result
+
+
+@dataclass
+class FluffyVideoInfo:
+    aspect_ratio: Optional[List[int]] = None
+    variants: Optional[List[FluffyVariant]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'FluffyVideoInfo':
+        assert isinstance(obj, dict)
+        aspect_ratio = from_union([lambda x: from_list(from_int, x), from_none], obj.get("aspect_ratio"))
+        variants = from_union([lambda x: from_list(FluffyVariant.from_dict, x), from_none], obj.get("variants"))
+        return FluffyVideoInfo(aspect_ratio, variants)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.aspect_ratio is not None:
+            result["aspect_ratio"] = from_union([lambda x: from_list(from_int, x), from_none], self.aspect_ratio)
+        if self.variants is not None:
+            result["variants"] = from_union([lambda x: from_list(lambda x: to_class(FluffyVariant, x), x), from_none], self.variants)
+        return result
+
+
+@dataclass
+class StickyMedia:
+    display_url: Optional[str] = None
+    expanded_url: Optional[str] = None
+    id_str: Optional[str] = None
+    indices: Optional[List[int]] = None
+    media_key: Optional[str] = None
+    media_url_https: Optional[str] = None
+    type: Optional[str] = None
+    url: Optional[str] = None
+    ext_media_availability: Optional[EXTMediaAvailability] = None
+    features: Optional[PurpleFeatures] = None
+    sizes: Optional[Sizes] = None
+    original_info: Optional[OriginalInfo] = None
+    video_info: Optional[FluffyVideoInfo] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'StickyMedia':
+        assert isinstance(obj, dict)
+        display_url = from_union([from_str, from_none], obj.get("display_url"))
+        expanded_url = from_union([from_str, from_none], obj.get("expanded_url"))
+        id_str = from_union([from_str, from_none], obj.get("id_str"))
+        indices = from_union([lambda x: from_list(from_int, x), from_none], obj.get("indices"))
+        media_key = from_union([from_str, from_none], obj.get("media_key"))
+        media_url_https = from_union([from_str, from_none], obj.get("media_url_https"))
+        type = from_union([from_str, from_none], obj.get("type"))
+        url = from_union([from_str, from_none], obj.get("url"))
+        ext_media_availability = from_union([EXTMediaAvailability.from_dict, from_none], obj.get("ext_media_availability"))
+        features = from_union([PurpleFeatures.from_dict, from_none], obj.get("features"))
+        sizes = from_union([Sizes.from_dict, from_none], obj.get("sizes"))
+        original_info = from_union([OriginalInfo.from_dict, from_none], obj.get("original_info"))
+        video_info = from_union([FluffyVideoInfo.from_dict, from_none], obj.get("video_info"))
+        return StickyMedia(display_url, expanded_url, id_str, indices, media_key, media_url_https, type, url, ext_media_availability, features, sizes, original_info, video_info)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.display_url is not None:
+            result["display_url"] = from_union([from_str, from_none], self.display_url)
+        if self.expanded_url is not None:
+            result["expanded_url"] = from_union([from_str, from_none], self.expanded_url)
+        if self.id_str is not None:
+            result["id_str"] = from_union([from_str, from_none], self.id_str)
+        if self.indices is not None:
+            result["indices"] = from_union([lambda x: from_list(from_int, x), from_none], self.indices)
+        if self.media_key is not None:
+            result["media_key"] = from_union([from_str, from_none], self.media_key)
+        if self.media_url_https is not None:
+            result["media_url_https"] = from_union([from_str, from_none], self.media_url_https)
+        if self.type is not None:
+            result["type"] = from_union([from_str, from_none], self.type)
+        if self.url is not None:
+            result["url"] = from_union([from_str, from_none], self.url)
+        if self.ext_media_availability is not None:
+            result["ext_media_availability"] = from_union([lambda x: to_class(EXTMediaAvailability, x), from_none], self.ext_media_availability)
+        if self.features is not None:
+            result["features"] = from_union([lambda x: to_class(PurpleFeatures, x), from_none], self.features)
+        if self.sizes is not None:
+            result["sizes"] = from_union([lambda x: to_class(Sizes, x), from_none], self.sizes)
+        if self.original_info is not None:
+            result["original_info"] = from_union([lambda x: to_class(OriginalInfo, x), from_none], self.original_info)
+        if self.video_info is not None:
+            result["video_info"] = from_union([lambda x: to_class(FluffyVideoInfo, x), from_none], self.video_info)
+        return result
+
+
+@dataclass
 class FluffyExtendedEntities:
-    media: Optional[List[EntitiesMedia]] = None
+    media: Optional[List[StickyMedia]] = None
 
     @staticmethod
     def from_dict(obj: Any) -> 'FluffyExtendedEntities':
         assert isinstance(obj, dict)
-        media = from_union([lambda x: from_list(EntitiesMedia.from_dict, x), from_none], obj.get("media"))
+        media = from_union([lambda x: from_list(StickyMedia.from_dict, x), from_none], obj.get("media"))
         return FluffyExtendedEntities(media)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.media is not None:
-            result["media"] = from_union([lambda x: from_list(lambda x: to_class(EntitiesMedia, x), x), from_none], self.media)
+            result["media"] = from_union([lambda x: from_list(lambda x: to_class(StickyMedia, x), x), from_none], self.media)
         return result
 
 
@@ -1421,18 +2427,18 @@ class SelfThread:
 
 
 @dataclass
-class TentacledLegacy:
+class AmbitiousLegacy:
     bookmark_count: Optional[int] = None
     bookmarked: Optional[bool] = None
     created_at: Optional[str] = None
     conversation_id_str: Optional[str] = None
     display_text_range: Optional[List[int]] = None
-    entities: Optional[FluffyEntities] = None
+    entities: Optional[IndecentEntities] = None
     favorite_count: Optional[int] = None
     favorited: Optional[bool] = None
     full_text: Optional[str] = None
     is_quote_status: Optional[bool] = None
-    lang: Optional[Lang] = None
+    lang: Optional[str] = None
     quote_count: Optional[int] = None
     reply_count: Optional[int] = None
     retweet_count: Optional[int] = None
@@ -1442,24 +2448,27 @@ class TentacledLegacy:
     self_thread: Optional[SelfThread] = None
     quoted_status_id_str: Optional[str] = None
     quoted_status_permalink: Optional[QuotedStatusPermalink] = None
-    extended_entities: Optional[FluffyExtendedEntities] = None
     possibly_sensitive: Optional[bool] = None
     possibly_sensitive_editable: Optional[bool] = None
+    in_reply_to_screen_name: Optional[str] = None
+    in_reply_to_status_id_str: Optional[str] = None
+    in_reply_to_user_id_str: Optional[str] = None
+    extended_entities: Optional[FluffyExtendedEntities] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'TentacledLegacy':
+    def from_dict(obj: Any) -> 'AmbitiousLegacy':
         assert isinstance(obj, dict)
         bookmark_count = from_union([from_int, from_none], obj.get("bookmark_count"))
         bookmarked = from_union([from_bool, from_none], obj.get("bookmarked"))
         created_at = from_union([from_str, from_none], obj.get("created_at"))
         conversation_id_str = from_union([from_str, from_none], obj.get("conversation_id_str"))
         display_text_range = from_union([lambda x: from_list(from_int, x), from_none], obj.get("display_text_range"))
-        entities = from_union([FluffyEntities.from_dict, from_none], obj.get("entities"))
+        entities = from_union([IndecentEntities.from_dict, from_none], obj.get("entities"))
         favorite_count = from_union([from_int, from_none], obj.get("favorite_count"))
         favorited = from_union([from_bool, from_none], obj.get("favorited"))
         full_text = from_union([from_str, from_none], obj.get("full_text"))
         is_quote_status = from_union([from_bool, from_none], obj.get("is_quote_status"))
-        lang = from_union([Lang, from_none], obj.get("lang"))
+        lang = from_union([from_str, from_none], obj.get("lang"))
         quote_count = from_union([from_int, from_none], obj.get("quote_count"))
         reply_count = from_union([from_int, from_none], obj.get("reply_count"))
         retweet_count = from_union([from_int, from_none], obj.get("retweet_count"))
@@ -1469,10 +2478,13 @@ class TentacledLegacy:
         self_thread = from_union([SelfThread.from_dict, from_none], obj.get("self_thread"))
         quoted_status_id_str = from_union([from_str, from_none], obj.get("quoted_status_id_str"))
         quoted_status_permalink = from_union([QuotedStatusPermalink.from_dict, from_none], obj.get("quoted_status_permalink"))
-        extended_entities = from_union([FluffyExtendedEntities.from_dict, from_none], obj.get("extended_entities"))
         possibly_sensitive = from_union([from_bool, from_none], obj.get("possibly_sensitive"))
         possibly_sensitive_editable = from_union([from_bool, from_none], obj.get("possibly_sensitive_editable"))
-        return TentacledLegacy(bookmark_count, bookmarked, created_at, conversation_id_str, display_text_range, entities, favorite_count, favorited, full_text, is_quote_status, lang, quote_count, reply_count, retweet_count, retweeted, user_id_str, id_str, self_thread, quoted_status_id_str, quoted_status_permalink, extended_entities, possibly_sensitive, possibly_sensitive_editable)
+        in_reply_to_screen_name = from_union([from_str, from_none], obj.get("in_reply_to_screen_name"))
+        in_reply_to_status_id_str = from_union([from_str, from_none], obj.get("in_reply_to_status_id_str"))
+        in_reply_to_user_id_str = from_union([from_str, from_none], obj.get("in_reply_to_user_id_str"))
+        extended_entities = from_union([FluffyExtendedEntities.from_dict, from_none], obj.get("extended_entities"))
+        return AmbitiousLegacy(bookmark_count, bookmarked, created_at, conversation_id_str, display_text_range, entities, favorite_count, favorited, full_text, is_quote_status, lang, quote_count, reply_count, retweet_count, retweeted, user_id_str, id_str, self_thread, quoted_status_id_str, quoted_status_permalink, possibly_sensitive, possibly_sensitive_editable, in_reply_to_screen_name, in_reply_to_status_id_str, in_reply_to_user_id_str, extended_entities)
 
     def to_dict(self) -> dict:
         result: dict = {}
@@ -1487,7 +2499,7 @@ class TentacledLegacy:
         if self.display_text_range is not None:
             result["display_text_range"] = from_union([lambda x: from_list(from_int, x), from_none], self.display_text_range)
         if self.entities is not None:
-            result["entities"] = from_union([lambda x: to_class(FluffyEntities, x), from_none], self.entities)
+            result["entities"] = from_union([lambda x: to_class(IndecentEntities, x), from_none], self.entities)
         if self.favorite_count is not None:
             result["favorite_count"] = from_union([from_int, from_none], self.favorite_count)
         if self.favorited is not None:
@@ -1497,7 +2509,7 @@ class TentacledLegacy:
         if self.is_quote_status is not None:
             result["is_quote_status"] = from_union([from_bool, from_none], self.is_quote_status)
         if self.lang is not None:
-            result["lang"] = from_union([lambda x: to_enum(Lang, x), from_none], self.lang)
+            result["lang"] = from_union([from_str, from_none], self.lang)
         if self.quote_count is not None:
             result["quote_count"] = from_union([from_int, from_none], self.quote_count)
         if self.reply_count is not None:
@@ -1516,58 +2528,312 @@ class TentacledLegacy:
             result["quoted_status_id_str"] = from_union([from_str, from_none], self.quoted_status_id_str)
         if self.quoted_status_permalink is not None:
             result["quoted_status_permalink"] = from_union([lambda x: to_class(QuotedStatusPermalink, x), from_none], self.quoted_status_permalink)
-        if self.extended_entities is not None:
-            result["extended_entities"] = from_union([lambda x: to_class(FluffyExtendedEntities, x), from_none], self.extended_entities)
         if self.possibly_sensitive is not None:
             result["possibly_sensitive"] = from_union([from_bool, from_none], self.possibly_sensitive)
         if self.possibly_sensitive_editable is not None:
             result["possibly_sensitive_editable"] = from_union([from_bool, from_none], self.possibly_sensitive_editable)
+        if self.in_reply_to_screen_name is not None:
+            result["in_reply_to_screen_name"] = from_union([from_str, from_none], self.in_reply_to_screen_name)
+        if self.in_reply_to_status_id_str is not None:
+            result["in_reply_to_status_id_str"] = from_union([from_str, from_none], self.in_reply_to_status_id_str)
+        if self.in_reply_to_user_id_str is not None:
+            result["in_reply_to_user_id_str"] = from_union([from_str, from_none], self.in_reply_to_user_id_str)
+        if self.extended_entities is not None:
+            result["extended_entities"] = from_union([lambda x: to_class(FluffyExtendedEntities, x), from_none], self.extended_entities)
         return result
 
 
 @dataclass
-class StickyLegacy:
+class HilariousEntities:
+    description: Optional[FluffyDescription] = None
+    url: Optional[TentacledDescription] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'HilariousEntities':
+        assert isinstance(obj, dict)
+        description = from_union([FluffyDescription.from_dict, from_none], obj.get("description"))
+        url = from_union([TentacledDescription.from_dict, from_none], obj.get("url"))
+        return HilariousEntities(description, url)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.description is not None:
+            result["description"] = from_union([lambda x: to_class(FluffyDescription, x), from_none], self.description)
+        if self.url is not None:
+            result["url"] = from_union([lambda x: to_class(TentacledDescription, x), from_none], self.url)
+        return result
+
+
+@dataclass
+class CunningLegacy:
+    created_at: Optional[str] = None
+    default_profile: Optional[bool] = None
+    default_profile_image: Optional[bool] = None
+    description: Optional[str] = None
+    entities: Optional[HilariousEntities] = None
+    fast_followers_count: Optional[int] = None
+    favourites_count: Optional[int] = None
+    followers_count: Optional[int] = None
+    friends_count: Optional[int] = None
+    has_custom_timelines: Optional[bool] = None
+    is_translator: Optional[bool] = None
+    listed_count: Optional[int] = None
+    location: Optional[str] = None
+    media_count: Optional[int] = None
+    name: Optional[str] = None
+    normal_followers_count: Optional[int] = None
+    pinned_tweet_ids_str: Optional[List[Any]] = None
+    possibly_sensitive: Optional[bool] = None
+    profile_banner_url: Optional[str] = None
+    profile_image_url_https: Optional[str] = None
+    profile_interstitial_type: Optional[str] = None
+    screen_name: Optional[str] = None
+    statuses_count: Optional[int] = None
+    translator_type: Optional[str] = None
+    url: Optional[str] = None
+    verified: Optional[bool] = None
+    withheld_in_countries: Optional[List[Any]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'CunningLegacy':
+        assert isinstance(obj, dict)
+        created_at = from_union([from_str, from_none], obj.get("created_at"))
+        default_profile = from_union([from_bool, from_none], obj.get("default_profile"))
+        default_profile_image = from_union([from_bool, from_none], obj.get("default_profile_image"))
+        description = from_union([from_str, from_none], obj.get("description"))
+        entities = from_union([HilariousEntities.from_dict, from_none], obj.get("entities"))
+        fast_followers_count = from_union([from_int, from_none], obj.get("fast_followers_count"))
+        favourites_count = from_union([from_int, from_none], obj.get("favourites_count"))
+        followers_count = from_union([from_int, from_none], obj.get("followers_count"))
+        friends_count = from_union([from_int, from_none], obj.get("friends_count"))
+        has_custom_timelines = from_union([from_bool, from_none], obj.get("has_custom_timelines"))
+        is_translator = from_union([from_bool, from_none], obj.get("is_translator"))
+        listed_count = from_union([from_int, from_none], obj.get("listed_count"))
+        location = from_union([from_str, from_none], obj.get("location"))
+        media_count = from_union([from_int, from_none], obj.get("media_count"))
+        name = from_union([from_str, from_none], obj.get("name"))
+        normal_followers_count = from_union([from_int, from_none], obj.get("normal_followers_count"))
+        pinned_tweet_ids_str = from_union([lambda x: from_list(lambda x: x, x), from_none], obj.get("pinned_tweet_ids_str"))
+        possibly_sensitive = from_union([from_bool, from_none], obj.get("possibly_sensitive"))
+        profile_banner_url = from_union([from_str, from_none], obj.get("profile_banner_url"))
+        profile_image_url_https = from_union([from_str, from_none], obj.get("profile_image_url_https"))
+        profile_interstitial_type = from_union([from_str, from_none], obj.get("profile_interstitial_type"))
+        screen_name = from_union([from_str, from_none], obj.get("screen_name"))
+        statuses_count = from_union([from_int, from_none], obj.get("statuses_count"))
+        translator_type = from_union([from_str, from_none], obj.get("translator_type"))
+        url = from_union([from_str, from_none], obj.get("url"))
+        verified = from_union([from_bool, from_none], obj.get("verified"))
+        withheld_in_countries = from_union([lambda x: from_list(lambda x: x, x), from_none], obj.get("withheld_in_countries"))
+        return CunningLegacy(created_at, default_profile, default_profile_image, description, entities, fast_followers_count, favourites_count, followers_count, friends_count, has_custom_timelines, is_translator, listed_count, location, media_count, name, normal_followers_count, pinned_tweet_ids_str, possibly_sensitive, profile_banner_url, profile_image_url_https, profile_interstitial_type, screen_name, statuses_count, translator_type, url, verified, withheld_in_countries)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.created_at is not None:
+            result["created_at"] = from_union([from_str, from_none], self.created_at)
+        if self.default_profile is not None:
+            result["default_profile"] = from_union([from_bool, from_none], self.default_profile)
+        if self.default_profile_image is not None:
+            result["default_profile_image"] = from_union([from_bool, from_none], self.default_profile_image)
+        if self.description is not None:
+            result["description"] = from_union([from_str, from_none], self.description)
+        if self.entities is not None:
+            result["entities"] = from_union([lambda x: to_class(HilariousEntities, x), from_none], self.entities)
+        if self.fast_followers_count is not None:
+            result["fast_followers_count"] = from_union([from_int, from_none], self.fast_followers_count)
+        if self.favourites_count is not None:
+            result["favourites_count"] = from_union([from_int, from_none], self.favourites_count)
+        if self.followers_count is not None:
+            result["followers_count"] = from_union([from_int, from_none], self.followers_count)
+        if self.friends_count is not None:
+            result["friends_count"] = from_union([from_int, from_none], self.friends_count)
+        if self.has_custom_timelines is not None:
+            result["has_custom_timelines"] = from_union([from_bool, from_none], self.has_custom_timelines)
+        if self.is_translator is not None:
+            result["is_translator"] = from_union([from_bool, from_none], self.is_translator)
+        if self.listed_count is not None:
+            result["listed_count"] = from_union([from_int, from_none], self.listed_count)
+        if self.location is not None:
+            result["location"] = from_union([from_str, from_none], self.location)
+        if self.media_count is not None:
+            result["media_count"] = from_union([from_int, from_none], self.media_count)
+        if self.name is not None:
+            result["name"] = from_union([from_str, from_none], self.name)
+        if self.normal_followers_count is not None:
+            result["normal_followers_count"] = from_union([from_int, from_none], self.normal_followers_count)
+        if self.pinned_tweet_ids_str is not None:
+            result["pinned_tweet_ids_str"] = from_union([lambda x: from_list(lambda x: x, x), from_none], self.pinned_tweet_ids_str)
+        if self.possibly_sensitive is not None:
+            result["possibly_sensitive"] = from_union([from_bool, from_none], self.possibly_sensitive)
+        if self.profile_banner_url is not None:
+            result["profile_banner_url"] = from_union([from_str, from_none], self.profile_banner_url)
+        if self.profile_image_url_https is not None:
+            result["profile_image_url_https"] = from_union([from_str, from_none], self.profile_image_url_https)
+        if self.profile_interstitial_type is not None:
+            result["profile_interstitial_type"] = from_union([from_str, from_none], self.profile_interstitial_type)
+        if self.screen_name is not None:
+            result["screen_name"] = from_union([from_str, from_none], self.screen_name)
+        if self.statuses_count is not None:
+            result["statuses_count"] = from_union([from_int, from_none], self.statuses_count)
+        if self.translator_type is not None:
+            result["translator_type"] = from_union([from_str, from_none], self.translator_type)
+        if self.url is not None:
+            result["url"] = from_union([from_str, from_none], self.url)
+        if self.verified is not None:
+            result["verified"] = from_union([from_bool, from_none], self.verified)
+        if self.withheld_in_countries is not None:
+            result["withheld_in_countries"] = from_union([lambda x: from_list(lambda x: x, x), from_none], self.withheld_in_countries)
+        return result
+
+
+@dataclass
+class IndecentResult:
+    typename: Optional[str] = None
+    id: Optional[str] = None
+    rest_id: Optional[str] = None
+    affiliates_highlighted_label: Optional[UnmentionData] = None
+    is_blue_verified: Optional[bool] = None
+    profile_image_shape: Optional[str] = None
+    legacy: Optional[CunningLegacy] = None
+    professional: Optional[Professional] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'IndecentResult':
+        assert isinstance(obj, dict)
+        typename = from_union([from_str, from_none], obj.get("__typename"))
+        id = from_union([from_str, from_none], obj.get("id"))
+        rest_id = from_union([from_str, from_none], obj.get("rest_id"))
+        affiliates_highlighted_label = from_union([UnmentionData.from_dict, from_none], obj.get("affiliates_highlighted_label"))
+        is_blue_verified = from_union([from_bool, from_none], obj.get("is_blue_verified"))
+        profile_image_shape = from_union([from_str, from_none], obj.get("profile_image_shape"))
+        legacy = from_union([CunningLegacy.from_dict, from_none], obj.get("legacy"))
+        professional = from_union([Professional.from_dict, from_none], obj.get("professional"))
+        return IndecentResult(typename, id, rest_id, affiliates_highlighted_label, is_blue_verified, profile_image_shape, legacy, professional)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.typename is not None:
+            result["__typename"] = from_union([from_str, from_none], self.typename)
+        if self.id is not None:
+            result["id"] = from_union([from_str, from_none], self.id)
+        if self.rest_id is not None:
+            result["rest_id"] = from_union([from_str, from_none], self.rest_id)
+        if self.affiliates_highlighted_label is not None:
+            result["affiliates_highlighted_label"] = from_union([lambda x: to_class(UnmentionData, x), from_none], self.affiliates_highlighted_label)
+        if self.is_blue_verified is not None:
+            result["is_blue_verified"] = from_union([from_bool, from_none], self.is_blue_verified)
+        if self.profile_image_shape is not None:
+            result["profile_image_shape"] = from_union([from_str, from_none], self.profile_image_shape)
+        if self.legacy is not None:
+            result["legacy"] = from_union([lambda x: to_class(CunningLegacy, x), from_none], self.legacy)
+        if self.professional is not None:
+            result["professional"] = from_union([lambda x: to_class(Professional, x), from_none], self.professional)
+        return result
+
+
+@dataclass
+class TentacledUserResults:
+    result: Optional[IndecentResult] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'TentacledUserResults':
+        assert isinstance(obj, dict)
+        result = from_union([IndecentResult.from_dict, from_none], obj.get("result"))
+        return TentacledUserResults(result)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.result is not None:
+            result["result"] = from_union([lambda x: to_class(IndecentResult, x), from_none], self.result)
+        return result
+
+
+@dataclass
+class TentacledCore:
+    user_results: Optional[TentacledUserResults] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'TentacledCore':
+        assert isinstance(obj, dict)
+        user_results = from_union([TentacledUserResults.from_dict, from_none], obj.get("user_results"))
+        return TentacledCore(user_results)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.user_results is not None:
+            result["user_results"] = from_union([lambda x: to_class(TentacledUserResults, x), from_none], self.user_results)
+        return result
+
+
+@dataclass
+class AmbitiousEntities:
+    user_mentions: Optional[List[Any]] = None
+    urls: Optional[List[Any]] = None
+    hashtags: Optional[List[Any]] = None
+    symbols: Optional[List[Any]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'AmbitiousEntities':
+        assert isinstance(obj, dict)
+        user_mentions = from_union([lambda x: from_list(lambda x: x, x), from_none], obj.get("user_mentions"))
+        urls = from_union([lambda x: from_list(lambda x: x, x), from_none], obj.get("urls"))
+        hashtags = from_union([lambda x: from_list(lambda x: x, x), from_none], obj.get("hashtags"))
+        symbols = from_union([lambda x: from_list(lambda x: x, x), from_none], obj.get("symbols"))
+        return AmbitiousEntities(user_mentions, urls, hashtags, symbols)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.user_mentions is not None:
+            result["user_mentions"] = from_union([lambda x: from_list(lambda x: x, x), from_none], self.user_mentions)
+        if self.urls is not None:
+            result["urls"] = from_union([lambda x: from_list(lambda x: x, x), from_none], self.urls)
+        if self.hashtags is not None:
+            result["hashtags"] = from_union([lambda x: from_list(lambda x: x, x), from_none], self.hashtags)
+        if self.symbols is not None:
+            result["symbols"] = from_union([lambda x: from_list(lambda x: x, x), from_none], self.symbols)
+        return result
+
+
+@dataclass
+class MagentaLegacy:
     bookmark_count: Optional[int] = None
     bookmarked: Optional[bool] = None
     created_at: Optional[str] = None
     conversation_id_str: Optional[str] = None
     display_text_range: Optional[List[int]] = None
-    entities: Optional[FluffyEntities] = None
+    entities: Optional[AmbitiousEntities] = None
     favorite_count: Optional[int] = None
     favorited: Optional[bool] = None
     full_text: Optional[str] = None
     is_quote_status: Optional[bool] = None
-    lang: Optional[Lang] = None
+    lang: Optional[str] = None
     quote_count: Optional[int] = None
     reply_count: Optional[int] = None
     retweet_count: Optional[int] = None
     retweeted: Optional[bool] = None
     user_id_str: Optional[str] = None
     id_str: Optional[str] = None
-    self_thread: Optional[SelfThread] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'StickyLegacy':
+    def from_dict(obj: Any) -> 'MagentaLegacy':
         assert isinstance(obj, dict)
         bookmark_count = from_union([from_int, from_none], obj.get("bookmark_count"))
         bookmarked = from_union([from_bool, from_none], obj.get("bookmarked"))
         created_at = from_union([from_str, from_none], obj.get("created_at"))
         conversation_id_str = from_union([from_str, from_none], obj.get("conversation_id_str"))
         display_text_range = from_union([lambda x: from_list(from_int, x), from_none], obj.get("display_text_range"))
-        entities = from_union([FluffyEntities.from_dict, from_none], obj.get("entities"))
+        entities = from_union([AmbitiousEntities.from_dict, from_none], obj.get("entities"))
         favorite_count = from_union([from_int, from_none], obj.get("favorite_count"))
         favorited = from_union([from_bool, from_none], obj.get("favorited"))
         full_text = from_union([from_str, from_none], obj.get("full_text"))
         is_quote_status = from_union([from_bool, from_none], obj.get("is_quote_status"))
-        lang = from_union([Lang, from_none], obj.get("lang"))
+        lang = from_union([from_str, from_none], obj.get("lang"))
         quote_count = from_union([from_int, from_none], obj.get("quote_count"))
         reply_count = from_union([from_int, from_none], obj.get("reply_count"))
         retweet_count = from_union([from_int, from_none], obj.get("retweet_count"))
         retweeted = from_union([from_bool, from_none], obj.get("retweeted"))
         user_id_str = from_union([from_str, from_none], obj.get("user_id_str"))
         id_str = from_union([from_str, from_none], obj.get("id_str"))
-        self_thread = from_union([SelfThread.from_dict, from_none], obj.get("self_thread"))
-        return StickyLegacy(bookmark_count, bookmarked, created_at, conversation_id_str, display_text_range, entities, favorite_count, favorited, full_text, is_quote_status, lang, quote_count, reply_count, retweet_count, retweeted, user_id_str, id_str, self_thread)
+        return MagentaLegacy(bookmark_count, bookmarked, created_at, conversation_id_str, display_text_range, entities, favorite_count, favorited, full_text, is_quote_status, lang, quote_count, reply_count, retweet_count, retweeted, user_id_str, id_str)
 
     def to_dict(self) -> dict:
         result: dict = {}
@@ -1582,7 +2848,7 @@ class StickyLegacy:
         if self.display_text_range is not None:
             result["display_text_range"] = from_union([lambda x: from_list(from_int, x), from_none], self.display_text_range)
         if self.entities is not None:
-            result["entities"] = from_union([lambda x: to_class(FluffyEntities, x), from_none], self.entities)
+            result["entities"] = from_union([lambda x: to_class(AmbitiousEntities, x), from_none], self.entities)
         if self.favorite_count is not None:
             result["favorite_count"] = from_union([from_int, from_none], self.favorite_count)
         if self.favorited is not None:
@@ -1592,7 +2858,7 @@ class StickyLegacy:
         if self.is_quote_status is not None:
             result["is_quote_status"] = from_union([from_bool, from_none], self.is_quote_status)
         if self.lang is not None:
-            result["lang"] = from_union([lambda x: to_enum(Lang, x), from_none], self.lang)
+            result["lang"] = from_union([from_str, from_none], self.lang)
         if self.quote_count is not None:
             result["quote_count"] = from_union([from_int, from_none], self.quote_count)
         if self.reply_count is not None:
@@ -1605,75 +2871,68 @@ class StickyLegacy:
             result["user_id_str"] = from_union([from_str, from_none], self.user_id_str)
         if self.id_str is not None:
             result["id_str"] = from_union([from_str, from_none], self.id_str)
-        if self.self_thread is not None:
-            result["self_thread"] = from_union([lambda x: to_class(SelfThread, x), from_none], self.self_thread)
         return result
-
-
-class State(Enum):
-    ENABLED = "Enabled"
-    ENABLED_WITH_COUNT = "EnabledWithCount"
 
 
 @dataclass
 class Views:
-    count: Optional[int] = None
-    state: Optional[State] = None
+    count: Optional[str] = None
+    state: Optional[str] = None
 
     @staticmethod
     def from_dict(obj: Any) -> 'Views':
         assert isinstance(obj, dict)
-        count = from_union([from_none, lambda x: int(from_str(x))], obj.get("count"))
-        state = from_union([State, from_none], obj.get("state"))
+        count = from_union([from_str, from_none], obj.get("count"))
+        state = from_union([from_str, from_none], obj.get("state"))
         return Views(count, state)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.count is not None:
-            result["count"] = from_union([lambda x: from_none((lambda x: is_type(type(None), x))(x)), lambda x: from_str((lambda x: str((lambda x: is_type(int, x))(x)))(x))], self.count)
+            result["count"] = from_union([from_str, from_none], self.count)
         if self.state is not None:
-            result["state"] = from_union([lambda x: to_enum(State, x), from_none], self.state)
+            result["state"] = from_union([from_str, from_none], self.state)
         return result
 
 
 @dataclass
-class QuotedStatusResultResult:
-    typename: Optional[TweetDisplayType] = None
+class IndigoResult:
+    typename: Optional[str] = None
     rest_id: Optional[str] = None
     has_birdwatch_notes: Optional[bool] = None
-    core: Optional[Core] = None
+    core: Optional[TentacledCore] = None
     unmention_data: Optional[UnmentionData] = None
     edit_control: Optional[EditControl] = None
     is_translatable: Optional[bool] = None
     views: Optional[Views] = None
     source: Optional[str] = None
-    legacy: Optional[StickyLegacy] = None
+    legacy: Optional[MagentaLegacy] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'QuotedStatusResultResult':
+    def from_dict(obj: Any) -> 'IndigoResult':
         assert isinstance(obj, dict)
-        typename = from_union([TweetDisplayType, from_none], obj.get("__typename"))
+        typename = from_union([from_str, from_none], obj.get("__typename"))
         rest_id = from_union([from_str, from_none], obj.get("rest_id"))
         has_birdwatch_notes = from_union([from_bool, from_none], obj.get("has_birdwatch_notes"))
-        core = from_union([Core.from_dict, from_none], obj.get("core"))
+        core = from_union([TentacledCore.from_dict, from_none], obj.get("core"))
         unmention_data = from_union([UnmentionData.from_dict, from_none], obj.get("unmention_data"))
         edit_control = from_union([EditControl.from_dict, from_none], obj.get("edit_control"))
         is_translatable = from_union([from_bool, from_none], obj.get("is_translatable"))
         views = from_union([Views.from_dict, from_none], obj.get("views"))
         source = from_union([from_str, from_none], obj.get("source"))
-        legacy = from_union([StickyLegacy.from_dict, from_none], obj.get("legacy"))
-        return QuotedStatusResultResult(typename, rest_id, has_birdwatch_notes, core, unmention_data, edit_control, is_translatable, views, source, legacy)
+        legacy = from_union([MagentaLegacy.from_dict, from_none], obj.get("legacy"))
+        return IndigoResult(typename, rest_id, has_birdwatch_notes, core, unmention_data, edit_control, is_translatable, views, source, legacy)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.typename is not None:
-            result["__typename"] = from_union([lambda x: to_enum(TweetDisplayType, x), from_none], self.typename)
+            result["__typename"] = from_union([from_str, from_none], self.typename)
         if self.rest_id is not None:
             result["rest_id"] = from_union([from_str, from_none], self.rest_id)
         if self.has_birdwatch_notes is not None:
             result["has_birdwatch_notes"] = from_union([from_bool, from_none], self.has_birdwatch_notes)
         if self.core is not None:
-            result["core"] = from_union([lambda x: to_class(Core, x), from_none], self.core)
+            result["core"] = from_union([lambda x: to_class(TentacledCore, x), from_none], self.core)
         if self.unmention_data is not None:
             result["unmention_data"] = from_union([lambda x: to_class(UnmentionData, x), from_none], self.unmention_data)
         if self.edit_control is not None:
@@ -1685,240 +2944,24 @@ class QuotedStatusResultResult:
         if self.source is not None:
             result["source"] = from_union([from_str, from_none], self.source)
         if self.legacy is not None:
-            result["legacy"] = from_union([lambda x: to_class(StickyLegacy, x), from_none], self.legacy)
+            result["legacy"] = from_union([lambda x: to_class(MagentaLegacy, x), from_none], self.legacy)
         return result
 
 
 @dataclass
-class QuotedStatusResult:
-    result: Optional[QuotedStatusResultResult] = None
+class PurpleQuotedStatusResult:
+    result: Optional[IndigoResult] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'QuotedStatusResult':
+    def from_dict(obj: Any) -> 'PurpleQuotedStatusResult':
         assert isinstance(obj, dict)
-        result = from_union([QuotedStatusResultResult.from_dict, from_none], obj.get("result"))
-        return QuotedStatusResult(result)
+        result = from_union([IndigoResult.from_dict, from_none], obj.get("result"))
+        return PurpleQuotedStatusResult(result)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.result is not None:
-            result["result"] = from_union([lambda x: to_class(QuotedStatusResultResult, x), from_none], self.result)
-        return result
-
-
-@dataclass
-class RetweetedStatusResultResult:
-    typename: Optional[TweetDisplayType] = None
-    rest_id: Optional[str] = None
-    has_birdwatch_notes: Optional[bool] = None
-    core: Optional[Core] = None
-    unmention_data: Optional[UnmentionData] = None
-    edit_control: Optional[EditControl] = None
-    is_translatable: Optional[bool] = None
-    views: Optional[Views] = None
-    source: Optional[str] = None
-    legacy: Optional[TentacledLegacy] = None
-    quoted_status_result: Optional[QuotedStatusResult] = None
-
-    @staticmethod
-    def from_dict(obj: Any) -> 'RetweetedStatusResultResult':
-        assert isinstance(obj, dict)
-        typename = from_union([TweetDisplayType, from_none], obj.get("__typename"))
-        rest_id = from_union([from_str, from_none], obj.get("rest_id"))
-        has_birdwatch_notes = from_union([from_bool, from_none], obj.get("has_birdwatch_notes"))
-        core = from_union([Core.from_dict, from_none], obj.get("core"))
-        unmention_data = from_union([UnmentionData.from_dict, from_none], obj.get("unmention_data"))
-        edit_control = from_union([EditControl.from_dict, from_none], obj.get("edit_control"))
-        is_translatable = from_union([from_bool, from_none], obj.get("is_translatable"))
-        views = from_union([Views.from_dict, from_none], obj.get("views"))
-        source = from_union([from_str, from_none], obj.get("source"))
-        legacy = from_union([TentacledLegacy.from_dict, from_none], obj.get("legacy"))
-        quoted_status_result = from_union([QuotedStatusResult.from_dict, from_none], obj.get("quoted_status_result"))
-        return RetweetedStatusResultResult(typename, rest_id, has_birdwatch_notes, core, unmention_data, edit_control, is_translatable, views, source, legacy, quoted_status_result)
-
-    def to_dict(self) -> dict:
-        result: dict = {}
-        if self.typename is not None:
-            result["__typename"] = from_union([lambda x: to_enum(TweetDisplayType, x), from_none], self.typename)
-        if self.rest_id is not None:
-            result["rest_id"] = from_union([from_str, from_none], self.rest_id)
-        if self.has_birdwatch_notes is not None:
-            result["has_birdwatch_notes"] = from_union([from_bool, from_none], self.has_birdwatch_notes)
-        if self.core is not None:
-            result["core"] = from_union([lambda x: to_class(Core, x), from_none], self.core)
-        if self.unmention_data is not None:
-            result["unmention_data"] = from_union([lambda x: to_class(UnmentionData, x), from_none], self.unmention_data)
-        if self.edit_control is not None:
-            result["edit_control"] = from_union([lambda x: to_class(EditControl, x), from_none], self.edit_control)
-        if self.is_translatable is not None:
-            result["is_translatable"] = from_union([from_bool, from_none], self.is_translatable)
-        if self.views is not None:
-            result["views"] = from_union([lambda x: to_class(Views, x), from_none], self.views)
-        if self.source is not None:
-            result["source"] = from_union([from_str, from_none], self.source)
-        if self.legacy is not None:
-            result["legacy"] = from_union([lambda x: to_class(TentacledLegacy, x), from_none], self.legacy)
-        if self.quoted_status_result is not None:
-            result["quoted_status_result"] = from_union([lambda x: to_class(QuotedStatusResult, x), from_none], self.quoted_status_result)
-        return result
-
-
-@dataclass
-class RetweetedStatusResult:
-    result: Optional[RetweetedStatusResultResult] = None
-
-    @staticmethod
-    def from_dict(obj: Any) -> 'RetweetedStatusResult':
-        assert isinstance(obj, dict)
-        result = from_union([RetweetedStatusResultResult.from_dict, from_none], obj.get("result"))
-        return RetweetedStatusResult(result)
-
-    def to_dict(self) -> dict:
-        result: dict = {}
-        if self.result is not None:
-            result["result"] = from_union([lambda x: to_class(RetweetedStatusResultResult, x), from_none], self.result)
-        return result
-
-
-@dataclass
-class FluffyLegacy:
-    bookmark_count: Optional[int] = None
-    bookmarked: Optional[bool] = None
-    created_at: Optional[str] = None
-    conversation_id_str: Optional[str] = None
-    display_text_range: Optional[List[int]] = None
-    entities: Optional[FluffyEntities] = None
-    favorite_count: Optional[int] = None
-    favorited: Optional[bool] = None
-    full_text: Optional[str] = None
-    in_reply_to_screen_name: Optional[ScreenName] = None
-    in_reply_to_status_id_str: Optional[str] = None
-    in_reply_to_user_id_str: Optional[str] = None
-    is_quote_status: Optional[bool] = None
-    lang: Optional[Lang] = None
-    quote_count: Optional[int] = None
-    reply_count: Optional[int] = None
-    retweet_count: Optional[int] = None
-    retweeted: Optional[bool] = None
-    user_id_str: Optional[str] = None
-    id_str: Optional[str] = None
-    self_thread: Optional[SelfThread] = None
-    possibly_sensitive: Optional[bool] = None
-    possibly_sensitive_editable: Optional[bool] = None
-    retweeted_status_result: Optional[RetweetedStatusResult] = None
-    quoted_status_id_str: Optional[str] = None
-    quoted_status_permalink: Optional[QuotedStatusPermalink] = None
-    extended_entities: Optional[PurpleExtendedEntities] = None
-
-    @staticmethod
-    def from_dict(obj: Any) -> 'FluffyLegacy':
-        assert isinstance(obj, dict)
-        bookmark_count = from_union([from_int, from_none], obj.get("bookmark_count"))
-        bookmarked = from_union([from_bool, from_none], obj.get("bookmarked"))
-        created_at = from_union([from_str, from_none], obj.get("created_at"))
-        conversation_id_str = from_union([from_str, from_none], obj.get("conversation_id_str"))
-        display_text_range = from_union([lambda x: from_list(from_int, x), from_none], obj.get("display_text_range"))
-        entities = from_union([FluffyEntities.from_dict, from_none], obj.get("entities"))
-        favorite_count = from_union([from_int, from_none], obj.get("favorite_count"))
-        favorited = from_union([from_bool, from_none], obj.get("favorited"))
-        full_text = from_union([from_str, from_none], obj.get("full_text"))
-        in_reply_to_screen_name = from_union([ScreenName, from_none], obj.get("in_reply_to_screen_name"))
-        in_reply_to_status_id_str = from_union([from_str, from_none], obj.get("in_reply_to_status_id_str"))
-        in_reply_to_user_id_str = from_union([from_str, from_none], obj.get("in_reply_to_user_id_str"))
-        is_quote_status = from_union([from_bool, from_none], obj.get("is_quote_status"))
-        lang = from_union([Lang, from_none], obj.get("lang"))
-        quote_count = from_union([from_int, from_none], obj.get("quote_count"))
-        reply_count = from_union([from_int, from_none], obj.get("reply_count"))
-        retweet_count = from_union([from_int, from_none], obj.get("retweet_count"))
-        retweeted = from_union([from_bool, from_none], obj.get("retweeted"))
-        user_id_str = from_union([from_str, from_none], obj.get("user_id_str"))
-        id_str = from_union([from_str, from_none], obj.get("id_str"))
-        self_thread = from_union([SelfThread.from_dict, from_none], obj.get("self_thread"))
-        possibly_sensitive = from_union([from_bool, from_none], obj.get("possibly_sensitive"))
-        possibly_sensitive_editable = from_union([from_bool, from_none], obj.get("possibly_sensitive_editable"))
-        retweeted_status_result = from_union([RetweetedStatusResult.from_dict, from_none], obj.get("retweeted_status_result"))
-        quoted_status_id_str = from_union([from_str, from_none], obj.get("quoted_status_id_str"))
-        quoted_status_permalink = from_union([QuotedStatusPermalink.from_dict, from_none], obj.get("quoted_status_permalink"))
-        extended_entities = from_union([PurpleExtendedEntities.from_dict, from_none], obj.get("extended_entities"))
-        return FluffyLegacy(bookmark_count, bookmarked, created_at, conversation_id_str, display_text_range, entities, favorite_count, favorited, full_text, in_reply_to_screen_name, in_reply_to_status_id_str, in_reply_to_user_id_str, is_quote_status, lang, quote_count, reply_count, retweet_count, retweeted, user_id_str, id_str, self_thread, possibly_sensitive, possibly_sensitive_editable, retweeted_status_result, quoted_status_id_str, quoted_status_permalink, extended_entities)
-
-    def to_dict(self) -> dict:
-        result: dict = {}
-        if self.bookmark_count is not None:
-            result["bookmark_count"] = from_union([from_int, from_none], self.bookmark_count)
-        if self.bookmarked is not None:
-            result["bookmarked"] = from_union([from_bool, from_none], self.bookmarked)
-        if self.created_at is not None:
-            result["created_at"] = from_union([from_str, from_none], self.created_at)
-        if self.conversation_id_str is not None:
-            result["conversation_id_str"] = from_union([from_str, from_none], self.conversation_id_str)
-        if self.display_text_range is not None:
-            result["display_text_range"] = from_union([lambda x: from_list(from_int, x), from_none], self.display_text_range)
-        if self.entities is not None:
-            result["entities"] = from_union([lambda x: to_class(FluffyEntities, x), from_none], self.entities)
-        if self.favorite_count is not None:
-            result["favorite_count"] = from_union([from_int, from_none], self.favorite_count)
-        if self.favorited is not None:
-            result["favorited"] = from_union([from_bool, from_none], self.favorited)
-        if self.full_text is not None:
-            result["full_text"] = from_union([from_str, from_none], self.full_text)
-        if self.in_reply_to_screen_name is not None:
-            result["in_reply_to_screen_name"] = from_union([lambda x: to_enum(ScreenName, x), from_none], self.in_reply_to_screen_name)
-        if self.in_reply_to_status_id_str is not None:
-            result["in_reply_to_status_id_str"] = from_union([from_str, from_none], self.in_reply_to_status_id_str)
-        if self.in_reply_to_user_id_str is not None:
-            result["in_reply_to_user_id_str"] = from_union([from_str, from_none], self.in_reply_to_user_id_str)
-        if self.is_quote_status is not None:
-            result["is_quote_status"] = from_union([from_bool, from_none], self.is_quote_status)
-        if self.lang is not None:
-            result["lang"] = from_union([lambda x: to_enum(Lang, x), from_none], self.lang)
-        if self.quote_count is not None:
-            result["quote_count"] = from_union([from_int, from_none], self.quote_count)
-        if self.reply_count is not None:
-            result["reply_count"] = from_union([from_int, from_none], self.reply_count)
-        if self.retweet_count is not None:
-            result["retweet_count"] = from_union([from_int, from_none], self.retweet_count)
-        if self.retweeted is not None:
-            result["retweeted"] = from_union([from_bool, from_none], self.retweeted)
-        if self.user_id_str is not None:
-            result["user_id_str"] = from_union([from_str, from_none], self.user_id_str)
-        if self.id_str is not None:
-            result["id_str"] = from_union([from_str, from_none], self.id_str)
-        if self.self_thread is not None:
-            result["self_thread"] = from_union([lambda x: to_class(SelfThread, x), from_none], self.self_thread)
-        if self.possibly_sensitive is not None:
-            result["possibly_sensitive"] = from_union([from_bool, from_none], self.possibly_sensitive)
-        if self.possibly_sensitive_editable is not None:
-            result["possibly_sensitive_editable"] = from_union([from_bool, from_none], self.possibly_sensitive_editable)
-        if self.retweeted_status_result is not None:
-            result["retweeted_status_result"] = from_union([lambda x: to_class(RetweetedStatusResult, x), from_none], self.retweeted_status_result)
-        if self.quoted_status_id_str is not None:
-            result["quoted_status_id_str"] = from_union([from_str, from_none], self.quoted_status_id_str)
-        if self.quoted_status_permalink is not None:
-            result["quoted_status_permalink"] = from_union([lambda x: to_class(QuotedStatusPermalink, x), from_none], self.quoted_status_permalink)
-        if self.extended_entities is not None:
-            result["extended_entities"] = from_union([lambda x: to_class(PurpleExtendedEntities, x), from_none], self.extended_entities)
-        return result
-
-
-class Eligibility(Enum):
-    INELIGIBLE_USER_UNAUTHORIZED = "IneligibleUserUnauthorized"
-
-
-@dataclass
-class QuickPromoteEligibility:
-    eligibility: Optional[Eligibility] = None
-
-    @staticmethod
-    def from_dict(obj: Any) -> 'QuickPromoteEligibility':
-        assert isinstance(obj, dict)
-        eligibility = from_union([Eligibility, from_none], obj.get("eligibility"))
-        return QuickPromoteEligibility(eligibility)
-
-    def to_dict(self) -> dict:
-        result: dict = {}
-        if self.eligibility is not None:
-            result["eligibility"] = from_union([lambda x: to_enum(Eligibility, x), from_none], self.eligibility)
+            result["result"] = from_union([lambda x: to_class(IndigoResult, x), from_none], self.result)
         return result
 
 
@@ -1940,51 +2983,49 @@ class UnifiedCard:
 
 
 @dataclass
-class TweetResultsResult:
-    typename: Optional[TweetDisplayType] = None
+class RetweetedStatusResultResult:
+    typename: Optional[str] = None
     rest_id: Optional[str] = None
     has_birdwatch_notes: Optional[bool] = None
-    core: Optional[Core] = None
+    core: Optional[FluffyCore] = None
     unmention_data: Optional[UnmentionData] = None
     edit_control: Optional[EditControl] = None
     is_translatable: Optional[bool] = None
     views: Optional[Views] = None
     source: Optional[str] = None
-    legacy: Optional[FluffyLegacy] = None
-    quick_promote_eligibility: Optional[QuickPromoteEligibility] = None
-    card: Optional[Card] = None
+    legacy: Optional[AmbitiousLegacy] = None
+    quoted_status_result: Optional[PurpleQuotedStatusResult] = None
+    card: Optional[FluffyCard] = None
     unified_card: Optional[UnifiedCard] = None
-    quoted_status_result: Optional[QuotedStatusResult] = None
 
     @staticmethod
-    def from_dict(obj: Any) -> 'TweetResultsResult':
+    def from_dict(obj: Any) -> 'RetweetedStatusResultResult':
         assert isinstance(obj, dict)
-        typename = from_union([TweetDisplayType, from_none], obj.get("__typename"))
+        typename = from_union([from_str, from_none], obj.get("__typename"))
         rest_id = from_union([from_str, from_none], obj.get("rest_id"))
         has_birdwatch_notes = from_union([from_bool, from_none], obj.get("has_birdwatch_notes"))
-        core = from_union([Core.from_dict, from_none], obj.get("core"))
+        core = from_union([FluffyCore.from_dict, from_none], obj.get("core"))
         unmention_data = from_union([UnmentionData.from_dict, from_none], obj.get("unmention_data"))
         edit_control = from_union([EditControl.from_dict, from_none], obj.get("edit_control"))
         is_translatable = from_union([from_bool, from_none], obj.get("is_translatable"))
         views = from_union([Views.from_dict, from_none], obj.get("views"))
         source = from_union([from_str, from_none], obj.get("source"))
-        legacy = from_union([FluffyLegacy.from_dict, from_none], obj.get("legacy"))
-        quick_promote_eligibility = from_union([QuickPromoteEligibility.from_dict, from_none], obj.get("quick_promote_eligibility"))
-        card = from_union([Card.from_dict, from_none], obj.get("card"))
+        legacy = from_union([AmbitiousLegacy.from_dict, from_none], obj.get("legacy"))
+        quoted_status_result = from_union([PurpleQuotedStatusResult.from_dict, from_none], obj.get("quoted_status_result"))
+        card = from_union([FluffyCard.from_dict, from_none], obj.get("card"))
         unified_card = from_union([UnifiedCard.from_dict, from_none], obj.get("unified_card"))
-        quoted_status_result = from_union([QuotedStatusResult.from_dict, from_none], obj.get("quoted_status_result"))
-        return TweetResultsResult(typename, rest_id, has_birdwatch_notes, core, unmention_data, edit_control, is_translatable, views, source, legacy, quick_promote_eligibility, card, unified_card, quoted_status_result)
+        return RetweetedStatusResultResult(typename, rest_id, has_birdwatch_notes, core, unmention_data, edit_control, is_translatable, views, source, legacy, quoted_status_result, card, unified_card)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.typename is not None:
-            result["__typename"] = from_union([lambda x: to_enum(TweetDisplayType, x), from_none], self.typename)
+            result["__typename"] = from_union([from_str, from_none], self.typename)
         if self.rest_id is not None:
             result["rest_id"] = from_union([from_str, from_none], self.rest_id)
         if self.has_birdwatch_notes is not None:
             result["has_birdwatch_notes"] = from_union([from_bool, from_none], self.has_birdwatch_notes)
         if self.core is not None:
-            result["core"] = from_union([lambda x: to_class(Core, x), from_none], self.core)
+            result["core"] = from_union([lambda x: to_class(FluffyCore, x), from_none], self.core)
         if self.unmention_data is not None:
             result["unmention_data"] = from_union([lambda x: to_class(UnmentionData, x), from_none], self.unmention_data)
         if self.edit_control is not None:
@@ -1996,15 +3037,1175 @@ class TweetResultsResult:
         if self.source is not None:
             result["source"] = from_union([from_str, from_none], self.source)
         if self.legacy is not None:
-            result["legacy"] = from_union([lambda x: to_class(FluffyLegacy, x), from_none], self.legacy)
-        if self.quick_promote_eligibility is not None:
-            result["quick_promote_eligibility"] = from_union([lambda x: to_class(QuickPromoteEligibility, x), from_none], self.quick_promote_eligibility)
+            result["legacy"] = from_union([lambda x: to_class(AmbitiousLegacy, x), from_none], self.legacy)
+        if self.quoted_status_result is not None:
+            result["quoted_status_result"] = from_union([lambda x: to_class(PurpleQuotedStatusResult, x), from_none], self.quoted_status_result)
         if self.card is not None:
-            result["card"] = from_union([lambda x: to_class(Card, x), from_none], self.card)
+            result["card"] = from_union([lambda x: to_class(FluffyCard, x), from_none], self.card)
         if self.unified_card is not None:
             result["unified_card"] = from_union([lambda x: to_class(UnifiedCard, x), from_none], self.unified_card)
+        return result
+
+
+@dataclass
+class RetweetedStatusResult:
+    result: Optional[RetweetedStatusResultResult] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'RetweetedStatusResult':
+        assert isinstance(obj, dict)
+        result = from_union([RetweetedStatusResultResult.from_dict, from_none], obj.get("result"))
+        return RetweetedStatusResult(result)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.result is not None:
+            result["result"] = from_union([lambda x: to_class(RetweetedStatusResultResult, x), from_none], self.result)
+        return result
+
+
+@dataclass
+class StickyLegacy:
+    bookmark_count: Optional[int] = None
+    bookmarked: Optional[bool] = None
+    created_at: Optional[str] = None
+    conversation_id_str: Optional[str] = None
+    display_text_range: Optional[List[int]] = None
+    entities: Optional[TentacledEntities] = None
+    favorite_count: Optional[int] = None
+    favorited: Optional[bool] = None
+    full_text: Optional[str] = None
+    is_quote_status: Optional[bool] = None
+    lang: Optional[str] = None
+    quote_count: Optional[int] = None
+    reply_count: Optional[int] = None
+    retweet_count: Optional[int] = None
+    retweeted: Optional[bool] = None
+    user_id_str: Optional[str] = None
+    id_str: Optional[str] = None
+    in_reply_to_screen_name: Optional[str] = None
+    in_reply_to_status_id_str: Optional[str] = None
+    in_reply_to_user_id_str: Optional[str] = None
+    self_thread: Optional[SelfThread] = None
+    extended_entities: Optional[PurpleExtendedEntities] = None
+    possibly_sensitive: Optional[bool] = None
+    possibly_sensitive_editable: Optional[bool] = None
+    quoted_status_id_str: Optional[str] = None
+    quoted_status_permalink: Optional[QuotedStatusPermalink] = None
+    retweeted_status_result: Optional[RetweetedStatusResult] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'StickyLegacy':
+        assert isinstance(obj, dict)
+        bookmark_count = from_union([from_int, from_none], obj.get("bookmark_count"))
+        bookmarked = from_union([from_bool, from_none], obj.get("bookmarked"))
+        created_at = from_union([from_str, from_none], obj.get("created_at"))
+        conversation_id_str = from_union([from_str, from_none], obj.get("conversation_id_str"))
+        display_text_range = from_union([lambda x: from_list(from_int, x), from_none], obj.get("display_text_range"))
+        entities = from_union([TentacledEntities.from_dict, from_none], obj.get("entities"))
+        favorite_count = from_union([from_int, from_none], obj.get("favorite_count"))
+        favorited = from_union([from_bool, from_none], obj.get("favorited"))
+        full_text = from_union([from_str, from_none], obj.get("full_text"))
+        is_quote_status = from_union([from_bool, from_none], obj.get("is_quote_status"))
+        lang = from_union([from_str, from_none], obj.get("lang"))
+        quote_count = from_union([from_int, from_none], obj.get("quote_count"))
+        reply_count = from_union([from_int, from_none], obj.get("reply_count"))
+        retweet_count = from_union([from_int, from_none], obj.get("retweet_count"))
+        retweeted = from_union([from_bool, from_none], obj.get("retweeted"))
+        user_id_str = from_union([from_str, from_none], obj.get("user_id_str"))
+        id_str = from_union([from_str, from_none], obj.get("id_str"))
+        in_reply_to_screen_name = from_union([from_str, from_none], obj.get("in_reply_to_screen_name"))
+        in_reply_to_status_id_str = from_union([from_str, from_none], obj.get("in_reply_to_status_id_str"))
+        in_reply_to_user_id_str = from_union([from_str, from_none], obj.get("in_reply_to_user_id_str"))
+        self_thread = from_union([SelfThread.from_dict, from_none], obj.get("self_thread"))
+        extended_entities = from_union([PurpleExtendedEntities.from_dict, from_none], obj.get("extended_entities"))
+        possibly_sensitive = from_union([from_bool, from_none], obj.get("possibly_sensitive"))
+        possibly_sensitive_editable = from_union([from_bool, from_none], obj.get("possibly_sensitive_editable"))
+        quoted_status_id_str = from_union([from_str, from_none], obj.get("quoted_status_id_str"))
+        quoted_status_permalink = from_union([QuotedStatusPermalink.from_dict, from_none], obj.get("quoted_status_permalink"))
+        retweeted_status_result = from_union([RetweetedStatusResult.from_dict, from_none], obj.get("retweeted_status_result"))
+        return StickyLegacy(bookmark_count, bookmarked, created_at, conversation_id_str, display_text_range, entities, favorite_count, favorited, full_text, is_quote_status, lang, quote_count, reply_count, retweet_count, retweeted, user_id_str, id_str, in_reply_to_screen_name, in_reply_to_status_id_str, in_reply_to_user_id_str, self_thread, extended_entities, possibly_sensitive, possibly_sensitive_editable, quoted_status_id_str, quoted_status_permalink, retweeted_status_result)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.bookmark_count is not None:
+            result["bookmark_count"] = from_union([from_int, from_none], self.bookmark_count)
+        if self.bookmarked is not None:
+            result["bookmarked"] = from_union([from_bool, from_none], self.bookmarked)
+        if self.created_at is not None:
+            result["created_at"] = from_union([from_str, from_none], self.created_at)
+        if self.conversation_id_str is not None:
+            result["conversation_id_str"] = from_union([from_str, from_none], self.conversation_id_str)
+        if self.display_text_range is not None:
+            result["display_text_range"] = from_union([lambda x: from_list(from_int, x), from_none], self.display_text_range)
+        if self.entities is not None:
+            result["entities"] = from_union([lambda x: to_class(TentacledEntities, x), from_none], self.entities)
+        if self.favorite_count is not None:
+            result["favorite_count"] = from_union([from_int, from_none], self.favorite_count)
+        if self.favorited is not None:
+            result["favorited"] = from_union([from_bool, from_none], self.favorited)
+        if self.full_text is not None:
+            result["full_text"] = from_union([from_str, from_none], self.full_text)
+        if self.is_quote_status is not None:
+            result["is_quote_status"] = from_union([from_bool, from_none], self.is_quote_status)
+        if self.lang is not None:
+            result["lang"] = from_union([from_str, from_none], self.lang)
+        if self.quote_count is not None:
+            result["quote_count"] = from_union([from_int, from_none], self.quote_count)
+        if self.reply_count is not None:
+            result["reply_count"] = from_union([from_int, from_none], self.reply_count)
+        if self.retweet_count is not None:
+            result["retweet_count"] = from_union([from_int, from_none], self.retweet_count)
+        if self.retweeted is not None:
+            result["retweeted"] = from_union([from_bool, from_none], self.retweeted)
+        if self.user_id_str is not None:
+            result["user_id_str"] = from_union([from_str, from_none], self.user_id_str)
+        if self.id_str is not None:
+            result["id_str"] = from_union([from_str, from_none], self.id_str)
+        if self.in_reply_to_screen_name is not None:
+            result["in_reply_to_screen_name"] = from_union([from_str, from_none], self.in_reply_to_screen_name)
+        if self.in_reply_to_status_id_str is not None:
+            result["in_reply_to_status_id_str"] = from_union([from_str, from_none], self.in_reply_to_status_id_str)
+        if self.in_reply_to_user_id_str is not None:
+            result["in_reply_to_user_id_str"] = from_union([from_str, from_none], self.in_reply_to_user_id_str)
+        if self.self_thread is not None:
+            result["self_thread"] = from_union([lambda x: to_class(SelfThread, x), from_none], self.self_thread)
+        if self.extended_entities is not None:
+            result["extended_entities"] = from_union([lambda x: to_class(PurpleExtendedEntities, x), from_none], self.extended_entities)
+        if self.possibly_sensitive is not None:
+            result["possibly_sensitive"] = from_union([from_bool, from_none], self.possibly_sensitive)
+        if self.possibly_sensitive_editable is not None:
+            result["possibly_sensitive_editable"] = from_union([from_bool, from_none], self.possibly_sensitive_editable)
+        if self.quoted_status_id_str is not None:
+            result["quoted_status_id_str"] = from_union([from_str, from_none], self.quoted_status_id_str)
+        if self.quoted_status_permalink is not None:
+            result["quoted_status_permalink"] = from_union([lambda x: to_class(QuotedStatusPermalink, x), from_none], self.quoted_status_permalink)
+        if self.retweeted_status_result is not None:
+            result["retweeted_status_result"] = from_union([lambda x: to_class(RetweetedStatusResult, x), from_none], self.retweeted_status_result)
+        return result
+
+
+@dataclass
+class QuickPromoteEligibility:
+    eligibility: Optional[str] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'QuickPromoteEligibility':
+        assert isinstance(obj, dict)
+        eligibility = from_union([from_str, from_none], obj.get("eligibility"))
+        return QuickPromoteEligibility(eligibility)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.eligibility is not None:
+            result["eligibility"] = from_union([from_str, from_none], self.eligibility)
+        return result
+
+
+@dataclass
+class TentacledValue:
+    image_value: Optional[FluffyImageValue] = None
+    type: Optional[str] = None
+    string_value: Optional[str] = None
+    scribe_key: Optional[str] = None
+    image_color_value: Optional[ImageColorValue] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'TentacledValue':
+        assert isinstance(obj, dict)
+        image_value = from_union([FluffyImageValue.from_dict, from_none], obj.get("image_value"))
+        type = from_union([from_str, from_none], obj.get("type"))
+        string_value = from_union([from_str, from_none], obj.get("string_value"))
+        scribe_key = from_union([from_str, from_none], obj.get("scribe_key"))
+        image_color_value = from_union([ImageColorValue.from_dict, from_none], obj.get("image_color_value"))
+        return TentacledValue(image_value, type, string_value, scribe_key, image_color_value)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.image_value is not None:
+            result["image_value"] = from_union([lambda x: to_class(FluffyImageValue, x), from_none], self.image_value)
+        if self.type is not None:
+            result["type"] = from_union([from_str, from_none], self.type)
+        if self.string_value is not None:
+            result["string_value"] = from_union([from_str, from_none], self.string_value)
+        if self.scribe_key is not None:
+            result["scribe_key"] = from_union([from_str, from_none], self.scribe_key)
+        if self.image_color_value is not None:
+            result["image_color_value"] = from_union([lambda x: to_class(ImageColorValue, x), from_none], self.image_color_value)
+        return result
+
+
+@dataclass
+class TentacledBindingValue:
+    key: Optional[str] = None
+    value: Optional[TentacledValue] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'TentacledBindingValue':
+        assert isinstance(obj, dict)
+        key = from_union([from_str, from_none], obj.get("key"))
+        value = from_union([TentacledValue.from_dict, from_none], obj.get("value"))
+        return TentacledBindingValue(key, value)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.key is not None:
+            result["key"] = from_union([from_str, from_none], self.key)
+        if self.value is not None:
+            result["value"] = from_union([lambda x: to_class(TentacledValue, x), from_none], self.value)
+        return result
+
+
+@dataclass
+class FriskyLegacy:
+    binding_values: Optional[List[TentacledBindingValue]] = None
+    card_platform: Optional[CardPlatform] = None
+    name: Optional[str] = None
+    url: Optional[str] = None
+    user_refs_results: Optional[List[Any]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'FriskyLegacy':
+        assert isinstance(obj, dict)
+        binding_values = from_union([lambda x: from_list(TentacledBindingValue.from_dict, x), from_none], obj.get("binding_values"))
+        card_platform = from_union([CardPlatform.from_dict, from_none], obj.get("card_platform"))
+        name = from_union([from_str, from_none], obj.get("name"))
+        url = from_union([from_str, from_none], obj.get("url"))
+        user_refs_results = from_union([lambda x: from_list(lambda x: x, x), from_none], obj.get("user_refs_results"))
+        return FriskyLegacy(binding_values, card_platform, name, url, user_refs_results)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.binding_values is not None:
+            result["binding_values"] = from_union([lambda x: from_list(lambda x: to_class(TentacledBindingValue, x), x), from_none], self.binding_values)
+        if self.card_platform is not None:
+            result["card_platform"] = from_union([lambda x: to_class(CardPlatform, x), from_none], self.card_platform)
+        if self.name is not None:
+            result["name"] = from_union([from_str, from_none], self.name)
+        if self.url is not None:
+            result["url"] = from_union([from_str, from_none], self.url)
+        if self.user_refs_results is not None:
+            result["user_refs_results"] = from_union([lambda x: from_list(lambda x: x, x), from_none], self.user_refs_results)
+        return result
+
+
+@dataclass
+class TentacledCard:
+    rest_id: Optional[str] = None
+    legacy: Optional[FriskyLegacy] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'TentacledCard':
+        assert isinstance(obj, dict)
+        rest_id = from_union([from_str, from_none], obj.get("rest_id"))
+        legacy = from_union([FriskyLegacy.from_dict, from_none], obj.get("legacy"))
+        return TentacledCard(rest_id, legacy)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.rest_id is not None:
+            result["rest_id"] = from_union([from_str, from_none], self.rest_id)
+        if self.legacy is not None:
+            result["legacy"] = from_union([lambda x: to_class(FriskyLegacy, x), from_none], self.legacy)
+        return result
+
+
+@dataclass
+class CunningEntities:
+    description: Optional[DescriptionClass] = None
+    url: Optional[PurpleDescription] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'CunningEntities':
+        assert isinstance(obj, dict)
+        description = from_union([DescriptionClass.from_dict, from_none], obj.get("description"))
+        url = from_union([PurpleDescription.from_dict, from_none], obj.get("url"))
+        return CunningEntities(description, url)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.description is not None:
+            result["description"] = from_union([lambda x: to_class(DescriptionClass, x), from_none], self.description)
+        if self.url is not None:
+            result["url"] = from_union([lambda x: to_class(PurpleDescription, x), from_none], self.url)
+        return result
+
+
+@dataclass
+class MischievousLegacy:
+    created_at: Optional[str] = None
+    default_profile: Optional[bool] = None
+    default_profile_image: Optional[bool] = None
+    description: Optional[str] = None
+    entities: Optional[CunningEntities] = None
+    fast_followers_count: Optional[int] = None
+    favourites_count: Optional[int] = None
+    followers_count: Optional[int] = None
+    friends_count: Optional[int] = None
+    has_custom_timelines: Optional[bool] = None
+    is_translator: Optional[bool] = None
+    listed_count: Optional[int] = None
+    location: Optional[str] = None
+    media_count: Optional[int] = None
+    name: Optional[str] = None
+    normal_followers_count: Optional[int] = None
+    pinned_tweet_ids_str: Optional[List[str]] = None
+    possibly_sensitive: Optional[bool] = None
+    profile_image_url_https: Optional[str] = None
+    profile_interstitial_type: Optional[str] = None
+    screen_name: Optional[str] = None
+    statuses_count: Optional[int] = None
+    translator_type: Optional[str] = None
+    url: Optional[str] = None
+    verified: Optional[bool] = None
+    withheld_in_countries: Optional[List[Any]] = None
+    profile_banner_url: Optional[str] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'MischievousLegacy':
+        assert isinstance(obj, dict)
+        created_at = from_union([from_str, from_none], obj.get("created_at"))
+        default_profile = from_union([from_bool, from_none], obj.get("default_profile"))
+        default_profile_image = from_union([from_bool, from_none], obj.get("default_profile_image"))
+        description = from_union([from_str, from_none], obj.get("description"))
+        entities = from_union([CunningEntities.from_dict, from_none], obj.get("entities"))
+        fast_followers_count = from_union([from_int, from_none], obj.get("fast_followers_count"))
+        favourites_count = from_union([from_int, from_none], obj.get("favourites_count"))
+        followers_count = from_union([from_int, from_none], obj.get("followers_count"))
+        friends_count = from_union([from_int, from_none], obj.get("friends_count"))
+        has_custom_timelines = from_union([from_bool, from_none], obj.get("has_custom_timelines"))
+        is_translator = from_union([from_bool, from_none], obj.get("is_translator"))
+        listed_count = from_union([from_int, from_none], obj.get("listed_count"))
+        location = from_union([from_str, from_none], obj.get("location"))
+        media_count = from_union([from_int, from_none], obj.get("media_count"))
+        name = from_union([from_str, from_none], obj.get("name"))
+        normal_followers_count = from_union([from_int, from_none], obj.get("normal_followers_count"))
+        pinned_tweet_ids_str = from_union([lambda x: from_list(from_str, x), from_none], obj.get("pinned_tweet_ids_str"))
+        possibly_sensitive = from_union([from_bool, from_none], obj.get("possibly_sensitive"))
+        profile_image_url_https = from_union([from_str, from_none], obj.get("profile_image_url_https"))
+        profile_interstitial_type = from_union([from_str, from_none], obj.get("profile_interstitial_type"))
+        screen_name = from_union([from_str, from_none], obj.get("screen_name"))
+        statuses_count = from_union([from_int, from_none], obj.get("statuses_count"))
+        translator_type = from_union([from_str, from_none], obj.get("translator_type"))
+        url = from_union([from_str, from_none], obj.get("url"))
+        verified = from_union([from_bool, from_none], obj.get("verified"))
+        withheld_in_countries = from_union([lambda x: from_list(lambda x: x, x), from_none], obj.get("withheld_in_countries"))
+        profile_banner_url = from_union([from_str, from_none], obj.get("profile_banner_url"))
+        return MischievousLegacy(created_at, default_profile, default_profile_image, description, entities, fast_followers_count, favourites_count, followers_count, friends_count, has_custom_timelines, is_translator, listed_count, location, media_count, name, normal_followers_count, pinned_tweet_ids_str, possibly_sensitive, profile_image_url_https, profile_interstitial_type, screen_name, statuses_count, translator_type, url, verified, withheld_in_countries, profile_banner_url)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.created_at is not None:
+            result["created_at"] = from_union([from_str, from_none], self.created_at)
+        if self.default_profile is not None:
+            result["default_profile"] = from_union([from_bool, from_none], self.default_profile)
+        if self.default_profile_image is not None:
+            result["default_profile_image"] = from_union([from_bool, from_none], self.default_profile_image)
+        if self.description is not None:
+            result["description"] = from_union([from_str, from_none], self.description)
+        if self.entities is not None:
+            result["entities"] = from_union([lambda x: to_class(CunningEntities, x), from_none], self.entities)
+        if self.fast_followers_count is not None:
+            result["fast_followers_count"] = from_union([from_int, from_none], self.fast_followers_count)
+        if self.favourites_count is not None:
+            result["favourites_count"] = from_union([from_int, from_none], self.favourites_count)
+        if self.followers_count is not None:
+            result["followers_count"] = from_union([from_int, from_none], self.followers_count)
+        if self.friends_count is not None:
+            result["friends_count"] = from_union([from_int, from_none], self.friends_count)
+        if self.has_custom_timelines is not None:
+            result["has_custom_timelines"] = from_union([from_bool, from_none], self.has_custom_timelines)
+        if self.is_translator is not None:
+            result["is_translator"] = from_union([from_bool, from_none], self.is_translator)
+        if self.listed_count is not None:
+            result["listed_count"] = from_union([from_int, from_none], self.listed_count)
+        if self.location is not None:
+            result["location"] = from_union([from_str, from_none], self.location)
+        if self.media_count is not None:
+            result["media_count"] = from_union([from_int, from_none], self.media_count)
+        if self.name is not None:
+            result["name"] = from_union([from_str, from_none], self.name)
+        if self.normal_followers_count is not None:
+            result["normal_followers_count"] = from_union([from_int, from_none], self.normal_followers_count)
+        if self.pinned_tweet_ids_str is not None:
+            result["pinned_tweet_ids_str"] = from_union([lambda x: from_list(from_str, x), from_none], self.pinned_tweet_ids_str)
+        if self.possibly_sensitive is not None:
+            result["possibly_sensitive"] = from_union([from_bool, from_none], self.possibly_sensitive)
+        if self.profile_image_url_https is not None:
+            result["profile_image_url_https"] = from_union([from_str, from_none], self.profile_image_url_https)
+        if self.profile_interstitial_type is not None:
+            result["profile_interstitial_type"] = from_union([from_str, from_none], self.profile_interstitial_type)
+        if self.screen_name is not None:
+            result["screen_name"] = from_union([from_str, from_none], self.screen_name)
+        if self.statuses_count is not None:
+            result["statuses_count"] = from_union([from_int, from_none], self.statuses_count)
+        if self.translator_type is not None:
+            result["translator_type"] = from_union([from_str, from_none], self.translator_type)
+        if self.url is not None:
+            result["url"] = from_union([from_str, from_none], self.url)
+        if self.verified is not None:
+            result["verified"] = from_union([from_bool, from_none], self.verified)
+        if self.withheld_in_countries is not None:
+            result["withheld_in_countries"] = from_union([lambda x: from_list(lambda x: x, x), from_none], self.withheld_in_countries)
+        if self.profile_banner_url is not None:
+            result["profile_banner_url"] = from_union([from_str, from_none], self.profile_banner_url)
+        return result
+
+
+@dataclass
+class AmbitiousResult:
+    typename: Optional[str] = None
+    id: Optional[str] = None
+    rest_id: Optional[str] = None
+    affiliates_highlighted_label: Optional[UnmentionData] = None
+    is_blue_verified: Optional[bool] = None
+    profile_image_shape: Optional[str] = None
+    legacy: Optional[MischievousLegacy] = None
+    professional: Optional[Professional] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'AmbitiousResult':
+        assert isinstance(obj, dict)
+        typename = from_union([from_str, from_none], obj.get("__typename"))
+        id = from_union([from_str, from_none], obj.get("id"))
+        rest_id = from_union([from_str, from_none], obj.get("rest_id"))
+        affiliates_highlighted_label = from_union([UnmentionData.from_dict, from_none], obj.get("affiliates_highlighted_label"))
+        is_blue_verified = from_union([from_bool, from_none], obj.get("is_blue_verified"))
+        profile_image_shape = from_union([from_str, from_none], obj.get("profile_image_shape"))
+        legacy = from_union([MischievousLegacy.from_dict, from_none], obj.get("legacy"))
+        professional = from_union([Professional.from_dict, from_none], obj.get("professional"))
+        return AmbitiousResult(typename, id, rest_id, affiliates_highlighted_label, is_blue_verified, profile_image_shape, legacy, professional)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.typename is not None:
+            result["__typename"] = from_union([from_str, from_none], self.typename)
+        if self.id is not None:
+            result["id"] = from_union([from_str, from_none], self.id)
+        if self.rest_id is not None:
+            result["rest_id"] = from_union([from_str, from_none], self.rest_id)
+        if self.affiliates_highlighted_label is not None:
+            result["affiliates_highlighted_label"] = from_union([lambda x: to_class(UnmentionData, x), from_none], self.affiliates_highlighted_label)
+        if self.is_blue_verified is not None:
+            result["is_blue_verified"] = from_union([from_bool, from_none], self.is_blue_verified)
+        if self.profile_image_shape is not None:
+            result["profile_image_shape"] = from_union([from_str, from_none], self.profile_image_shape)
+        if self.legacy is not None:
+            result["legacy"] = from_union([lambda x: to_class(MischievousLegacy, x), from_none], self.legacy)
+        if self.professional is not None:
+            result["professional"] = from_union([lambda x: to_class(Professional, x), from_none], self.professional)
+        return result
+
+
+@dataclass
+class StickyUserResults:
+    result: Optional[AmbitiousResult] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'StickyUserResults':
+        assert isinstance(obj, dict)
+        result = from_union([AmbitiousResult.from_dict, from_none], obj.get("result"))
+        return StickyUserResults(result)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.result is not None:
+            result["result"] = from_union([lambda x: to_class(AmbitiousResult, x), from_none], self.result)
+        return result
+
+
+@dataclass
+class StickyCore:
+    user_results: Optional[StickyUserResults] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'StickyCore':
+        assert isinstance(obj, dict)
+        user_results = from_union([StickyUserResults.from_dict, from_none], obj.get("user_results"))
+        return StickyCore(user_results)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.user_results is not None:
+            result["user_results"] = from_union([lambda x: to_class(StickyUserResults, x), from_none], self.user_results)
+        return result
+
+
+@dataclass
+class Tag:
+    user_id: Optional[str] = None
+    name: Optional[str] = None
+    screen_name: Optional[str] = None
+    type: Optional[str] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'Tag':
+        assert isinstance(obj, dict)
+        user_id = from_union([from_str, from_none], obj.get("user_id"))
+        name = from_union([from_str, from_none], obj.get("name"))
+        screen_name = from_union([from_str, from_none], obj.get("screen_name"))
+        type = from_union([from_str, from_none], obj.get("type"))
+        return Tag(user_id, name, screen_name, type)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.user_id is not None:
+            result["user_id"] = from_union([from_str, from_none], self.user_id)
+        if self.name is not None:
+            result["name"] = from_union([from_str, from_none], self.name)
+        if self.screen_name is not None:
+            result["screen_name"] = from_union([from_str, from_none], self.screen_name)
+        if self.type is not None:
+            result["type"] = from_union([from_str, from_none], self.type)
+        return result
+
+
+@dataclass
+class All:
+    tags: Optional[List[Tag]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'All':
+        assert isinstance(obj, dict)
+        tags = from_union([lambda x: from_list(Tag.from_dict, x), from_none], obj.get("tags"))
+        return All(tags)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.tags is not None:
+            result["tags"] = from_union([lambda x: from_list(lambda x: to_class(Tag, x), x), from_none], self.tags)
+        return result
+
+
+@dataclass
+class FluffyFeatures:
+    large: Optional[OrigClass] = None
+    medium: Optional[OrigClass] = None
+    small: Optional[OrigClass] = None
+    orig: Optional[OrigClass] = None
+    all: Optional[All] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'FluffyFeatures':
+        assert isinstance(obj, dict)
+        large = from_union([OrigClass.from_dict, from_none], obj.get("large"))
+        medium = from_union([OrigClass.from_dict, from_none], obj.get("medium"))
+        small = from_union([OrigClass.from_dict, from_none], obj.get("small"))
+        orig = from_union([OrigClass.from_dict, from_none], obj.get("orig"))
+        all = from_union([All.from_dict, from_none], obj.get("all"))
+        return FluffyFeatures(large, medium, small, orig, all)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.large is not None:
+            result["large"] = from_union([lambda x: to_class(OrigClass, x), from_none], self.large)
+        if self.medium is not None:
+            result["medium"] = from_union([lambda x: to_class(OrigClass, x), from_none], self.medium)
+        if self.small is not None:
+            result["small"] = from_union([lambda x: to_class(OrigClass, x), from_none], self.small)
+        if self.orig is not None:
+            result["orig"] = from_union([lambda x: to_class(OrigClass, x), from_none], self.orig)
+        if self.all is not None:
+            result["all"] = from_union([lambda x: to_class(All, x), from_none], self.all)
+        return result
+
+
+@dataclass
+class IndigoMedia:
+    display_url: Optional[str] = None
+    expanded_url: Optional[str] = None
+    id_str: Optional[str] = None
+    indices: Optional[List[int]] = None
+    media_url_https: Optional[str] = None
+    type: Optional[str] = None
+    url: Optional[str] = None
+    features: Optional[FluffyFeatures] = None
+    sizes: Optional[Sizes] = None
+    original_info: Optional[OriginalInfo] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'IndigoMedia':
+        assert isinstance(obj, dict)
+        display_url = from_union([from_str, from_none], obj.get("display_url"))
+        expanded_url = from_union([from_str, from_none], obj.get("expanded_url"))
+        id_str = from_union([from_str, from_none], obj.get("id_str"))
+        indices = from_union([lambda x: from_list(from_int, x), from_none], obj.get("indices"))
+        media_url_https = from_union([from_str, from_none], obj.get("media_url_https"))
+        type = from_union([from_str, from_none], obj.get("type"))
+        url = from_union([from_str, from_none], obj.get("url"))
+        features = from_union([FluffyFeatures.from_dict, from_none], obj.get("features"))
+        sizes = from_union([Sizes.from_dict, from_none], obj.get("sizes"))
+        original_info = from_union([OriginalInfo.from_dict, from_none], obj.get("original_info"))
+        return IndigoMedia(display_url, expanded_url, id_str, indices, media_url_https, type, url, features, sizes, original_info)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.display_url is not None:
+            result["display_url"] = from_union([from_str, from_none], self.display_url)
+        if self.expanded_url is not None:
+            result["expanded_url"] = from_union([from_str, from_none], self.expanded_url)
+        if self.id_str is not None:
+            result["id_str"] = from_union([from_str, from_none], self.id_str)
+        if self.indices is not None:
+            result["indices"] = from_union([lambda x: from_list(from_int, x), from_none], self.indices)
+        if self.media_url_https is not None:
+            result["media_url_https"] = from_union([from_str, from_none], self.media_url_https)
+        if self.type is not None:
+            result["type"] = from_union([from_str, from_none], self.type)
+        if self.url is not None:
+            result["url"] = from_union([from_str, from_none], self.url)
+        if self.features is not None:
+            result["features"] = from_union([lambda x: to_class(FluffyFeatures, x), from_none], self.features)
+        if self.sizes is not None:
+            result["sizes"] = from_union([lambda x: to_class(Sizes, x), from_none], self.sizes)
+        if self.original_info is not None:
+            result["original_info"] = from_union([lambda x: to_class(OriginalInfo, x), from_none], self.original_info)
+        return result
+
+
+@dataclass
+class HilariousURL:
+    display_url: Optional[str] = None
+    expanded_url: Optional[str] = None
+    url: Optional[str] = None
+    indices: Optional[List[int]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'HilariousURL':
+        assert isinstance(obj, dict)
+        display_url = from_union([from_str, from_none], obj.get("display_url"))
+        expanded_url = from_union([from_str, from_none], obj.get("expanded_url"))
+        url = from_union([from_str, from_none], obj.get("url"))
+        indices = from_union([lambda x: from_list(from_int, x), from_none], obj.get("indices"))
+        return HilariousURL(display_url, expanded_url, url, indices)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.display_url is not None:
+            result["display_url"] = from_union([from_str, from_none], self.display_url)
+        if self.expanded_url is not None:
+            result["expanded_url"] = from_union([from_str, from_none], self.expanded_url)
+        if self.url is not None:
+            result["url"] = from_union([from_str, from_none], self.url)
+        if self.indices is not None:
+            result["indices"] = from_union([lambda x: from_list(from_int, x), from_none], self.indices)
+        return result
+
+
+@dataclass
+class MagentaEntities:
+    user_mentions: Optional[List[UserMention]] = None
+    urls: Optional[List[HilariousURL]] = None
+    hashtags: Optional[List[Hashtag]] = None
+    symbols: Optional[List[Any]] = None
+    media: Optional[List[IndigoMedia]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'MagentaEntities':
+        assert isinstance(obj, dict)
+        user_mentions = from_union([lambda x: from_list(UserMention.from_dict, x), from_none], obj.get("user_mentions"))
+        urls = from_union([lambda x: from_list(HilariousURL.from_dict, x), from_none], obj.get("urls"))
+        hashtags = from_union([lambda x: from_list(Hashtag.from_dict, x), from_none], obj.get("hashtags"))
+        symbols = from_union([lambda x: from_list(lambda x: x, x), from_none], obj.get("symbols"))
+        media = from_union([lambda x: from_list(IndigoMedia.from_dict, x), from_none], obj.get("media"))
+        return MagentaEntities(user_mentions, urls, hashtags, symbols, media)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.user_mentions is not None:
+            result["user_mentions"] = from_union([lambda x: from_list(lambda x: to_class(UserMention, x), x), from_none], self.user_mentions)
+        if self.urls is not None:
+            result["urls"] = from_union([lambda x: from_list(lambda x: to_class(HilariousURL, x), x), from_none], self.urls)
+        if self.hashtags is not None:
+            result["hashtags"] = from_union([lambda x: from_list(lambda x: to_class(Hashtag, x), x), from_none], self.hashtags)
+        if self.symbols is not None:
+            result["symbols"] = from_union([lambda x: from_list(lambda x: x, x), from_none], self.symbols)
+        if self.media is not None:
+            result["media"] = from_union([lambda x: from_list(lambda x: to_class(IndigoMedia, x), x), from_none], self.media)
+        return result
+
+
+@dataclass
+class IndecentMedia:
+    display_url: Optional[str] = None
+    expanded_url: Optional[str] = None
+    id_str: Optional[str] = None
+    indices: Optional[List[int]] = None
+    media_key: Optional[str] = None
+    media_url_https: Optional[str] = None
+    type: Optional[str] = None
+    url: Optional[str] = None
+    ext_media_availability: Optional[EXTMediaAvailability] = None
+    features: Optional[FluffyFeatures] = None
+    sizes: Optional[Sizes] = None
+    original_info: Optional[OriginalInfo] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'IndecentMedia':
+        assert isinstance(obj, dict)
+        display_url = from_union([from_str, from_none], obj.get("display_url"))
+        expanded_url = from_union([from_str, from_none], obj.get("expanded_url"))
+        id_str = from_union([from_str, from_none], obj.get("id_str"))
+        indices = from_union([lambda x: from_list(from_int, x), from_none], obj.get("indices"))
+        media_key = from_union([from_str, from_none], obj.get("media_key"))
+        media_url_https = from_union([from_str, from_none], obj.get("media_url_https"))
+        type = from_union([from_str, from_none], obj.get("type"))
+        url = from_union([from_str, from_none], obj.get("url"))
+        ext_media_availability = from_union([EXTMediaAvailability.from_dict, from_none], obj.get("ext_media_availability"))
+        features = from_union([FluffyFeatures.from_dict, from_none], obj.get("features"))
+        sizes = from_union([Sizes.from_dict, from_none], obj.get("sizes"))
+        original_info = from_union([OriginalInfo.from_dict, from_none], obj.get("original_info"))
+        return IndecentMedia(display_url, expanded_url, id_str, indices, media_key, media_url_https, type, url, ext_media_availability, features, sizes, original_info)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.display_url is not None:
+            result["display_url"] = from_union([from_str, from_none], self.display_url)
+        if self.expanded_url is not None:
+            result["expanded_url"] = from_union([from_str, from_none], self.expanded_url)
+        if self.id_str is not None:
+            result["id_str"] = from_union([from_str, from_none], self.id_str)
+        if self.indices is not None:
+            result["indices"] = from_union([lambda x: from_list(from_int, x), from_none], self.indices)
+        if self.media_key is not None:
+            result["media_key"] = from_union([from_str, from_none], self.media_key)
+        if self.media_url_https is not None:
+            result["media_url_https"] = from_union([from_str, from_none], self.media_url_https)
+        if self.type is not None:
+            result["type"] = from_union([from_str, from_none], self.type)
+        if self.url is not None:
+            result["url"] = from_union([from_str, from_none], self.url)
+        if self.ext_media_availability is not None:
+            result["ext_media_availability"] = from_union([lambda x: to_class(EXTMediaAvailability, x), from_none], self.ext_media_availability)
+        if self.features is not None:
+            result["features"] = from_union([lambda x: to_class(FluffyFeatures, x), from_none], self.features)
+        if self.sizes is not None:
+            result["sizes"] = from_union([lambda x: to_class(Sizes, x), from_none], self.sizes)
+        if self.original_info is not None:
+            result["original_info"] = from_union([lambda x: to_class(OriginalInfo, x), from_none], self.original_info)
+        return result
+
+
+@dataclass
+class TentacledExtendedEntities:
+    media: Optional[List[IndecentMedia]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'TentacledExtendedEntities':
+        assert isinstance(obj, dict)
+        media = from_union([lambda x: from_list(IndecentMedia.from_dict, x), from_none], obj.get("media"))
+        return TentacledExtendedEntities(media)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.media is not None:
+            result["media"] = from_union([lambda x: from_list(lambda x: to_class(IndecentMedia, x), x), from_none], self.media)
+        return result
+
+
+@dataclass
+class BraggadociousLegacy:
+    bookmark_count: Optional[int] = None
+    bookmarked: Optional[bool] = None
+    created_at: Optional[str] = None
+    conversation_id_str: Optional[str] = None
+    display_text_range: Optional[List[int]] = None
+    entities: Optional[MagentaEntities] = None
+    favorite_count: Optional[int] = None
+    favorited: Optional[bool] = None
+    full_text: Optional[str] = None
+    is_quote_status: Optional[bool] = None
+    lang: Optional[str] = None
+    quote_count: Optional[int] = None
+    reply_count: Optional[int] = None
+    retweet_count: Optional[int] = None
+    retweeted: Optional[bool] = None
+    user_id_str: Optional[str] = None
+    id_str: Optional[str] = None
+    in_reply_to_screen_name: Optional[str] = None
+    in_reply_to_status_id_str: Optional[str] = None
+    in_reply_to_user_id_str: Optional[str] = None
+    self_thread: Optional[SelfThread] = None
+    extended_entities: Optional[TentacledExtendedEntities] = None
+    possibly_sensitive: Optional[bool] = None
+    possibly_sensitive_editable: Optional[bool] = None
+    quoted_status_id_str: Optional[str] = None
+    quoted_status_permalink: Optional[QuotedStatusPermalink] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'BraggadociousLegacy':
+        assert isinstance(obj, dict)
+        bookmark_count = from_union([from_int, from_none], obj.get("bookmark_count"))
+        bookmarked = from_union([from_bool, from_none], obj.get("bookmarked"))
+        created_at = from_union([from_str, from_none], obj.get("created_at"))
+        conversation_id_str = from_union([from_str, from_none], obj.get("conversation_id_str"))
+        display_text_range = from_union([lambda x: from_list(from_int, x), from_none], obj.get("display_text_range"))
+        entities = from_union([MagentaEntities.from_dict, from_none], obj.get("entities"))
+        favorite_count = from_union([from_int, from_none], obj.get("favorite_count"))
+        favorited = from_union([from_bool, from_none], obj.get("favorited"))
+        full_text = from_union([from_str, from_none], obj.get("full_text"))
+        is_quote_status = from_union([from_bool, from_none], obj.get("is_quote_status"))
+        lang = from_union([from_str, from_none], obj.get("lang"))
+        quote_count = from_union([from_int, from_none], obj.get("quote_count"))
+        reply_count = from_union([from_int, from_none], obj.get("reply_count"))
+        retweet_count = from_union([from_int, from_none], obj.get("retweet_count"))
+        retweeted = from_union([from_bool, from_none], obj.get("retweeted"))
+        user_id_str = from_union([from_str, from_none], obj.get("user_id_str"))
+        id_str = from_union([from_str, from_none], obj.get("id_str"))
+        in_reply_to_screen_name = from_union([from_str, from_none], obj.get("in_reply_to_screen_name"))
+        in_reply_to_status_id_str = from_union([from_str, from_none], obj.get("in_reply_to_status_id_str"))
+        in_reply_to_user_id_str = from_union([from_str, from_none], obj.get("in_reply_to_user_id_str"))
+        self_thread = from_union([SelfThread.from_dict, from_none], obj.get("self_thread"))
+        extended_entities = from_union([TentacledExtendedEntities.from_dict, from_none], obj.get("extended_entities"))
+        possibly_sensitive = from_union([from_bool, from_none], obj.get("possibly_sensitive"))
+        possibly_sensitive_editable = from_union([from_bool, from_none], obj.get("possibly_sensitive_editable"))
+        quoted_status_id_str = from_union([from_str, from_none], obj.get("quoted_status_id_str"))
+        quoted_status_permalink = from_union([QuotedStatusPermalink.from_dict, from_none], obj.get("quoted_status_permalink"))
+        return BraggadociousLegacy(bookmark_count, bookmarked, created_at, conversation_id_str, display_text_range, entities, favorite_count, favorited, full_text, is_quote_status, lang, quote_count, reply_count, retweet_count, retweeted, user_id_str, id_str, in_reply_to_screen_name, in_reply_to_status_id_str, in_reply_to_user_id_str, self_thread, extended_entities, possibly_sensitive, possibly_sensitive_editable, quoted_status_id_str, quoted_status_permalink)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.bookmark_count is not None:
+            result["bookmark_count"] = from_union([from_int, from_none], self.bookmark_count)
+        if self.bookmarked is not None:
+            result["bookmarked"] = from_union([from_bool, from_none], self.bookmarked)
+        if self.created_at is not None:
+            result["created_at"] = from_union([from_str, from_none], self.created_at)
+        if self.conversation_id_str is not None:
+            result["conversation_id_str"] = from_union([from_str, from_none], self.conversation_id_str)
+        if self.display_text_range is not None:
+            result["display_text_range"] = from_union([lambda x: from_list(from_int, x), from_none], self.display_text_range)
+        if self.entities is not None:
+            result["entities"] = from_union([lambda x: to_class(MagentaEntities, x), from_none], self.entities)
+        if self.favorite_count is not None:
+            result["favorite_count"] = from_union([from_int, from_none], self.favorite_count)
+        if self.favorited is not None:
+            result["favorited"] = from_union([from_bool, from_none], self.favorited)
+        if self.full_text is not None:
+            result["full_text"] = from_union([from_str, from_none], self.full_text)
+        if self.is_quote_status is not None:
+            result["is_quote_status"] = from_union([from_bool, from_none], self.is_quote_status)
+        if self.lang is not None:
+            result["lang"] = from_union([from_str, from_none], self.lang)
+        if self.quote_count is not None:
+            result["quote_count"] = from_union([from_int, from_none], self.quote_count)
+        if self.reply_count is not None:
+            result["reply_count"] = from_union([from_int, from_none], self.reply_count)
+        if self.retweet_count is not None:
+            result["retweet_count"] = from_union([from_int, from_none], self.retweet_count)
+        if self.retweeted is not None:
+            result["retweeted"] = from_union([from_bool, from_none], self.retweeted)
+        if self.user_id_str is not None:
+            result["user_id_str"] = from_union([from_str, from_none], self.user_id_str)
+        if self.id_str is not None:
+            result["id_str"] = from_union([from_str, from_none], self.id_str)
+        if self.in_reply_to_screen_name is not None:
+            result["in_reply_to_screen_name"] = from_union([from_str, from_none], self.in_reply_to_screen_name)
+        if self.in_reply_to_status_id_str is not None:
+            result["in_reply_to_status_id_str"] = from_union([from_str, from_none], self.in_reply_to_status_id_str)
+        if self.in_reply_to_user_id_str is not None:
+            result["in_reply_to_user_id_str"] = from_union([from_str, from_none], self.in_reply_to_user_id_str)
+        if self.self_thread is not None:
+            result["self_thread"] = from_union([lambda x: to_class(SelfThread, x), from_none], self.self_thread)
+        if self.extended_entities is not None:
+            result["extended_entities"] = from_union([lambda x: to_class(TentacledExtendedEntities, x), from_none], self.extended_entities)
+        if self.possibly_sensitive is not None:
+            result["possibly_sensitive"] = from_union([from_bool, from_none], self.possibly_sensitive)
+        if self.possibly_sensitive_editable is not None:
+            result["possibly_sensitive_editable"] = from_union([from_bool, from_none], self.possibly_sensitive_editable)
+        if self.quoted_status_id_str is not None:
+            result["quoted_status_id_str"] = from_union([from_str, from_none], self.quoted_status_id_str)
+        if self.quoted_status_permalink is not None:
+            result["quoted_status_permalink"] = from_union([lambda x: to_class(QuotedStatusPermalink, x), from_none], self.quoted_status_permalink)
+        return result
+
+
+@dataclass
+class QuotedRefResultResult:
+    typename: Optional[str] = None
+    rest_id: Optional[str] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'QuotedRefResultResult':
+        assert isinstance(obj, dict)
+        typename = from_union([from_str, from_none], obj.get("__typename"))
+        rest_id = from_union([from_str, from_none], obj.get("rest_id"))
+        return QuotedRefResultResult(typename, rest_id)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.typename is not None:
+            result["__typename"] = from_union([from_str, from_none], self.typename)
+        if self.rest_id is not None:
+            result["rest_id"] = from_union([from_str, from_none], self.rest_id)
+        return result
+
+
+@dataclass
+class QuotedRefResult:
+    result: Optional[QuotedRefResultResult] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'QuotedRefResult':
+        assert isinstance(obj, dict)
+        result = from_union([QuotedRefResultResult.from_dict, from_none], obj.get("result"))
+        return QuotedRefResult(result)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.result is not None:
+            result["result"] = from_union([lambda x: to_class(QuotedRefResultResult, x), from_none], self.result)
+        return result
+
+
+@dataclass
+class HilariousResult:
+    typename: Optional[str] = None
+    rest_id: Optional[str] = None
+    has_birdwatch_notes: Optional[bool] = None
+    core: Optional[StickyCore] = None
+    unmention_data: Optional[UnmentionData] = None
+    edit_control: Optional[EditControl] = None
+    is_translatable: Optional[bool] = None
+    views: Optional[Views] = None
+    source: Optional[str] = None
+    legacy: Optional[BraggadociousLegacy] = None
+    card: Optional[TentacledCard] = None
+    unified_card: Optional[UnifiedCard] = None
+    quoted_ref_result: Optional[QuotedRefResult] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'HilariousResult':
+        assert isinstance(obj, dict)
+        typename = from_union([from_str, from_none], obj.get("__typename"))
+        rest_id = from_union([from_str, from_none], obj.get("rest_id"))
+        has_birdwatch_notes = from_union([from_bool, from_none], obj.get("has_birdwatch_notes"))
+        core = from_union([StickyCore.from_dict, from_none], obj.get("core"))
+        unmention_data = from_union([UnmentionData.from_dict, from_none], obj.get("unmention_data"))
+        edit_control = from_union([EditControl.from_dict, from_none], obj.get("edit_control"))
+        is_translatable = from_union([from_bool, from_none], obj.get("is_translatable"))
+        views = from_union([Views.from_dict, from_none], obj.get("views"))
+        source = from_union([from_str, from_none], obj.get("source"))
+        legacy = from_union([BraggadociousLegacy.from_dict, from_none], obj.get("legacy"))
+        card = from_union([TentacledCard.from_dict, from_none], obj.get("card"))
+        unified_card = from_union([UnifiedCard.from_dict, from_none], obj.get("unified_card"))
+        quoted_ref_result = from_union([QuotedRefResult.from_dict, from_none], obj.get("quotedRefResult"))
+        return HilariousResult(typename, rest_id, has_birdwatch_notes, core, unmention_data, edit_control, is_translatable, views, source, legacy, card, unified_card, quoted_ref_result)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.typename is not None:
+            result["__typename"] = from_union([from_str, from_none], self.typename)
+        if self.rest_id is not None:
+            result["rest_id"] = from_union([from_str, from_none], self.rest_id)
+        if self.has_birdwatch_notes is not None:
+            result["has_birdwatch_notes"] = from_union([from_bool, from_none], self.has_birdwatch_notes)
+        if self.core is not None:
+            result["core"] = from_union([lambda x: to_class(StickyCore, x), from_none], self.core)
+        if self.unmention_data is not None:
+            result["unmention_data"] = from_union([lambda x: to_class(UnmentionData, x), from_none], self.unmention_data)
+        if self.edit_control is not None:
+            result["edit_control"] = from_union([lambda x: to_class(EditControl, x), from_none], self.edit_control)
+        if self.is_translatable is not None:
+            result["is_translatable"] = from_union([from_bool, from_none], self.is_translatable)
+        if self.views is not None:
+            result["views"] = from_union([lambda x: to_class(Views, x), from_none], self.views)
+        if self.source is not None:
+            result["source"] = from_union([from_str, from_none], self.source)
+        if self.legacy is not None:
+            result["legacy"] = from_union([lambda x: to_class(BraggadociousLegacy, x), from_none], self.legacy)
+        if self.card is not None:
+            result["card"] = from_union([lambda x: to_class(TentacledCard, x), from_none], self.card)
+        if self.unified_card is not None:
+            result["unified_card"] = from_union([lambda x: to_class(UnifiedCard, x), from_none], self.unified_card)
+        if self.quoted_ref_result is not None:
+            result["quotedRefResult"] = from_union([lambda x: to_class(QuotedRefResult, x), from_none], self.quoted_ref_result)
+        return result
+
+
+@dataclass
+class FluffyQuotedStatusResult:
+    result: Optional[HilariousResult] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'FluffyQuotedStatusResult':
+        assert isinstance(obj, dict)
+        result = from_union([HilariousResult.from_dict, from_none], obj.get("result"))
+        return FluffyQuotedStatusResult(result)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.result is not None:
+            result["result"] = from_union([lambda x: to_class(HilariousResult, x), from_none], self.result)
+        return result
+
+
+@dataclass
+class Ref:
+    type: Optional[str] = None
+    url: Optional[str] = None
+    url_type: Optional[str] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'Ref':
+        assert isinstance(obj, dict)
+        type = from_union([from_str, from_none], obj.get("type"))
+        url = from_union([from_str, from_none], obj.get("url"))
+        url_type = from_union([from_str, from_none], obj.get("urlType"))
+        return Ref(type, url, url_type)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.type is not None:
+            result["type"] = from_union([from_str, from_none], self.type)
+        if self.url is not None:
+            result["url"] = from_union([from_str, from_none], self.url)
+        if self.url_type is not None:
+            result["urlType"] = from_union([from_str, from_none], self.url_type)
+        return result
+
+
+@dataclass
+class Entity:
+    from_index: Optional[int] = None
+    to_index: Optional[int] = None
+    ref: Optional[Ref] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'Entity':
+        assert isinstance(obj, dict)
+        from_index = from_union([from_int, from_none], obj.get("fromIndex"))
+        to_index = from_union([from_int, from_none], obj.get("toIndex"))
+        ref = from_union([Ref.from_dict, from_none], obj.get("ref"))
+        return Entity(from_index, to_index, ref)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.from_index is not None:
+            result["fromIndex"] = from_union([from_int, from_none], self.from_index)
+        if self.to_index is not None:
+            result["toIndex"] = from_union([from_int, from_none], self.to_index)
+        if self.ref is not None:
+            result["ref"] = from_union([lambda x: to_class(Ref, x), from_none], self.ref)
+        return result
+
+
+@dataclass
+class Text:
+    rtl: Optional[bool] = None
+    text: Optional[str] = None
+    entities: Optional[List[Entity]] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'Text':
+        assert isinstance(obj, dict)
+        rtl = from_union([from_bool, from_none], obj.get("rtl"))
+        text = from_union([from_str, from_none], obj.get("text"))
+        entities = from_union([lambda x: from_list(Entity.from_dict, x), from_none], obj.get("entities"))
+        return Text(rtl, text, entities)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.rtl is not None:
+            result["rtl"] = from_union([from_bool, from_none], self.rtl)
+        if self.text is not None:
+            result["text"] = from_union([from_str, from_none], self.text)
+        if self.entities is not None:
+            result["entities"] = from_union([lambda x: from_list(lambda x: to_class(Entity, x), x), from_none], self.entities)
+        return result
+
+
+@dataclass
+class Tombstone:
+    typename: Optional[str] = None
+    text: Optional[Text] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'Tombstone':
+        assert isinstance(obj, dict)
+        typename = from_union([from_str, from_none], obj.get("__typename"))
+        text = from_union([Text.from_dict, from_none], obj.get("text"))
+        return Tombstone(typename, text)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.typename is not None:
+            result["__typename"] = from_union([from_str, from_none], self.typename)
+        if self.text is not None:
+            result["text"] = from_union([lambda x: to_class(Text, x), from_none], self.text)
+        return result
+
+
+@dataclass
+class TweetResultsResult:
+    typename: Optional[str] = None
+    rest_id: Optional[str] = None
+    has_birdwatch_notes: Optional[bool] = None
+    core: Optional[PurpleCore] = None
+    unmention_data: Optional[UnmentionData] = None
+    edit_control: Optional[EditControl] = None
+    is_translatable: Optional[bool] = None
+    views: Optional[Views] = None
+    source: Optional[str] = None
+    legacy: Optional[StickyLegacy] = None
+    quick_promote_eligibility: Optional[QuickPromoteEligibility] = None
+    quoted_status_result: Optional[FluffyQuotedStatusResult] = None
+    card: Optional[PurpleCard] = None
+    unified_card: Optional[UnifiedCard] = None
+    tombstone: Optional[Tombstone] = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'TweetResultsResult':
+        assert isinstance(obj, dict)
+        typename = from_union([from_str, from_none], obj.get("__typename"))
+        rest_id = from_union([from_str, from_none], obj.get("rest_id"))
+        has_birdwatch_notes = from_union([from_bool, from_none], obj.get("has_birdwatch_notes"))
+        core = from_union([PurpleCore.from_dict, from_none], obj.get("core"))
+        unmention_data = from_union([UnmentionData.from_dict, from_none], obj.get("unmention_data"))
+        edit_control = from_union([EditControl.from_dict, from_none], obj.get("edit_control"))
+        is_translatable = from_union([from_bool, from_none], obj.get("is_translatable"))
+        views = from_union([Views.from_dict, from_none], obj.get("views"))
+        source = from_union([from_str, from_none], obj.get("source"))
+        legacy = from_union([StickyLegacy.from_dict, from_none], obj.get("legacy"))
+        quick_promote_eligibility = from_union([QuickPromoteEligibility.from_dict, from_none], obj.get("quick_promote_eligibility"))
+        quoted_status_result = from_union([FluffyQuotedStatusResult.from_dict, from_none], obj.get("quoted_status_result"))
+        card = from_union([PurpleCard.from_dict, from_none], obj.get("card"))
+        unified_card = from_union([UnifiedCard.from_dict, from_none], obj.get("unified_card"))
+        tombstone = from_union([Tombstone.from_dict, from_none], obj.get("tombstone"))
+        return TweetResultsResult(typename, rest_id, has_birdwatch_notes, core, unmention_data, edit_control, is_translatable, views, source, legacy, quick_promote_eligibility, quoted_status_result, card, unified_card, tombstone)
+
+    def to_dict(self) -> dict:
+        result: dict = {}
+        if self.typename is not None:
+            result["__typename"] = from_union([from_str, from_none], self.typename)
+        if self.rest_id is not None:
+            result["rest_id"] = from_union([from_str, from_none], self.rest_id)
+        if self.has_birdwatch_notes is not None:
+            result["has_birdwatch_notes"] = from_union([from_bool, from_none], self.has_birdwatch_notes)
+        if self.core is not None:
+            result["core"] = from_union([lambda x: to_class(PurpleCore, x), from_none], self.core)
+        if self.unmention_data is not None:
+            result["unmention_data"] = from_union([lambda x: to_class(UnmentionData, x), from_none], self.unmention_data)
+        if self.edit_control is not None:
+            result["edit_control"] = from_union([lambda x: to_class(EditControl, x), from_none], self.edit_control)
+        if self.is_translatable is not None:
+            result["is_translatable"] = from_union([from_bool, from_none], self.is_translatable)
+        if self.views is not None:
+            result["views"] = from_union([lambda x: to_class(Views, x), from_none], self.views)
+        if self.source is not None:
+            result["source"] = from_union([from_str, from_none], self.source)
+        if self.legacy is not None:
+            result["legacy"] = from_union([lambda x: to_class(StickyLegacy, x), from_none], self.legacy)
+        if self.quick_promote_eligibility is not None:
+            result["quick_promote_eligibility"] = from_union([lambda x: to_class(QuickPromoteEligibility, x), from_none], self.quick_promote_eligibility)
         if self.quoted_status_result is not None:
-            result["quoted_status_result"] = from_union([lambda x: to_class(QuotedStatusResult, x), from_none], self.quoted_status_result)
+            result["quoted_status_result"] = from_union([lambda x: to_class(FluffyQuotedStatusResult, x), from_none], self.quoted_status_result)
+        if self.card is not None:
+            result["card"] = from_union([lambda x: to_class(PurpleCard, x), from_none], self.card)
+        if self.unified_card is not None:
+            result["unified_card"] = from_union([lambda x: to_class(UnifiedCard, x), from_none], self.unified_card)
+        if self.tombstone is not None:
+            result["tombstone"] = from_union([lambda x: to_class(Tombstone, x), from_none], self.tombstone)
         return result
 
 
@@ -2027,32 +4228,32 @@ class TweetResults:
 
 @dataclass
 class ItemContent:
-    item_type: Optional[ItemTypeEnum] = None
-    typename: Optional[ItemTypeEnum] = None
+    item_type: Optional[str] = None
+    typename: Optional[str] = None
     tweet_results: Optional[TweetResults] = None
-    tweet_display_type: Optional[TweetDisplayType] = None
+    tweet_display_type: Optional[str] = None
     rux_context: Optional[str] = None
 
     @staticmethod
     def from_dict(obj: Any) -> 'ItemContent':
         assert isinstance(obj, dict)
-        item_type = from_union([ItemTypeEnum, from_none], obj.get("itemType"))
-        typename = from_union([ItemTypeEnum, from_none], obj.get("__typename"))
+        item_type = from_union([from_str, from_none], obj.get("itemType"))
+        typename = from_union([from_str, from_none], obj.get("__typename"))
         tweet_results = from_union([TweetResults.from_dict, from_none], obj.get("tweet_results"))
-        tweet_display_type = from_union([TweetDisplayType, from_none], obj.get("tweetDisplayType"))
+        tweet_display_type = from_union([from_str, from_none], obj.get("tweetDisplayType"))
         rux_context = from_union([from_str, from_none], obj.get("ruxContext"))
         return ItemContent(item_type, typename, tweet_results, tweet_display_type, rux_context)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.item_type is not None:
-            result["itemType"] = from_union([lambda x: to_enum(ItemTypeEnum, x), from_none], self.item_type)
+            result["itemType"] = from_union([from_str, from_none], self.item_type)
         if self.typename is not None:
-            result["__typename"] = from_union([lambda x: to_enum(ItemTypeEnum, x), from_none], self.typename)
+            result["__typename"] = from_union([from_str, from_none], self.typename)
         if self.tweet_results is not None:
             result["tweet_results"] = from_union([lambda x: to_class(TweetResults, x), from_none], self.tweet_results)
         if self.tweet_display_type is not None:
-            result["tweetDisplayType"] = from_union([lambda x: to_enum(TweetDisplayType, x), from_none], self.tweet_display_type)
+            result["tweetDisplayType"] = from_union([from_str, from_none], self.tweet_display_type)
         if self.rux_context is not None:
             result["ruxContext"] = from_union([from_str, from_none], self.rux_context)
         return result
@@ -2060,36 +4261,36 @@ class ItemContent:
 
 @dataclass
 class Content:
-    entry_type: Optional[EntryTypeEnum] = None
-    typename: Optional[EntryTypeEnum] = None
+    entry_type: Optional[str] = None
+    typename: Optional[str] = None
     item_content: Optional[ItemContent] = None
     value: Optional[str] = None
-    cursor_type: Optional[CursorType] = None
+    cursor_type: Optional[str] = None
     stop_on_empty_response: Optional[bool] = None
 
     @staticmethod
     def from_dict(obj: Any) -> 'Content':
         assert isinstance(obj, dict)
-        entry_type = from_union([EntryTypeEnum, from_none], obj.get("entryType"))
-        typename = from_union([EntryTypeEnum, from_none], obj.get("__typename"))
+        entry_type = from_union([from_str, from_none], obj.get("entryType"))
+        typename = from_union([from_str, from_none], obj.get("__typename"))
         item_content = from_union([ItemContent.from_dict, from_none], obj.get("itemContent"))
         value = from_union([from_str, from_none], obj.get("value"))
-        cursor_type = from_union([CursorType, from_none], obj.get("cursorType"))
+        cursor_type = from_union([from_str, from_none], obj.get("cursorType"))
         stop_on_empty_response = from_union([from_bool, from_none], obj.get("stopOnEmptyResponse"))
         return Content(entry_type, typename, item_content, value, cursor_type, stop_on_empty_response)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.entry_type is not None:
-            result["entryType"] = from_union([lambda x: to_enum(EntryTypeEnum, x), from_none], self.entry_type)
+            result["entryType"] = from_union([from_str, from_none], self.entry_type)
         if self.typename is not None:
-            result["__typename"] = from_union([lambda x: to_enum(EntryTypeEnum, x), from_none], self.typename)
+            result["__typename"] = from_union([from_str, from_none], self.typename)
         if self.item_content is not None:
             result["itemContent"] = from_union([lambda x: to_class(ItemContent, x), from_none], self.item_content)
         if self.value is not None:
             result["value"] = from_union([from_str, from_none], self.value)
         if self.cursor_type is not None:
-            result["cursorType"] = from_union([lambda x: to_enum(CursorType, x), from_none], self.cursor_type)
+            result["cursorType"] = from_union([from_str, from_none], self.cursor_type)
         if self.stop_on_empty_response is not None:
             result["stopOnEmptyResponse"] = from_union([from_bool, from_none], self.stop_on_empty_response)
         return result
@@ -2120,27 +4321,22 @@ class Entry:
         return result
 
 
-class InstructionType(Enum):
-    TIMELINE_ADD_ENTRIES = "TimelineAddEntries"
-    TIMELINE_CLEAR_CACHE = "TimelineClearCache"
-
-
 @dataclass
 class Instruction:
-    type: Optional[InstructionType] = None
+    type: Optional[str] = None
     entries: Optional[List[Entry]] = None
 
     @staticmethod
     def from_dict(obj: Any) -> 'Instruction':
         assert isinstance(obj, dict)
-        type = from_union([InstructionType, from_none], obj.get("type"))
+        type = from_union([from_str, from_none], obj.get("type"))
         entries = from_union([lambda x: from_list(Entry.from_dict, x), from_none], obj.get("entries"))
         return Instruction(type, entries)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.type is not None:
-            result["type"] = from_union([lambda x: to_enum(InstructionType, x), from_none], self.type)
+            result["type"] = from_union([from_str, from_none], self.type)
         if self.entries is not None:
             result["entries"] = from_union([lambda x: from_list(lambda x: to_class(Entry, x), x), from_none], self.entries)
         return result
@@ -2207,20 +4403,20 @@ class TimelineV2:
 
 @dataclass
 class UserResult:
-    typename: Optional[Typename] = None
+    typename: Optional[str] = None
     timeline_v2: Optional[TimelineV2] = None
 
     @staticmethod
     def from_dict(obj: Any) -> 'UserResult':
         assert isinstance(obj, dict)
-        typename = from_union([Typename, from_none], obj.get("__typename"))
+        typename = from_union([from_str, from_none], obj.get("__typename"))
         timeline_v2 = from_union([TimelineV2.from_dict, from_none], obj.get("timeline_v2"))
         return UserResult(typename, timeline_v2)
 
     def to_dict(self) -> dict:
         result: dict = {}
         if self.typename is not None:
-            result["__typename"] = from_union([lambda x: to_enum(Typename, x), from_none], self.typename)
+            result["__typename"] = from_union([from_str, from_none], self.typename)
         if self.timeline_v2 is not None:
             result["timeline_v2"] = from_union([lambda x: to_class(TimelineV2, x), from_none], self.timeline_v2)
         return result
