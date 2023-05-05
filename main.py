@@ -76,9 +76,13 @@ def retrieve_random_image(username: str, date) -> str:
 
 
 def filter_results(tweet_text, keywords) -> bool:
+
     for word in word_tokenize(tweet_text):
         for keyword in keywords:
+            
             if keyword == word or keyword.lower() == word or keyword.replace(' ', '') == word:
+                print((word, keyword))
+                print( keyword == word or keyword.lower() == word or keyword.replace(' ', '') == word)
                 return True
 
 
@@ -86,12 +90,13 @@ def convert_to_RSS(item, keywords, fg):
     if len(item['tweets']) > 0:
         for tweet in item['tweets']:
             if filter_results(tweet['full_text'], keywords) and is_date_in_range(tweet['created_at']):
+                dt = datetime.datetime.strptime(tweet['created_at'], '%a %b %d %H:%M:%S %z %Y')
+                prefix_time =  dt.strftime( "%H:%M")
                 fe = fg.add_entry()
                 fe.id(tweet['id'])
-                fe.title(f"{item['prefix']} {tweet['full_text']} {item['suffix']}")
+                fe.title(f"{item['prefix']} ({prefix_time}): {tweet['full_text']} {item['suffix']}")
                 fe.link(href="https://twitter.com/twitter/status/" + tweet['id'], rel='alternate')
                 # parse datetime string and localize to UTC
-                dt = datetime.datetime.strptime(tweet['created_at'], '%a %b %d %H:%M:%S %z %Y')
                 fe.pubDate(dt)
 
                 if tweet['attachment']:
@@ -154,16 +159,6 @@ def print_tweets(res, users):
                         lambda x: x['rest_id'] == entry.content.item_content.tweet_results.result.legacy.user_id_str,
                         users))
                     max_res = ""
-                    print(user[0]['username'])
-                    print(entry.content.item_content.tweet_results.result.legacy.created_at)
-                    print(entry.content.item_content.tweet_results.result.legacy.full_text)
-                    if entry.content.item_content.tweet_results.result.card and \
-                            entry.content.item_content.tweet_results.result.card.legacy.binding_values:
-                        max_res = get_max_res(
-                            entry.content.item_content.tweet_results.result.card.legacy.binding_values)
-                        print(max_res)
-
-                    print('----------------------------------')
                     list_tweets.append({
                         'username': user[0]['username'],
                         'created_at': entry.content.item_content.tweet_results.result.legacy.created_at,
@@ -184,9 +179,6 @@ def get_data():
     users_id = get_rest_ids(users)
 
     tweets = scraper.tweets([user['rest_id'] for user in users_id], limit=100)
-
-    with open("output.json", "w") as outfile:
-        json.dump(tweets, outfile, indent=4)
 
     result = []
     for tweet_data in twitter_data_from_dict(tweets):

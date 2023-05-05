@@ -1,38 +1,39 @@
 [scrapper_config]
-within_time = "3h"
-haugaland_keywords = [ "Haugesund", "Karmøy", "Tysvær", "Sveio", "Utsira", "Bokn", "Vindafjord", "Etne", "Vikedal", "Sandeid", "Sand", "Suldal", "Sauda", "Karmsund", "Risøy", "Hasseløy", "Bakarøy", "Karmsundgata", "Spannavegen", "E39", "E134", "E 39", "E 134", "Bømlo", "Stord", "Fitjar", "Kvinnherad", "Huglo", "Bømlafjordtunnelen", "Bømlafjorden", "Langevåg", "Buavåg", "Leirvik", "Sagvåg", "Mastrafjordtunnelen", "Byfjordtunnelen", "Uføretunnelen", "Røldalstunnelen", "Seljestadtunnelen", "Haukelitunnelen",]
-sunnhordland_keywords = [ "Sveio", "Stord", "Bømlo", "Bømlafjorden", "Bømlabroa", "Bømlafjordtunnelen", "Fitjar", "Kvinnherad", "Huglo", "Leirvik", "Bremnes", "Bremnesvegen", "Langevåg", "Buavåg", "Sagvåg",]
+within_time = "24h"
+haugaland_keywords = [ "Haugesund", "Karmøy", "Tysvær", "Sveio", "Utsira", "Bokn", "Vindafjord", "Etne", "Vikedal", "Sandeid", "Sand", "Suldal", "Sauda", "Karmsund", "Risøy", "Hasseløy", "Bakarøy", "Karmsundgata", "Spannavegen", "Bømlo", "Stord", "Fitjar", "Kvinnherad", "Bømlafjordtunnelen", "Bømlafjorden", "Langevåg", "Buavåg", "Leirvik", "Sagvåg", "Mastrafjordtunnelen", "Byfjordtunnelen", "Uføretunnelen", "Røldalstunnelen", "Seljestadtunnelen", "Haukelitunnelen", "Bremnes", "Huglo",]
+sunnhordland_keywords = [ "Sveio", "Stord", "Bømlo", "Bømlafjorden", "Bømlabroa", "Bømlafjordtunnelen", "Fitjar", "Kvinnherad", "Leirvik", "Bremnesvegen", "Langevåg", "Buavåg", "Bremnes", "Huglo",]
+
 [[scrapper_config.twitter_accounts]]
 username = "politietsorvest"
-prefix = "SISTE FRA POLITIET:"
+prefix = "SISTE FRA POLITIET"
 suffix = "(POLITIET/RADIO HAUGALAND)"
 
 [[scrapper_config.twitter_accounts]]
 username = "politivest"
-prefix = "SISTE FRA POLITIET:"
+prefix = "SISTE FRA POLITIET"
 suffix = "(POLITIET/RADIO HAUGALAND)"
 
 [[scrapper_config.twitter_accounts]]
 username = "110SorVest"
-prefix = "SISTE FRA BRANNVESENET:"
+prefix = "SISTE FRA BRANNVESENET"
 suffix = "(110-SENTRALEN/RADIO HAUGALAND)"
 
 [[scrapper_config.twitter_accounts]]
 username = "110Vest"
-prefix = "SISTE FRA BRANNVESENET:"
+prefix = "SISTE FRA BRANNVESENET"
 suffix = "(110-SENTRALEN/RADIO HAUGALAND)"
 
 [[scrapper_config.twitter_accounts]]
 username = "VTSvest"
-prefix = "TRAFIKK:"
+prefix = "TRAFIKK"
 suffix = "(VEGVESEN/RADIO HAUGALAND)"
 
 [[scrapper_config.twitter_accounts]]
 username = "HRSSorNorge"
-prefix = "REDNING:"
+prefix = "REDNING"
 suffix = "(HRSS/RADIO HAUGALAND)"
 
 [[scrapper_config.twitter_accounts]]
 username = "Meteorologene"
-prefix = "VÆRET:"
+prefix = "VÆRET"
 suffix = "(MET/RADIO HAUGALAND)"
