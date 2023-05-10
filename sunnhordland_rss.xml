@@ -8,22 +8,46 @@
         <description>infokanal RSS feed</description>
         <docs>http://www.rssboard.org/rss-specification</docs>
         <generator>python-feedgen</generator>
-        <lastBuildDate>Wed, 10 May 2023 10:47:18 +0000</lastBuildDate>
+        <lastBuildDate>Wed, 10 May 2023 11:55:43 +0000</lastBuildDate>
         <item>
             <title>SISTE FRA POLITIET (09:50): #Stord #Fitjar kl. 11.11 fikk vi melding fra brannvesenet at det har vært brann på et toalett på et offentlig bygg. Vi er nå på stedet for å undersøke. (POLITIET/RADIO HAUGALAND)</title>
             <link>https://twitter.com/twitter/status/1656235290539728896</link>
             <guid isPermaLink="false">1656235290539728896</guid>
             <pubDate>Wed, 10 May 2023 09:50:39 +0000</pubDate>
-            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag22.jpg" width="400"/>
-            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag22.jpg" width="200"/>
+            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag23.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag23.jpg" width="200"/>
         </item>
         <item>
             <title>SISTE FRA POLITIET (08:59): #Kvinnherad #Ytre-Matre - kl 1053 meldt om brann i eit skur. Beskrive som ei falleferdig rønne/skur ved Geitavika og det er opplyst at det ikkje skal vera folk inne der. Står fleire skur ved sida av ved andre, så fare for spreiing til desse. Politi og brannvesenet rykkjer ut. (POLITIET/RADIO HAUGALAND)</title>
             <link>https://twitter.com/twitter/status/1656222372666507264</link>
             <guid isPermaLink="false">1656222372666507264</guid>
             <pubDate>Wed, 10 May 2023 08:59:19 +0000</pubDate>
-            <media:content url="http://www.infokanal.com/images/politivest/day/high_tb73a395.jpg" width="400"/>
-            <media:thumbnail url="http://www.infokanal.com/images/politivest/day/high_tb73a395.jpg" width="200"/>
+            <media:content url="http://www.infokanal.com/images/politivest/day/politi-dag3.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/politivest/day/politi-dag3.jpg" width="200"/>
+        </item>
+        <item>
+            <title>SISTE FRA POLITIET (09:16): #Stord Mellom kl. 0900 og 1100 gjennomførte @Utrykningspol trafikkontroll på E39 ved Mehammar. 2 førere fikk forenklet forelegg. Høyeste var 92km/t i 80-sonen. (POLITIET/RADIO HAUGALAND)</title>
+            <link>https://twitter.com/twitter/status/1655864278539284487</link>
+            <guid isPermaLink="false">1655864278539284487</guid>
+            <pubDate>Tue, 09 May 2023 09:16:23 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag5.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag5.jpg" width="200"/>
+        </item>
+        <item>
+            <title>SISTE FRA POLITIET (16:45): #Stord: Kl 1843. Melding om at en syklist har kjørt inn i en bil i Fjellgardsvegen. Ambulanse og politi er på vei til stedet. (POLITIET/RADIO HAUGALAND)</title>
+            <link>https://twitter.com/twitter/status/1655614850351898625</link>
+            <guid isPermaLink="false">1655614850351898625</guid>
+            <pubDate>Mon, 08 May 2023 16:45:14 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag13.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag13.jpg" width="200"/>
+        </item>
+        <item>
+            <title>SISTE FRA POLITIET (13:23): #Stord: Kl 1444 fikk nødetatene inn melding om gressbrann ved Nysætervegen. Kl 1509 var brannen slukket. Politipatrulje tar avhør av vitner på stedet. Sak vil bli opprettet (POLITIET/RADIO HAUGALAND)</title>
+            <link>https://twitter.com/twitter/status/1655564068491493376</link>
+            <guid isPermaLink="false">1655564068491493376</guid>
+            <pubDate>Mon, 08 May 2023 13:23:27 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag2.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag2.jpg" width="200"/>
         </item>
     </channel>
 </rss>

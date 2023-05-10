@@ -22,11 +22,13 @@ sunnhordland_keywords = config['scrapper_config']['sunnhordland_keywords']
 
 twitter_accounts = config['scrapper_config']['twitter_accounts']
 within_time = config['scrapper_config']['within_time']
-show_items = config['scrapper_config']['show_items']
+show_items = (config['scrapper_config']['show_items'])
 if show_items == {} or show_items == 0:
     show_items = None
 
-number_acc = 0
+number_acc_haugaland = 0
+number_acc_sunnhordland = 0
+
 
 # config RSS
 fg_haugaland = FeedGenerator()
@@ -92,36 +94,40 @@ def filter_results(tweet_text, keywords) -> bool:
                 return True
 
 
-def convert_to_RSS(item, keywords, fg):
-    global number_acc
+def convert_to_RSS(item, keywords, fg, acc_type):
+    global number_acc_haugaland
+    global number_acc_sunnhordland
+
     tweet = item['tweets']
     if filter_results(tweet['full_text'], keywords) and is_date_in_range(tweet['created_at']):
-                dt = datetime.datetime.strptime(
-                    tweet['created_at'], '%a %b %d %H:%M:%S %z %Y')
-                prefix_time = dt.strftime("%H:%M")
-                fe = fg.add_entry()
-                fe.id(tweet['id'])
-                fe.title(
-                    f"{item['prefix']} ({prefix_time}): {tweet['full_text']} {item['suffix']}")
-                fe.link(href="https://twitter.com/twitter/status/" +
-                        tweet['id'], rel='alternate')
-                # parse datetime string and localize to UTC
-                fe.pubDate(dt)
+        dt = datetime.datetime.strptime(
+            tweet['created_at'], '%a %b %d %H:%M:%S %z %Y')
+        prefix_time = dt.strftime("%H:%M")
+        fe = fg.add_entry()
+        fe.id(tweet['id'])
+        fe.title(
+            f"{item['prefix']} ({prefix_time}): {tweet['full_text']} {item['suffix']}")
+        fe.link(href="https://twitter.com/twitter/status/" +
+                tweet['id'], rel='alternate')
+        # parse datetime string and localize to UTC
+        fe.pubDate(dt)
 
-                if tweet['attachment']:
-                    fe.media.thumbnail({'url': tweet['attachment'], 'width': '200'},
-                                       group=None)
-                    fe.media.content({'url': tweet['attachment'], 'width': '400'},
-                                     group=None)
-                else:
-                    result = retrieve_random_image(item['username'], dt)
-                    if result:
-                        fe.media.thumbnail(
-                            {'url': result, 'width': '200'}, group=None)
-                        fe.media.content(
-                            {'url': result, 'width': '400'}, group=None)
-                
-                number_acc = number_acc + 1
+        if tweet['attachment']:
+            fe.media.thumbnail({'url': tweet['attachment'], 'width': '200'},
+                               group=None)
+            fe.media.content({'url': tweet['attachment'], 'width': '400'},
+                             group=None)
+        else:
+            result = retrieve_random_image(item['username'], dt)
+            if result:
+                fe.media.thumbnail(
+                    {'url': result, 'width': '200'}, group=None)
+                fe.media.content(
+                    {'url': result, 'width': '400'}, group=None)
+        if acc_type == "haugaland":
+            number_acc_haugaland = number_acc_haugaland + 1
+        else:
+            number_acc_sunnhordland = number_acc_sunnhordland + 1
 
     else:
         return
@@ -189,7 +195,7 @@ def get_data():
 
     users_id = get_rest_ids(users)
 
-    tweets = scraper.tweets([user['rest_id'] for user in users_id], limit=100)
+    tweets = scraper.tweets([user['rest_id'] for user in users_id], limit=500)
 
     result = []
     for tweet_data in twitter_data_from_dict(tweets):
@@ -218,24 +224,26 @@ if __name__ == '__main__':
     fg.description('infokanal RSS feed')
     result = get_data()
     flat_result = [item for sublist in result for item in sublist]
-    flat_result.sort(key=get_date,reverse= True)
+    flat_result.sort(key=get_date, reverse=True)
     for i in range(len(flat_result)):
         twitter_account_data = find_account_by_username(
             flat_result[i]['username'])
-        if show_items is not None and number_acc == show_items :
+        if show_items is not None and number_acc_haugaland == show_items and number_acc_sunnhordland == show_items:
             break
-        convert_to_RSS({
-            "username": flat_result[i]['username'],
-            "tweets": flat_result[i],
-            "prefix": twitter_account_data['prefix'],
-            "suffix": twitter_account_data['suffix']
-        }, haugaland_keywords, fg_haugaland)
-        convert_to_RSS({
-            "username": flat_result[i]['username'],
-            "tweets": flat_result[i],
-            "prefix": twitter_account_data['prefix'],
-            "suffix": twitter_account_data['suffix']
-        }, sunnhordland_keywords, fg_sunnhordland)
+        if number_acc_haugaland != show_items:
+            convert_to_RSS({
+                "username": flat_result[i]['username'],
+                "tweets": flat_result[i],
+                "prefix": twitter_account_data['prefix'],
+                "suffix": twitter_account_data['suffix']
+            }, haugaland_keywords, fg_haugaland, 'haugaland')
+        if number_acc_sunnhordland != show_items:
+            convert_to_RSS({
+                "username": flat_result[i]['username'],
+                "tweets": flat_result[i],
+                "prefix": twitter_account_data['prefix'],
+                "suffix": twitter_account_data['suffix']
+            }, sunnhordland_keywords, fg_sunnhordland, 'sunnhordland')
 
     haugaland_list = fg_haugaland.entry()
     fg_haugaland.entry(

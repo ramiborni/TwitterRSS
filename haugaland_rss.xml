@@ -8,14 +8,14 @@
         <description>infokanal RSS feed</description>
         <docs>http://www.rssboard.org/rss-specification</docs>
         <generator>python-feedgen</generator>
-        <lastBuildDate>Wed, 10 May 2023 10:47:18 +0000</lastBuildDate>
+        <lastBuildDate>Wed, 10 May 2023 11:55:43 +0000</lastBuildDate>
         <item>
             <title>SISTE FRA POLITIET (09:50): #Stord #Fitjar kl. 11.11 fikk vi melding fra brannvesenet at det har vært brann på et toalett på et offentlig bygg. Vi er nå på stedet for å undersøke. (POLITIET/RADIO HAUGALAND)</title>
             <link>https://twitter.com/twitter/status/1656235290539728896</link>
             <guid isPermaLink="false">1656235290539728896</guid>
             <pubDate>Wed, 10 May 2023 09:50:39 +0000</pubDate>
-            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag22.jpg" width="400"/>
-            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag22.jpg" width="200"/>
+            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag17.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag17.jpg" width="200"/>
         </item>
         <item>
             <title>SISTE FRA POLITIET (08:59): #Kvinnherad #Ytre-Matre - kl 1053 meldt om brann i eit skur. Beskrive som ei falleferdig rønne/skur ved Geitavika og det er opplyst at det ikkje skal vera folk inne der. Står fleire skur ved sida av ved andre, så fare for spreiing til desse. Politi og brannvesenet rykkjer ut. (POLITIET/RADIO HAUGALAND)</title>
@@ -46,14 +46,6 @@
             <link>https://twitter.com/twitter/status/1655987551436406807</link>
             <guid isPermaLink="false">1655987551436406807</guid>
             <pubDate>Tue, 09 May 2023 17:26:13 +0000</pubDate>
-            <media:content url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="400"/>
-            <media:thumbnail url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="200"/>
-        </item>
-        <item>
-            <title>TRAFIKK (15:03): E39 Mastrafjordtunnelen er åpnet for fri ferdsel etter at en personbil mistet et dekk. (VEGVESEN/RADIO HAUGALAND)</title>
-            <link>https://twitter.com/twitter/status/1655951610059841537</link>
-            <guid isPermaLink="false">1655951610059841537</guid>
-            <pubDate>Tue, 09 May 2023 15:03:24 +0000</pubDate>
             <media:content url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="400"/>
             <media:thumbnail url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="200"/>
         </item>
