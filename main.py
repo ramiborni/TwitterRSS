@@ -22,6 +22,11 @@ sunnhordland_keywords = config['scrapper_config']['sunnhordland_keywords']
 
 twitter_accounts = config['scrapper_config']['twitter_accounts']
 within_time = config['scrapper_config']['within_time']
+show_items = config['scrapper_config']['show_items']
+if show_items == {} or show_items == 0:
+    show_items = None
+
+number_acc = 0
 
 # config RSS
 fg_haugaland = FeedGenerator()
@@ -40,6 +45,8 @@ fg_sunnhordland.description('infokanal RSS feed')
 
 
 def is_date_in_range(date_str):
+    if show_items is not None:
+        return True
     date_format = "%a %b %d %H:%M:%S %z %Y"
     date = datetime.datetime.strptime(date_str, date_format)
 
@@ -50,11 +57,13 @@ def is_date_in_range(date_str):
     elif range_unit == "d":
         time_delta = datetime.timedelta(days=range_value)
     elif range_unit == "m":
-        time_delta = datetime.timedelta(days=range_value * 30)  # Assuming 30 days in a month
+        # Assuming 30 days in a month
+        time_delta = datetime.timedelta(days=range_value * 30)
     else:
         raise ValueError("Invalid date range format")
 
-    now = datetime.datetime.now(date.tzinfo)  # Assign the timezone of 'date' to 'now'
+    # Assign the timezone of 'date' to 'now'
+    now = datetime.datetime.now(date.tzinfo)
 
     return now - time_delta <= date <= now
 
@@ -68,7 +77,8 @@ def check_date_is_day(date) -> bool:
 def retrieve_random_image(username: str, date) -> str:
     day_or_night = "day" if check_date_is_day(date) else "night"
     USER_PATH = f'./Images/{username}/{day_or_night}'
-    filenames = [f for f in os.listdir(USER_PATH) if os.path.isfile(USER_PATH + '/' + f)]
+    filenames = [f for f in os.listdir(
+        USER_PATH) if os.path.isfile(USER_PATH + '/' + f)]
     if len(filenames) > 0:
         return f"http://www.infokanal.com/images/{username}/{day_or_night}/{random.choice(filenames)}"
     else:
@@ -76,26 +86,25 @@ def retrieve_random_image(username: str, date) -> str:
 
 
 def filter_results(tweet_text, keywords) -> bool:
-
     for word in word_tokenize(tweet_text):
         for keyword in keywords:
-            
             if keyword == word or keyword.lower() == word or keyword.replace(' ', '') == word:
-                print((word, keyword))
-                print( keyword == word or keyword.lower() == word or keyword.replace(' ', '') == word)
                 return True
 
 
 def convert_to_RSS(item, keywords, fg):
-    if len(item['tweets']) > 0:
-        for tweet in item['tweets']:
-            if filter_results(tweet['full_text'], keywords) and is_date_in_range(tweet['created_at']):
-                dt = datetime.datetime.strptime(tweet['created_at'], '%a %b %d %H:%M:%S %z %Y')
-                prefix_time =  dt.strftime( "%H:%M")
+    global number_acc
+    tweet = item['tweets']
+    if filter_results(tweet['full_text'], keywords) and is_date_in_range(tweet['created_at']):
+                dt = datetime.datetime.strptime(
+                    tweet['created_at'], '%a %b %d %H:%M:%S %z %Y')
+                prefix_time = dt.strftime("%H:%M")
                 fe = fg.add_entry()
                 fe.id(tweet['id'])
-                fe.title(f"{item['prefix']} ({prefix_time}): {tweet['full_text']} {item['suffix']}")
-                fe.link(href="https://twitter.com/twitter/status/" + tweet['id'], rel='alternate')
+                fe.title(
+                    f"{item['prefix']} ({prefix_time}): {tweet['full_text']} {item['suffix']}")
+                fe.link(href="https://twitter.com/twitter/status/" +
+                        tweet['id'], rel='alternate')
                 # parse datetime string and localize to UTC
                 fe.pubDate(dt)
 
@@ -107,9 +116,12 @@ def convert_to_RSS(item, keywords, fg):
                 else:
                     result = retrieve_random_image(item['username'], dt)
                     if result:
-                        fe.media.thumbnail({'url': result, 'width': '200'}, group=None)
-                        fe.media.content({'url': result, 'width': '400'}, group=None)
-
+                        fe.media.thumbnail(
+                            {'url': result, 'width': '200'}, group=None)
+                        fe.media.content(
+                            {'url': result, 'width': '400'}, group=None)
+                
+                number_acc = number_acc + 1
 
     else:
         return
@@ -166,7 +178,6 @@ def print_tweets(res, users):
                         'id': entry.content.item_content.tweet_results.result.legacy.id_str,
                         'attachment': max_res
                     })
-        print("\n")
     return list_tweets
 
 
@@ -188,6 +199,16 @@ def get_data():
     return result
 
 
+def get_date(item):
+    return datetime.datetime.strptime(item['created_at'], '%a %b %d %H:%M:%S %z %Y')
+
+
+def find_account_by_username(username):
+    for account in twitter_accounts:
+        if account['username'] == username:
+            return account
+
+
 if __name__ == '__main__':
     fg = FeedGenerator()
     fg.load_extension("media", rss=True, atom=True)
@@ -196,18 +217,24 @@ if __name__ == '__main__':
     fg.link(href='http://infokanal.com/')
     fg.description('infokanal RSS feed')
     result = get_data()
-    for i in range(len(twitter_accounts)):
+    flat_result = [item for sublist in result for item in sublist]
+    flat_result.sort(key=get_date,reverse= True)
+    for i in range(len(flat_result)):
+        twitter_account_data = find_account_by_username(
+            flat_result[i]['username'])
+        if show_items is not None and number_acc == show_items :
+            break
         convert_to_RSS({
-            "username": twitter_accounts[i]['username'],
-            "tweets": result[i],
-            "prefix": twitter_accounts[i]['prefix'],
-            "suffix": twitter_accounts[i]['suffix']
+            "username": flat_result[i]['username'],
+            "tweets": flat_result[i],
+            "prefix": twitter_account_data['prefix'],
+            "suffix": twitter_account_data['suffix']
         }, haugaland_keywords, fg_haugaland)
         convert_to_RSS({
-            "username": twitter_accounts[i]['username'],
-            "tweets": result[i],
-            "prefix": twitter_accounts[i]['prefix'],
-            "suffix": twitter_accounts[i]['suffix']
+            "username": flat_result[i]['username'],
+            "tweets": flat_result[i],
+            "prefix": twitter_account_data['prefix'],
+            "suffix": twitter_account_data['suffix']
         }, sunnhordland_keywords, fg_sunnhordland)
 
     haugaland_list = fg_haugaland.entry()
@@ -218,6 +245,7 @@ if __name__ == '__main__':
     fg_haugaland.rss_str(pretty=True)
     fg_haugaland.rss_file('haugaland_rss.xml')
 
-    fg_sunnhordland.entry(sorted(fg_sunnhordland.entry(), key=lambda x: x.pubDate(), reverse=True), replace=True)
+    fg_sunnhordland.entry(sorted(fg_sunnhordland.entry(
+    ), key=lambda x: x.pubDate(), reverse=True), replace=True)
     fg_sunnhordland.rss_str(pretty=True)
     fg_sunnhordland.rss_file('sunnhordland_rss.xml')

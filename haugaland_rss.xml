@@ -1,2 +1,61 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>infokanal RSS feed</title><link>http://infokanal.com/</link><description>infokanal RSS feed</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><lastBuildDate>Fri, 05 May 2023 14:26:06 +0000</lastBuildDate><item><title>TRAFIKK (14:02): E39 Byfjordstunnelen i Stavanger er stengt pga bilstans.  Mastrafjordtunnelen er også stengt for å hindre at trafikken blir stående i tunnelen. Bilberger er på stedet og det er ventet at tunnelene åpner så snart bilberger er ferdig på stedet. (VEGVESEN/RADIO HAUGALAND)</title><link>https://twitter.com/twitter/status/1654486730215489542</link><guid isPermaLink="false">1654486730215489542</guid><pubDate>Fri, 05 May 2023 14:02:30 +0000</pubDate><media:content url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="400"/><media:thumbnail url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="200"/></item><item><title>SISTE FRA POLITIET (10:16): #Vindafjord. Melding om brann i bobil på E134 Haukelivegen 454 på Skjold. Bilen sperrer begge felt og det er kø på stedet. Nødetatene er på stedet. (POLITIET/RADIO HAUGALAND)</title><link>https://twitter.com/twitter/status/1654429745038196737</link><guid isPermaLink="false">1654429745038196737</guid><pubDate>Fri, 05 May 2023 10:16:03 +0000</pubDate><media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag14.jpg" width="400"/><media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag14.jpg" width="200"/></item><item><title>SISTE FRA POLITIET (05:38): #Stord. Politiet på til en adresse på Stord for å få kontroll på utagerende mann. Politiet rykker ut med flere patruljer. Oppdateres. (POLITIET/RADIO HAUGALAND)</title><link>https://twitter.com/twitter/status/1654359830583205888</link><guid isPermaLink="false">1654359830583205888</guid><pubDate>Fri, 05 May 2023 05:38:14 +0000</pubDate><media:content url="http://www.infokanal.com/images/politietsorvest/night/politi-natt.jpg" width="400"/><media:thumbnail url="http://www.infokanal.com/images/politietsorvest/night/politi-natt.jpg" width="200"/></item><item><title>TRAFIKK (05:19): E39 Byfjordtunnelen i Stavanger. Kjøretøy er nå fjernet og det er fri ferdsel (VEGVESEN/RADIO HAUGALAND)</title><link>https://twitter.com/twitter/status/1654355185177690112</link><guid isPermaLink="false">1654355185177690112</guid><pubDate>Fri, 05 May 2023 05:19:47 +0000</pubDate><media:content url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg" width="400"/><media:thumbnail url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg" width="200"/></item><item><title>TRAFIKK (04:44): E39 Byfjordtunnelen i Stavanger. Kjøretøy med stans i bakken på veg opp mot Stavanger. Senk farten og vis hensyn. Bilberger er bestilt. (VEGVESEN/RADIO HAUGALAND)</title><link>https://twitter.com/twitter/status/1654346320293900288</link><guid isPermaLink="false">1654346320293900288</guid><pubDate>Fri, 05 May 2023 04:44:33 +0000</pubDate><media:content url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg" width="400"/><media:thumbnail url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg" width="200"/></item></channel></rss>
+<rss xmlns:media="http://search.yahoo.com/mrss/"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+    <channel>
+        <title>infokanal RSS feed</title>
+        <link>http://infokanal.com/</link>
+        <description>infokanal RSS feed</description>
+        <docs>http://www.rssboard.org/rss-specification</docs>
+        <generator>python-feedgen</generator>
+        <lastBuildDate>Wed, 10 May 2023 10:47:18 +0000</lastBuildDate>
+        <item>
+            <title>SISTE FRA POLITIET (09:50): #Stord #Fitjar kl. 11.11 fikk vi melding fra brannvesenet at det har vært brann på et toalett på et offentlig bygg. Vi er nå på stedet for å undersøke. (POLITIET/RADIO HAUGALAND)</title>
+            <link>https://twitter.com/twitter/status/1656235290539728896</link>
+            <guid isPermaLink="false">1656235290539728896</guid>
+            <pubDate>Wed, 10 May 2023 09:50:39 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag22.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag22.jpg" width="200"/>
+        </item>
+        <item>
+            <title>SISTE FRA POLITIET (08:59): #Kvinnherad #Ytre-Matre - kl 1053 meldt om brann i eit skur. Beskrive som ei falleferdig rønne/skur ved Geitavika og det er opplyst at det ikkje skal vera folk inne der. Står fleire skur ved sida av ved andre, så fare for spreiing til desse. Politi og brannvesenet rykkjer ut. (POLITIET/RADIO HAUGALAND)</title>
+            <link>https://twitter.com/twitter/status/1656222372666507264</link>
+            <guid isPermaLink="false">1656222372666507264</guid>
+            <pubDate>Wed, 10 May 2023 08:59:19 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/politivest/day/politi-dag6.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/politivest/day/politi-dag6.jpg" width="200"/>
+        </item>
+        <item>
+            <title>TRAFIKK (05:42): E39 Mastrafjordtunnelen er åpnet igjen. (VEGVESEN/RADIO HAUGALAND)</title>
+            <link>https://twitter.com/twitter/status/1656172802850922499</link>
+            <guid isPermaLink="false">1656172802850922499</guid>
+            <pubDate>Wed, 10 May 2023 05:42:21 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg" width="200"/>
+        </item>
+        <item>
+            <title>TRAFIKK (05:18): E39 Mastrafjordtunnelen er stengt pga gjenstander i vegbanen. Vi har fått flere meldinger om bilister som har kjørt på en metallgjenstand som har smelt opp under bilene. Entr. er på veg og er fremme ca 0735. (VEGVESEN/RADIO HAUGALAND)</title>
+            <link>https://twitter.com/twitter/status/1656166816698232834</link>
+            <guid isPermaLink="false">1656166816698232834</guid>
+            <pubDate>Wed, 10 May 2023 05:18:33 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg" width="200"/>
+        </item>
+        <item>
+            <title>TRAFIKK (17:26): E134 Røldalstunnelen er nå åpnet for trafikk igjen. Refleksplaten på markeringsskiltet har ramlet ned, mens resten av høydebegrenseren henger slik den skal. Entreprenøren vil rydde bort refleksplaten. Høydebegrenseren vil bli reparert ved en annen anledning. (VEGVESEN/RADIO HAUGALAND)</title>
+            <link>https://twitter.com/twitter/status/1655987551436406807</link>
+            <guid isPermaLink="false">1655987551436406807</guid>
+            <pubDate>Tue, 09 May 2023 17:26:13 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="200"/>
+        </item>
+        <item>
+            <title>TRAFIKK (15:03): E39 Mastrafjordtunnelen er åpnet for fri ferdsel etter at en personbil mistet et dekk. (VEGVESEN/RADIO HAUGALAND)</title>
+            <link>https://twitter.com/twitter/status/1655951610059841537</link>
+            <guid isPermaLink="false">1655951610059841537</guid>
+            <pubDate>Tue, 09 May 2023 15:03:24 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="200"/>
+        </item>
+    </channel>
+</rss>
