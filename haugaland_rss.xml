@@ -8,44 +8,45 @@
         <description>infokanal RSS feed</description>
         <docs>http://www.rssboard.org/rss-specification</docs>
         <generator>python-feedgen</generator>
-        <lastBuildDate>Wed, 10 May 2023 11:55:43 +0000</lastBuildDate>
+        <lastBuildDate>Thu, 08 Jun 2023 03:31:04 +0000</lastBuildDate>
         <item>
-            <title>SISTE FRA POLITIET (09:50): #Stord #Fitjar kl. 11.11 fikk vi melding fra brannvesenet at det har vært brann på et toalett på et offentlig bygg. Vi er nå på stedet for å undersøke. (POLITIET/RADIO HAUGALAND)</title>
-            <link>https://twitter.com/twitter/status/1656235290539728896</link>
-            <guid isPermaLink="false">1656235290539728896</guid>
-            <pubDate>Wed, 10 May 2023 09:50:39 +0000</pubDate>
-            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag17.jpg" width="400"/>
-            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag17.jpg" width="200"/>
+            <title>SISTE FRA POLITIET (20:11): #Etne: i Vikedal i Fjellgardsvegen har det vært brann i en rullballpresse. Melder har slukket brannen selv. Ingen er skadet. (POLITIET/RADIO HAUGALAND)</title>
+            <link>https://twitter.com/twitter/status/1666508226932645903</link>
+            <guid isPermaLink="false">1666508226932645903</guid>
+            <pubDate>Wed, 07 Jun 2023 20:11:38 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/politietsorvest/night/politi-natt9.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/night/politi-natt9.jpg" width="200"/>
         </item>
         <item>
-            <title>SISTE FRA POLITIET (08:59): #Kvinnherad #Ytre-Matre - kl 1053 meldt om brann i eit skur. Beskrive som ei falleferdig rønne/skur ved Geitavika og det er opplyst at det ikkje skal vera folk inne der. Står fleire skur ved sida av ved andre, så fare for spreiing til desse. Politi og brannvesenet rykkjer ut. (POLITIET/RADIO HAUGALAND)</title>
-            <link>https://twitter.com/twitter/status/1656222372666507264</link>
-            <guid isPermaLink="false">1656222372666507264</guid>
-            <pubDate>Wed, 10 May 2023 08:59:19 +0000</pubDate>
-            <media:content url="http://www.infokanal.com/images/politivest/day/politi-dag6.jpg" width="400"/>
-            <media:thumbnail url="http://www.infokanal.com/images/politivest/day/politi-dag6.jpg" width="200"/>
+            <title>SISTE FRA BRANNVESENET (19:22): #Vindafjord kl 19:15 - Melding om brann i rundballepresse, Movegen ved Låkafossen. Mannskap fra Sandeid stasjon rykker ut. (110-SENTRALEN/RADIO HAUGALAND)</title>
+            <link>https://twitter.com/twitter/status/1666495844214792208</link>
+            <guid isPermaLink="false">1666495844214792208</guid>
+            <pubDate>Wed, 07 Jun 2023 19:22:25 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/110SorVest/day/brannvesen2-e1537647971169.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/110SorVest/day/brannvesen2-e1537647971169.jpg" width="200"/>
         </item>
         <item>
-            <title>TRAFIKK (05:42): E39 Mastrafjordtunnelen er åpnet igjen. (VEGVESEN/RADIO HAUGALAND)</title>
-            <link>https://twitter.com/twitter/status/1656172802850922499</link>
-            <guid isPermaLink="false">1656172802850922499</guid>
-            <pubDate>Wed, 10 May 2023 05:42:21 +0000</pubDate>
-            <media:content url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg" width="400"/>
-            <media:thumbnail url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg" width="200"/>
+            <title>SISTE FRA BRANNVESENET (17:59): #Sveio kl 17.53 Brannvesenet rykker ut på bygningsbrann.Hjartåsvegen
+Mannskaper i fra Førde stasjon rykker ut. (110-SENTRALEN/RADIO HAUGALAND)</title>
+            <link>https://twitter.com/twitter/status/1666475085069164546</link>
+            <guid isPermaLink="false">1666475085069164546</guid>
+            <pubDate>Wed, 07 Jun 2023 17:59:56 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/110SorVest/day/52103912924_4f7ee4070c_k.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/110SorVest/day/52103912924_4f7ee4070c_k.jpg" width="200"/>
         </item>
         <item>
-            <title>TRAFIKK (05:18): E39 Mastrafjordtunnelen er stengt pga gjenstander i vegbanen. Vi har fått flere meldinger om bilister som har kjørt på en metallgjenstand som har smelt opp under bilene. Entr. er på veg og er fremme ca 0735. (VEGVESEN/RADIO HAUGALAND)</title>
-            <link>https://twitter.com/twitter/status/1656166816698232834</link>
-            <guid isPermaLink="false">1656166816698232834</guid>
-            <pubDate>Wed, 10 May 2023 05:18:33 +0000</pubDate>
-            <media:content url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg" width="400"/>
-            <media:thumbnail url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg" width="200"/>
+            <title>TRAFIKK (17:01): F4802 Spanne kryss i Karmøy. Kjøretøyene er fjernet og vegen er åpen for fri ferdsel. (VEGVESEN/RADIO HAUGALAND)</title>
+            <link>https://twitter.com/twitter/status/1666460404892024835</link>
+            <guid isPermaLink="false">1666460404892024835</guid>
+            <pubDate>Wed, 07 Jun 2023 17:01:36 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="200"/>
         </item>
         <item>
-            <title>TRAFIKK (17:26): E134 Røldalstunnelen er nå åpnet for trafikk igjen. Refleksplaten på markeringsskiltet har ramlet ned, mens resten av høydebegrenseren henger slik den skal. Entreprenøren vil rydde bort refleksplaten. Høydebegrenseren vil bli reparert ved en annen anledning. (VEGVESEN/RADIO HAUGALAND)</title>
-            <link>https://twitter.com/twitter/status/1655987551436406807</link>
-            <guid isPermaLink="false">1655987551436406807</guid>
-            <pubDate>Tue, 09 May 2023 17:26:13 +0000</pubDate>
+            <title>TRAFIKK (16:44): E134 Raglamyrvegen i Haugesund: Vegen er åpen for fri ferdsel etter trafikkuhellet. (VEGVESEN/RADIO HAUGALAND)</title>
+            <link>https://twitter.com/twitter/status/1666456003250929665</link>
+            <guid isPermaLink="false">1666456003250929665</guid>
+            <pubDate>Wed, 07 Jun 2023 16:44:07 +0000</pubDate>
             <media:content url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="400"/>
             <media:thumbnail url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="200"/>
         </item>

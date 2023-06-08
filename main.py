@@ -102,7 +102,9 @@ def convert_to_RSS(item, keywords, fg, acc_type):
     if filter_results(tweet['full_text'], keywords) and is_date_in_range(tweet['created_at']):
         dt = datetime.datetime.strptime(
             tweet['created_at'], '%a %b %d %H:%M:%S %z %Y')
-        prefix_time = dt.strftime("%H:%M")
+        new_dt = dt + datetime.timedelta(hours=2)
+
+        prefix_time = new_dt.strftime("%H:%M")
         fe = fg.add_entry()
         fe.id(tweet['id'])
         fe.title(
@@ -110,7 +112,7 @@ def convert_to_RSS(item, keywords, fg, acc_type):
         fe.link(href="https://twitter.com/twitter/status/" +
                 tweet['id'], rel='alternate')
         # parse datetime string and localize to UTC
-        fe.pubDate(dt)
+        fe.pubDate(new_dt)
 
         if tweet['attachment']:
             fe.media.thumbnail({'url': tweet['attachment'], 'width': '200'},
@@ -253,7 +255,6 @@ if __name__ == '__main__':
     fg_haugaland.rss_str(pretty=True)
     fg_haugaland.rss_file('haugaland_rss.xml')
 
-    fg_sunnhordland.entry(sorted(fg_sunnhordland.entry(
-    ), key=lambda x: x.pubDate(), reverse=True), replace=True)
+    fg_sunnhordland.entry(sorted(fg_sunnhordland.entry(), key=lambda x: x.pubDate(), reverse=True), replace=True)
     fg_sunnhordland.rss_str(pretty=True)
     fg_sunnhordland.rss_file('sunnhordland_rss.xml')

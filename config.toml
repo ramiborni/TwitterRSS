@@ -1,5 +1,5 @@
 [scrapper_config]
-within_time = "24h"
+within_time = "3"
 show_items = 5
 haugaland_keywords = [ "Haugesund", "Karmøy", "Tysvær", "Sveio", "Utsira", "Bokn", "Vindafjord", "Etne", "Vikedal", "Sandeid", "Sand", "Suldal", "Sauda", "Karmsund", "Risøy", "Hasseløy", "Bakarøy", "Karmsundgata", "Spannavegen", "Bømlo", "Stord", "Fitjar", "Kvinnherad", "Bømlafjordtunnelen", "Bømlafjorden", "Langevåg", "Buavåg", "Leirvik", "Sagvåg", "Mastrafjordtunnelen", "Byfjordtunnelen", "Uføretunnelen", "Røldalstunnelen", "Seljestadtunnelen", "Haukelitunnelen", "Bremnes", "Huglo",]
 sunnhordland_keywords = [ "Sveio", "Stord", "Bømlo", "Bømlafjorden", "Bømlabroa", "Bømlafjordtunnelen", "Fitjar", "Kvinnherad", "Leirvik", "Bremnesvegen", "Langevåg", "Buavåg", "Bremnes", "Huglo",]
