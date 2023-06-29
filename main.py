@@ -82,9 +82,6 @@ def retrieve_random_image(username: str, date) -> str:
 
 
 def filter_results(tweet_text, keywords) -> bool:
-    if tweet_text == '#VestPD Vinglebilar: E16 Arna; turistar frå annan verdsdel. E16 Lærdal; trailersjåfør frå anna europeisk land. E39 Alver: lokal sjåfør, ukjend årsak. Alle blåse til edru og forklart/formant om køyring på vestlandet/Noreg.':
-        print("bo founded !!")
-
     for word in word_tokenize(tweet_text):
         for keyword in keywords:
             if keyword == word or keyword.lower() == word or keyword.replace(' ',
@@ -130,7 +127,6 @@ def convert_to_RSS(item, keywords, fg, acc_type):
                 (index for index, category in enumerate(list_categories) if category["category_name"] == acc_type),
                 None)
         number_acc[acc_type_index] = number_acc[acc_type_index] + 1
-        print(number_acc)
     else:
         return
 
@@ -245,6 +241,5 @@ if __name__ == '__main__':
                 feed_generators[index].rss_str(pretty=True)
                 feed_generators[index].rss_file(f'./rss/{category["category_name"]}_rss.xml')
 
-    print(number_acc)
 
 
