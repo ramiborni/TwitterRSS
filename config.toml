@@ -1,8 +1,100 @@
 [scrapper_config]
-within_time = "3"
-show_items = 5
-haugaland_keywords = [ "Haugesund", "Karmøy", "Tysvær", "Sveio", "Utsira", "Bokn", "Vindafjord", "Etne", "Vikedal", "Sandeid", "Sand", "Suldal", "Sauda", "Karmsund", "Risøy", "Hasseløy", "Bakarøy", "Karmsundgata", "Spannavegen", "Bømlo", "Stord", "Fitjar", "Kvinnherad", "Bømlafjordtunnelen", "Bømlafjorden", "Langevåg", "Buavåg", "Leirvik", "Sagvåg", "Mastrafjordtunnelen", "Byfjordtunnelen", "Uføretunnelen", "Røldalstunnelen", "Seljestadtunnelen", "Haukelitunnelen", "Bremnes", "Huglo",]
-sunnhordland_keywords = [ "Sveio", "Stord", "Bømlo", "Bømlafjorden", "Bømlabroa", "Bømlafjordtunnelen", "Fitjar", "Kvinnherad", "Leirvik", "Bremnesvegen", "Langevåg", "Buavåg", "Bremnes", "Huglo",]
+within_time = "12h"
+show_items = 8
+
+[[scrapper_config.categories]]
+category_name = "haugaland"
+page_title = "Aktuelt Haugalandet"
+page_title_horizontal = "SISTE PÂ AKTUELT HAUGALANDET"
+keywords = [
+    "Haugesund",
+    "Karmøy",
+    "Tysvær",
+    "Sveio",
+    "Utsira",
+    "Bokn",
+    "Vindafjord",
+    "Etne",
+    "Vikedal",
+    "Suldal",
+    "Sauda",
+    "Karmsund",
+    "Risøy",
+    "Hasseløy",
+    "Bakarøy",
+    "Karmsundgata",
+    "Spannavegen",
+    "Bømlo",
+    "Stord",
+    "Fitjar",
+    "Kvinnherad",
+    "Bømlafjordtunnelen",
+    "Bømlafjorden",
+    "Langevåg",
+    "Buavåg",
+    "Leirvik",
+    "Sagvåg",
+    "Mastrafjordtunnelen",
+    "Byfjordtunnelen",
+    "Uføretunnelen",
+    "Røldalstunnelen",
+    "Seljestadtunnelen",
+    "Bremnes",
+    "Huglo",
+    "Ølvesvegen",
+    "Hatlestrand",
+    "Håvika",
+    "Sand",
+    "Førlandsvegen",
+    "Skjold",
+    "Hardangervidda",
+    "Haukelifjell",
+    "Haukeli ",
+    "Seljestad ",
+    "Nordsjøen",
+    "Nordsj",
+    "ldalstunnelen",
+    "Odda",
+    "Ullensvang",
+    "Hardanger",
+    "Tyssedal",
+    "Trolltunga",
+    "#Stord",
+    "Aker",
+    "Solutions",
+    "Eldøyane",
+    "Kopervik",
+    "#Kopervik",
+    "Fotvatnet",
+    "E16",
+    "#E39"
+]
+
+[[scrapper_config.categories]]
+category_name = "sunnhordland"
+page_title = "Aktuelt Sunnhordland"
+page_title_horizontal = "SISTE PÂ AKTUELT SUNNHORDLAND"
+keywords = [
+    "Sveio",
+    "Stord",
+    "Bømlo",
+    "Bømlafjorden",
+    "Bømlabroa",
+    "Bømlafjordtunnelen",
+    "Fitjar",
+    "Kvinnherad",
+    "Leirvik",
+    "Bremnesvegen",
+    "Langevåg",
+    "Buavåg",
+    "Bremnes",
+    "Huglo",
+    "Ølvesvegen",
+    "Hatlestrand",
+    "Håvika",
+    "Tysnes",
+]
+
 
 [[scrapper_config.twitter_accounts]]
 username = "politietsorvest"
