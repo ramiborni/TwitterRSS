@@ -57,18 +57,17 @@ keywords = [
     "Odda",
     "Ullensvang",
     "Hardanger",
-    "Tyssedal",
-    "Trolltunga",
+    " Tyssedal",
+    " Trolltunga",
     "#Stord",
     "Aker",
     "Solutions",
     "Eldøyane",
     "Kopervik",
     "#Kopervik",
-    "Fotvatnet",
-    "E16",
-    "#E39"
+    "Fotvatnet"
 ]
+
 
 [[scrapper_config.categories]]
 category_name = "sunnhordland"
@@ -92,7 +91,7 @@ keywords = [
     "Ølvesvegen",
     "Hatlestrand",
     "Håvika",
-    "Tysnes",
+    "Tysnes"
 ]
 
 
