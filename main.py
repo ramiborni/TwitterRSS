@@ -86,7 +86,7 @@ def filter_results(tweet_text, keywords) -> bool:
         for keyword in keywords:
             if keyword == word or keyword.lower() == word or keyword.replace(' ',
                                                                              '') == word or keyword.lower() == word.replace(
-                    "#", "").lower():
+                "#", "").lower():
                 return True
 
 
@@ -124,8 +124,8 @@ def convert_to_RSS(item, keywords, fg, acc_type):
                     {'url': result, 'width': '400'}, group=None)
 
         acc_type_index = next(
-                (index for index, category in enumerate(list_categories) if category["category_name"] == acc_type),
-                None)
+            (index for index, category in enumerate(list_categories) if category["category_name"] == acc_type),
+            None)
         number_acc[acc_type_index] = number_acc[acc_type_index] + 1
     else:
         return
@@ -217,6 +217,17 @@ def find_account_by_username(username):
             return account
 
 
+def replace_placeholders(template_file, replacements, output_file):
+    with open(template_file, 'r') as file:
+        template = file.read()
+
+    for placeholder, value in replacements.items():
+        template = template.replace('{' + placeholder + '}', value)
+
+    with open(output_file, 'w') as file:
+        file.write(template)
+
+
 if __name__ == '__main__':
     result = get_data()
     flat_result = [item for sublist in result for item in sublist]
@@ -236,10 +247,21 @@ if __name__ == '__main__':
                     "prefix": twitter_account_data['prefix'],
                     "suffix": twitter_account_data['suffix']
                 }, category['keywords'], feed_generators[index], category['category_name'])
-                feed_list = feed_generators[index].entry()
-                feed_generators[index].entry(sorted(feed_list, key=lambda x: x.pubDate(), reverse=True), replace=True)
-                feed_generators[index].rss_str(pretty=True)
-                feed_generators[index].rss_file(f'./rss/{category["category_name"]}_rss.xml')
 
-
-
+    for i in range(len(list_categories)):
+        category = list_categories[i]
+        feed_list = feed_generators[i].entry()
+        feed_generators[i].entry(sorted(feed_list, key=lambda x: x.pubDate(), reverse=True), replace=True)
+        feed_generators[i].rss_str(pretty=True)
+        feed_generators[i].rss_file(f'./rss/{category["category_name"]}_rss.xml')
+        replaces = {
+            "category_name": category["category_name"],
+            "category_name_uppercase": category["category_name"].capitalize(),
+            "title": category["page_title"],
+            "title_horizontal": category["page_title_horizontal"],
+        }
+        replace_placeholders("./templates/template_vertical.html", replaces,
+                             f"./web-pages/{category['category_name']}.html")
+        replace_placeholders("./templates/template_horizantal.html", replaces,
+                             f"./web-pages/{category['category_name']}_horizontal.html")
+        replace_placeholders("./templates/template.js", replaces, f"./web-pages/{category['category_name']}.js")
