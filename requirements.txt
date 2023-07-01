@@ -26,7 +26,7 @@ regex==2023.3.23
 six==1.16.0
 sniffio==1.3.0
 tqdm==4.65.0
-twitter-api-client==0.7.7
+twitter-api-client==0.10.5
 tzdata==2023.3
 uvloop==0.17.0
 yarl==1.9.2

@@ -1,2 +1,100 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>infokanal haugaland RSS feed</title><link>https://www.infokanal.com/haugaland_rss.xml</link><description>infokanal RSS feed for haugaland</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><lastBuildDate>Fri, 30 Jun 2023 00:44:21 +0000</lastBuildDate><item><title>TRAFIKK (00:26): E16 Arnanipatunnelen: Åpnet, fri ferdsel. (VEGVESEN/RADIO HAUGALAND)</title><link>https://twitter.com/twitter/status/1674544993539698691</link><guid isPermaLink="false">1674544993539698691</guid><pubDate>Fri, 30 Jun 2023 00:26:52 +0000</pubDate><media:content url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg" width="400"/><media:thumbnail url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg" width="200"/></item><item><title>TRAFIKK (23:09): E16 Arnanipatunnelen: Vil bli en kort stenging av tunnelen kl:2330. grunnet akutt vedlikehold. (VEGVESEN/RADIO HAUGALAND)</title><link>https://twitter.com/twitter/status/1674525559529799683</link><guid isPermaLink="false">1674525559529799683</guid><pubDate>Thu, 29 Jun 2023 23:09:39 +0000</pubDate><media:content url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg" width="400"/><media:thumbnail url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg" width="200"/></item><item><title>SISTE FRA BRANNVESENET (18:37): #Stord kl 18:32 - Melding om trafikkulykke Sagvågsbrekko. Mannskap fra Leirvik stasjon rykker ut. (110-SENTRALEN/RADIO HAUGALAND)</title><link>https://twitter.com/twitter/status/1674457081888362496</link><guid isPermaLink="false">1674457081888362496</guid><pubDate>Thu, 29 Jun 2023 18:37:32 +0000</pubDate><media:content url="http://www.infokanal.com/images/110SorVest/day/52104178980_6ec9f9ec6f_k.jpg" width="400"/><media:thumbnail url="http://www.infokanal.com/images/110SorVest/day/52104178980_6ec9f9ec6f_k.jpg" width="200"/></item><item><title>SISTE FRA POLITIET (09:22): #Stord kl. 0800-0900 gjennomført politipatruljene en ruskontroll på E39 Heiane. 147 førere ble kontrollert. Ingen reaksjoner. (POLITIET/RADIO HAUGALAND)</title><link>https://twitter.com/twitter/status/1674317517362176000</link><guid isPermaLink="false">1674317517362176000</guid><pubDate>Thu, 29 Jun 2023 09:22:58 +0000</pubDate><media:content url="http://www.infokanal.com/images/politietsorvest/day/politi3-e1501702962621.jpg" width="400"/><media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi3-e1501702962621.jpg" width="200"/></item><item><title>TRAFIKK (23:52): E39 Bømlafjordtunnelen. Kort stenging mens bilberging pågår fra ca. kl. 24:00. (VEGVESEN/RADIO HAUGALAND)</title><link>https://twitter.com/twitter/status/1674173926186909696</link><guid isPermaLink="false">1674173926186909696</guid><pubDate>Wed, 28 Jun 2023 23:52:23 +0000</pubDate><media:content url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg" width="400"/><media:thumbnail url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg" width="200"/></item><item><title>SISTE FRA POLITIET (13:29): #VestPD Vinglebilar: E16 Arna; turistar frå annan verdsdel. E16 Lærdal; trailersjåfør frå anna europeisk land. E39 Alver: lokal sjåfør, ukjend årsak. Alle blåse til edru og forklart/formant om køyring på vestlandet/Noreg. (POLITIET/RADIO HAUGALAND)</title><link>https://twitter.com/twitter/status/1674017238276251649</link><guid isPermaLink="false">1674017238276251649</guid><pubDate>Wed, 28 Jun 2023 13:29:45 +0000</pubDate><media:content url="http://www.infokanal.com/images/politivest/day/high_tb73a395.jpg" width="400"/><media:thumbnail url="http://www.infokanal.com/images/politivest/day/high_tb73a395.jpg" width="200"/></item><item><title>SISTE FRA POLITIET (11:05): #Haugesund kl. 1057 Melding om arbeidsulykke på en båt som ligger til kai i Haugesund sentrum. En mann har kuttet seg i en finger. Ambulanse og politiet er på vei til stedet. (POLITIET/RADIO HAUGALAND)</title><link>https://twitter.com/twitter/status/1673980987045289986</link><guid isPermaLink="false">1673980987045289986</guid><pubDate>Wed, 28 Jun 2023 11:05:43 +0000</pubDate><media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag11.jpg" width="400"/><media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag11.jpg" width="200"/></item><item><title>SISTE FRA BRANNVESENET (09:25): #Karmøy kl 09:19 - Melding om brann i Dovafjellvegen på Karmsund. Skal brenne i en brødrister, denne er kastet ut av huset. Mannskap fra Haugesund og Vormedal stasjon rykker ut. (110-SENTRALEN/RADIO HAUGALAND)</title><link>https://twitter.com/twitter/status/1673955696029696002</link><guid isPermaLink="false">1673955696029696002</guid><pubDate>Wed, 28 Jun 2023 09:25:13 +0000</pubDate><media:content url="http://www.infokanal.com/images/110SorVest/day/brannbil.jpg" width="400"/><media:thumbnail url="http://www.infokanal.com/images/110SorVest/day/brannbil.jpg" width="200"/></item></channel></rss>
+<rss xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+    <channel>
+        <title>infokanal haugaland RSS feed</title>
+        <link>https://www.infokanal.com/haugaland_rss.xml</link>
+        <description>infokanal RSS feed for haugaland</description>
+        <docs>http://www.rssboard.org/rss-specification</docs>
+        <generator>python-feedgen</generator>
+        <lastBuildDate>Sat, 01 Jul 2023 09:23:28 +0000</lastBuildDate>
+        <item>
+            <title>TRAFIKK (14:42): E39 Byfjordtunnelen er stengt pga stanset kjøretøy i veibanen (VEGVESEN/RADIO
+                HAUGALAND)
+            </title>
+            <link>https://twitter.com/twitter/status/1674760357246558212</link>
+            <guid isPermaLink="false">1674760357246558212</guid>
+            <pubDate>Fri, 30 Jun 2023 14:42:39 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="200"/>
+        </item>
+        <item>
+            <title>TRAFIKK (15:00): E39 Byfjordtunnelen; åpen for trafikk etter bilberging. (VEGVESEN/RADIO HAUGALAND)
+            </title>
+            <link>https://twitter.com/twitter/status/1674764738868264962</link>
+            <guid isPermaLink="false">1674764738868264962</guid>
+            <pubDate>Fri, 30 Jun 2023 15:00:04 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="200"/>
+        </item>
+        <item>
+            <title>TRAFIKK (15:15): E39 Byfjordtunnelen; Stavanger; stengt pga bilberging. (VEGVESEN/RADIO HAUGALAND)
+            </title>
+            <link>https://twitter.com/twitter/status/1674768727974244352</link>
+            <guid isPermaLink="false">1674768727974244352</guid>
+            <pubDate>Fri, 30 Jun 2023 15:15:55 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="200"/>
+        </item>
+        <item>
+            <title>SISTE FRA POLITIET (15:21): #Stord @Utrykningspol har nylig gjennomført laserkontroll i 80-sone, E39
+                Agdestein. Syv førere fikk forenklet forelegg. Høyeste hastighet ble målt til 105 km/t. (POLITIET/RADIO
+                HAUGALAND)
+            </title>
+            <link>https://twitter.com/twitter/status/1674770018997813248</link>
+            <guid isPermaLink="false">1674770018997813248</guid>
+            <pubDate>Fri, 30 Jun 2023 15:21:02 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag7.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag7.jpg" width="200"/>
+        </item>
+        <item>
+            <title>SISTE FRA POLITIET (15:21): #Stord @Utrykningspol har nylig gjennomført laserkontroll i 80-sone, E39
+                Agdestein. Syv førere fikk forenklet forelegg. Høyeste hastighet ble målt til 105 km/t. (POLITIET/RADIO
+                HAUGALAND)
+            </title>
+            <link>https://twitter.com/twitter/status/1674770018997813248</link>
+            <guid isPermaLink="false">1674770018997813248</guid>
+            <pubDate>Fri, 30 Jun 2023 15:21:02 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politibil-2-e1533475423360.jpg"
+                           width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politibil-2-e1533475423360.jpg"
+                             width="200"/>
+        </item>
+        <item>
+            <title>SISTE FRA BRANNVESENET (23:16): #Sauda kl 23:07 - Melding om brann fra noen mindre gassflasker i
+                Birkelandsvegen. Mannskap fra Sauda stasjon rykker ut. (110-SENTRALEN/RADIO HAUGALAND)
+            </title>
+            <link>https://twitter.com/twitter/status/1674889688065220614</link>
+            <guid isPermaLink="false">1674889688065220614</guid>
+            <pubDate>Fri, 30 Jun 2023 23:16:34 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/110SorVest/night/brannvesen-e1537647948173.jpg"
+                           width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/110SorVest/night/brannvesen-e1537647948173.jpg"
+                             width="200"/>
+        </item>
+        <item>
+            <title>TRAFIKK (01:12): E16 Fretheimtunnelen og Onstadtunnelen er stengt grunnet steinras over veibanen i
+                Flom. Veien blir stengt i hele natt.
+                Omkjøring blir via Rv7 Hardangervidda. (VEGVESEN/RADIO HAUGALAND)
+            </title>
+            <link>https://twitter.com/twitter/status/1674918936498896896</link>
+            <guid isPermaLink="false">1674918936498896896</guid>
+            <pubDate>Sat, 01 Jul 2023 01:12:47 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg"
+                           width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg"
+                             width="200"/>
+        </item>
+        <item>
+            <title>TRAFIKK (10:10): E16 Fretheimtunnelen og Onstadtunnelen er stengt grunnet steinras over veibanen i
+                Flom. Omkjøring via Rv7 Hardangervidda eller via Rv13 Sogndal. Ny vurdering mandag. (VEGVESEN/RADIO
+                HAUGALAND)
+            </title>
+            <link>https://twitter.com/twitter/status/1675054369153196033</link>
+            <guid isPermaLink="false">1675054369153196033</guid>
+            <pubDate>Sat, 01 Jul 2023 10:10:57 +0000</pubDate>
+            <media:content url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="200"/>
+        </item>
+    </channel>
+</rss>

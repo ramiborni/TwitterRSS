@@ -9,8 +9,9 @@ import pytz
 from feedgen.feed import FeedGenerator
 import tomllib
 from nltk.tokenize import word_tokenize
-from twitter.scraper import Scraper
 from twitter_data import twitter_data_from_dict
+from twitter.search import Search
+from functions import extract_data
 
 TWINT_API_DIR = Path(__file__).parent
 
@@ -22,7 +23,8 @@ list_categories = config["scrapper_config"]["categories"]
 
 twitter_accounts = config['scrapper_config']['twitter_accounts']
 within_time = config['scrapper_config']['within_time']
-show_items = (config['scrapper_config']['show_items'])
+show_items = config['scrapper_config']['show_items']
+
 if show_items == {} or show_items == 0:
     show_items = None
 
@@ -189,22 +191,58 @@ def print_tweets(res, users):
     return list_tweets
 
 
+def convert_within_time(within_time):
+    range_value, range_unit = int(within_time[:-1]), within_time[-1]
+
+    now = datetime.datetime.now()
+
+    if range_unit == "h":
+        time_delta = datetime.timedelta(hours=range_value)
+    elif range_unit == "d":
+        time_delta = datetime.timedelta(days=range_value)
+    elif range_unit == "m":
+        time_delta = datetime.timedelta(days=range_value * 30)
+    else:
+        raise ValueError("Invalid date range format")
+
+    past_date = now - time_delta
+    return past_date.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
 def get_data():
-    email, username, password = "ramyborni", "rikiraspoutine@gmail.com", "Raspoutine@5353"
+    list_tweets = []
+    limit = 100
+    twitter_accounts_usernames = ' OR from:'.join([twitter_account["username"] for twitter_account in twitter_accounts])
 
-    scraper = Scraper(email, username, password, debug=1, save=False)
-    users = scraper.users([user['username'] for user in twitter_accounts])
+    if show_items is not None:
+        limit = show_items
 
-    users_id = get_rest_ids(users)
+    for i in range(len(number_acc)):
+        keywords = list_categories[i]['keywords']
 
-    tweets = scraper.tweets([user['rest_id'] for user in users_id], limit=1000)
+        search = Search(cookies="twitter.cookies", debug=1, save=False)
+        split_arrays = [keywords[i:i + 5] for i in range(0, len(keywords), 5)]
+        args = []
 
-    result = []
-    for tweet_data in twitter_data_from_dict(tweets):
-        for tweets in tweet_data:
-            result.append(print_tweets(tweets, users_id))
+        for arr in split_arrays:
+            query_string = ""
+            if show_items is None:
+                query_string = f"from:{twitter_accounts_usernames} ({' OR '.join(arr)}) since:{convert_within_time}"
+            else:
+                query_string = f"from:{twitter_accounts_usernames} ({' OR '.join(arr)})"
 
-    return result
+            args.append(query_string)
+
+        latest_results = search.run(
+            *args,
+            latest=True,
+            limit=limit,
+            retries=1,
+            debug=1,
+        )
+        list_tweets.append(extract_data(latest_results,show_items))
+
+    return list_tweets
 
 
 def get_date(item):
@@ -230,28 +268,31 @@ def replace_placeholders(template_file, replacements, output_file):
 
 if __name__ == '__main__':
     result = get_data()
-    flat_result = [item for sublist in result for item in sublist]
-    flat_result.sort(key=get_date, reverse=True)
     twitter_account_data = []
-    for i in range(len(flat_result)):
-        twitter_account_data = find_account_by_username(flat_result[i]['username'])
-        if show_items is not None and all(item == show_items for item in number_acc):
-            break
-
-        for index in range(len(list_categories)):
-            if number_acc[index] != show_items:
-                category = list_categories[index]
-                convert_to_RSS({
-                    "username": flat_result[i]['username'],
-                    "tweets": flat_result[i],
-                    "prefix": twitter_account_data['prefix'],
-                    "suffix": twitter_account_data['suffix']
-                }, category['keywords'], feed_generators[index], category['category_name'])
 
     for i in range(len(list_categories)):
         category = list_categories[i]
-        feed_list = feed_generators[i].entry()
-        feed_generators[i].entry(sorted(feed_list, key=lambda x: x.pubDate(), reverse=True), replace=True)
+
+        for tweet in result[i]:
+            try:
+                if tweet is None:
+                    continue
+
+                twitter_account_data = find_account_by_username(tweet['username'])
+                print(tweet['username'], twitter_account_data)
+
+                convert_to_RSS({
+                    "username": tweet['username'],
+                    "tweets": tweet,
+                    "prefix": twitter_account_data['prefix'],
+                    "suffix": twitter_account_data['suffix']
+                }, category['keywords'], feed_generators[i], category['category_name'])
+            except:
+                result[i].remove(tweet)
+                continue
+
+        #feed_list = feed_generators[i].entry()
+        #feed_generators[i].entry(, replace=True)
         feed_generators[i].rss_str(pretty=True)
         feed_generators[i].rss_file(f'./rss/{category["category_name"]}_rss.xml')
         replaces = {
