@@ -13,8 +13,6 @@ from twitter_data import twitter_data_from_dict
 from twitter.search import Search
 from functions import extract_data
 
-TWINT_API_DIR = Path(__file__).parent
-
 # read configuration
 with open("config.toml", "rb") as f:
     config = tomllib.load(f)
@@ -279,7 +277,6 @@ if __name__ == '__main__':
                     continue
 
                 twitter_account_data = find_account_by_username(tweet['username'])
-                print(tweet['username'], twitter_account_data)
 
                 convert_to_RSS({
                     "username": tweet['username'],
@@ -291,8 +288,8 @@ if __name__ == '__main__':
                 result[i].remove(tweet)
                 continue
 
-        #feed_list = feed_generators[i].entry()
-        #feed_generators[i].entry(, replace=True)
+        feed_list = feed_generators[i].entry()
+        feed_generators[i].entry(sorted(feed_list, key=lambda x: x.pubDate(), reverse=True), replace=True)
         feed_generators[i].rss_str(pretty=True)
         feed_generators[i].rss_file(f'./rss/{category["category_name"]}_rss.xml')
         replaces = {

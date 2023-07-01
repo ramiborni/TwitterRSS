@@ -28,9 +28,12 @@ def extract_data(latest_results, max_items, date_threshold=None):
     sorted_data = sorted(extracted_data,
                          key=lambda x: datetime.strptime(x['created_at'], "%a %b %d %H:%M:%S %z %Y"),
                          reverse=True)
+
+    unique_data = list({obj['full_text']: obj for obj in sorted_data}.values())
+
     if max_items is not None:
-        return sorted_data[:max_items]
-    return sorted_data
+        return unique_data[:max_items]
+    return unique_data
 
 
 def is_created_after(created_at, date_threshold=None):
