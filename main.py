@@ -210,7 +210,7 @@ def get_data():
     scraper = Scraper(cookies={
         "ct0": os.environ.get("TWITTER_CT0"),
         "auth_token": os.environ.get("TWITTER_AUTH_TOKEN")
-    }, debug=1, save=True)
+    }, debug=1, save=False)
 
     users = scraper.users([user['username'] for user in twitter_accounts])
 
