@@ -17,7 +17,7 @@ class TweetManager:
         self.collection.insert_one(tweet)
 
     def get_tweets(self):
-        return list(self.collection.find())
+        return list(self.collection.find(filter={}, sort=[("pub_date", -1)] ))
 
     def check_tweet_exist(self, tweet_id):
         tweet = self.collection.find_one({"id": tweet_id})

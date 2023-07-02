@@ -1249,3 +1249,1643 @@
 2023-07-02 18:28:00.837 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
 2023-07-02 18:28:00.837 [DEBUG] :: remaining: [35m465/500[0m requests
 2023-07-02 18:28:00.838 [DEBUG] :: reset:     [35m11.92[0m minutes
+2023-07-02 22:53:14.503 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:53:14.503 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:53:14.503 [DEBUG] :: remaining: [35m476/500[0m requests
+2023-07-02 22:53:14.504 [DEBUG] :: reset:     [35m1.82[0m minutes
+2023-07-02 22:53:14.575 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:53:14.576 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:53:14.576 [DEBUG] :: remaining: [35m475/500[0m requests
+2023-07-02 22:53:14.577 [DEBUG] :: reset:     [35m1.82[0m minutes
+2023-07-02 22:53:14.680 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:53:14.680 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:53:14.680 [DEBUG] :: remaining: [35m473/500[0m requests
+2023-07-02 22:53:14.680 [DEBUG] :: reset:     [35m1.82[0m minutes
+2023-07-02 22:53:14.864 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:53:14.865 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:53:14.865 [DEBUG] :: remaining: [35m472/500[0m requests
+2023-07-02 22:53:14.865 [DEBUG] :: reset:     [35m1.82[0m minutes
+2023-07-02 22:53:14.993 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:53:14.993 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:53:14.993 [DEBUG] :: remaining: [35m474/500[0m requests
+2023-07-02 22:53:14.993 [DEBUG] :: reset:     [35m1.82[0m minutes
+2023-07-02 22:53:15.129 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:53:15.130 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:53:15.130 [DEBUG] :: remaining: [35m471/500[0m requests
+2023-07-02 22:53:15.130 [DEBUG] :: reset:     [35m1.80[0m minutes
+2023-07-02 22:53:15.297 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:53:15.297 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:53:15.297 [DEBUG] :: remaining: [35m470/500[0m requests
+2023-07-02 22:53:15.297 [DEBUG] :: reset:     [35m1.80[0m minutes
+2023-07-02 22:53:17.081 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:53:17.081 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:53:17.081 [DEBUG] :: remaining: [35m480/500[0m requests
+2023-07-02 22:53:17.081 [DEBUG] :: reset:     [35m6.77[0m minutes
+2023-07-02 22:53:17.111 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:53:17.111 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:53:17.111 [DEBUG] :: remaining: [35m482/500[0m requests
+2023-07-02 22:53:17.111 [DEBUG] :: reset:     [35m6.77[0m minutes
+2023-07-02 22:53:17.151 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:53:17.151 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:53:17.152 [DEBUG] :: remaining: [35m483/500[0m requests
+2023-07-02 22:53:17.152 [DEBUG] :: reset:     [35m6.77[0m minutes
+2023-07-02 22:53:17.159 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:53:17.160 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:53:17.160 [DEBUG] :: remaining: [35m479/500[0m requests
+2023-07-02 22:53:17.161 [DEBUG] :: reset:     [35m6.77[0m minutes
+2023-07-02 22:53:17.177 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:53:17.177 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:53:17.177 [DEBUG] :: remaining: [35m481/500[0m requests
+2023-07-02 22:53:17.177 [DEBUG] :: reset:     [35m6.77[0m minutes
+2023-07-02 22:53:17.964 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:53:17.965 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:53:17.965 [DEBUG] :: remaining: [35m477/500[0m requests
+2023-07-02 22:53:17.965 [DEBUG] :: reset:     [35m6.77[0m minutes
+2023-07-02 22:53:18.055 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:53:18.056 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:53:18.056 [DEBUG] :: remaining: [35m478/500[0m requests
+2023-07-02 22:53:18.056 [DEBUG] :: reset:     [35m6.75[0m minutes
+2023-07-02 22:56:59.009 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:56:59.010 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:56:59.011 [DEBUG] :: remaining: [35m492/500[0m requests
+2023-07-02 22:56:59.011 [DEBUG] :: reset:     [35m13.07[0m minutes
+2023-07-02 22:56:59.062 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:56:59.063 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:56:59.067 [DEBUG] :: remaining: [35m491/500[0m requests
+2023-07-02 22:56:59.067 [DEBUG] :: reset:     [35m13.07[0m minutes
+2023-07-02 22:56:59.093 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:56:59.093 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:56:59.094 [DEBUG] :: remaining: [35m490/500[0m requests
+2023-07-02 22:56:59.094 [DEBUG] :: reset:     [35m13.07[0m minutes
+2023-07-02 22:56:59.135 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:56:59.136 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:56:59.136 [DEBUG] :: remaining: [35m489/500[0m requests
+2023-07-02 22:56:59.137 [DEBUG] :: reset:     [35m13.07[0m minutes
+2023-07-02 22:56:59.181 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:56:59.185 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:56:59.186 [DEBUG] :: remaining: [35m488/500[0m requests
+2023-07-02 22:56:59.186 [DEBUG] :: reset:     [35m13.07[0m minutes
+2023-07-02 22:56:59.223 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:56:59.224 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:56:59.224 [DEBUG] :: remaining: [35m487/500[0m requests
+2023-07-02 22:56:59.225 [DEBUG] :: reset:     [35m13.07[0m minutes
+2023-07-02 22:56:59.261 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:56:59.261 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:56:59.262 [DEBUG] :: remaining: [35m486/500[0m requests
+2023-07-02 22:56:59.262 [DEBUG] :: reset:     [35m13.07[0m minutes
+2023-07-02 22:57:00.516 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:00.524 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:57:00.525 [DEBUG] :: remaining: [35m469/500[0m requests
+2023-07-02 22:57:00.525 [DEBUG] :: reset:     [35m3.05[0m minutes
+2023-07-02 22:57:00.591 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:00.591 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:57:00.592 [DEBUG] :: remaining: [35m463/500[0m requests
+2023-07-02 22:57:00.592 [DEBUG] :: reset:     [35m3.05[0m minutes
+2023-07-02 22:57:00.609 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:00.609 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:57:00.614 [DEBUG] :: remaining: [35m468/500[0m requests
+2023-07-02 22:57:00.614 [DEBUG] :: reset:     [35m3.05[0m minutes
+2023-07-02 22:57:00.633 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:00.634 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:57:00.636 [DEBUG] :: remaining: [35m464/500[0m requests
+2023-07-02 22:57:00.637 [DEBUG] :: reset:     [35m3.05[0m minutes
+2023-07-02 22:57:00.658 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:00.659 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:57:00.660 [DEBUG] :: remaining: [35m465/500[0m requests
+2023-07-02 22:57:00.661 [DEBUG] :: reset:     [35m3.05[0m minutes
+2023-07-02 22:57:00.681 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:00.682 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:57:00.684 [DEBUG] :: remaining: [35m467/500[0m requests
+2023-07-02 22:57:00.685 [DEBUG] :: reset:     [35m3.05[0m minutes
+2023-07-02 22:57:00.748 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:00.749 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:57:00.750 [DEBUG] :: remaining: [35m466/500[0m requests
+2023-07-02 22:57:00.751 [DEBUG] :: reset:     [35m3.05[0m minutes
+2023-07-02 22:57:36.428 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:36.440 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:57:36.442 [DEBUG] :: remaining: [35m485/500[0m requests
+2023-07-02 22:57:36.445 [DEBUG] :: reset:     [35m12.45[0m minutes
+2023-07-02 22:57:36.468 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:36.468 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:57:36.470 [DEBUG] :: remaining: [35m484/500[0m requests
+2023-07-02 22:57:36.470 [DEBUG] :: reset:     [35m12.45[0m minutes
+2023-07-02 22:57:36.513 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:36.515 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:57:36.516 [DEBUG] :: remaining: [35m483/500[0m requests
+2023-07-02 22:57:36.516 [DEBUG] :: reset:     [35m12.45[0m minutes
+2023-07-02 22:57:36.555 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:36.557 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:57:36.558 [DEBUG] :: remaining: [35m482/500[0m requests
+2023-07-02 22:57:36.560 [DEBUG] :: reset:     [35m12.45[0m minutes
+2023-07-02 22:57:36.604 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:36.605 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:57:36.606 [DEBUG] :: remaining: [35m481/500[0m requests
+2023-07-02 22:57:36.607 [DEBUG] :: reset:     [35m12.45[0m minutes
+2023-07-02 22:57:36.657 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:36.659 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:57:36.659 [DEBUG] :: remaining: [35m480/500[0m requests
+2023-07-02 22:57:36.659 [DEBUG] :: reset:     [35m12.45[0m minutes
+2023-07-02 22:57:36.682 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:36.683 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:57:36.683 [DEBUG] :: remaining: [35m479/500[0m requests
+2023-07-02 22:57:36.684 [DEBUG] :: reset:     [35m12.45[0m minutes
+2023-07-02 22:57:37.799 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:37.799 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:57:37.800 [DEBUG] :: remaining: [35m461/500[0m requests
+2023-07-02 22:57:37.800 [DEBUG] :: reset:     [35m2.43[0m minutes
+2023-07-02 22:57:37.935 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:37.936 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:57:37.936 [DEBUG] :: remaining: [35m460/500[0m requests
+2023-07-02 22:57:37.937 [DEBUG] :: reset:     [35m2.43[0m minutes
+2023-07-02 22:57:37.967 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:37.968 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:57:37.968 [DEBUG] :: remaining: [35m457/500[0m requests
+2023-07-02 22:57:37.969 [DEBUG] :: reset:     [35m2.43[0m minutes
+2023-07-02 22:57:37.979 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:37.980 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:57:37.980 [DEBUG] :: remaining: [35m459/500[0m requests
+2023-07-02 22:57:37.981 [DEBUG] :: reset:     [35m2.43[0m minutes
+2023-07-02 22:57:38.001 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:38.002 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:57:38.003 [DEBUG] :: remaining: [35m462/500[0m requests
+2023-07-02 22:57:38.003 [DEBUG] :: reset:     [35m2.42[0m minutes
+2023-07-02 22:57:38.018 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:38.018 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:57:38.019 [DEBUG] :: remaining: [35m458/500[0m requests
+2023-07-02 22:57:38.019 [DEBUG] :: reset:     [35m2.42[0m minutes
+2023-07-02 22:57:38.321 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:57:38.639 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:57:38.639 [DEBUG] :: remaining: [35m456/500[0m requests
+2023-07-02 22:57:38.640 [DEBUG] :: reset:     [35m2.42[0m minutes
+2023-07-02 22:58:18.133 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:58:18.134 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:58:18.134 [DEBUG] :: remaining: [35m478/500[0m requests
+2023-07-02 22:58:18.135 [DEBUG] :: reset:     [35m11.75[0m minutes
+2023-07-02 22:58:18.172 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:58:18.173 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:58:18.173 [DEBUG] :: remaining: [35m477/500[0m requests
+2023-07-02 22:58:18.174 [DEBUG] :: reset:     [35m11.75[0m minutes
+2023-07-02 22:58:18.216 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:58:18.217 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:58:18.218 [DEBUG] :: remaining: [35m476/500[0m requests
+2023-07-02 22:58:18.218 [DEBUG] :: reset:     [35m11.75[0m minutes
+2023-07-02 22:58:18.253 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:58:18.256 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:58:18.258 [DEBUG] :: remaining: [35m475/500[0m requests
+2023-07-02 22:58:18.267 [DEBUG] :: reset:     [35m11.75[0m minutes
+2023-07-02 22:58:18.303 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:58:18.304 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:58:18.305 [DEBUG] :: remaining: [35m474/500[0m requests
+2023-07-02 22:58:18.305 [DEBUG] :: reset:     [35m11.75[0m minutes
+2023-07-02 22:58:18.336 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:58:18.337 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:58:18.337 [DEBUG] :: remaining: [35m473/500[0m requests
+2023-07-02 22:58:18.338 [DEBUG] :: reset:     [35m11.75[0m minutes
+2023-07-02 22:58:18.379 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:58:18.380 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 22:58:18.380 [DEBUG] :: remaining: [35m472/500[0m requests
+2023-07-02 22:58:18.381 [DEBUG] :: reset:     [35m11.75[0m minutes
+2023-07-02 22:58:19.524 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:58:19.524 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:58:19.524 [DEBUG] :: remaining: [35m455/500[0m requests
+2023-07-02 22:58:19.530 [DEBUG] :: reset:     [35m1.73[0m minutes
+2023-07-02 22:58:19.618 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:58:19.619 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:58:19.619 [DEBUG] :: remaining: [35m454/500[0m requests
+2023-07-02 22:58:19.620 [DEBUG] :: reset:     [35m1.73[0m minutes
+2023-07-02 22:58:19.659 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:58:19.660 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:58:19.660 [DEBUG] :: remaining: [35m450/500[0m requests
+2023-07-02 22:58:19.661 [DEBUG] :: reset:     [35m1.73[0m minutes
+2023-07-02 22:58:19.671 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:58:19.672 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:58:19.673 [DEBUG] :: remaining: [35m452/500[0m requests
+2023-07-02 22:58:19.673 [DEBUG] :: reset:     [35m1.73[0m minutes
+2023-07-02 22:58:19.719 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:58:19.720 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:58:19.721 [DEBUG] :: remaining: [35m451/500[0m requests
+2023-07-02 22:58:19.721 [DEBUG] :: reset:     [35m1.73[0m minutes
+2023-07-02 22:58:19.741 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:58:19.741 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:58:19.742 [DEBUG] :: remaining: [35m453/500[0m requests
+2023-07-02 22:58:19.742 [DEBUG] :: reset:     [35m1.73[0m minutes
+2023-07-02 22:58:19.813 [DEBUG] :: [[32m200[0m]
+2023-07-02 22:58:19.814 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 22:58:19.814 [DEBUG] :: remaining: [35m449/500[0m requests
+2023-07-02 22:58:19.815 [DEBUG] :: reset:     [35m1.73[0m minutes
+2023-07-02 23:03:40.443 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:03:40.444 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:03:40.445 [DEBUG] :: remaining: [35m464/500[0m requests
+2023-07-02 23:03:40.445 [DEBUG] :: reset:     [35m6.38[0m minutes
+2023-07-02 23:03:40.523 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:03:40.524 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:03:40.525 [DEBUG] :: remaining: [35m462/500[0m requests
+2023-07-02 23:03:40.525 [DEBUG] :: reset:     [35m6.38[0m minutes
+2023-07-02 23:03:40.530 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:03:40.530 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:03:40.531 [DEBUG] :: remaining: [35m463/500[0m requests
+2023-07-02 23:03:40.532 [DEBUG] :: reset:     [35m6.38[0m minutes
+2023-07-02 23:03:40.562 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:03:40.563 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:03:40.563 [DEBUG] :: remaining: [35m461/500[0m requests
+2023-07-02 23:03:40.564 [DEBUG] :: reset:     [35m6.38[0m minutes
+2023-07-02 23:03:40.598 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:03:40.599 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:03:40.600 [DEBUG] :: remaining: [35m460/500[0m requests
+2023-07-02 23:03:40.600 [DEBUG] :: reset:     [35m6.38[0m minutes
+2023-07-02 23:03:40.639 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:03:40.640 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:03:40.641 [DEBUG] :: remaining: [35m459/500[0m requests
+2023-07-02 23:03:40.641 [DEBUG] :: reset:     [35m6.38[0m minutes
+2023-07-02 23:03:40.677 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:03:40.678 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:03:40.678 [DEBUG] :: remaining: [35m458/500[0m requests
+2023-07-02 23:03:40.679 [DEBUG] :: reset:     [35m6.38[0m minutes
+2023-07-02 23:03:41.842 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:03:41.843 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:03:41.843 [DEBUG] :: remaining: [35m498/500[0m requests
+2023-07-02 23:03:41.844 [DEBUG] :: reset:     [35m15.00[0m minutes
+2023-07-02 23:03:41.935 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:03:41.936 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:03:41.936 [DEBUG] :: remaining: [35m497/500[0m requests
+2023-07-02 23:03:41.937 [DEBUG] :: reset:     [35m15.00[0m minutes
+2023-07-02 23:03:42.019 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:03:42.019 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:03:42.020 [DEBUG] :: remaining: [35m493/500[0m requests
+2023-07-02 23:03:42.021 [DEBUG] :: reset:     [35m14.98[0m minutes
+2023-07-02 23:03:42.032 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:03:42.032 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:03:42.033 [DEBUG] :: remaining: [35m495/500[0m requests
+2023-07-02 23:03:42.034 [DEBUG] :: reset:     [35m14.98[0m minutes
+2023-07-02 23:03:42.043 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:03:42.044 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:03:42.044 [DEBUG] :: remaining: [35m496/500[0m requests
+2023-07-02 23:03:42.045 [DEBUG] :: reset:     [35m14.98[0m minutes
+2023-07-02 23:03:42.061 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:03:42.061 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:03:42.062 [DEBUG] :: remaining: [35m499/500[0m requests
+2023-07-02 23:03:42.063 [DEBUG] :: reset:     [35m14.98[0m minutes
+2023-07-02 23:03:42.078 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:03:42.078 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:03:42.079 [DEBUG] :: remaining: [35m494/500[0m requests
+2023-07-02 23:03:42.079 [DEBUG] :: reset:     [35m14.98[0m minutes
+2023-07-02 23:10:59.275 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:10:59.276 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:10:59.276 [DEBUG] :: remaining: [35m499/500[0m requests
+2023-07-02 23:10:59.277 [DEBUG] :: reset:     [35m15.02[0m minutes
+2023-07-02 23:10:59.317 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:10:59.319 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:10:59.319 [DEBUG] :: remaining: [35m498/500[0m requests
+2023-07-02 23:10:59.319 [DEBUG] :: reset:     [35m15.02[0m minutes
+2023-07-02 23:10:59.337 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:10:59.337 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:10:59.339 [DEBUG] :: remaining: [35m497/500[0m requests
+2023-07-02 23:10:59.339 [DEBUG] :: reset:     [35m15.02[0m minutes
+2023-07-02 23:10:59.386 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:10:59.386 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:10:59.387 [DEBUG] :: remaining: [35m496/500[0m requests
+2023-07-02 23:10:59.387 [DEBUG] :: reset:     [35m15.02[0m minutes
+2023-07-02 23:10:59.452 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:10:59.453 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:10:59.454 [DEBUG] :: remaining: [35m495/500[0m requests
+2023-07-02 23:10:59.454 [DEBUG] :: reset:     [35m15.02[0m minutes
+2023-07-02 23:10:59.488 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:10:59.488 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:10:59.489 [DEBUG] :: remaining: [35m494/500[0m requests
+2023-07-02 23:10:59.490 [DEBUG] :: reset:     [35m15.02[0m minutes
+2023-07-02 23:10:59.548 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:10:59.549 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:10:59.549 [DEBUG] :: remaining: [35m493/500[0m requests
+2023-07-02 23:10:59.550 [DEBUG] :: reset:     [35m15.02[0m minutes
+2023-07-02 23:11:00.672 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:00.676 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:00.676 [DEBUG] :: remaining: [35m476/500[0m requests
+2023-07-02 23:11:00.677 [DEBUG] :: reset:     [35m7.68[0m minutes
+2023-07-02 23:11:00.791 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:00.791 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:00.793 [DEBUG] :: remaining: [35m475/500[0m requests
+2023-07-02 23:11:00.793 [DEBUG] :: reset:     [35m7.68[0m minutes
+2023-07-02 23:11:00.810 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:00.811 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:00.812 [DEBUG] :: remaining: [35m474/500[0m requests
+2023-07-02 23:11:00.812 [DEBUG] :: reset:     [35m7.68[0m minutes
+2023-07-02 23:11:00.831 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:00.831 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:00.832 [DEBUG] :: remaining: [35m477/500[0m requests
+2023-07-02 23:11:00.832 [DEBUG] :: reset:     [35m7.68[0m minutes
+2023-07-02 23:11:00.909 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:00.909 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:00.923 [DEBUG] :: remaining: [35m472/500[0m requests
+2023-07-02 23:11:00.924 [DEBUG] :: reset:     [35m7.68[0m minutes
+2023-07-02 23:11:00.975 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:00.976 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:00.976 [DEBUG] :: remaining: [35m471/500[0m requests
+2023-07-02 23:11:00.978 [DEBUG] :: reset:     [35m7.68[0m minutes
+2023-07-02 23:11:00.988 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:00.990 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:00.990 [DEBUG] :: remaining: [35m473/500[0m requests
+2023-07-02 23:11:00.991 [DEBUG] :: reset:     [35m7.68[0m minutes
+2023-07-02 23:11:26.984 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:26.984 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:11:26.991 [DEBUG] :: remaining: [35m492/500[0m requests
+2023-07-02 23:11:26.991 [DEBUG] :: reset:     [35m14.57[0m minutes
+2023-07-02 23:11:27.038 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:27.039 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:11:27.040 [DEBUG] :: remaining: [35m491/500[0m requests
+2023-07-02 23:11:27.040 [DEBUG] :: reset:     [35m14.55[0m minutes
+2023-07-02 23:11:27.073 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:27.074 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:11:27.075 [DEBUG] :: remaining: [35m490/500[0m requests
+2023-07-02 23:11:27.075 [DEBUG] :: reset:     [35m14.55[0m minutes
+2023-07-02 23:11:27.110 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:27.111 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:11:27.111 [DEBUG] :: remaining: [35m489/500[0m requests
+2023-07-02 23:11:27.112 [DEBUG] :: reset:     [35m14.55[0m minutes
+2023-07-02 23:11:27.152 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:27.154 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:11:27.154 [DEBUG] :: remaining: [35m488/500[0m requests
+2023-07-02 23:11:27.155 [DEBUG] :: reset:     [35m14.55[0m minutes
+2023-07-02 23:11:27.175 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:27.175 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:11:27.176 [DEBUG] :: remaining: [35m487/500[0m requests
+2023-07-02 23:11:27.177 [DEBUG] :: reset:     [35m14.55[0m minutes
+2023-07-02 23:11:27.228 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:27.229 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:11:27.229 [DEBUG] :: remaining: [35m486/500[0m requests
+2023-07-02 23:11:27.230 [DEBUG] :: reset:     [35m14.55[0m minutes
+2023-07-02 23:11:28.512 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:28.512 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:28.517 [DEBUG] :: remaining: [35m469/500[0m requests
+2023-07-02 23:11:28.517 [DEBUG] :: reset:     [35m7.22[0m minutes
+2023-07-02 23:11:28.544 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:28.544 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:28.545 [DEBUG] :: remaining: [35m468/500[0m requests
+2023-07-02 23:11:28.545 [DEBUG] :: reset:     [35m7.22[0m minutes
+2023-07-02 23:11:28.561 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:28.562 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:28.565 [DEBUG] :: remaining: [35m466/500[0m requests
+2023-07-02 23:11:28.567 [DEBUG] :: reset:     [35m7.22[0m minutes
+2023-07-02 23:11:28.608 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:28.609 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:28.609 [DEBUG] :: remaining: [35m465/500[0m requests
+2023-07-02 23:11:28.610 [DEBUG] :: reset:     [35m7.22[0m minutes
+2023-07-02 23:11:28.709 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:28.709 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:28.710 [DEBUG] :: remaining: [35m464/500[0m requests
+2023-07-02 23:11:28.710 [DEBUG] :: reset:     [35m7.22[0m minutes
+2023-07-02 23:11:28.805 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:28.805 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:28.806 [DEBUG] :: remaining: [35m470/500[0m requests
+2023-07-02 23:11:28.806 [DEBUG] :: reset:     [35m7.22[0m minutes
+2023-07-02 23:11:28.819 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:28.820 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:28.820 [DEBUG] :: remaining: [35m467/500[0m requests
+2023-07-02 23:11:28.821 [DEBUG] :: reset:     [35m7.22[0m minutes
+2023-07-02 23:11:57.358 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:57.359 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:11:57.359 [DEBUG] :: remaining: [35m485/500[0m requests
+2023-07-02 23:11:57.360 [DEBUG] :: reset:     [35m14.05[0m minutes
+2023-07-02 23:11:57.375 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:57.377 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:11:57.377 [DEBUG] :: remaining: [35m484/500[0m requests
+2023-07-02 23:11:57.377 [DEBUG] :: reset:     [35m14.05[0m minutes
+2023-07-02 23:11:57.404 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:57.405 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:11:57.405 [DEBUG] :: remaining: [35m483/500[0m requests
+2023-07-02 23:11:57.406 [DEBUG] :: reset:     [35m14.05[0m minutes
+2023-07-02 23:11:57.437 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:57.437 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:11:57.438 [DEBUG] :: remaining: [35m482/500[0m requests
+2023-07-02 23:11:57.438 [DEBUG] :: reset:     [35m14.05[0m minutes
+2023-07-02 23:11:57.473 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:57.473 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:11:57.474 [DEBUG] :: remaining: [35m481/500[0m requests
+2023-07-02 23:11:57.474 [DEBUG] :: reset:     [35m14.05[0m minutes
+2023-07-02 23:11:57.520 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:57.521 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:11:57.522 [DEBUG] :: remaining: [35m480/500[0m requests
+2023-07-02 23:11:57.522 [DEBUG] :: reset:     [35m14.05[0m minutes
+2023-07-02 23:11:57.560 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:57.560 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:11:57.560 [DEBUG] :: remaining: [35m479/500[0m requests
+2023-07-02 23:11:57.561 [DEBUG] :: reset:     [35m14.05[0m minutes
+2023-07-02 23:11:58.740 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:58.741 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:58.741 [DEBUG] :: remaining: [35m463/500[0m requests
+2023-07-02 23:11:58.742 [DEBUG] :: reset:     [35m6.72[0m minutes
+2023-07-02 23:11:58.772 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:58.773 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:58.774 [DEBUG] :: remaining: [35m462/500[0m requests
+2023-07-02 23:11:58.774 [DEBUG] :: reset:     [35m6.72[0m minutes
+2023-07-02 23:11:58.813 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:58.814 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:58.814 [DEBUG] :: remaining: [35m461/500[0m requests
+2023-07-02 23:11:58.815 [DEBUG] :: reset:     [35m6.72[0m minutes
+2023-07-02 23:11:58.855 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:58.856 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:58.856 [DEBUG] :: remaining: [35m459/500[0m requests
+2023-07-02 23:11:58.856 [DEBUG] :: reset:     [35m6.72[0m minutes
+2023-07-02 23:11:58.875 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:58.876 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:58.876 [DEBUG] :: remaining: [35m458/500[0m requests
+2023-07-02 23:11:58.877 [DEBUG] :: reset:     [35m6.72[0m minutes
+2023-07-02 23:11:58.951 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:58.952 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:58.952 [DEBUG] :: remaining: [35m457/500[0m requests
+2023-07-02 23:11:58.953 [DEBUG] :: reset:     [35m6.72[0m minutes
+2023-07-02 23:11:59.015 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:11:59.016 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:11:59.016 [DEBUG] :: remaining: [35m460/500[0m requests
+2023-07-02 23:11:59.017 [DEBUG] :: reset:     [35m6.70[0m minutes
+2023-07-02 23:13:59.452 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:13:59.453 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:13:59.453 [DEBUG] :: remaining: [35m478/500[0m requests
+2023-07-02 23:13:59.454 [DEBUG] :: reset:     [35m12.02[0m minutes
+2023-07-02 23:13:59.486 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:13:59.486 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:13:59.487 [DEBUG] :: remaining: [35m477/500[0m requests
+2023-07-02 23:13:59.488 [DEBUG] :: reset:     [35m12.02[0m minutes
+2023-07-02 23:13:59.531 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:13:59.532 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:13:59.532 [DEBUG] :: remaining: [35m476/500[0m requests
+2023-07-02 23:13:59.533 [DEBUG] :: reset:     [35m12.02[0m minutes
+2023-07-02 23:13:59.568 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:13:59.568 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:13:59.569 [DEBUG] :: remaining: [35m475/500[0m requests
+2023-07-02 23:13:59.569 [DEBUG] :: reset:     [35m12.02[0m minutes
+2023-07-02 23:13:59.623 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:13:59.624 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:13:59.624 [DEBUG] :: remaining: [35m474/500[0m requests
+2023-07-02 23:13:59.625 [DEBUG] :: reset:     [35m12.02[0m minutes
+2023-07-02 23:13:59.662 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:13:59.663 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:13:59.663 [DEBUG] :: remaining: [35m473/500[0m requests
+2023-07-02 23:13:59.664 [DEBUG] :: reset:     [35m12.02[0m minutes
+2023-07-02 23:13:59.707 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:13:59.708 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:13:59.709 [DEBUG] :: remaining: [35m472/500[0m requests
+2023-07-02 23:13:59.709 [DEBUG] :: reset:     [35m12.02[0m minutes
+2023-07-02 23:14:00.952 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:14:00.954 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:14:00.955 [DEBUG] :: remaining: [35m456/500[0m requests
+2023-07-02 23:14:00.956 [DEBUG] :: reset:     [35m4.68[0m minutes
+2023-07-02 23:14:01.070 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:14:01.070 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:14:01.071 [DEBUG] :: remaining: [35m454/500[0m requests
+2023-07-02 23:14:01.072 [DEBUG] :: reset:     [35m4.67[0m minutes
+2023-07-02 23:14:01.091 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:14:01.091 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:14:01.092 [DEBUG] :: remaining: [35m453/500[0m requests
+2023-07-02 23:14:01.092 [DEBUG] :: reset:     [35m4.67[0m minutes
+2023-07-02 23:14:01.215 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:14:01.217 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:14:01.217 [DEBUG] :: remaining: [35m452/500[0m requests
+2023-07-02 23:14:01.217 [DEBUG] :: reset:     [35m4.67[0m minutes
+2023-07-02 23:14:01.232 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:14:01.232 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:14:01.233 [DEBUG] :: remaining: [35m451/500[0m requests
+2023-07-02 23:14:01.234 [DEBUG] :: reset:     [35m4.67[0m minutes
+2023-07-02 23:14:01.257 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:14:01.260 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:14:01.262 [DEBUG] :: remaining: [35m455/500[0m requests
+2023-07-02 23:14:01.264 [DEBUG] :: reset:     [35m4.67[0m minutes
+2023-07-02 23:14:01.291 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:14:01.293 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:14:01.294 [DEBUG] :: remaining: [35m450/500[0m requests
+2023-07-02 23:14:01.296 [DEBUG] :: reset:     [35m4.67[0m minutes
+2023-07-02 23:15:00.518 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:00.543 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:15:00.555 [DEBUG] :: remaining: [35m471/500[0m requests
+2023-07-02 23:15:00.559 [DEBUG] :: reset:     [35m11.00[0m minutes
+2023-07-02 23:15:00.575 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:00.577 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:15:00.577 [DEBUG] :: remaining: [35m470/500[0m requests
+2023-07-02 23:15:00.578 [DEBUG] :: reset:     [35m11.00[0m minutes
+2023-07-02 23:15:00.588 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:00.588 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:15:00.589 [DEBUG] :: remaining: [35m469/500[0m requests
+2023-07-02 23:15:00.589 [DEBUG] :: reset:     [35m11.00[0m minutes
+2023-07-02 23:15:00.615 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:00.617 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:15:00.618 [DEBUG] :: remaining: [35m468/500[0m requests
+2023-07-02 23:15:00.618 [DEBUG] :: reset:     [35m11.00[0m minutes
+2023-07-02 23:15:00.662 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:00.663 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:15:00.663 [DEBUG] :: remaining: [35m467/500[0m requests
+2023-07-02 23:15:00.664 [DEBUG] :: reset:     [35m11.00[0m minutes
+2023-07-02 23:15:00.700 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:00.702 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:15:00.702 [DEBUG] :: remaining: [35m466/500[0m requests
+2023-07-02 23:15:00.703 [DEBUG] :: reset:     [35m11.00[0m minutes
+2023-07-02 23:15:00.738 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:00.739 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:15:00.740 [DEBUG] :: remaining: [35m465/500[0m requests
+2023-07-02 23:15:00.740 [DEBUG] :: reset:     [35m11.00[0m minutes
+2023-07-02 23:15:02.006 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:02.007 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:15:02.008 [DEBUG] :: remaining: [35m448/500[0m requests
+2023-07-02 23:15:02.008 [DEBUG] :: reset:     [35m3.65[0m minutes
+2023-07-02 23:15:02.048 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:02.050 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:15:02.051 [DEBUG] :: remaining: [35m446/500[0m requests
+2023-07-02 23:15:02.052 [DEBUG] :: reset:     [35m3.65[0m minutes
+2023-07-02 23:15:02.061 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:02.062 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:15:02.063 [DEBUG] :: remaining: [35m449/500[0m requests
+2023-07-02 23:15:02.063 [DEBUG] :: reset:     [35m3.65[0m minutes
+2023-07-02 23:15:02.147 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:02.148 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:15:02.148 [DEBUG] :: remaining: [35m445/500[0m requests
+2023-07-02 23:15:02.148 [DEBUG] :: reset:     [35m3.65[0m minutes
+2023-07-02 23:15:02.181 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:02.182 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:15:02.183 [DEBUG] :: remaining: [35m443/500[0m requests
+2023-07-02 23:15:02.183 [DEBUG] :: reset:     [35m3.65[0m minutes
+2023-07-02 23:15:02.221 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:02.223 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:15:02.223 [DEBUG] :: remaining: [35m444/500[0m requests
+2023-07-02 23:15:02.223 [DEBUG] :: reset:     [35m3.65[0m minutes
+2023-07-02 23:15:02.250 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:02.251 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:15:02.253 [DEBUG] :: remaining: [35m447/500[0m requests
+2023-07-02 23:15:02.254 [DEBUG] :: reset:     [35m3.65[0m minutes
+2023-07-02 23:15:44.647 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:44.648 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:15:44.648 [DEBUG] :: remaining: [35m457/500[0m requests
+2023-07-02 23:15:44.649 [DEBUG] :: reset:     [35m10.27[0m minutes
+2023-07-02 23:15:44.703 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:44.704 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:15:44.704 [DEBUG] :: remaining: [35m456/500[0m requests
+2023-07-02 23:15:44.705 [DEBUG] :: reset:     [35m10.27[0m minutes
+2023-07-02 23:15:44.731 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:44.731 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:15:44.732 [DEBUG] :: remaining: [35m455/500[0m requests
+2023-07-02 23:15:44.732 [DEBUG] :: reset:     [35m10.27[0m minutes
+2023-07-02 23:15:44.776 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:44.776 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:15:44.777 [DEBUG] :: remaining: [35m454/500[0m requests
+2023-07-02 23:15:44.777 [DEBUG] :: reset:     [35m10.27[0m minutes
+2023-07-02 23:15:44.815 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:44.816 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:15:44.817 [DEBUG] :: remaining: [35m453/500[0m requests
+2023-07-02 23:15:44.817 [DEBUG] :: reset:     [35m10.27[0m minutes
+2023-07-02 23:15:44.854 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:44.855 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:15:44.855 [DEBUG] :: remaining: [35m452/500[0m requests
+2023-07-02 23:15:44.856 [DEBUG] :: reset:     [35m10.27[0m minutes
+2023-07-02 23:15:44.904 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:44.905 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:15:44.906 [DEBUG] :: remaining: [35m451/500[0m requests
+2023-07-02 23:15:44.906 [DEBUG] :: reset:     [35m10.27[0m minutes
+2023-07-02 23:15:46.109 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:46.117 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:15:46.117 [DEBUG] :: remaining: [35m435/500[0m requests
+2023-07-02 23:15:46.118 [DEBUG] :: reset:     [35m2.92[0m minutes
+2023-07-02 23:15:46.138 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:46.139 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:15:46.139 [DEBUG] :: remaining: [35m432/500[0m requests
+2023-07-02 23:15:46.140 [DEBUG] :: reset:     [35m2.92[0m minutes
+2023-07-02 23:15:46.214 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:46.215 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:15:46.216 [DEBUG] :: remaining: [35m434/500[0m requests
+2023-07-02 23:15:46.216 [DEBUG] :: reset:     [35m2.92[0m minutes
+2023-07-02 23:15:46.252 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:46.254 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:15:46.254 [DEBUG] :: remaining: [35m430/500[0m requests
+2023-07-02 23:15:46.254 [DEBUG] :: reset:     [35m2.92[0m minutes
+2023-07-02 23:15:46.266 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:46.266 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:15:46.266 [DEBUG] :: remaining: [35m431/500[0m requests
+2023-07-02 23:15:46.266 [DEBUG] :: reset:     [35m2.92[0m minutes
+2023-07-02 23:15:46.273 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:46.274 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:15:46.275 [DEBUG] :: remaining: [35m429/500[0m requests
+2023-07-02 23:15:46.276 [DEBUG] :: reset:     [35m2.92[0m minutes
+2023-07-02 23:15:46.325 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:15:46.326 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:15:46.327 [DEBUG] :: remaining: [35m433/500[0m requests
+2023-07-02 23:15:46.327 [DEBUG] :: reset:     [35m2.92[0m minutes
+2023-07-02 23:21:20.388 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:21:20.388 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:21:20.397 [DEBUG] :: remaining: [35m443/500[0m requests
+2023-07-02 23:21:20.398 [DEBUG] :: reset:     [35m4.67[0m minutes
+2023-07-02 23:21:20.413 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:21:20.414 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:21:20.414 [DEBUG] :: remaining: [35m442/500[0m requests
+2023-07-02 23:21:20.415 [DEBUG] :: reset:     [35m4.67[0m minutes
+2023-07-02 23:21:20.465 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:21:20.465 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:21:20.466 [DEBUG] :: remaining: [35m441/500[0m requests
+2023-07-02 23:21:20.466 [DEBUG] :: reset:     [35m4.67[0m minutes
+2023-07-02 23:21:20.500 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:21:20.500 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:21:20.501 [DEBUG] :: remaining: [35m440/500[0m requests
+2023-07-02 23:21:20.501 [DEBUG] :: reset:     [35m4.67[0m minutes
+2023-07-02 23:21:20.538 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:21:20.540 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:21:20.540 [DEBUG] :: remaining: [35m439/500[0m requests
+2023-07-02 23:21:20.541 [DEBUG] :: reset:     [35m4.67[0m minutes
+2023-07-02 23:21:20.577 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:21:20.578 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:21:20.579 [DEBUG] :: remaining: [35m438/500[0m requests
+2023-07-02 23:21:20.579 [DEBUG] :: reset:     [35m4.67[0m minutes
+2023-07-02 23:21:20.632 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:21:20.633 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:21:20.633 [DEBUG] :: remaining: [35m437/500[0m requests
+2023-07-02 23:21:20.634 [DEBUG] :: reset:     [35m4.67[0m minutes
+2023-07-02 23:21:21.782 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:21:21.783 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:21:21.783 [DEBUG] :: remaining: [35m492/500[0m requests
+2023-07-02 23:21:21.784 [DEBUG] :: reset:     [35m13.70[0m minutes
+2023-07-02 23:21:21.882 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:21:21.882 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:21:21.883 [DEBUG] :: remaining: [35m488/500[0m requests
+2023-07-02 23:21:21.883 [DEBUG] :: reset:     [35m13.70[0m minutes
+2023-07-02 23:21:21.914 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:21:21.915 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:21:21.915 [DEBUG] :: remaining: [35m491/500[0m requests
+2023-07-02 23:21:21.916 [DEBUG] :: reset:     [35m13.70[0m minutes
+2023-07-02 23:21:21.978 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:21:21.979 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:21:21.980 [DEBUG] :: remaining: [35m489/500[0m requests
+2023-07-02 23:21:21.980 [DEBUG] :: reset:     [35m13.70[0m minutes
+2023-07-02 23:21:21.998 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:21:21.998 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:21:21.999 [DEBUG] :: remaining: [35m487/500[0m requests
+2023-07-02 23:21:21.999 [DEBUG] :: reset:     [35m13.70[0m minutes
+2023-07-02 23:21:22.143 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:21:22.143 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:21:22.143 [DEBUG] :: remaining: [35m490/500[0m requests
+2023-07-02 23:21:22.144 [DEBUG] :: reset:     [35m13.68[0m minutes
+2023-07-02 23:21:22.171 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:21:22.172 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:21:22.173 [DEBUG] :: remaining: [35m486/500[0m requests
+2023-07-02 23:21:22.173 [DEBUG] :: reset:     [35m13.68[0m minutes
+2023-07-02 23:22:32.315 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:22:32.315 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:22:32.316 [DEBUG] :: remaining: [35m436/500[0m requests
+2023-07-02 23:22:32.317 [DEBUG] :: reset:     [35m3.47[0m minutes
+2023-07-02 23:22:32.367 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:22:32.368 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:22:32.369 [DEBUG] :: remaining: [35m435/500[0m requests
+2023-07-02 23:22:32.369 [DEBUG] :: reset:     [35m3.47[0m minutes
+2023-07-02 23:22:32.411 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:22:32.412 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:22:32.413 [DEBUG] :: remaining: [35m434/500[0m requests
+2023-07-02 23:22:32.413 [DEBUG] :: reset:     [35m3.47[0m minutes
+2023-07-02 23:22:32.450 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:22:32.451 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:22:32.451 [DEBUG] :: remaining: [35m433/500[0m requests
+2023-07-02 23:22:32.452 [DEBUG] :: reset:     [35m3.47[0m minutes
+2023-07-02 23:22:32.486 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:22:32.487 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:22:32.487 [DEBUG] :: remaining: [35m432/500[0m requests
+2023-07-02 23:22:32.488 [DEBUG] :: reset:     [35m3.47[0m minutes
+2023-07-02 23:22:32.538 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:22:32.539 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:22:32.539 [DEBUG] :: remaining: [35m431/500[0m requests
+2023-07-02 23:22:32.540 [DEBUG] :: reset:     [35m3.47[0m minutes
+2023-07-02 23:22:32.577 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:22:32.578 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:22:32.578 [DEBUG] :: remaining: [35m430/500[0m requests
+2023-07-02 23:22:32.578 [DEBUG] :: reset:     [35m3.47[0m minutes
+2023-07-02 23:22:33.696 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:22:33.704 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:22:33.707 [DEBUG] :: remaining: [35m485/500[0m requests
+2023-07-02 23:22:33.717 [DEBUG] :: reset:     [35m12.50[0m minutes
+2023-07-02 23:22:33.774 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:22:33.793 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:22:33.794 [DEBUG] :: remaining: [35m484/500[0m requests
+2023-07-02 23:22:33.794 [DEBUG] :: reset:     [35m12.50[0m minutes
+2023-07-02 23:22:33.916 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:22:33.917 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:22:33.919 [DEBUG] :: remaining: [35m481/500[0m requests
+2023-07-02 23:22:33.920 [DEBUG] :: reset:     [35m12.50[0m minutes
+2023-07-02 23:22:33.933 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:22:33.934 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:22:33.934 [DEBUG] :: remaining: [35m479/500[0m requests
+2023-07-02 23:22:33.935 [DEBUG] :: reset:     [35m12.50[0m minutes
+2023-07-02 23:22:33.954 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:22:33.955 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:22:33.955 [DEBUG] :: remaining: [35m482/500[0m requests
+2023-07-02 23:22:33.956 [DEBUG] :: reset:     [35m12.50[0m minutes
+2023-07-02 23:22:33.979 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:22:33.980 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:22:33.981 [DEBUG] :: remaining: [35m480/500[0m requests
+2023-07-02 23:22:33.981 [DEBUG] :: reset:     [35m12.50[0m minutes
+2023-07-02 23:22:34.179 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:22:34.180 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:22:34.180 [DEBUG] :: remaining: [35m483/500[0m requests
+2023-07-02 23:22:34.181 [DEBUG] :: reset:     [35m12.48[0m minutes
+2023-07-02 23:38:46.202 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:38:46.208 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:38:46.208 [DEBUG] :: remaining: [35m485/500[0m requests
+2023-07-02 23:38:46.209 [DEBUG] :: reset:     [35m6.27[0m minutes
+2023-07-02 23:38:46.236 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:38:46.238 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:38:46.239 [DEBUG] :: remaining: [35m484/500[0m requests
+2023-07-02 23:38:46.239 [DEBUG] :: reset:     [35m6.27[0m minutes
+2023-07-02 23:38:46.285 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:38:46.286 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:38:46.287 [DEBUG] :: remaining: [35m483/500[0m requests
+2023-07-02 23:38:46.288 [DEBUG] :: reset:     [35m6.27[0m minutes
+2023-07-02 23:38:46.299 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:38:46.300 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:38:46.300 [DEBUG] :: remaining: [35m482/500[0m requests
+2023-07-02 23:38:46.301 [DEBUG] :: reset:     [35m6.27[0m minutes
+2023-07-02 23:38:46.356 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:38:46.357 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:38:46.357 [DEBUG] :: remaining: [35m481/500[0m requests
+2023-07-02 23:38:46.358 [DEBUG] :: reset:     [35m6.27[0m minutes
+2023-07-02 23:38:46.382 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:38:46.384 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:38:46.384 [DEBUG] :: remaining: [35m480/500[0m requests
+2023-07-02 23:38:46.385 [DEBUG] :: reset:     [35m6.27[0m minutes
+2023-07-02 23:38:46.426 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:38:46.426 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:38:46.428 [DEBUG] :: remaining: [35m479/500[0m requests
+2023-07-02 23:38:46.429 [DEBUG] :: reset:     [35m6.27[0m minutes
+2023-07-02 23:38:47.592 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:38:47.594 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:38:47.594 [DEBUG] :: remaining: [35m491/500[0m requests
+2023-07-02 23:38:47.595 [DEBUG] :: reset:     [35m11.27[0m minutes
+2023-07-02 23:38:47.604 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:38:47.616 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:38:47.616 [DEBUG] :: remaining: [35m490/500[0m requests
+2023-07-02 23:38:47.617 [DEBUG] :: reset:     [35m11.27[0m minutes
+2023-07-02 23:38:47.673 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:38:47.674 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:38:47.674 [DEBUG] :: remaining: [35m489/500[0m requests
+2023-07-02 23:38:47.675 [DEBUG] :: reset:     [35m11.27[0m minutes
+2023-07-02 23:38:47.683 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:38:47.684 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:38:47.685 [DEBUG] :: remaining: [35m488/500[0m requests
+2023-07-02 23:38:47.685 [DEBUG] :: reset:     [35m11.27[0m minutes
+2023-07-02 23:38:47.717 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:38:47.718 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:38:47.718 [DEBUG] :: remaining: [35m492/500[0m requests
+2023-07-02 23:38:47.719 [DEBUG] :: reset:     [35m11.27[0m minutes
+2023-07-02 23:38:47.781 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:38:47.782 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:38:47.782 [DEBUG] :: remaining: [35m487/500[0m requests
+2023-07-02 23:38:47.783 [DEBUG] :: reset:     [35m11.27[0m minutes
+2023-07-02 23:38:47.964 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:38:47.964 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:38:47.964 [DEBUG] :: remaining: [35m486/500[0m requests
+2023-07-02 23:38:47.965 [DEBUG] :: reset:     [35m11.27[0m minutes
+2023-07-02 23:39:50.458 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:39:50.464 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:39:50.464 [DEBUG] :: remaining: [35m478/500[0m requests
+2023-07-02 23:39:50.466 [DEBUG] :: reset:     [35m5.20[0m minutes
+2023-07-02 23:39:50.501 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:39:50.503 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:39:50.503 [DEBUG] :: remaining: [35m477/500[0m requests
+2023-07-02 23:39:50.503 [DEBUG] :: reset:     [35m5.20[0m minutes
+2023-07-02 23:39:50.549 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:39:50.551 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:39:50.551 [DEBUG] :: remaining: [35m476/500[0m requests
+2023-07-02 23:39:50.551 [DEBUG] :: reset:     [35m5.20[0m minutes
+2023-07-02 23:39:50.632 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:39:50.633 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:39:50.633 [DEBUG] :: remaining: [35m475/500[0m requests
+2023-07-02 23:39:50.635 [DEBUG] :: reset:     [35m5.20[0m minutes
+2023-07-02 23:39:50.673 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:39:50.674 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:39:50.675 [DEBUG] :: remaining: [35m474/500[0m requests
+2023-07-02 23:39:50.676 [DEBUG] :: reset:     [35m5.20[0m minutes
+2023-07-02 23:39:50.695 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:39:50.695 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:39:50.696 [DEBUG] :: remaining: [35m473/500[0m requests
+2023-07-02 23:39:50.697 [DEBUG] :: reset:     [35m5.20[0m minutes
+2023-07-02 23:39:50.749 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:39:50.749 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:39:50.750 [DEBUG] :: remaining: [35m472/500[0m requests
+2023-07-02 23:39:50.750 [DEBUG] :: reset:     [35m5.20[0m minutes
+2023-07-02 23:39:51.936 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:39:51.937 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:39:51.937 [DEBUG] :: remaining: [35m485/500[0m requests
+2023-07-02 23:39:51.938 [DEBUG] :: reset:     [35m10.20[0m minutes
+2023-07-02 23:39:51.962 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:39:51.962 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:39:51.963 [DEBUG] :: remaining: [35m481/500[0m requests
+2023-07-02 23:39:51.964 [DEBUG] :: reset:     [35m10.20[0m minutes
+2023-07-02 23:39:51.990 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:39:51.990 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:39:51.991 [DEBUG] :: remaining: [35m483/500[0m requests
+2023-07-02 23:39:51.992 [DEBUG] :: reset:     [35m10.20[0m minutes
+2023-07-02 23:39:52.024 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:39:52.025 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:39:52.025 [DEBUG] :: remaining: [35m482/500[0m requests
+2023-07-02 23:39:52.026 [DEBUG] :: reset:     [35m10.18[0m minutes
+2023-07-02 23:39:52.039 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:39:52.039 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:39:52.040 [DEBUG] :: remaining: [35m484/500[0m requests
+2023-07-02 23:39:52.040 [DEBUG] :: reset:     [35m10.18[0m minutes
+2023-07-02 23:39:52.056 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:39:52.057 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:39:52.057 [DEBUG] :: remaining: [35m480/500[0m requests
+2023-07-02 23:39:52.058 [DEBUG] :: reset:     [35m10.18[0m minutes
+2023-07-02 23:39:52.269 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:39:52.269 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:39:52.284 [DEBUG] :: remaining: [35m479/500[0m requests
+2023-07-02 23:39:52.284 [DEBUG] :: reset:     [35m10.18[0m minutes
+2023-07-02 23:43:55.255 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:43:55.263 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:43:55.263 [DEBUG] :: remaining: [35m462/500[0m requests
+2023-07-02 23:43:55.264 [DEBUG] :: reset:     [35m1.12[0m minutes
+2023-07-02 23:43:55.268 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:43:55.269 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:43:55.270 [DEBUG] :: remaining: [35m463/500[0m requests
+2023-07-02 23:43:55.270 [DEBUG] :: reset:     [35m1.12[0m minutes
+2023-07-02 23:43:55.312 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:43:55.313 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:43:55.313 [DEBUG] :: remaining: [35m461/500[0m requests
+2023-07-02 23:43:55.314 [DEBUG] :: reset:     [35m1.12[0m minutes
+2023-07-02 23:43:55.355 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:43:55.356 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:43:55.359 [DEBUG] :: remaining: [35m460/500[0m requests
+2023-07-02 23:43:55.360 [DEBUG] :: reset:     [35m1.12[0m minutes
+2023-07-02 23:43:55.404 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:43:55.815 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:43:55.815 [DEBUG] :: remaining: [35m459/500[0m requests
+2023-07-02 23:43:55.816 [DEBUG] :: reset:     [35m1.12[0m minutes
+2023-07-02 23:43:55.822 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:43:55.823 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:43:55.824 [DEBUG] :: remaining: [35m458/500[0m requests
+2023-07-02 23:43:55.825 [DEBUG] :: reset:     [35m1.12[0m minutes
+2023-07-02 23:43:55.828 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:43:55.829 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:43:55.830 [DEBUG] :: remaining: [35m457/500[0m requests
+2023-07-02 23:43:55.830 [DEBUG] :: reset:     [35m1.12[0m minutes
+2023-07-02 23:43:57.019 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:43:57.070 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:43:57.071 [DEBUG] :: remaining: [35m469/500[0m requests
+2023-07-02 23:43:57.071 [DEBUG] :: reset:     [35m6.10[0m minutes
+2023-07-02 23:43:57.086 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:43:57.087 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:43:57.088 [DEBUG] :: remaining: [35m466/500[0m requests
+2023-07-02 23:43:57.089 [DEBUG] :: reset:     [35m6.10[0m minutes
+2023-07-02 23:43:57.099 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:43:57.100 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:43:57.101 [DEBUG] :: remaining: [35m468/500[0m requests
+2023-07-02 23:43:57.101 [DEBUG] :: reset:     [35m6.10[0m minutes
+2023-07-02 23:43:57.160 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:43:57.161 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:43:57.161 [DEBUG] :: remaining: [35m465/500[0m requests
+2023-07-02 23:43:57.162 [DEBUG] :: reset:     [35m6.10[0m minutes
+2023-07-02 23:43:57.211 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:43:57.212 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:43:57.212 [DEBUG] :: remaining: [35m464/500[0m requests
+2023-07-02 23:43:57.212 [DEBUG] :: reset:     [35m6.10[0m minutes
+2023-07-02 23:43:57.229 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:43:57.229 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:43:57.230 [DEBUG] :: remaining: [35m470/500[0m requests
+2023-07-02 23:43:57.231 [DEBUG] :: reset:     [35m6.10[0m minutes
+2023-07-02 23:43:57.307 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:43:57.308 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:43:57.308 [DEBUG] :: remaining: [35m467/500[0m requests
+2023-07-02 23:43:57.308 [DEBUG] :: reset:     [35m6.10[0m minutes
+2023-07-02 23:49:28.614 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:49:28.615 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:49:28.615 [DEBUG] :: remaining: [35m492/500[0m requests
+2023-07-02 23:49:28.615 [DEBUG] :: reset:     [35m10.58[0m minutes
+2023-07-02 23:49:28.665 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:49:28.665 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:49:28.665 [DEBUG] :: remaining: [35m491/500[0m requests
+2023-07-02 23:49:28.665 [DEBUG] :: reset:     [35m10.58[0m minutes
+2023-07-02 23:49:28.729 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:49:28.729 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:49:28.729 [DEBUG] :: remaining: [35m490/500[0m requests
+2023-07-02 23:49:28.730 [DEBUG] :: reset:     [35m10.58[0m minutes
+2023-07-02 23:49:28.776 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:49:28.776 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:49:28.776 [DEBUG] :: remaining: [35m489/500[0m requests
+2023-07-02 23:49:28.777 [DEBUG] :: reset:     [35m10.58[0m minutes
+2023-07-02 23:49:42.219 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:49:42.219 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:49:42.219 [DEBUG] :: remaining: [35m485/500[0m requests
+2023-07-02 23:49:42.219 [DEBUG] :: reset:     [35m10.35[0m minutes
+2023-07-02 23:49:42.265 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:49:42.265 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:49:42.265 [DEBUG] :: remaining: [35m484/500[0m requests
+2023-07-02 23:49:42.265 [DEBUG] :: reset:     [35m10.35[0m minutes
+2023-07-02 23:49:42.296 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:49:42.296 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:49:42.296 [DEBUG] :: remaining: [35m483/500[0m requests
+2023-07-02 23:49:42.297 [DEBUG] :: reset:     [35m10.35[0m minutes
+2023-07-02 23:49:42.354 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:49:42.357 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:49:42.357 [DEBUG] :: remaining: [35m482/500[0m requests
+2023-07-02 23:49:42.357 [DEBUG] :: reset:     [35m10.35[0m minutes
+2023-07-02 23:49:42.377 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:49:42.377 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:49:42.388 [DEBUG] :: remaining: [35m481/500[0m requests
+2023-07-02 23:49:42.388 [DEBUG] :: reset:     [35m10.35[0m minutes
+2023-07-02 23:49:42.450 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:49:42.450 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:49:42.451 [DEBUG] :: remaining: [35m480/500[0m requests
+2023-07-02 23:49:42.451 [DEBUG] :: reset:     [35m10.35[0m minutes
+2023-07-02 23:49:42.479 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:49:42.479 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:49:42.480 [DEBUG] :: remaining: [35m479/500[0m requests
+2023-07-02 23:49:42.480 [DEBUG] :: reset:     [35m10.35[0m minutes
+2023-07-02 23:49:43.695 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:49:43.695 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:49:43.695 [DEBUG] :: remaining: [35m455/500[0m requests
+2023-07-02 23:49:43.695 [DEBUG] :: reset:     [35m0.33[0m minutes
+2023-07-02 23:49:43.765 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:49:43.765 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:49:43.774 [DEBUG] :: remaining: [35m453/500[0m requests
+2023-07-02 23:49:43.774 [DEBUG] :: reset:     [35m0.33[0m minutes
+2023-07-02 23:49:43.798 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:49:43.798 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:49:43.798 [DEBUG] :: remaining: [35m452/500[0m requests
+2023-07-02 23:49:43.798 [DEBUG] :: reset:     [35m0.33[0m minutes
+2023-07-02 23:49:43.873 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:49:43.873 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:49:43.879 [DEBUG] :: remaining: [35m450/500[0m requests
+2023-07-02 23:49:43.879 [DEBUG] :: reset:     [35m0.33[0m minutes
+2023-07-02 23:49:43.895 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:49:43.895 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:49:43.895 [DEBUG] :: remaining: [35m451/500[0m requests
+2023-07-02 23:49:43.895 [DEBUG] :: reset:     [35m0.33[0m minutes
+2023-07-02 23:49:43.910 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:49:43.910 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:49:43.910 [DEBUG] :: remaining: [35m454/500[0m requests
+2023-07-02 23:49:43.910 [DEBUG] :: reset:     [35m0.33[0m minutes
+2023-07-02 23:49:43.983 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:49:43.988 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:49:43.989 [DEBUG] :: remaining: [35m456/500[0m requests
+2023-07-02 23:49:43.989 [DEBUG] :: reset:     [35m0.33[0m minutes
+2023-07-02 23:51:43.140 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:51:43.140 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:51:43.146 [DEBUG] :: remaining: [35m471/500[0m requests
+2023-07-02 23:51:43.146 [DEBUG] :: reset:     [35m8.33[0m minutes
+2023-07-02 23:51:43.180 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:51:43.180 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:51:43.181 [DEBUG] :: remaining: [35m470/500[0m requests
+2023-07-02 23:51:43.181 [DEBUG] :: reset:     [35m8.33[0m minutes
+2023-07-02 23:51:43.225 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:51:43.225 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:51:43.225 [DEBUG] :: remaining: [35m469/500[0m requests
+2023-07-02 23:51:43.225 [DEBUG] :: reset:     [35m8.33[0m minutes
+2023-07-02 23:51:43.247 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:51:43.247 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:51:43.247 [DEBUG] :: remaining: [35m468/500[0m requests
+2023-07-02 23:51:43.247 [DEBUG] :: reset:     [35m8.33[0m minutes
+2023-07-02 23:51:43.294 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:51:43.294 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:51:43.298 [DEBUG] :: remaining: [35m467/500[0m requests
+2023-07-02 23:51:43.298 [DEBUG] :: reset:     [35m8.33[0m minutes
+2023-07-02 23:51:43.325 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:51:43.325 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:51:43.325 [DEBUG] :: remaining: [35m466/500[0m requests
+2023-07-02 23:51:43.325 [DEBUG] :: reset:     [35m8.33[0m minutes
+2023-07-02 23:51:44.249 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:51:44.249 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:51:44.249 [DEBUG] :: remaining: [35m465/500[0m requests
+2023-07-02 23:51:44.249 [DEBUG] :: reset:     [35m8.32[0m minutes
+2023-07-02 23:51:45.530 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:51:45.530 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:51:45.530 [DEBUG] :: remaining: [35m490/500[0m requests
+2023-07-02 23:51:45.530 [DEBUG] :: reset:     [35m13.30[0m minutes
+2023-07-02 23:51:45.596 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:51:45.596 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:51:45.597 [DEBUG] :: remaining: [35m489/500[0m requests
+2023-07-02 23:51:45.597 [DEBUG] :: reset:     [35m13.30[0m minutes
+2023-07-02 23:51:45.606 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:51:45.606 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:51:45.606 [DEBUG] :: remaining: [35m487/500[0m requests
+2023-07-02 23:51:45.606 [DEBUG] :: reset:     [35m13.30[0m minutes
+2023-07-02 23:51:45.703 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:51:45.703 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:51:45.703 [DEBUG] :: remaining: [35m492/500[0m requests
+2023-07-02 23:51:45.703 [DEBUG] :: reset:     [35m13.30[0m minutes
+2023-07-02 23:51:45.777 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:51:45.779 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:51:45.780 [DEBUG] :: remaining: [35m488/500[0m requests
+2023-07-02 23:51:45.780 [DEBUG] :: reset:     [35m13.30[0m minutes
+2023-07-02 23:51:45.831 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:51:45.831 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:51:45.831 [DEBUG] :: remaining: [35m491/500[0m requests
+2023-07-02 23:51:45.831 [DEBUG] :: reset:     [35m13.30[0m minutes
+2023-07-02 23:51:46.286 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:51:46.286 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:51:46.286 [DEBUG] :: remaining: [35m486/500[0m requests
+2023-07-02 23:51:46.286 [DEBUG] :: reset:     [35m13.28[0m minutes
+2023-07-02 23:53:03.202 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:53:03.203 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:53:03.204 [DEBUG] :: remaining: [35m464/500[0m requests
+2023-07-02 23:53:03.204 [DEBUG] :: reset:     [35m7.00[0m minutes
+2023-07-02 23:53:03.257 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:53:03.257 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:53:03.259 [DEBUG] :: remaining: [35m463/500[0m requests
+2023-07-02 23:53:03.259 [DEBUG] :: reset:     [35m7.00[0m minutes
+2023-07-02 23:53:03.312 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:53:03.312 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:53:03.313 [DEBUG] :: remaining: [35m462/500[0m requests
+2023-07-02 23:53:03.314 [DEBUG] :: reset:     [35m7.00[0m minutes
+2023-07-02 23:53:03.349 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:53:03.349 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:53:03.350 [DEBUG] :: remaining: [35m461/500[0m requests
+2023-07-02 23:53:03.350 [DEBUG] :: reset:     [35m7.00[0m minutes
+2023-07-02 23:53:03.382 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:53:03.383 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:53:03.384 [DEBUG] :: remaining: [35m460/500[0m requests
+2023-07-02 23:53:03.384 [DEBUG] :: reset:     [35m7.00[0m minutes
+2023-07-02 23:53:03.414 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:53:03.414 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:53:03.415 [DEBUG] :: remaining: [35m459/500[0m requests
+2023-07-02 23:53:03.415 [DEBUG] :: reset:     [35m7.00[0m minutes
+2023-07-02 23:53:03.480 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:53:03.481 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:53:03.481 [DEBUG] :: remaining: [35m458/500[0m requests
+2023-07-02 23:53:03.482 [DEBUG] :: reset:     [35m7.00[0m minutes
+2023-07-02 23:53:04.868 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:53:04.869 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:53:04.869 [DEBUG] :: remaining: [35m484/500[0m requests
+2023-07-02 23:53:04.870 [DEBUG] :: reset:     [35m11.98[0m minutes
+2023-07-02 23:53:04.901 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:53:04.901 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:53:04.901 [DEBUG] :: remaining: [35m485/500[0m requests
+2023-07-02 23:53:04.901 [DEBUG] :: reset:     [35m11.98[0m minutes
+2023-07-02 23:53:04.994 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:53:04.995 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:53:04.996 [DEBUG] :: remaining: [35m481/500[0m requests
+2023-07-02 23:53:04.996 [DEBUG] :: reset:     [35m11.98[0m minutes
+2023-07-02 23:53:05.057 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:53:05.058 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:53:05.059 [DEBUG] :: remaining: [35m482/500[0m requests
+2023-07-02 23:53:05.059 [DEBUG] :: reset:     [35m11.97[0m minutes
+2023-07-02 23:53:05.161 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:53:05.162 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:53:05.162 [DEBUG] :: remaining: [35m483/500[0m requests
+2023-07-02 23:53:05.163 [DEBUG] :: reset:     [35m11.97[0m minutes
+2023-07-02 23:53:05.827 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:53:05.827 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:53:05.828 [DEBUG] :: remaining: [35m480/500[0m requests
+2023-07-02 23:53:05.829 [DEBUG] :: reset:     [35m11.97[0m minutes
+2023-07-02 23:53:06.049 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:53:06.050 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:53:06.051 [DEBUG] :: remaining: [35m479/500[0m requests
+2023-07-02 23:53:06.051 [DEBUG] :: reset:     [35m11.95[0m minutes
+2023-07-02 23:56:41.624 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:56:41.625 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:56:41.625 [DEBUG] :: remaining: [35m450/500[0m requests
+2023-07-02 23:56:41.625 [DEBUG] :: reset:     [35m3.37[0m minutes
+2023-07-02 23:56:41.670 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:56:41.670 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:56:41.670 [DEBUG] :: remaining: [35m449/500[0m requests
+2023-07-02 23:56:41.670 [DEBUG] :: reset:     [35m3.37[0m minutes
+2023-07-02 23:56:41.704 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:56:41.704 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:56:41.704 [DEBUG] :: remaining: [35m448/500[0m requests
+2023-07-02 23:56:41.704 [DEBUG] :: reset:     [35m3.37[0m minutes
+2023-07-02 23:56:41.743 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:56:41.743 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:56:41.743 [DEBUG] :: remaining: [35m447/500[0m requests
+2023-07-02 23:56:41.744 [DEBUG] :: reset:     [35m3.37[0m minutes
+2023-07-02 23:56:41.781 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:56:41.781 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:56:41.781 [DEBUG] :: remaining: [35m446/500[0m requests
+2023-07-02 23:56:41.781 [DEBUG] :: reset:     [35m3.37[0m minutes
+2023-07-02 23:56:41.808 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:56:41.809 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:56:41.809 [DEBUG] :: remaining: [35m445/500[0m requests
+2023-07-02 23:56:41.809 [DEBUG] :: reset:     [35m3.37[0m minutes
+2023-07-02 23:56:41.879 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:56:41.879 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:56:41.879 [DEBUG] :: remaining: [35m444/500[0m requests
+2023-07-02 23:56:41.879 [DEBUG] :: reset:     [35m3.37[0m minutes
+2023-07-02 23:56:43.072 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:56:43.072 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:56:43.074 [DEBUG] :: remaining: [35m471/500[0m requests
+2023-07-02 23:56:43.074 [DEBUG] :: reset:     [35m8.33[0m minutes
+2023-07-02 23:56:43.185 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:56:43.185 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:56:43.186 [DEBUG] :: remaining: [35m469/500[0m requests
+2023-07-02 23:56:43.186 [DEBUG] :: reset:     [35m8.33[0m minutes
+2023-07-02 23:56:43.197 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:56:43.198 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:56:43.198 [DEBUG] :: remaining: [35m467/500[0m requests
+2023-07-02 23:56:43.198 [DEBUG] :: reset:     [35m8.33[0m minutes
+2023-07-02 23:56:43.205 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:56:43.205 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:56:43.205 [DEBUG] :: remaining: [35m468/500[0m requests
+2023-07-02 23:56:43.205 [DEBUG] :: reset:     [35m8.33[0m minutes
+2023-07-02 23:56:43.228 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:56:43.229 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:56:43.229 [DEBUG] :: remaining: [35m470/500[0m requests
+2023-07-02 23:56:43.229 [DEBUG] :: reset:     [35m8.33[0m minutes
+2023-07-02 23:56:43.321 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:56:43.321 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:56:43.321 [DEBUG] :: remaining: [35m465/500[0m requests
+2023-07-02 23:56:43.321 [DEBUG] :: reset:     [35m8.33[0m minutes
+2023-07-02 23:56:43.375 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:56:43.375 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:56:43.375 [DEBUG] :: remaining: [35m466/500[0m requests
+2023-07-02 23:56:43.375 [DEBUG] :: reset:     [35m8.33[0m minutes
+2023-07-02 23:58:46.653 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:58:46.669 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:58:46.669 [DEBUG] :: remaining: [35m443/500[0m requests
+2023-07-02 23:58:46.669 [DEBUG] :: reset:     [35m1.28[0m minutes
+2023-07-02 23:58:46.710 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:58:46.710 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:58:46.710 [DEBUG] :: remaining: [35m442/500[0m requests
+2023-07-02 23:58:46.710 [DEBUG] :: reset:     [35m1.28[0m minutes
+2023-07-02 23:58:46.741 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:58:46.741 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:58:46.741 [DEBUG] :: remaining: [35m441/500[0m requests
+2023-07-02 23:58:46.741 [DEBUG] :: reset:     [35m1.28[0m minutes
+2023-07-02 23:58:46.772 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:58:46.772 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:58:46.772 [DEBUG] :: remaining: [35m440/500[0m requests
+2023-07-02 23:58:46.772 [DEBUG] :: reset:     [35m1.28[0m minutes
+2023-07-02 23:58:46.822 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:58:46.822 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:58:46.822 [DEBUG] :: remaining: [35m439/500[0m requests
+2023-07-02 23:58:46.822 [DEBUG] :: reset:     [35m1.28[0m minutes
+2023-07-02 23:58:46.854 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:58:46.854 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:58:46.854 [DEBUG] :: remaining: [35m438/500[0m requests
+2023-07-02 23:58:46.854 [DEBUG] :: reset:     [35m1.28[0m minutes
+2023-07-02 23:58:46.896 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:58:46.896 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-02 23:58:46.896 [DEBUG] :: remaining: [35m437/500[0m requests
+2023-07-02 23:58:46.896 [DEBUG] :: reset:     [35m1.28[0m minutes
+2023-07-02 23:58:48.164 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:58:48.165 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:58:48.166 [DEBUG] :: remaining: [35m461/500[0m requests
+2023-07-02 23:58:48.166 [DEBUG] :: reset:     [35m6.25[0m minutes
+2023-07-02 23:58:48.254 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:58:48.254 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:58:48.255 [DEBUG] :: remaining: [35m459/500[0m requests
+2023-07-02 23:58:48.255 [DEBUG] :: reset:     [35m6.25[0m minutes
+2023-07-02 23:58:48.282 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:58:48.282 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:58:48.282 [DEBUG] :: remaining: [35m464/500[0m requests
+2023-07-02 23:58:48.282 [DEBUG] :: reset:     [35m6.25[0m minutes
+2023-07-02 23:58:48.315 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:58:48.315 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:58:48.315 [DEBUG] :: remaining: [35m458/500[0m requests
+2023-07-02 23:58:48.315 [DEBUG] :: reset:     [35m6.25[0m minutes
+2023-07-02 23:58:48.343 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:58:48.343 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:58:48.343 [DEBUG] :: remaining: [35m460/500[0m requests
+2023-07-02 23:58:48.343 [DEBUG] :: reset:     [35m6.25[0m minutes
+2023-07-02 23:58:48.374 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:58:48.374 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:58:48.374 [DEBUG] :: remaining: [35m462/500[0m requests
+2023-07-02 23:58:48.374 [DEBUG] :: reset:     [35m6.25[0m minutes
+2023-07-02 23:58:48.500 [DEBUG] :: [[32m200[0m]
+2023-07-02 23:58:48.500 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-02 23:58:48.500 [DEBUG] :: remaining: [35m463/500[0m requests
+2023-07-02 23:58:48.500 [DEBUG] :: reset:     [35m6.25[0m minutes
+2023-07-03 00:02:12.660 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:02:12.661 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:02:12.661 [DEBUG] :: remaining: [35m499/500[0m requests
+2023-07-03 00:02:12.661 [DEBUG] :: reset:     [35m15.02[0m minutes
+2023-07-03 00:02:12.718 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:02:12.718 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:02:12.718 [DEBUG] :: remaining: [35m498/500[0m requests
+2023-07-03 00:02:12.718 [DEBUG] :: reset:     [35m15.02[0m minutes
+2023-07-03 00:02:12.728 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:02:12.728 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:02:12.728 [DEBUG] :: remaining: [35m497/500[0m requests
+2023-07-03 00:02:12.729 [DEBUG] :: reset:     [35m15.02[0m minutes
+2023-07-03 00:02:12.786 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:02:12.786 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:02:12.786 [DEBUG] :: remaining: [35m496/500[0m requests
+2023-07-03 00:02:12.786 [DEBUG] :: reset:     [35m15.02[0m minutes
+2023-07-03 00:02:12.816 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:02:12.816 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:02:12.816 [DEBUG] :: remaining: [35m495/500[0m requests
+2023-07-03 00:02:12.816 [DEBUG] :: reset:     [35m15.02[0m minutes
+2023-07-03 00:02:12.849 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:02:12.849 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:02:12.849 [DEBUG] :: remaining: [35m494/500[0m requests
+2023-07-03 00:02:12.849 [DEBUG] :: reset:     [35m15.02[0m minutes
+2023-07-03 00:02:12.892 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:02:12.893 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:02:12.893 [DEBUG] :: remaining: [35m493/500[0m requests
+2023-07-03 00:02:12.893 [DEBUG] :: reset:     [35m15.02[0m minutes
+2023-07-03 00:02:13.977 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:02:13.977 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:02:13.978 [DEBUG] :: remaining: [35m449/500[0m requests
+2023-07-03 00:02:13.978 [DEBUG] :: reset:     [35m2.83[0m minutes
+2023-07-03 00:02:13.986 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:02:13.986 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:02:13.986 [DEBUG] :: remaining: [35m450/500[0m requests
+2023-07-03 00:02:13.986 [DEBUG] :: reset:     [35m2.83[0m minutes
+2023-07-03 00:02:14.009 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:02:14.010 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:02:14.010 [DEBUG] :: remaining: [35m447/500[0m requests
+2023-07-03 00:02:14.010 [DEBUG] :: reset:     [35m2.82[0m minutes
+2023-07-03 00:02:14.070 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:02:14.070 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:02:14.070 [DEBUG] :: remaining: [35m445/500[0m requests
+2023-07-03 00:02:14.070 [DEBUG] :: reset:     [35m2.82[0m minutes
+2023-07-03 00:02:14.107 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:02:14.107 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:02:14.108 [DEBUG] :: remaining: [35m446/500[0m requests
+2023-07-03 00:02:14.108 [DEBUG] :: reset:     [35m2.82[0m minutes
+2023-07-03 00:02:14.205 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:02:14.205 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:02:14.206 [DEBUG] :: remaining: [35m448/500[0m requests
+2023-07-03 00:02:14.206 [DEBUG] :: reset:     [35m2.82[0m minutes
+2023-07-03 00:02:14.311 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:02:14.311 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:02:14.311 [DEBUG] :: remaining: [35m444/500[0m requests
+2023-07-03 00:02:14.311 [DEBUG] :: reset:     [35m2.82[0m minutes
+2023-07-03 00:06:14.349 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:14.349 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:06:14.349 [DEBUG] :: remaining: [35m480/500[0m requests
+2023-07-03 00:06:14.350 [DEBUG] :: reset:     [35m10.98[0m minutes
+2023-07-03 00:06:14.380 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:14.380 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:06:14.380 [DEBUG] :: remaining: [35m479/500[0m requests
+2023-07-03 00:06:14.380 [DEBUG] :: reset:     [35m10.98[0m minutes
+2023-07-03 00:06:14.411 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:14.412 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:06:14.412 [DEBUG] :: remaining: [35m478/500[0m requests
+2023-07-03 00:06:14.412 [DEBUG] :: reset:     [35m10.98[0m minutes
+2023-07-03 00:06:14.470 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:14.470 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:06:14.470 [DEBUG] :: remaining: [35m477/500[0m requests
+2023-07-03 00:06:14.470 [DEBUG] :: reset:     [35m10.98[0m minutes
+2023-07-03 00:06:14.511 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:14.512 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:06:14.512 [DEBUG] :: remaining: [35m476/500[0m requests
+2023-07-03 00:06:14.512 [DEBUG] :: reset:     [35m10.98[0m minutes
+2023-07-03 00:06:14.565 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:14.565 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:06:14.565 [DEBUG] :: remaining: [35m475/500[0m requests
+2023-07-03 00:06:14.566 [DEBUG] :: reset:     [35m10.98[0m minutes
+2023-07-03 00:06:14.590 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:14.590 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:06:14.591 [DEBUG] :: remaining: [35m474/500[0m requests
+2023-07-03 00:06:14.591 [DEBUG] :: reset:     [35m10.98[0m minutes
+2023-07-03 00:06:15.615 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:15.616 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:06:15.616 [DEBUG] :: remaining: [35m489/500[0m requests
+2023-07-03 00:06:15.616 [DEBUG] :: reset:     [35m13.80[0m minutes
+2023-07-03 00:06:15.835 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:15.836 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:06:15.836 [DEBUG] :: remaining: [35m488/500[0m requests
+2023-07-03 00:06:15.836 [DEBUG] :: reset:     [35m13.80[0m minutes
+2023-07-03 00:06:15.861 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:15.861 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:06:15.861 [DEBUG] :: remaining: [35m487/500[0m requests
+2023-07-03 00:06:15.861 [DEBUG] :: reset:     [35m13.80[0m minutes
+2023-07-03 00:06:15.884 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:15.884 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:06:15.884 [DEBUG] :: remaining: [35m484/500[0m requests
+2023-07-03 00:06:15.884 [DEBUG] :: reset:     [35m13.80[0m minutes
+2023-07-03 00:06:15.903 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:15.903 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:06:15.903 [DEBUG] :: remaining: [35m485/500[0m requests
+2023-07-03 00:06:15.903 [DEBUG] :: reset:     [35m13.80[0m minutes
+2023-07-03 00:06:15.919 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:15.919 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:06:15.920 [DEBUG] :: remaining: [35m486/500[0m requests
+2023-07-03 00:06:15.920 [DEBUG] :: reset:     [35m13.80[0m minutes
+2023-07-03 00:06:16.504 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:16.504 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:06:16.504 [DEBUG] :: remaining: [35m483/500[0m requests
+2023-07-03 00:06:16.504 [DEBUG] :: reset:     [35m13.78[0m minutes
+2023-07-03 00:06:38.149 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:38.149 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:06:38.149 [DEBUG] :: remaining: [35m473/500[0m requests
+2023-07-03 00:06:38.149 [DEBUG] :: reset:     [35m10.58[0m minutes
+2023-07-03 00:06:38.184 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:38.184 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:06:38.184 [DEBUG] :: remaining: [35m472/500[0m requests
+2023-07-03 00:06:38.184 [DEBUG] :: reset:     [35m10.58[0m minutes
+2023-07-03 00:06:38.223 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:38.223 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:06:38.223 [DEBUG] :: remaining: [35m471/500[0m requests
+2023-07-03 00:06:38.223 [DEBUG] :: reset:     [35m10.58[0m minutes
+2023-07-03 00:06:38.267 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:38.269 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:06:38.269 [DEBUG] :: remaining: [35m470/500[0m requests
+2023-07-03 00:06:38.269 [DEBUG] :: reset:     [35m10.58[0m minutes
+2023-07-03 00:06:38.308 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:38.308 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:06:38.309 [DEBUG] :: remaining: [35m469/500[0m requests
+2023-07-03 00:06:38.309 [DEBUG] :: reset:     [35m10.58[0m minutes
+2023-07-03 00:06:38.350 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:38.350 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:06:38.350 [DEBUG] :: remaining: [35m468/500[0m requests
+2023-07-03 00:06:38.351 [DEBUG] :: reset:     [35m10.58[0m minutes
+2023-07-03 00:06:38.401 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:38.401 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:06:38.401 [DEBUG] :: remaining: [35m467/500[0m requests
+2023-07-03 00:06:38.401 [DEBUG] :: reset:     [35m10.58[0m minutes
+2023-07-03 00:06:39.427 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:39.427 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:06:39.427 [DEBUG] :: remaining: [35m482/500[0m requests
+2023-07-03 00:06:39.427 [DEBUG] :: reset:     [35m13.40[0m minutes
+2023-07-03 00:06:39.549 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:39.549 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:06:39.549 [DEBUG] :: remaining: [35m480/500[0m requests
+2023-07-03 00:06:39.549 [DEBUG] :: reset:     [35m13.40[0m minutes
+2023-07-03 00:06:39.561 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:39.561 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:06:39.561 [DEBUG] :: remaining: [35m479/500[0m requests
+2023-07-03 00:06:39.561 [DEBUG] :: reset:     [35m13.40[0m minutes
+2023-07-03 00:06:39.719 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:39.719 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:06:39.719 [DEBUG] :: remaining: [35m481/500[0m requests
+2023-07-03 00:06:39.720 [DEBUG] :: reset:     [35m13.40[0m minutes
+2023-07-03 00:06:39.760 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:39.760 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:06:39.761 [DEBUG] :: remaining: [35m477/500[0m requests
+2023-07-03 00:06:39.761 [DEBUG] :: reset:     [35m13.40[0m minutes
+2023-07-03 00:06:39.794 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:39.794 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:06:39.795 [DEBUG] :: remaining: [35m478/500[0m requests
+2023-07-03 00:06:39.795 [DEBUG] :: reset:     [35m13.40[0m minutes
+2023-07-03 00:06:39.871 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:06:39.871 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:06:39.871 [DEBUG] :: remaining: [35m476/500[0m requests
+2023-07-03 00:06:39.871 [DEBUG] :: reset:     [35m13.40[0m minutes
+2023-07-03 00:07:40.632 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:07:40.632 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:07:40.632 [DEBUG] :: remaining: [35m466/500[0m requests
+2023-07-03 00:07:40.633 [DEBUG] :: reset:     [35m9.55[0m minutes
+2023-07-03 00:07:40.667 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:07:40.667 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:07:40.667 [DEBUG] :: remaining: [35m465/500[0m requests
+2023-07-03 00:07:40.667 [DEBUG] :: reset:     [35m9.55[0m minutes
+2023-07-03 00:07:40.719 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:07:40.720 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:07:40.720 [DEBUG] :: remaining: [35m464/500[0m requests
+2023-07-03 00:07:40.720 [DEBUG] :: reset:     [35m9.55[0m minutes
+2023-07-03 00:07:40.759 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:07:40.760 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:07:40.760 [DEBUG] :: remaining: [35m463/500[0m requests
+2023-07-03 00:07:40.760 [DEBUG] :: reset:     [35m9.55[0m minutes
+2023-07-03 00:07:40.796 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:07:40.796 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:07:40.796 [DEBUG] :: remaining: [35m462/500[0m requests
+2023-07-03 00:07:40.796 [DEBUG] :: reset:     [35m9.55[0m minutes
+2023-07-03 00:07:40.830 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:07:40.831 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:07:40.831 [DEBUG] :: remaining: [35m461/500[0m requests
+2023-07-03 00:07:40.831 [DEBUG] :: reset:     [35m9.55[0m minutes
+2023-07-03 00:07:40.898 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:07:40.898 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:07:40.899 [DEBUG] :: remaining: [35m460/500[0m requests
+2023-07-03 00:07:40.899 [DEBUG] :: reset:     [35m9.55[0m minutes
+2023-07-03 00:07:41.891 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:07:41.891 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:07:41.891 [DEBUG] :: remaining: [35m475/500[0m requests
+2023-07-03 00:07:41.891 [DEBUG] :: reset:     [35m12.37[0m minutes
+2023-07-03 00:07:42.018 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:07:42.018 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:07:42.019 [DEBUG] :: remaining: [35m473/500[0m requests
+2023-07-03 00:07:42.019 [DEBUG] :: reset:     [35m12.35[0m minutes
+2023-07-03 00:07:42.067 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:07:42.067 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:07:42.068 [DEBUG] :: remaining: [35m471/500[0m requests
+2023-07-03 00:07:42.068 [DEBUG] :: reset:     [35m12.35[0m minutes
+2023-07-03 00:07:42.075 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:07:42.075 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:07:42.075 [DEBUG] :: remaining: [35m474/500[0m requests
+2023-07-03 00:07:42.075 [DEBUG] :: reset:     [35m12.35[0m minutes
+2023-07-03 00:07:42.125 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:07:42.126 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:07:42.126 [DEBUG] :: remaining: [35m469/500[0m requests
+2023-07-03 00:07:42.126 [DEBUG] :: reset:     [35m12.35[0m minutes
+2023-07-03 00:07:42.205 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:07:42.205 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:07:42.205 [DEBUG] :: remaining: [35m472/500[0m requests
+2023-07-03 00:07:42.205 [DEBUG] :: reset:     [35m12.35[0m minutes
+2023-07-03 00:07:42.295 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:07:42.295 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:07:42.295 [DEBUG] :: remaining: [35m470/500[0m requests
+2023-07-03 00:07:42.295 [DEBUG] :: reset:     [35m12.35[0m minutes
+2023-07-03 00:09:28.633 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:09:28.633 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:09:28.633 [DEBUG] :: remaining: [35m459/500[0m requests
+2023-07-03 00:09:28.634 [DEBUG] :: reset:     [35m7.75[0m minutes
+2023-07-03 00:09:28.661 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:09:28.661 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:09:28.661 [DEBUG] :: remaining: [35m458/500[0m requests
+2023-07-03 00:09:28.661 [DEBUG] :: reset:     [35m7.75[0m minutes
+2023-07-03 00:09:28.726 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:09:28.726 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:09:28.726 [DEBUG] :: remaining: [35m457/500[0m requests
+2023-07-03 00:09:28.726 [DEBUG] :: reset:     [35m7.75[0m minutes
+2023-07-03 00:09:28.758 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:09:28.758 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:09:28.758 [DEBUG] :: remaining: [35m456/500[0m requests
+2023-07-03 00:09:28.758 [DEBUG] :: reset:     [35m7.75[0m minutes
+2023-07-03 00:09:28.816 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:09:28.817 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:09:28.817 [DEBUG] :: remaining: [35m455/500[0m requests
+2023-07-03 00:09:28.817 [DEBUG] :: reset:     [35m7.75[0m minutes
+2023-07-03 00:09:28.846 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:09:28.846 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:09:28.846 [DEBUG] :: remaining: [35m454/500[0m requests
+2023-07-03 00:09:28.847 [DEBUG] :: reset:     [35m7.75[0m minutes
+2023-07-03 00:09:28.876 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:09:28.876 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:09:28.876 [DEBUG] :: remaining: [35m453/500[0m requests
+2023-07-03 00:09:28.877 [DEBUG] :: reset:     [35m7.75[0m minutes
+2023-07-03 00:09:30.109 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:09:30.110 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:09:30.110 [DEBUG] :: remaining: [35m463/500[0m requests
+2023-07-03 00:09:30.110 [DEBUG] :: reset:     [35m10.55[0m minutes
+2023-07-03 00:09:30.119 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:09:30.119 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:09:30.119 [DEBUG] :: remaining: [35m465/500[0m requests
+2023-07-03 00:09:30.119 [DEBUG] :: reset:     [35m10.55[0m minutes
+2023-07-03 00:09:30.129 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:09:30.129 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:09:30.129 [DEBUG] :: remaining: [35m466/500[0m requests
+2023-07-03 00:09:30.129 [DEBUG] :: reset:     [35m10.55[0m minutes
+2023-07-03 00:09:30.136 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:09:30.136 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:09:30.137 [DEBUG] :: remaining: [35m468/500[0m requests
+2023-07-03 00:09:30.137 [DEBUG] :: reset:     [35m10.55[0m minutes
+2023-07-03 00:09:30.146 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:09:30.147 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:09:30.147 [DEBUG] :: remaining: [35m462/500[0m requests
+2023-07-03 00:09:30.147 [DEBUG] :: reset:     [35m10.55[0m minutes
+2023-07-03 00:09:30.225 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:09:30.225 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:09:30.225 [DEBUG] :: remaining: [35m464/500[0m requests
+2023-07-03 00:09:30.225 [DEBUG] :: reset:     [35m10.55[0m minutes
+2023-07-03 00:09:30.263 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:09:30.263 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:09:30.263 [DEBUG] :: remaining: [35m467/500[0m requests
+2023-07-03 00:09:30.263 [DEBUG] :: reset:     [35m10.55[0m minutes
+2023-07-03 00:11:32.370 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:11:32.370 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:11:32.370 [DEBUG] :: remaining: [35m445/500[0m requests
+2023-07-03 00:11:32.370 [DEBUG] :: reset:     [35m5.68[0m minutes
+2023-07-03 00:11:32.417 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:11:32.417 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:11:32.418 [DEBUG] :: remaining: [35m444/500[0m requests
+2023-07-03 00:11:32.418 [DEBUG] :: reset:     [35m5.68[0m minutes
+2023-07-03 00:11:32.442 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:11:32.442 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:11:32.442 [DEBUG] :: remaining: [35m443/500[0m requests
+2023-07-03 00:11:32.442 [DEBUG] :: reset:     [35m5.68[0m minutes
+2023-07-03 00:11:32.476 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:11:32.476 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:11:32.476 [DEBUG] :: remaining: [35m442/500[0m requests
+2023-07-03 00:11:32.476 [DEBUG] :: reset:     [35m5.68[0m minutes
+2023-07-03 00:11:32.516 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:11:32.516 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:11:32.516 [DEBUG] :: remaining: [35m441/500[0m requests
+2023-07-03 00:11:32.516 [DEBUG] :: reset:     [35m5.68[0m minutes
+2023-07-03 00:11:32.553 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:11:32.553 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:11:32.553 [DEBUG] :: remaining: [35m440/500[0m requests
+2023-07-03 00:11:32.553 [DEBUG] :: reset:     [35m5.68[0m minutes
+2023-07-03 00:11:32.607 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:11:32.607 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:11:32.607 [DEBUG] :: remaining: [35m439/500[0m requests
+2023-07-03 00:11:32.607 [DEBUG] :: reset:     [35m5.68[0m minutes
+2023-07-03 00:11:33.706 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:11:33.706 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:11:33.706 [DEBUG] :: remaining: [35m452/500[0m requests
+2023-07-03 00:11:33.706 [DEBUG] :: reset:     [35m8.50[0m minutes
+2023-07-03 00:11:33.738 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:11:33.738 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:11:33.738 [DEBUG] :: remaining: [35m454/500[0m requests
+2023-07-03 00:11:33.738 [DEBUG] :: reset:     [35m8.50[0m minutes
+2023-07-03 00:11:33.854 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:11:33.855 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:11:33.855 [DEBUG] :: remaining: [35m448/500[0m requests
+2023-07-03 00:11:33.855 [DEBUG] :: reset:     [35m8.50[0m minutes
+2023-07-03 00:11:33.933 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:11:33.933 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:11:33.934 [DEBUG] :: remaining: [35m451/500[0m requests
+2023-07-03 00:11:33.934 [DEBUG] :: reset:     [35m8.50[0m minutes
+2023-07-03 00:11:33.961 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:11:33.961 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:11:33.961 [DEBUG] :: remaining: [35m450/500[0m requests
+2023-07-03 00:11:33.962 [DEBUG] :: reset:     [35m8.50[0m minutes
+2023-07-03 00:11:33.974 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:11:33.974 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:11:33.974 [DEBUG] :: remaining: [35m449/500[0m requests
+2023-07-03 00:11:33.975 [DEBUG] :: reset:     [35m8.50[0m minutes
+2023-07-03 00:11:34.088 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:11:34.089 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:11:34.089 [DEBUG] :: remaining: [35m453/500[0m requests
+2023-07-03 00:11:34.089 [DEBUG] :: reset:     [35m8.48[0m minutes
+2023-07-03 00:12:31.618 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:12:31.618 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:12:31.618 [DEBUG] :: remaining: [35m438/500[0m requests
+2023-07-03 00:12:31.619 [DEBUG] :: reset:     [35m4.70[0m minutes
+2023-07-03 00:12:31.653 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:12:31.653 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:12:31.655 [DEBUG] :: remaining: [35m437/500[0m requests
+2023-07-03 00:12:31.655 [DEBUG] :: reset:     [35m4.70[0m minutes
+2023-07-03 00:12:31.686 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:12:31.686 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:12:31.686 [DEBUG] :: remaining: [35m436/500[0m requests
+2023-07-03 00:12:31.686 [DEBUG] :: reset:     [35m4.70[0m minutes
+2023-07-03 00:12:31.717 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:12:31.717 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:12:31.718 [DEBUG] :: remaining: [35m435/500[0m requests
+2023-07-03 00:12:31.718 [DEBUG] :: reset:     [35m4.70[0m minutes
+2023-07-03 00:12:31.752 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:12:31.752 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:12:31.752 [DEBUG] :: remaining: [35m434/500[0m requests
+2023-07-03 00:12:31.752 [DEBUG] :: reset:     [35m4.70[0m minutes
+2023-07-03 00:12:31.841 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:12:31.842 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:12:31.842 [DEBUG] :: remaining: [35m433/500[0m requests
+2023-07-03 00:12:31.842 [DEBUG] :: reset:     [35m4.70[0m minutes
+2023-07-03 00:12:31.863 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:12:31.863 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:12:31.864 [DEBUG] :: remaining: [35m432/500[0m requests
+2023-07-03 00:12:31.864 [DEBUG] :: reset:     [35m4.70[0m minutes
+2023-07-03 00:12:33.329 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:12:33.330 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:12:33.330 [DEBUG] :: remaining: [35m446/500[0m requests
+2023-07-03 00:12:33.330 [DEBUG] :: reset:     [35m7.50[0m minutes
+2023-07-03 00:12:33.463 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:12:33.463 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:12:33.463 [DEBUG] :: remaining: [35m443/500[0m requests
+2023-07-03 00:12:33.464 [DEBUG] :: reset:     [35m7.50[0m minutes
+2023-07-03 00:12:33.477 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:12:33.478 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:12:33.478 [DEBUG] :: remaining: [35m447/500[0m requests
+2023-07-03 00:12:33.478 [DEBUG] :: reset:     [35m7.50[0m minutes
+2023-07-03 00:12:33.490 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:12:33.490 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:12:33.490 [DEBUG] :: remaining: [35m442/500[0m requests
+2023-07-03 00:12:33.490 [DEBUG] :: reset:     [35m7.50[0m minutes
+2023-07-03 00:12:33.612 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:12:33.612 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:12:33.613 [DEBUG] :: remaining: [35m444/500[0m requests
+2023-07-03 00:12:33.613 [DEBUG] :: reset:     [35m7.50[0m minutes
+2023-07-03 00:12:33.638 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:12:33.638 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:12:33.638 [DEBUG] :: remaining: [35m445/500[0m requests
+2023-07-03 00:12:33.638 [DEBUG] :: reset:     [35m7.50[0m minutes
+2023-07-03 00:12:33.688 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:12:33.689 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:12:33.689 [DEBUG] :: remaining: [35m441/500[0m requests
+2023-07-03 00:12:33.690 [DEBUG] :: reset:     [35m7.50[0m minutes
+2023-07-03 00:14:31.226 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:14:31.226 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:14:31.226 [DEBUG] :: remaining: [35m431/500[0m requests
+2023-07-03 00:14:31.226 [DEBUG] :: reset:     [35m2.70[0m minutes
+2023-07-03 00:14:31.265 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:14:31.265 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:14:31.265 [DEBUG] :: remaining: [35m430/500[0m requests
+2023-07-03 00:14:31.266 [DEBUG] :: reset:     [35m2.70[0m minutes
+2023-07-03 00:14:31.300 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:14:31.300 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:14:31.300 [DEBUG] :: remaining: [35m429/500[0m requests
+2023-07-03 00:14:31.300 [DEBUG] :: reset:     [35m2.70[0m minutes
+2023-07-03 00:14:31.334 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:14:31.334 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:14:31.334 [DEBUG] :: remaining: [35m428/500[0m requests
+2023-07-03 00:14:31.334 [DEBUG] :: reset:     [35m2.70[0m minutes
+2023-07-03 00:14:31.379 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:14:31.379 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:14:31.380 [DEBUG] :: remaining: [35m427/500[0m requests
+2023-07-03 00:14:31.380 [DEBUG] :: reset:     [35m2.70[0m minutes
+2023-07-03 00:14:31.426 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:14:31.426 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:14:31.426 [DEBUG] :: remaining: [35m426/500[0m requests
+2023-07-03 00:14:31.426 [DEBUG] :: reset:     [35m2.70[0m minutes
+2023-07-03 00:14:31.466 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:14:31.466 [DEBUG] :: /i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName
+2023-07-03 00:14:31.466 [DEBUG] :: remaining: [35m425/500[0m requests
+2023-07-03 00:14:31.467 [DEBUG] :: reset:     [35m2.70[0m minutes
+2023-07-03 00:14:32.511 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:14:32.511 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:14:32.511 [DEBUG] :: remaining: [35m440/500[0m requests
+2023-07-03 00:14:32.511 [DEBUG] :: reset:     [35m5.52[0m minutes
+2023-07-03 00:14:32.608 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:14:32.609 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:14:32.609 [DEBUG] :: remaining: [35m439/500[0m requests
+2023-07-03 00:14:32.609 [DEBUG] :: reset:     [35m5.52[0m minutes
+2023-07-03 00:14:32.750 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:14:32.750 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:14:32.751 [DEBUG] :: remaining: [35m438/500[0m requests
+2023-07-03 00:14:32.751 [DEBUG] :: reset:     [35m5.52[0m minutes
+2023-07-03 00:14:32.761 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:14:32.762 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:14:32.762 [DEBUG] :: remaining: [35m437/500[0m requests
+2023-07-03 00:14:32.762 [DEBUG] :: reset:     [35m5.52[0m minutes
+2023-07-03 00:14:32.799 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:14:32.799 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:14:32.799 [DEBUG] :: remaining: [35m436/500[0m requests
+2023-07-03 00:14:32.799 [DEBUG] :: reset:     [35m5.52[0m minutes
+2023-07-03 00:14:32.932 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:14:32.932 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:14:32.932 [DEBUG] :: remaining: [35m435/500[0m requests
+2023-07-03 00:14:32.932 [DEBUG] :: reset:     [35m5.52[0m minutes
+2023-07-03 00:14:33.159 [DEBUG] :: [[32m200[0m]
+2023-07-03 00:14:33.159 [DEBUG] :: /i/api/graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets
+2023-07-03 00:14:33.160 [DEBUG] :: remaining: [35m434/500[0m requests
+2023-07-03 00:14:33.160 [DEBUG] :: reset:     [35m5.50[0m minutes
