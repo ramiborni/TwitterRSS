@@ -11,8 +11,11 @@ import tomllib
 from nltk.tokenize import word_tokenize
 from twitter.scraper import Scraper
 from twitter_data import twitter_data_from_dict
+from dotenv import load_dotenv
+import os
+from functions import save_filtered_data, check_tweet_exist, get_tweets_db
 
-TWINT_API_DIR = Path(__file__).parent
+load_dotenv()
 
 # read configuration
 with open("config.toml", "rb") as f:
@@ -90,38 +93,53 @@ def filter_results(tweet_text, keywords) -> bool:
                 return True
 
 
+def save_db(item):
+    tweet = item['tweets']
+    if check_tweet_exist(tweet['id']):
+        return
+    dt = datetime.datetime.strptime(
+        tweet['created_at'], '%a %b %d %H:%M:%S %z %Y')
+    new_dt = dt + datetime.timedelta(hours=2)
+    prefix_time = new_dt.strftime("%H:%M")
+    tweet_body = f"{item['prefix']} ({prefix_time}): {tweet['full_text']} {item['suffix']}"
+    tweet_link = "https://twitter.com/twitter/status/" + tweet['id']
+    thumbnail = ""
+    if tweet['attachment']:
+        thumbnail = tweet['attachment']
+    else:
+        thumbnail = retrieve_random_image(item['username'], dt)
+
+    save_filtered_data(
+        {
+            "username": item['username'],
+            "id": tweet['id'],
+            "tweet_body": tweet['full_text'],
+            "tweet_body_rss": tweet_body,
+            "thumbnail": thumbnail,
+            "pub_date": new_dt,
+            "link": tweet_link
+        }
+    )
+
+
 def convert_to_RSS(item, keywords, fg, acc_type):
     global number_acc
 
-    tweet = item['tweets']
+    if filter_results(item['tweet_body'].replace("\n", " "), keywords) and is_date_in_range(item['pub_date']):
 
-    if filter_results(tweet['full_text'].replace("\n", " "), keywords) and is_date_in_range(tweet['created_at']):
-        dt = datetime.datetime.strptime(
-            tweet['created_at'], '%a %b %d %H:%M:%S %z %Y')
-        new_dt = dt + datetime.timedelta(hours=2)
-
-        prefix_time = new_dt.strftime("%H:%M")
         fe = fg.add_entry()
-        fe.id(tweet['id'])
-        fe.title(
-            f"{item['prefix']} ({prefix_time}): {tweet['full_text']} {item['suffix']}")
-        fe.link(href="https://twitter.com/twitter/status/" +
-                     tweet['id'], rel='alternate')
+        fe.id(item['id'])
+        fe.title(item['tweet_body_rss'])
+        fe.link(href=item['link'], rel='alternate')
         # parse datetime string and localize to UTC
-        fe.pubDate(new_dt)
-
-        if tweet['attachment']:
-            fe.media.thumbnail({'url': tweet['attachment'], 'width': '200'},
-                               group=None)
-            fe.media.content({'url': tweet['attachment'], 'width': '400'},
-                             group=None)
-        else:
-            result = retrieve_random_image(item['username'], dt)
-            if result:
-                fe.media.thumbnail(
-                    {'url': result, 'width': '200'}, group=None)
-                fe.media.content(
-                    {'url': result, 'width': '400'}, group=None)
+        #dt = datetime.datetime.strptime(item['pub_date'], '%Y-%m-%dT%H:%M:%S.%f%z')
+        tzinfo = pytz.timezone('Etc/GMT+2')
+        pub_date = item['pub_date'].replace(tzinfo=tzinfo)
+        fe.pubDate(pub_date)
+        fe.media.thumbnail({'url': item['thumbnail'], 'width': '200'},
+                           group=None)
+        fe.media.content({'url': item['thumbnail'], 'width': '400'},
+                         group=None)
 
         acc_type_index = next(
             (index for index, category in enumerate(list_categories) if category["category_name"] == acc_type),
@@ -133,14 +151,13 @@ def convert_to_RSS(item, keywords, fg, acc_type):
 
 def get_rest_ids(data):
     rest_ids = []
-    for result_list in data:
-        for result in result_list:
-            rest_id = result['data']['user']['result']['rest_id']
-            username = result['data']['user']['result']['legacy']['screen_name']
-            rest_ids.append({
-                "rest_id": rest_id,
-                "username": username
-            })
+    for result in data:
+        rest_id = result['data']['user']['result']['rest_id']
+        username = result['data']['user']['result']['legacy']['screen_name']
+        rest_ids.append({
+            "rest_id": rest_id,
+            "username": username
+        })
     return rest_ids
 
 
@@ -190,19 +207,20 @@ def print_tweets(res, users):
 
 
 def get_data():
-    email, username, password = "ramyborni", "rikiraspoutine@gmail.com", "Raspoutine@5353"
+    scraper = Scraper(cookies={
+        "ct0": os.environ.get("TWITTER_CT0"),
+        "auth_token": os.environ.get("TWITTER_AUTH_TOKEN")
+    }, debug=1, save=True)
 
-    scraper = Scraper(email, username, password, debug=1, save=False)
     users = scraper.users([user['username'] for user in twitter_accounts])
 
     users_id = get_rest_ids(users)
 
-    tweets = scraper.tweets([user['rest_id'] for user in users_id], limit=1000)
+    tweets = scraper.tweets([user['rest_id'] for user in users_id], limit=1)
 
     result = []
-    for tweet_data in twitter_data_from_dict(tweets):
-        for tweets in tweet_data:
-            result.append(print_tweets(tweets, users_id))
+    for tweets in twitter_data_from_dict(tweets):
+        result.append(print_tweets(tweets, users_id))
 
     return result
 
@@ -233,20 +251,28 @@ if __name__ == '__main__':
     flat_result = [item for sublist in result for item in sublist]
     flat_result.sort(key=get_date, reverse=True)
     twitter_account_data = []
+    print('saving tweets ..')
     for i in range(len(flat_result)):
         twitter_account_data = find_account_by_username(flat_result[i]['username'])
+        save_db({
+            "username": flat_result[i]['username'],
+            "tweets": flat_result[i],
+            "prefix": twitter_account_data['prefix'],
+            "suffix": twitter_account_data['suffix']
+        })
+    print("tweets saved ...")
+    print("getting stored tweets ...")
+    saved_tweets = get_tweets_db()
+    print("finishing getting stored tweets ...")
+    print("building RSS ...")
+    for i in range(len(saved_tweets)):
         if show_items is not None and all(item == show_items for item in number_acc):
             break
 
         for index in range(len(list_categories)):
             if number_acc[index] != show_items:
                 category = list_categories[index]
-                convert_to_RSS({
-                    "username": flat_result[i]['username'],
-                    "tweets": flat_result[i],
-                    "prefix": twitter_account_data['prefix'],
-                    "suffix": twitter_account_data['suffix']
-                }, category['keywords'], feed_generators[index], category['category_name'])
+                convert_to_RSS(saved_tweets[i], category['keywords'], feed_generators[index], category['category_name'])
 
     for i in range(len(list_categories)):
         category = list_categories[i]
@@ -265,3 +291,6 @@ if __name__ == '__main__':
         replace_placeholders("./templates/template_horizantal.html", replaces,
                              f"./web-pages/{category['category_name']}_horizontal.html")
         replace_placeholders("./templates/template.js", replaces, f"./web-pages/{category['category_name']}.js")
+
+print("Job finished ...")
+print("CLOSING INFOKANAL SCRAPPER ...")
