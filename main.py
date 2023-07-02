@@ -181,28 +181,29 @@ def get_max_res(binding_values):
 
     return max_res_image_url
 
-
 def print_tweets(res, users):
     list_tweets = []
-    for item in res.data.user.result.timeline_v2.timeline.instructions:
-        if item.entries is not None:
-            for entry in item.entries:
-                if entry.content.item_content is not None and entry.content.item_content.tweet_results.result.legacy is not None:
+    for item in res['data']['user']['result']['timeline_v2']['timeline']['instructions']:
+        try:
+         if item['entries'] is not None:
+            for entry in item['entries']:
+                if entry['content']['item_content'] is not None and entry['content']['item_content']['tweet_results']['result']['legacy'] is not None:
                     try:
                         user = list(filter(
-                            lambda x: x[
-                                          'rest_id'] == entry.content.item_content.tweet_results.result.legacy.user_id_str,
+                            lambda x: x['rest_id'] == entry['content']['item_content']['tweet_results']['result']['legacy']['user_id_str'],
                             users))
                         max_res = ""
                         list_tweets.append({
                             'username': user[0]['username'],
-                            'created_at': entry.content.item_content.tweet_results.result.legacy.created_at,
-                            'full_text': entry.content.item_content.tweet_results.result.legacy.full_text,
-                            'id': entry.content.item_content.tweet_results.result.legacy.id_str,
+                            'created_at': entry['content']['item_content']['tweet_results']['result']['legacy']['created_at'],
+                            'full_text': entry['content']['item_content']['tweet_results']['result']['legacy']['full_text'],
+                            'id': entry['content']['item_content']['tweet_results']['result']['legacy']['id_str'],
                             'attachment': max_res
                         })
                     except:
                         pass
+        except:
+            pass            
     return list_tweets
 
 
@@ -219,8 +220,8 @@ def get_data():
     tweets = scraper.tweets([user['rest_id'] for user in users_id], limit=1)
 
     result = []
-    for tweets in twitter_data_from_dict(tweets):
-        result.append(print_tweets(tweets, users_id))
+    for tweet in tweets:
+        result.append(print_tweets(tweet, users_id))
 
     return result
 
