@@ -40,6 +40,7 @@ for category in list_categories:
     fg.title(f'infokanal {category["category_name"]} RSS feed')
     fg.link(href=f'https://www.infokanal.com/{category["category_name"]}_rss.xml')
     fg.description('infokanal RSS feed for ' + category['category_name'])
+    fg.lastBuildDate(datetime.datetime.now(tz=pytz.timezone('Europe/Oslo')))
     feed_generators.append(fg)
 
 
@@ -87,7 +88,9 @@ def retrieve_random_image(username: str, date) -> str:
 def filter_results(tweet_text: str, keywords) -> bool:
     for word in word_tokenize(tweet_text):
         for keyword in keywords:
-            if keyword == word or keyword.lower() == word or keyword.replace(' ','') == word or keyword.lower() == word.replace("#", "").lower() or ( " " in keyword and keyword.lower() in tweet_text.lower() ):
+            if keyword == word or keyword.lower() == word or keyword.replace(' ',
+                                                                             '') == word or keyword.lower() == word.replace(
+                "#", "").lower() or (" " in keyword and keyword.lower() in tweet_text.lower()):
                 return True
 
 
@@ -107,22 +110,38 @@ def save_db(item):
     else:
         thumbnail = retrieve_random_image(item['username'], dt)
 
-    data = {
-        "username": item['username'],
-        "id": tweet['id'],
-        "tweet_body": tweet['full_text'],
-        "tweet_body_rss": tweet_body,
-        "thumbnail": thumbnail,
-        "pub_date": new_dt,
-        "link": tweet_link
-    }
+    if "replies" in tweet and tweet["replies"] is not None and tweet["replies"]:
+        for tweet_reply in tweet["replies"]:
+            tweet_reply["tweet_body_rss"] = f"{item['prefix']} ({prefix_time}): {tweet_reply['full_text']} {item['suffix']}"
+
+        data = {
+            "username": item['username'],
+            "id": tweet['id'],
+            "tweet_body": tweet['full_text'],
+            "tweet_body_rss": tweet_body,
+            "thumbnail": thumbnail,
+            "pub_date": new_dt,
+            "link": tweet_link,
+            "replies": tweet["replies"] or None
+        }
+    else:
+        data = {
+            "username": item['username'],
+            "id": tweet['id'],
+            "tweet_body": tweet['full_text'],
+            "tweet_body_rss": tweet_body,
+            "thumbnail": thumbnail,
+            "pub_date": new_dt,
+            "link": tweet_link,
+            "replies": None
+        }
     save_filtered_data(data)
 
 
-def convert_to_RSS(item, keywords, fg, acc_type):
+def convert_to_RSS(item, keywords, negative_keywords, fg, acc_type):
     global number_acc
 
-    if filter_results(item['tweet_body'].replace("\n", " "), keywords) and is_date_in_range(item['pub_date']):
+    if filter_results(item['tweet_body'].replace("\n", " "), keywords) and is_date_in_range(item['pub_date']) and not filter_results(item['tweet_body'].replace("\n", " "), negative_keywords):
 
         fe = fg.add_entry()
         fe.id(item['id'])
@@ -130,7 +149,7 @@ def convert_to_RSS(item, keywords, fg, acc_type):
         fe.link(href=item['link'], rel='alternate')
         # parse datetime string and localize to UTC
         # dt = datetime.datetime.strptime(item['pub_date'], '%Y-%m-%dT%H:%M:%S.%f%z')
-        tzinfo = pytz.timezone('Etc/GMT+2')
+        tzinfo = pytz.timezone('Europe/Oslo')
         pub_date = item['pub_date'].replace(tzinfo=tzinfo)
         fe.pubDate(pub_date)
         fe.media.thumbnail({'url': item['thumbnail'], 'width': '200'},
@@ -142,6 +161,22 @@ def convert_to_RSS(item, keywords, fg, acc_type):
             (index for index, category in enumerate(list_categories) if category["category_name"] == acc_type),
             None)
         number_acc[acc_type_index] = number_acc[acc_type_index] + 1
+
+        if "replies" in item and item["replies"] is not None and item["replies"]:
+            for reply in item['replies']:
+                fe = fg.add_entry()
+                fe.id(reply['id'])
+                fe.title(reply['tweet_body_rss'])
+                fe.link(href=item['link'], rel='alternate')
+                datetime_reply = datetime.datetime.strptime(reply['created_at'], '%a %b %d %H:%M:%S %z %Y')
+                pub_date_reply = datetime_reply.replace(tzinfo=tzinfo)
+                fe.pubDate(pub_date_reply)
+                fe.media.thumbnail({'url': item['thumbnail'], 'width': '200'},
+                                   group=None)
+                fe.media.content({'url': item['thumbnail'], 'width': '400'},
+                                 group=None)
+                number_acc[acc_type_index] = number_acc[acc_type_index] + 1
+
     else:
         return
 
@@ -179,44 +214,102 @@ def get_max_res(binding_values):
     return max_res_image_url
 
 
+def tweet_type(entry, users):
+    tweet_entry_id = entry["entryId"]
+    if "tweet-" in tweet_entry_id:
+        return extract_normal_tweet(entry, users)
+    if "profile-conversation-" in tweet_entry_id:
+        return extract_tweet_replies(entry, users)
+    else:
+        pass
+
+
 def print_tweets(res, users):
     list_tweets = []
+
     try:
         instructions = res['data']['user']['result']['timeline_v2']['timeline']['instructions']
+
         for item in instructions:
-            if 'entries' in item:
+            if 'entries' in item and item['type'] == "TimelineAddEntries":
                 entries = item['entries']
                 for entry in entries:
-                    if 'content' in entry and 'itemContent' in entry['content']:
-                        item_content = entry['content']['itemContent']
-                        if 'tweet_results' in item_content and 'result' in item_content['tweet_results']:
-                            legacy = item_content['tweet_results']['result']['legacy']
-                            if legacy is not None:
-                                try:
-                                    user = list(filter(lambda x: x['rest_id'] == legacy['user_id_str'], users))
-                                    created_at = legacy['created_at']
-                                    full_text = legacy['full_text']
-                                    id_str = legacy['id_str']
-                                    max_res = ""
-                                    list_tweets.append({
-                                        'username': user[0]['username'],
-                                        'created_at': created_at,
-                                        'full_text': full_text,
-                                        'id': id_str,
-                                        'attachment': max_res
-                                    })
-                                except Exception as e:
-                                    print(e)
-                                    pass
+                    list_tweets.append(tweet_type(entry, users))
     except Exception as e:
-        print(e)
+        pass
+
     return list_tweets
 
 
+def extract_normal_tweet(entry, users):
+    if 'content' in entry and 'itemContent' in entry['content']:
+        item_content = entry['content']['itemContent']
+        if 'tweet_results' in item_content and 'result' in item_content['tweet_results']:
+            legacy = item_content['tweet_results']['result']['legacy']
+            if legacy is not None:
+                user = list(filter(lambda x: x['rest_id'] == legacy['user_id_str'], users))
+                created_at = legacy['created_at']
+                full_text = legacy['full_text']
+                id_str = legacy['id_str']
+                max_res = ""
+                return {
+                    'username': user[0]['username'],
+                    'created_at': created_at,
+                    'full_text': full_text,
+                    'id': id_str,
+                    'attachment': max_res
+                }
+
+
+def extract_tweet_replies(entry, users):
+    tweet_and_replies: dict
+    if 'content' in entry and 'items' in entry['content']:
+        items = entry['content']['items']
+        for count, item in enumerate(items):
+            item_content = item['item']['itemContent']
+            if 'tweet_results' in item_content and 'result' in item_content['tweet_results']:
+                legacy = item_content['tweet_results']['result']['legacy']
+                if legacy is not None:
+                    if count == 0:
+                        user = list(filter(lambda x: x['rest_id'] == legacy['user_id_str'], users))
+                        created_at = legacy['created_at']
+                        full_text = legacy['full_text']
+                        id_str = legacy['id_str']
+                        max_res = ""
+                        tweet_and_replies = {
+                            'username': user[0]['username'],
+                            'created_at': created_at,
+                            'full_text': full_text,
+                            'id': id_str,
+                            'attachment': max_res,
+                            'replies': []
+                        }
+                    else:
+                        user = list(filter(lambda x: x['rest_id'] == legacy['user_id_str'], users))
+                        created_at = legacy['created_at']
+                        full_text = legacy['full_text']
+                        id_str = legacy['id_str']
+                        tweet_and_replies['replies'].append({
+                            'username': user[0]['username'],
+                            'created_at': created_at,
+                            'full_text': full_text,
+                            'id': id_str,
+                        })
+    return tweet_and_replies
+
+
 def get_data():
+    print(
+        {
+            "ct0": os.environ.get("TWITTER_CT0"),
+            "auth_token": os.environ.get("TWITTER_AUTH_TOKEN"),
+
+        }
+    )
     scraper = Scraper(cookies={
         "ct0": os.environ.get("TWITTER_CT0"),
-        "auth_token": os.environ.get("TWITTER_AUTH_TOKEN")
+        "auth_token": os.environ.get("TWITTER_AUTH_TOKEN"),
+
     }, debug=1, save=False)
 
     users = scraper.users([user['username'] for user in twitter_accounts])
@@ -255,8 +348,9 @@ def replace_placeholders(template_file, replacements, output_file):
 
 if __name__ == '__main__':
     result = get_data()
-    flat_result = [item for sublist in result for item in sublist]
+    flat_result = [item for sublist in result for item in sublist if item is not None]
     flat_result.sort(key=get_date, reverse=True)
+    print(len(flat_result))
     twitter_account_data = []
     print(f'saving tweets ..')
     for i in range(len(flat_result)):
@@ -279,7 +373,7 @@ if __name__ == '__main__':
         for index in range(len(list_categories)):
             if number_acc[index] != show_items:
                 category = list_categories[index]
-                convert_to_RSS(saved_tweets[i], category['keywords'], feed_generators[index], category['category_name'])
+                convert_to_RSS(saved_tweets[i], category['keywords'], category["negative_keywords"], feed_generators[index], category['category_name'])
 
     for i in range(len(list_categories)):
         category = list_categories[i]
