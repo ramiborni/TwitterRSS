@@ -32,3 +32,4 @@ tqdm==4.65.0
 twitter-api-client==0.10.11
 websockets==11.0.3
 yarl==1.9.2
+pytz

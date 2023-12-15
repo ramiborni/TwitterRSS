@@ -93,26 +93,36 @@ def filter_results(tweet_text: str, keywords) -> bool:
                 "#", "").lower() or (" " in keyword and keyword.lower() in tweet_text.lower()):
                 return True
 
-
 def save_db(item):
     tweet = item['tweets']
     if check_tweet_exist(tweet['id']):
         return
-    dt = datetime.datetime.strptime(
-        tweet['created_at'], '%a %b %d %H:%M:%S %z %Y')
-    new_dt = dt + datetime.timedelta(hours=2)
-    prefix_time = new_dt.strftime("%H:%M")
-    tweet_body = f"{item['prefix']} ({prefix_time}): {tweet['full_text']} {item['suffix']}"
+
+    # Assuming tweet['created_at'] is a string containing the tweet's creation date
+    # and time in UTC.
+    tweet_time = datetime.datetime.strptime(tweet['created_at'], '%a %b %d %H:%M:%S %z %Y')
+
+    # Convert the datetime object to the desired timezone (Europe/Oslo)
+    oslo_timezone = pytz.timezone('Europe/Oslo')
+    tweet_time_oslo = tweet_time.astimezone(oslo_timezone)
+
+    # Format the time in Europe/Oslo timezone
+    prefix_time_oslo = tweet_time_oslo.strftime("%H:%M")
+
+    # Construct the tweet body
+    tweet_body = f"{item['prefix']} ({prefix_time_oslo}): {tweet['full_text']} {item['suffix']}"
+
     tweet_link = "https://twitter.com/twitter/status/" + tweet['id']
+
     thumbnail = ""
     if tweet['attachment']:
         thumbnail = tweet['attachment']
     else:
-        thumbnail = retrieve_random_image(item['username'], dt)
+        thumbnail = retrieve_random_image(item['username'], tweet_time_oslo)
 
     if "replies" in tweet and tweet["replies"] is not None and tweet["replies"]:
         for tweet_reply in tweet["replies"]:
-            tweet_reply["tweet_body_rss"] = f"{item['prefix']} ({prefix_time}): {tweet_reply['full_text']} {item['suffix']}"
+            tweet_reply["tweet_body_rss"] = f"{item['prefix']} ({prefix_time_oslo}): {tweet_reply['full_text']} {item['suffix']}"
 
         data = {
             "username": item['username'],
@@ -120,7 +130,7 @@ def save_db(item):
             "tweet_body": tweet['full_text'],
             "tweet_body_rss": tweet_body,
             "thumbnail": thumbnail,
-            "pub_date": new_dt,
+            "pub_date": tweet_time_oslo,
             "link": tweet_link,
             "replies": tweet["replies"] or None
         }
@@ -131,7 +141,7 @@ def save_db(item):
             "tweet_body": tweet['full_text'],
             "tweet_body_rss": tweet_body,
             "thumbnail": thumbnail,
-            "pub_date": new_dt,
+            "pub_date": tweet_time_oslo,
             "link": tweet_link,
             "replies": None
         }
@@ -150,7 +160,7 @@ def convert_to_RSS(item, keywords, negative_keywords, fg, acc_type):
         # parse datetime string and localize to UTC
         # dt = datetime.datetime.strptime(item['pub_date'], '%Y-%m-%dT%H:%M:%S.%f%z')
         tzinfo = pytz.timezone('Europe/Oslo')
-        pub_date = item['pub_date'].replace(tzinfo=tzinfo)
+        pub_date = tzinfo.localize(item['pub_date'])
         fe.pubDate(pub_date)
         fe.media.thumbnail({'url': item['thumbnail'], 'width': '200'},
                            group=None)

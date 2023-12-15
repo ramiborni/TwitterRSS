@@ -25,3 +25,5 @@ lib64
 lib64/
 twint-responses/
 pyvenv.cfg
+venv/
+twitter.log
