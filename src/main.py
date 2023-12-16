@@ -17,6 +17,10 @@ from functions import save_filtered_data, check_tweet_exist, get_tweets_db
 
 load_dotenv()
 
+import nltk
+
+nltk.download('punkt')
+
 # read configuration
 with open("config.toml", "rb") as f:
     config = tomllib.load(f)
@@ -93,6 +97,7 @@ def filter_results(tweet_text: str, keywords) -> bool:
                 "#", "").lower() or (" " in keyword and keyword.lower() in tweet_text.lower()):
                 return True
 
+
 def save_db(item):
     tweet = item['tweets']
     if check_tweet_exist(tweet['id']):
@@ -104,7 +109,8 @@ def save_db(item):
 
     # Convert the datetime object to the desired timezone (Europe/Oslo)
     oslo_timezone = pytz.timezone('Europe/Oslo')
-    tweet_time_oslo = tweet_time.astimezone(oslo_timezone)
+    tweet_time_oslo = tweet_time.replace(tzinfo=pytz.utc).astimezone(oslo_timezone)
+    tweet_time_timestamp = tweet_time_oslo.timestamp()
 
     # Format the time in Europe/Oslo timezone
     prefix_time_oslo = tweet_time_oslo.strftime("%H:%M")
@@ -122,7 +128,8 @@ def save_db(item):
 
     if "replies" in tweet and tweet["replies"] is not None and tweet["replies"]:
         for tweet_reply in tweet["replies"]:
-            tweet_reply["tweet_body_rss"] = f"{item['prefix']} ({prefix_time_oslo}): {tweet_reply['full_text']} {item['suffix']}"
+            tweet_reply[
+                "tweet_body_rss"] = f"{item['prefix']} ({prefix_time_oslo}): {tweet_reply['full_text']} {item['suffix']}"
 
         data = {
             "username": item['username'],
@@ -130,7 +137,7 @@ def save_db(item):
             "tweet_body": tweet['full_text'],
             "tweet_body_rss": tweet_body,
             "thumbnail": thumbnail,
-            "pub_date": tweet_time_oslo,
+            "pub_date": tweet_time_timestamp,
             "link": tweet_link,
             "replies": tweet["replies"] or None
         }
@@ -141,7 +148,7 @@ def save_db(item):
             "tweet_body": tweet['full_text'],
             "tweet_body_rss": tweet_body,
             "thumbnail": thumbnail,
-            "pub_date": tweet_time_oslo,
+            "pub_date": tweet_time_timestamp,
             "link": tweet_link,
             "replies": None
         }
@@ -151,17 +158,27 @@ def save_db(item):
 def convert_to_RSS(item, keywords, negative_keywords, fg, acc_type):
     global number_acc
 
-    if filter_results(item['tweet_body'].replace("\n", " "), keywords) and is_date_in_range(item['pub_date']) and not filter_results(item['tweet_body'].replace("\n", " "), negative_keywords):
+    if filter_results(item['tweet_body'].replace("\n", " "), keywords) and is_date_in_range(
+            item['pub_date']) and not filter_results(item['tweet_body'].replace("\n", " "), negative_keywords):
 
         fe = fg.add_entry()
         fe.id(item['id'])
         fe.title(item['tweet_body_rss'])
         fe.link(href=item['link'], rel='alternate')
-        # parse datetime string and localize to UTC
-        # dt = datetime.datetime.strptime(item['pub_date'], '%Y-%m-%dT%H:%M:%S.%f%z')
-        tzinfo = pytz.timezone('Europe/Oslo')
-        pub_date = tzinfo.localize(item['pub_date'])
-        fe.pubDate(pub_date)
+
+        # Assuming pub_date is a Unix timestamp representing the publication date in Oslo timezone
+        pub_date_timestamp = item['pub_date']  # Assuming this is a Unix timestamp
+
+        # Convert the timestamp to a datetime object in UTC
+        pub_date_utc = datetime.datetime.fromtimestamp(pub_date_timestamp, tz= pytz.utc)
+
+        # Convert the UTC datetime to Oslo timezone
+        oslo_timezone = pytz.timezone('Europe/Oslo')
+        pub_date_oslo = pub_date_utc.replace(tzinfo=pytz.utc).astimezone(oslo_timezone)
+
+        # Now, set the publication date in your feed generator
+        fe.pubDate(pub_date_oslo)
+
         fe.media.thumbnail({'url': item['thumbnail'], 'width': '200'},
                            group=None)
         fe.media.content({'url': item['thumbnail'], 'width': '400'},
@@ -174,12 +191,16 @@ def convert_to_RSS(item, keywords, negative_keywords, fg, acc_type):
 
         if "replies" in item and item["replies"] is not None and item["replies"]:
             for reply in item['replies']:
+                print("IM REPLY")
                 fe = fg.add_entry()
                 fe.id(reply['id'])
                 fe.title(reply['tweet_body_rss'])
                 fe.link(href=item['link'], rel='alternate')
                 datetime_reply = datetime.datetime.strptime(reply['created_at'], '%a %b %d %H:%M:%S %z %Y')
-                pub_date_reply = datetime_reply.replace(tzinfo=tzinfo)
+                pub_date_reply = datetime_reply
+                print(pub_date_reply)
+                print(reply['tweet_body_rss'])
+                print("----------------------------------------------------------------")
                 fe.pubDate(pub_date_reply)
                 fe.media.thumbnail({'url': item['thumbnail'], 'width': '200'},
                                    group=None)
@@ -383,7 +404,8 @@ if __name__ == '__main__':
         for index in range(len(list_categories)):
             if number_acc[index] != show_items:
                 category = list_categories[index]
-                convert_to_RSS(saved_tweets[i], category['keywords'], category["negative_keywords"], feed_generators[index], category['category_name'])
+                convert_to_RSS(saved_tweets[i], category['keywords'], category["negative_keywords"],
+                               feed_generators[index], category['category_name'])
 
     for i in range(len(list_categories)):
         category = list_categories[i]
@@ -397,11 +419,11 @@ if __name__ == '__main__':
             "title": category["page_title"],
             "title_horizontal": category["page_title_horizontal"],
         }
-        replace_placeholders("./templates/template_vertical.html", replaces,
+        replace_placeholders("templates/template_vertical.html", replaces,
                              f"./web-pages/{category['category_name']}.html")
-        replace_placeholders("./templates/template_horizantal.html", replaces,
+        replace_placeholders("templates/template_horizantal.html", replaces,
                              f"./web-pages/{category['category_name']}_horizontal.html")
-        replace_placeholders("./templates/template.js", replaces, f"./web-pages/{category['category_name']}.js")
+        replace_placeholders("templates/template.js", replaces, f"./web-pages/{category['category_name']}.js")
 
 print("Job finished ...")
 print("CLOSING INFOKANAL SCRAPPER ...")

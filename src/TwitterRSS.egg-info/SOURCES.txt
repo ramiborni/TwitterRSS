@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+src/db.py
+src/functions.py
+src/main.py
+src/twitter_data.py
+src/TwitterRSS.egg-info/PKG-INFO
+src/TwitterRSS.egg-info/SOURCES.txt
+src/TwitterRSS.egg-info/dependency_links.txt
+src/TwitterRSS.egg-info/requires.txt
+src/TwitterRSS.egg-info/top_level.txt

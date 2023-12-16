@@ -1,6 +1,6 @@
 [scrapper_config]
 within_time = "12h"
-show_items = 20
+show_items = 150
 [[scrapper_config.categories]]
 category_name = "haugaland"
 page_title = "Aktuelt Haugalandet"
