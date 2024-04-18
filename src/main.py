@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 import os
 from functions import save_filtered_data, check_tweet_exist, get_tweets_db
 from police_fetch import get_police_news
-
+from helpers import check_date_is_day, retrieve_random_image
 load_dotenv()
 
 import nltk
@@ -73,23 +73,6 @@ def is_date_in_range(date_str):
     return now - time_delta <= date <= now
 
 
-def check_date_is_day(date) -> bool:
-    start_time = datetime.time(hour=6)
-    end_time = datetime.time(hour=18)
-    return start_time <= date.time() <= end_time
-
-
-def retrieve_random_image(username: str, date) -> str:
-    day_or_night = "day" if check_date_is_day(date) else "night"
-    USER_PATH = f'./Images/{username}/{day_or_night}'
-    filenames = [f for f in os.listdir(
-        USER_PATH) if os.path.isfile(USER_PATH + '/' + f)]
-    if len(filenames) > 0:
-        return f"http://www.infokanal.com/images/{username}/{day_or_night}/{random.choice(filenames)}"
-    else:
-        return ""
-
-
 def filter_results(tweet_text: str, keywords) -> bool:
     for word in word_tokenize(tweet_text):
         for keyword in keywords:
@@ -125,6 +108,7 @@ def save_db(item):
     if tweet['attachment']:
         thumbnail = tweet['attachment']
     else:
+        print(type(tweet_time_oslo))
         thumbnail = retrieve_random_image(item['username'], tweet_time_oslo)
 
     if "replies" in tweet and tweet["replies"] is not None and tweet["replies"]:
@@ -160,12 +144,6 @@ def save_db(item):
 
 def convert_to_RSS(item, keywords, negative_keywords, fg, acc_type):
     global number_acc
-    try:
-        if item["is_police"]:
-            print(item['username'])
-            print(item['tweet_body'])
-    except:
-        pass
 
     if item["is_police"] or filter_results(item['tweet_body'].replace("\n", " "), keywords) and is_date_in_range(
             item['pub_date']) and not filter_results(item['tweet_body'].replace("\n", " "), negative_keywords):
@@ -218,6 +196,7 @@ def convert_to_RSS(item, keywords, negative_keywords, fg, acc_type):
                 number_acc[acc_type_index] = number_acc[acc_type_index] + 1
 
     else:
+        print(item)
         return
 
 
@@ -339,13 +318,6 @@ def extract_tweet_replies(entry, users):
 
 
 def get_data():
-    print(
-        {
-            "ct0": os.environ.get("TWITTER_CT0"),
-            "auth_token": os.environ.get("TWITTER_AUTH_TOKEN"),
-
-        }
-    )
     scraper = Scraper(cookies={
         "ct0": os.environ.get("TWITTER_CT0"),
         "auth_token": os.environ.get("TWITTER_AUTH_TOKEN"),
@@ -390,11 +362,12 @@ def add_is_police(item):
     item["is_police"] = False
     return item
 
+
 if __name__ == '__main__':
     result = get_data()
     flat_result = [item for sublist in result for item in sublist if item is not None]
     flat_result.sort(key=get_date, reverse=True)
-    print(len(flat_result))
+    print("total news: " + str(len(flat_result)))
     twitter_account_data = []
     print(f'saving tweets ..')
     for i in range(len(flat_result)):
@@ -407,22 +380,28 @@ if __name__ == '__main__':
         })
     print("tweets saved ...")
     print("getting stored tweets ...")
-    saved_tweets = list(map(add_is_police,get_tweets_db()))
+    saved_tweets = list(map(add_is_police, get_tweets_db()))
+    print("tweets: " + str(len(saved_tweets)))
     print("finishing getting stored tweets ...")
     print("Getting Police News")
     fetched_police_news = get_police_news()
 
-    merged_list = fetched_police_news + saved_tweets
+    merged_list = saved_tweets + fetched_police_news
+    sorted_list = sorted(merged_list, key=lambda x: x.get("pub_date"), reverse=True)
+
+    for obj in merged_list:
+        print(obj)
+        print("\n \n \n \n")
 
     print("building RSS ...")
-    for i in range(len(merged_list)):
+    for i in range(len(sorted_list)):
         if show_items is not None and all(item == show_items for item in number_acc):
             break
 
         for index in range(len(list_categories)):
             if number_acc[index] != show_items:
                 category = list_categories[index]
-                convert_to_RSS(merged_list[i], category['keywords'], category["negative_keywords"],
+                convert_to_RSS(sorted_list[i], category['keywords'], category["negative_keywords"],
                                feed_generators[index], category['category_name'])
 
     for i in range(len(list_categories)):

@@ -5,6 +5,7 @@ import pytz
 import re
 import os
 import time
+from helpers import check_date_is_day, retrieve_random_image
 
 def format_time_to_HHMM(struct_time):
     """
@@ -23,7 +24,6 @@ def format_time_to_HHMM(struct_time):
 
 
 
-
 def get_police_news():
     police_feed_url = 'https://api.politiet.no/politiloggen/v1/rss?districts=S%C3%B8rVest,Vest&municipalities=Bokn,Bømlo,Etne,Fitjar,Haugesund,Karmøy,Sauda,Stord,Suldal,Sveio,Utsira,Tysvær,Vindafjord'
     police_feed = feedparser.parse(police_feed_url)
@@ -31,7 +31,6 @@ def get_police_news():
     extracted_items = []
 
     for entry in police_feed.entries:
-        print(entry)
         title = entry.title
         description = entry.get("summary", "")
         username = f'politietsorvest'
@@ -40,7 +39,10 @@ def get_police_news():
         time_formatted = format_time_to_HHMM(entry.published_parsed)
 
         tweet_body_rss = f"SISTE FRA POLITIET ({time_formatted}): {description} (POLITIET/RADIO HAUGALAND)"
-        thumbnail = f''
+
+        date = datetime.fromtimestamp(time.mktime(entry.published_parsed))
+        print(type(date))
+        thumbnail = retrieve_random_image(username, date)
 
         item = {
             #'_id': ObjectId(),
