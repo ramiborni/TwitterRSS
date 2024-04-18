@@ -15,15 +15,16 @@ page_title_horizontal = "SISTE PÂ AKTUELT SUNNHORDLAND"
 keywords = [ "Sveio", "Stord", "Bømlo", "Bømlafjorden", "Bømlabroa", "Bømlafjordtunnelen", "Fitjar", "Kvinnherad", "Leirvik", "Bremnesvegen", "Langevåg", "Buavåg", "Bremnes", "Huglo", "Ølvesvegen", "Hatlestrand", "Håvika", "Tysnes",]
 negative_keywords = [ "Bergen",]
 
-[[scrapper_config.twitter_accounts]]
-username = "politietsorvest"
-prefix = "SISTE FRA POLITIET"
-suffix = "(POLITIET/RADIO HAUGALAND)"
+#[[scrapper_config.twitter_accounts]]
+#username = "politietsorvest"
+#prefix = "SISTE FRA POLITIET"
+#suffix = "(POLITIET/RADIO HAUGALAND)"
 
-[[scrapper_config.twitter_accounts]]
-username = "politivest"
-prefix = "SISTE FRA POLITIET"
-suffix = "(POLITIET/RADIO HAUGALAND)"
+#[[scrapper_config.twitter_accounts]]
+#username = "politivest"
+#prefix = "SISTE FRA POLITIET"
+#suffix = "(POLITIET/RADIO HAUGALAND)"
+
 
 [[scrapper_config.twitter_accounts]]
 username = "110SorVest"

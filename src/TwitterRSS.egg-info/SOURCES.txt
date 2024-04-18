@@ -4,6 +4,7 @@ pyproject.toml
 src/db.py
 src/functions.py
 src/main.py
+src/police_fetch.py
 src/twitter_data.py
 src/TwitterRSS.egg-info/PKG-INFO
 src/TwitterRSS.egg-info/SOURCES.txt

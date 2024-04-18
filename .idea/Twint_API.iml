@@ -2,7 +2,7 @@
 <module version="4">
   <component name="Go" enabled="true" />
   <component name="NewModuleRootManager">
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 3.11 (TwitterRSS)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

@@ -14,6 +14,7 @@ from twitter_data import twitter_data_from_dict
 from dotenv import load_dotenv
 import os
 from functions import save_filtered_data, check_tweet_exist, get_tweets_db
+from police_fetch import get_police_news
 
 load_dotenv()
 
@@ -139,7 +140,8 @@ def save_db(item):
             "thumbnail": thumbnail,
             "pub_date": tweet_time_timestamp,
             "link": tweet_link,
-            "replies": tweet["replies"] or None
+            "replies": tweet["replies"] or None,
+            "is_police": False
         }
     else:
         data = {
@@ -150,15 +152,22 @@ def save_db(item):
             "thumbnail": thumbnail,
             "pub_date": tweet_time_timestamp,
             "link": tweet_link,
-            "replies": None
+            "replies": None,
+            "is_police": False
         }
     save_filtered_data(data)
 
 
 def convert_to_RSS(item, keywords, negative_keywords, fg, acc_type):
     global number_acc
+    try:
+        if item["is_police"]:
+            print(item['username'])
+            print(item['tweet_body'])
+    except:
+        pass
 
-    if filter_results(item['tweet_body'].replace("\n", " "), keywords) and is_date_in_range(
+    if item["is_police"] or filter_results(item['tweet_body'].replace("\n", " "), keywords) and is_date_in_range(
             item['pub_date']) and not filter_results(item['tweet_body'].replace("\n", " "), negative_keywords):
 
         fe = fg.add_entry()
@@ -170,7 +179,7 @@ def convert_to_RSS(item, keywords, negative_keywords, fg, acc_type):
         pub_date_timestamp = item['pub_date']  # Assuming this is a Unix timestamp
 
         # Convert the timestamp to a datetime object in UTC
-        pub_date_utc = datetime.datetime.fromtimestamp(pub_date_timestamp, tz= pytz.utc)
+        pub_date_utc = datetime.datetime.fromtimestamp(pub_date_timestamp, tz=pytz.utc)
 
         # Convert the UTC datetime to Oslo timezone
         oslo_timezone = pytz.timezone('Europe/Oslo')
@@ -377,6 +386,10 @@ def replace_placeholders(template_file, replacements, output_file):
         file.write(template)
 
 
+def add_is_police(item):
+    item["is_police"] = False
+    return item
+
 if __name__ == '__main__':
     result = get_data()
     flat_result = [item for sublist in result for item in sublist if item is not None]
@@ -394,17 +407,22 @@ if __name__ == '__main__':
         })
     print("tweets saved ...")
     print("getting stored tweets ...")
-    saved_tweets = get_tweets_db()
+    saved_tweets = list(map(add_is_police,get_tweets_db()))
     print("finishing getting stored tweets ...")
+    print("Getting Police News")
+    fetched_police_news = get_police_news()
+
+    merged_list = fetched_police_news + saved_tweets
+
     print("building RSS ...")
-    for i in range(len(saved_tweets)):
+    for i in range(len(merged_list)):
         if show_items is not None and all(item == show_items for item in number_acc):
             break
 
         for index in range(len(list_categories)):
             if number_acc[index] != show_items:
                 category = list_categories[index]
-                convert_to_RSS(saved_tweets[i], category['keywords'], category["negative_keywords"],
+                convert_to_RSS(merged_list[i], category['keywords'], category["negative_keywords"],
                                feed_generators[index], category['category_name'])
 
     for i in range(len(list_categories)):
