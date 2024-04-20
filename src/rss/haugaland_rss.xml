@@ -7,16 +7,98 @@
         <description>infokanal RSS feed for haugaland</description>
         <docs>http://www.rssboard.org/rss-specification</docs>
         <generator>python-feedgen</generator>
-        <lastBuildDate>Thu, 18 Apr 2024 22:42:03 +0200</lastBuildDate>
+        <lastBuildDate>Sat, 20 Apr 2024 21:17:51 +0200</lastBuildDate>
         <item>
-            <title>SISTE FRA POLITIET (10:30): Bilberger har hentet begge bilene og veien er åpnet. Politiet oppretter
-                sak. (POLITIET/RADIO HAUGALAND)
+            <title>SISTE FRA BRANNVESENET (20:56): #Haugesund kl 20.52 - Melding om løfteoppdrag, Haugesund rykker ut
+                for å bistå. (110-SENTRALEN/RADIO HAUGALAND)
             </title>
-            <link>https://www.politiet.no/politiloggen/hendelse/#/24cnlm/3</link>
-            <guid isPermaLink="false">24cnlm</guid>
-            <pubDate>Thu, 18 Apr 2024 11:30:56 +0200</pubDate>
-            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag9.jpg" width="400"/>
-            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag9.jpg" width="200"/>
+            <link>https://twitter.com/twitter/status/1781758740875604222</link>
+            <guid isPermaLink="false">1781758740875604222</guid>
+            <pubDate>Sat, 20 Apr 2024 20:56:01 +0200</pubDate>
+            <media:content url="http://www.infokanal.com/images/110SorVest/night/20220109_205051-scaled.jpg"
+                           width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/110SorVest/night/20220109_205051-scaled.jpg"
+                             width="200"/>
+        </item>
+        <item>
+            <title>SISTE FRA BRANNVESENET (18:40): #Karmøy kl 18.34 - Melding om trafikkulykke Fotvegen. Mannskap fra
+                Kopervik stasjon rykker ut. (110-SENTRALEN/RADIO HAUGALAND)
+            </title>
+            <link>https://twitter.com/twitter/status/1781724717512008092</link>
+            <guid isPermaLink="false">1781724717512008092</guid>
+            <pubDate>Sat, 20 Apr 2024 18:40:50 +0200</pubDate>
+            <media:content url="http://www.infokanal.com/images/110SorVest/night/brannvesen3-e1537648055753.jpg"
+                           width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/110SorVest/night/brannvesen3-e1537648055753.jpg"
+                             width="200"/>
+        </item>
+        <item>
+            <title>TRAFIKK (20:39): E39 Byfjordtunnelen: stengt grunnet stanset kjøretøy (VEGVESEN/RADIO HAUGALAND)
+            </title>
+            <link>https://twitter.com/twitter/status/1781392176905126061</link>
+            <guid isPermaLink="false">1781392176905126061</guid>
+            <pubDate>Fri, 19 Apr 2024 20:39:26 +0200</pubDate>
+            <media:content url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg"
+                           width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg"
+                             width="200"/>
+        </item>
+        <item>
+            <title>TRAFIKK (19:25): Fv 5060 Litlabøvegen 360 i Stord: Kortvarig stenging av veien grunnet bilberging.
+                (VEGVESEN/RADIO HAUGALAND)
+            </title>
+            <link>https://twitter.com/twitter/status/1781373604485112013</link>
+            <guid isPermaLink="false">1781373604485112013</guid>
+            <pubDate>Fri, 19 Apr 2024 19:25:38 +0200</pubDate>
+            <media:content url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg"
+                           width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/VTSvest/night/Cd7nY5f3usg_compress_resize.jpg"
+                             width="200"/>
+        </item>
+        <item>
+            <title>SISTE FRA POLITIET (14:56): Rettelse. Det skal være to biler og tre personer involvert i ulykken. Det
+                har vært en front til front ulykke. Det kan tyde på at den ene av bilene har brutt vikeplikten. Fører av
+                den ene bilen klaget over smerter i en fot, de to andre personene fremstod uskadd. Alle tre blir kjørt
+                til akuttmottaket på Stord sjukehus for sjekk. Bilberging er rekvirert Politiet dirigerer trafikken på
+                stedet inntil bilberger er på plass. (POLITIET/RADIO HAUGALAND)
+            </title>
+            <link>https://www.politiet.no/politiloggen/hendelse/#/24pgh8/2</link>
+            <guid isPermaLink="false">24pgh8</guid>
+            <pubDate>Fri, 19 Apr 2024 15:56:34 +0200</pubDate>
+            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag.jpg" width="200"/>
+        </item>
+        <item>
+            <title>TRAFIKK (14:37): E134 Haugesund, ved Ørpetveitvegen
+                Trafikkuhell, litt redusert framkommelighet (VEGVESEN/RADIO HAUGALAND)
+            </title>
+            <link>https://twitter.com/twitter/status/1781301085350625539</link>
+            <guid isPermaLink="false">1781301085350625539</guid>
+            <pubDate>Fri, 19 Apr 2024 14:37:28 +0200</pubDate>
+            <media:content url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="200"/>
+        </item>
+        <item>
+            <title>TRAFIKK (14:17): E39 Mastrafjordtunnelen
+                Kort stengning grunnet bilberging. (VEGVESEN/RADIO HAUGALAND)
+            </title>
+            <link>https://twitter.com/twitter/status/1781296110050386179</link>
+            <guid isPermaLink="false">1781296110050386179</guid>
+            <pubDate>Fri, 19 Apr 2024 14:17:42 +0200</pubDate>
+            <media:content url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/VTSvest/day/PdE7YkG1pco_resize.jpg" width="200"/>
+        </item>
+        <item>
+            <title>SISTE FRA POLITIET (07:50): Politiet fikk melding om trafikkuhell på Saudaveien/Nedre Vats kl.0724.
+                En bil kjørt i et autovern. Ingen personskade. Fører av bilen fremstod som påvirket. Vedkommende ble
+                kjørt til legevakt hvor det ble foretatt blodprøve av siktede. Førerkortet er ikke beslaglagt i påvente
+                av resultatet av blodprøven. Sak er opprettet. (POLITIET/RADIO HAUGALAND)
+            </title>
+            <link>https://www.politiet.no/politiloggen/hendelse/#/243qdw/0</link>
+            <guid isPermaLink="false">243qdw</guid>
+            <pubDate>Fri, 19 Apr 2024 08:50:50 +0200</pubDate>
+            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag8.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag8.jpg" width="200"/>
         </item>
         <item>
             <title>TRAFIKK (10:36): E39 Bokn: Stengt vei pga. trafikkulykke. Nødetater er på vei. (VEGVESEN/RADIO
@@ -48,39 +130,6 @@
             <pubDate>Thu, 18 Apr 2024 10:30:01 +0200</pubDate>
             <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag4.jpg" width="400"/>
             <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag4.jpg" width="200"/>
-        </item>
-        <item>
-            <title>SISTE FRA POLITIET (09:19): De to bilene som var involvert i ulykken er nå delvis fjernet fra
-                veibanen og trafikken flyter forbi i et felt. En person har blitt tilsett av helse, ikke alvorlig skadd.
-                Politiet er på stedet og gjennomfører avhør og venter på bilberging. (POLITIET/RADIO HAUGALAND)
-            </title>
-            <link>https://www.politiet.no/politiloggen/hendelse/#/24cnlm/2</link>
-            <guid isPermaLink="false">24cnlm</guid>
-            <pubDate>Thu, 18 Apr 2024 10:19:47 +0200</pubDate>
-            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag23.jpg" width="400"/>
-            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag23.jpg" width="200"/>
-        </item>
-        <item>
-            <title>SISTE FRA POLITIET (08:42): Politiet er kommet frem til stedet. Det er kø på stedet og store
-                trafikale problemer. Skal være 6 personer involvert, og det er ikke meldt om alvorlig personskade. De
-                involverte blir tilsett av helse. (POLITIET/RADIO HAUGALAND)
-            </title>
-            <link>https://www.politiet.no/politiloggen/hendelse/#/24cnlm/1</link>
-            <guid isPermaLink="false">24cnlm</guid>
-            <pubDate>Thu, 18 Apr 2024 09:42:20 +0200</pubDate>
-            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag7.jpg" width="400"/>
-            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag7.jpg" width="200"/>
-        </item>
-        <item>
-            <title>SISTE FRA POLITIET (08:29): Politiet rykker ut til melding om en trafikkulykke på E39 på Bokn. Skal
-                være to biler involvert. Alle skal være bevisst og ingen fastklemt. Uvisst skadeomfang. Veien er
-                sperret. (POLITIET/RADIO HAUGALAND)
-            </title>
-            <link>https://www.politiet.no/politiloggen/hendelse/#/24cnlm/0</link>
-            <guid isPermaLink="false">24cnlm</guid>
-            <pubDate>Thu, 18 Apr 2024 09:29:44 +0200</pubDate>
-            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag7.jpg" width="400"/>
-            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag7.jpg" width="200"/>
         </item>
         <item>
             <title>TRAFIKK (11:47): E39 Bømlafjordtunnelen; Kort stenging i forbindelse med spesialtransport.
@@ -125,36 +174,6 @@
             <media:thumbnail url="http://www.infokanal.com/images/110SorVest/day/brannbil.jpg" width="200"/>
         </item>
         <item>
-            <title>SISTE FRA POLITIET (06:55): Mannlig bilfører i 50 årene har fått sitt førerkort beslaglagt. Politiet
-                er ferdig på stedet og oppretter sak. (POLITIET/RADIO HAUGALAND)
-            </title>
-            <link>https://www.politiet.no/politiloggen/hendelse/#/24rgj4/2</link>
-            <guid isPermaLink="false">24rgj4</guid>
-            <pubDate>Wed, 17 Apr 2024 07:55:40 +0200</pubDate>
-            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag24.jpg" width="400"/>
-            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag24.jpg" width="200"/>
-        </item>
-        <item>
-            <title>SISTE FRA POLITIET (06:06): Trafikken flyter greit på stedet. Det skal være en syklist som er påkjørt
-                og det meldes om lettere personskade. (POLITIET/RADIO HAUGALAND)
-            </title>
-            <link>https://www.politiet.no/politiloggen/hendelse/#/24rgj4/1</link>
-            <guid isPermaLink="false">24rgj4</guid>
-            <pubDate>Wed, 17 Apr 2024 07:06:53 +0200</pubDate>
-            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-fart.jpg" width="400"/>
-            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-fart.jpg" width="200"/>
-        </item>
-        <item>
-            <title>SISTE FRA POLITIET (05:59): En person skal være påkjørt av bil. Uavklart skadeomfang. Nødetatene er
-                på vei til stedet. (POLITIET/RADIO HAUGALAND)
-            </title>
-            <link>https://www.politiet.no/politiloggen/hendelse/#/24rgj4/0</link>
-            <guid isPermaLink="false">24rgj4</guid>
-            <pubDate>Wed, 17 Apr 2024 06:59:15 +0200</pubDate>
-            <media:content url="http://www.infokanal.com/images/politietsorvest/night/politi-natt14.jpg" width="400"/>
-            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/night/politi-natt14.jpg" width="200"/>
-        </item>
-        <item>
             <title>SISTE FRA POLITIET (16:52): #Stord #IndreRøyksund Melding om trafikkulykke, bil mot moped. Det var
                 ikke stor fart. Verneutstyr var brukt. Mopedisten lettere skadet. Nødetatene på vei til stedet.
                 (POLITIET/RADIO HAUGALAND)
@@ -177,27 +196,6 @@
             <media:thumbnail url="http://www.infokanal.com/images/110SorVest/day/dsc_9634-scaled.jpg" width="200"/>
         </item>
         <item>
-            <title>SISTE FRA POLITIET (14:59): Politiet på stedet. Mopedisten ble hentet av ambulanse og kjørt for
-                helsesjekk. (POLITIET/RADIO HAUGALAND)
-            </title>
-            <link>https://www.politiet.no/politiloggen/hendelse/#/24kp1k/1</link>
-            <guid isPermaLink="false">24kp1k</guid>
-            <pubDate>Tue, 16 Apr 2024 15:59:38 +0200</pubDate>
-            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag7.jpg" width="400"/>
-            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag7.jpg" width="200"/>
-        </item>
-        <item>
-            <title>SISTE FRA POLITIET (14:52): Melding om trafikkulykke, bil mot moped. Det var ikke stor fart.
-                Verneutstyr var brukt. Mopedisten lettere skadet. Nødetatene på vei til stedet. (POLITIET/RADIO
-                HAUGALAND)
-            </title>
-            <link>https://www.politiet.no/politiloggen/hendelse/#/24kp1k/0</link>
-            <guid isPermaLink="false">24kp1k</guid>
-            <pubDate>Tue, 16 Apr 2024 15:52:50 +0200</pubDate>
-            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag23.jpg" width="400"/>
-            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag23.jpg" width="200"/>
-        </item>
-        <item>
             <title>SISTE FRA POLITIET (13:43): #Karmøy Klokke 1230 rykket politiet ut sammen med helse til en
                 arbeidsulykke på Husøyvegen på Avaldsnes. En arbeider hadde pådratt seg en klemskade i hodet etter
                 lasting/losing av containere på en båt som lå ...
@@ -211,16 +209,27 @@
             <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag3.jpg" width="200"/>
         </item>
         <item>
-            <title>SISTE FRA POLITIET (11:43): Klokke 1230 rykket politiet ut sammen med helse til en arbeidsulykke på
-                Husøyvegen på Avaldsnes. En arbeider hadde pådratt seg en klemskade i hodet etter lasting/losing av
-                containere på en båt som lå til kai. Arbeider ble fraktet til Haugesund sykehus. Pasient var ved
-                bevissthet. (POLITIET/RADIO HAUGALAND)
+            <title>SISTE FRA BRANNVESENET (11:02): #Karmøy kl 10:54 - Melding om brann i en garasje i Søratre. Mannskap
+                fra Åkra og Kopervik stasjon rykker ut. (110-SENTRALEN/RADIO HAUGALAND)
             </title>
-            <link>https://www.politiet.no/politiloggen/hendelse/#/2469x0/0</link>
-            <guid isPermaLink="false">2469x0</guid>
-            <pubDate>Mon, 15 Apr 2024 12:43:39 +0200</pubDate>
-            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag11.jpg" width="400"/>
-            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag11.jpg" width="200"/>
+            <link>https://twitter.com/twitter/status/1779797427429486676</link>
+            <guid isPermaLink="false">1779797427429486676</guid>
+            <pubDate>Mon, 15 Apr 2024 11:02:28 +0200</pubDate>
+            <media:content url="http://www.infokanal.com/images/110SorVest/day/52103912924_4f7ee4070c_k.jpg"
+                           width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/110SorVest/day/52103912924_4f7ee4070c_k.jpg"
+                             width="200"/>
+        </item>
+        <item>
+            <title>SISTE FRA POLITIET (11:01): #Karmøy Politi og nødetater rykker ut til Søratre på Veavågen etter
+                melding om brann i en garasje. Skal ikke være sett åpne flammer, men røyk fra garasjen. (POLITIET/RADIO
+                HAUGALAND)
+            </title>
+            <link>https://twitter.com/twitter/status/1779797061577158860</link>
+            <guid isPermaLink="false">1779797061577158860</guid>
+            <pubDate>Mon, 15 Apr 2024 11:01:01 +0200</pubDate>
+            <media:content url="http://www.infokanal.com/images/politietsorvest/day/politi-dag22.jpg" width="400"/>
+            <media:thumbnail url="http://www.infokanal.com/images/politietsorvest/day/politi-dag22.jpg" width="200"/>
         </item>
     </channel>
 </rss>

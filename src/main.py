@@ -16,6 +16,7 @@ import os
 from functions import save_filtered_data, check_tweet_exist, get_tweets_db
 from police_fetch import get_police_news
 from helpers import check_date_is_day, retrieve_random_image
+
 load_dotenv()
 
 import nltk
@@ -108,7 +109,6 @@ def save_db(item):
     if tweet['attachment']:
         thumbnail = tweet['attachment']
     else:
-        print(type(tweet_time_oslo))
         thumbnail = retrieve_random_image(item['username'], tweet_time_oslo)
 
     if "replies" in tweet and tweet["replies"] is not None and tweet["replies"]:
@@ -145,7 +145,7 @@ def save_db(item):
 def convert_to_RSS(item, keywords, negative_keywords, fg, acc_type):
     global number_acc
 
-    if item["is_police"] or filter_results(item['tweet_body'].replace("\n", " "), keywords) and is_date_in_range(
+    if filter_results(item['tweet_body'].replace("\n", " "), keywords) and is_date_in_range(
             item['pub_date']) and not filter_results(item['tweet_body'].replace("\n", " "), negative_keywords):
 
         fe = fg.add_entry()
@@ -196,7 +196,6 @@ def convert_to_RSS(item, keywords, negative_keywords, fg, acc_type):
                 number_acc[acc_type_index] = number_acc[acc_type_index] + 1
 
     else:
-        print(item)
         return
 
 
@@ -367,7 +366,7 @@ if __name__ == '__main__':
     result = get_data()
     flat_result = [item for sublist in result for item in sublist if item is not None]
     flat_result.sort(key=get_date, reverse=True)
-    print("total news: " + str(len(flat_result)))
+    print("total twitter news: " + str(len(flat_result)))
     twitter_account_data = []
     print(f'saving tweets ..')
     for i in range(len(flat_result)):
@@ -384,14 +383,16 @@ if __name__ == '__main__':
     print("tweets: " + str(len(saved_tweets)))
     print("finishing getting stored tweets ...")
     print("Getting Police News")
-    fetched_police_news = get_police_news()
+    fetched_police_news = []
+    for category in list_categories:
+        fetched_police_news.append(get_police_news(category["category_name"], category["police_municipalities"]))
 
-    merged_list = saved_tweets + fetched_police_news
+    flat_fetched_police_news = [item for sublist in fetched_police_news for item in sublist]
+
+    merged_list = saved_tweets + flat_fetched_police_news
+    print(len(merged_list))
+
     sorted_list = sorted(merged_list, key=lambda x: x.get("pub_date"), reverse=True)
-
-    for obj in merged_list:
-        print(obj)
-        print("\n \n \n \n")
 
     print("building RSS ...")
     for i in range(len(sorted_list)):
@@ -401,26 +402,36 @@ if __name__ == '__main__':
         for index in range(len(list_categories)):
             if number_acc[index] != show_items:
                 category = list_categories[index]
-                convert_to_RSS(sorted_list[i], category['keywords'], category["negative_keywords"],
-                               feed_generators[index], category['category_name'])
+                if sorted_list[i]["is_police"] is False or (
+                        sorted_list[i]["is_police"] is True and sorted_list[i]["category"] == category[
+                    "category_name"]):
 
-    for i in range(len(list_categories)):
-        category = list_categories[i]
-        feed_list = feed_generators[i].entry()
-        feed_generators[i].entry(sorted(feed_list, key=lambda x: x.pubDate(), reverse=True), replace=True)
-        feed_generators[i].rss_str(pretty=True)
-        feed_generators[i].rss_file(f'./rss/{category["category_name"]}_rss.xml')
-        replaces = {
-            "category_name": category["category_name"],
-            "category_name_uppercase": category["category_name"].capitalize(),
-            "title": category["page_title"],
-            "title_horizontal": category["page_title_horizontal"],
-        }
-        replace_placeholders("templates/template_vertical.html", replaces,
-                             f"./web-pages/{category['category_name']}.html")
-        replace_placeholders("templates/template_horizantal.html", replaces,
-                             f"./web-pages/{category['category_name']}_horizontal.html")
-        replace_placeholders("templates/template.js", replaces, f"./web-pages/{category['category_name']}.js")
+                    print((
+                        sorted_list[i]["is_police"] is True and sorted_list[i]["category"] == category[
+                    "category_name"]))
+
+                    convert_to_RSS(sorted_list[i], category['keywords'], category["negative_keywords"],
+                                   feed_generators[index], category['category_name'])
+
+                    for i in range(len(list_categories)):
+                        category = list_categories[i]
+                        feed_list = feed_generators[i].entry()
+                        feed_generators[i].entry(sorted(feed_list, key=lambda x: x.pubDate(), reverse=True),
+                                                 replace=True)
+                        feed_generators[i].rss_str(pretty=True)
+                        feed_generators[i].rss_file(f'./rss/{category["category_name"]}_rss.xml')
+                        replaces = {
+                            "category_name": category["category_name"],
+                            "category_name_uppercase": category["category_name"].capitalize(),
+                            "title": category["page_title"],
+                            "title_horizontal": category["page_title_horizontal"],
+                        }
+                        replace_placeholders("templates/template_vertical.html", replaces,
+                                             f"./web-pages/{category['category_name']}.html")
+                        replace_placeholders("templates/template_horizantal.html", replaces,
+                                             f"./web-pages/{category['category_name']}_horizontal.html")
+                        replace_placeholders("templates/template.js", replaces,
+                                             f"./web-pages/{category['category_name']}.js")
 
 print("Job finished ...")
 print("CLOSING INFOKANAL SCRAPPER ...")

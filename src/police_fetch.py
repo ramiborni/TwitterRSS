@@ -6,6 +6,8 @@ import re
 import os
 import time
 from helpers import check_date_is_day, retrieve_random_image
+import urllib
+
 
 def format_time_to_HHMM(struct_time):
     """
@@ -23,12 +25,19 @@ def format_time_to_HHMM(struct_time):
         return None
 
 
+def get_police_news(category_name: str, police_municipalities: list[str]):
+    encoded_municipalities = [urllib.parse.quote(m) for m in police_municipalities]
 
-def get_police_news():
-    police_feed_url = 'https://api.politiet.no/politiloggen/v1/rss?districts=S%C3%B8rVest,Vest&municipalities=Bokn,Bømlo,Etne,Fitjar,Haugesund,Karmøy,Sauda,Stord,Suldal,Sveio,Utsira,Tysvær,Vindafjord'
+    police_feed_url = 'https://api.politiet.no/politiloggen/v1/rss?districts=S%C3%B8rVest,Vest&municipalities=' + ",".join(
+        encoded_municipalities)
+
+    print(police_feed_url)
+
     police_feed = feedparser.parse(police_feed_url)
 
     extracted_items = []
+
+    oslo_timezone = pytz.timezone('Europe/Oslo')
 
     for entry in police_feed.entries:
         title = entry.title
@@ -40,22 +49,26 @@ def get_police_news():
 
         tweet_body_rss = f"SISTE FRA POLITIET ({time_formatted}): {description} (POLITIET/RADIO HAUGALAND)"
 
-        date = datetime.fromtimestamp(time.mktime(entry.published_parsed))
-        print(type(date))
-        thumbnail = retrieve_random_image(username, date)
+        utc_datetime = datetime.fromtimestamp(time.mktime(entry.published_parsed))
+        oslo_datetime = utc_datetime.astimezone(oslo_timezone)
+
+        thumbnail = retrieve_random_image(username, oslo_datetime)
 
         item = {
-            #'_id': ObjectId(),
+            # '_id': ObjectId(),
             'username': username,
             'id': entry.id.replace('https://www.politiet.no/politiloggen/hendelse/#/', '').split('/')[0],
             'tweet_body': tweet_body,
             'tweet_body_rss': tweet_body_rss,
+            "title": title,
             'thumbnail': thumbnail,
-            'pub_date': datetime(*entry.published_parsed[:6]).timestamp(),
+            'pub_date': oslo_datetime.timestamp(),  # Get the timestamp of oslo_datetime
             'link': entry.link,
             'replies': None,
-            'is_police': True
+            'is_police': True,
+            'category': category_name
         }
+
         extracted_items.append(item)
 
     return extracted_items
