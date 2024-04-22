@@ -39,3 +39,4 @@ Requires-Dist: twitter-api-client==0.10.21
 Requires-Dist: websockets==11.0.3
 Requires-Dist: yarl==1.9.2
 Requires-Dist: feedparser>=6.0.11
+Requires-Dist: requests>=2.31.0

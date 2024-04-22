@@ -3,6 +3,7 @@ README.md
 pyproject.toml
 src/db.py
 src/functions.py
+src/helpers.py
 src/main.py
 src/police_fetch.py
 src/twitter_data.py

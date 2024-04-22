@@ -33,3 +33,4 @@ twitter-api-client==0.10.21
 websockets==11.0.3
 yarl==1.9.2
 feedparser>=6.0.11
+requests>=2.31.0

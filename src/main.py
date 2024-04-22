@@ -142,11 +142,11 @@ def save_db(item):
     save_filtered_data(data)
 
 
-def convert_to_RSS(item, keywords, negative_keywords, fg, acc_type):
+def convert_to_RSS(item, keywords, negative_keywords, fg, acc_type, no_filter: bool):
     global number_acc
 
-    if filter_results(item['tweet_body'].replace("\n", " "), keywords) and is_date_in_range(
-            item['pub_date']) and not filter_results(item['tweet_body'].replace("\n", " "), negative_keywords):
+    if no_filter is True or (filter_results(item['tweet_body'].replace("\n", " "), keywords) and is_date_in_range(
+            item['pub_date']) and not filter_results(item['tweet_body'].replace("\n", " "), negative_keywords)):
 
         fe = fg.add_entry()
         fe.id(item['id'])
@@ -385,14 +385,20 @@ if __name__ == '__main__':
     print("Getting Police News")
     fetched_police_news = []
     for category in list_categories:
+        print(category)
         fetched_police_news.append(get_police_news(category["category_name"], category["police_municipalities"]))
 
+    print(len(fetched_police_news[0]),len(fetched_police_news[1]))
+
+
     flat_fetched_police_news = [item for sublist in fetched_police_news for item in sublist]
+
 
     merged_list = saved_tweets + flat_fetched_police_news
     print(len(merged_list))
 
     sorted_list = sorted(merged_list, key=lambda x: x.get("pub_date"), reverse=True)
+
 
     print("building RSS ...")
     for i in range(len(sorted_list)):
@@ -406,12 +412,9 @@ if __name__ == '__main__':
                         sorted_list[i]["is_police"] is True and sorted_list[i]["category"] == category[
                     "category_name"]):
 
-                    print((
-                        sorted_list[i]["is_police"] is True and sorted_list[i]["category"] == category[
-                    "category_name"]))
 
                     convert_to_RSS(sorted_list[i], category['keywords'], category["negative_keywords"],
-                                   feed_generators[index], category['category_name'])
+                                   feed_generators[index], category['category_name'], sorted_list[i]["is_police"])
 
                     for i in range(len(list_categories)):
                         category = list_categories[i]
